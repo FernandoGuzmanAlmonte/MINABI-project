@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CoilTypes extends Migration
+class CreateCoilTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CoilTypes extends Migration
      */
     public function up()
     {
-        Schema::create('coilTypes', function(Blueprint $table){
+        Schema::create('coil_types', function(Blueprint $table){
             $table->id();
             $table->string('alias', 25);
             $table->float('anchoCm', 8, 4);
@@ -34,6 +34,6 @@ class CoilTypes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coilTypes');
+        Schema::dropIfExists('coil_types');
     }
 }

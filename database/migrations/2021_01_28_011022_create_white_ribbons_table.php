@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class WhiteCoils extends Migration
+class CreateWhiteRibbonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class WhiteCoils extends Migration
      */
     public function up()
     {
-        Schema::create('whiteCoils', function(Blueprint $table){
+        Schema::create('white_ribbons', function(Blueprint $table){
             $table->id();
-            $table->float('peso', 8, 4);
-            $table->float('largoM', 8, 4);
+            $table->float('peso');
             $table->string('status', 9);
+            $table->float('largoM');
             $table->string('nomenclatura', 20);
-            $table->string('observaciones')->nullable();
-            $table->timestamps();
+            $table->date('fArribo');
+            $table->string('tipo', 10);
         });
     }
 
@@ -31,6 +31,6 @@ class WhiteCoils extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('whiteCoils');
+        Schema::dropIfExists('white_ribbons');
     }
 }

@@ -32,7 +32,7 @@ class CreateBagsTable extends Migration
             //Usuario Creo  
             $table->string('medida', 10);
             $table->string('tipoUnidad', 8); // si es millar o ciento
-            $tipo->string('tipo', 12); //con pestaña sin pestaña?
+            $table->string('tipo', 12); //con pestaña sin pestaña?
             $table->timestamps();
         });
     }

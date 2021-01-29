@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoilProductTable extends Migration
+class CreateCoilProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCoilProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('coil_product', function (Blueprint $table) {
+        Schema::create('coil_products', function (Blueprint $table) {
             $table->id();
             $table->string('nomenclatura', 20);
             //folio

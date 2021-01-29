@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Coil extends Migration
+class CreateCoilsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Coil extends Migration
      */
     public function up()
     {
-        Schema::create('coil', function(Blueprint $table){
+        Schema::create('coils', function(Blueprint $table){
             $table->id();
             $table->string('nomenclatura', 20);
             $table->string('status', 9);
@@ -38,6 +38,6 @@ class Coil extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coil');
+        Schema::dropIfExists('coils');
     }
 }
