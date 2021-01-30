@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateWhiteRibbonsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Cintilla
      *
      * @return void
      */
@@ -15,12 +15,29 @@ class CreateWhiteRibbonsTable extends Migration
     {
         Schema::create('white_ribbons', function(Blueprint $table){
             $table->id();
+
+            //idBobina con CintillaRollo???
+            $table->unsignedBigInteger('coil_id')->nullable();//se puede dejar sin nulleable o unique?
+            $table->unsignedBigInteger('user_id')->nullable();
+
             $table->float('peso');
             $table->string('status', 9);
             $table->float('largoM');
             $table->string('nomenclatura', 20);
             $table->date('fArribo');
             $table->string('tipo', 10);
+
+            $table->foreign('coil_id')
+                ->references('id')
+                ->on('coils')
+                ->onDelete('set null')//?
+                ->onUpdate('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null')//?
+                ->onUpdate('cascade');
         });
     }
 

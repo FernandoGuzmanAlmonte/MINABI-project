@@ -15,6 +15,8 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('provider_id')->nullable();
+
             $table->string('correoElectronico', 76);
             $table->string('telefono', 20);
             $table->string('nombre', 40);
@@ -22,6 +24,11 @@ class CreateContactsTable extends Migration
             //UsuarioCreo
             //UsuarioModifico
             $table->timestamps();
+
+            $table->foreign('provider_id')
+                ->references('id')->on('providers')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
         });
     }
 

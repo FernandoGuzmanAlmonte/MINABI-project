@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateWhiteCoilsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * BobinaCintilla.
      *
      * @return void
      */
@@ -15,12 +15,28 @@ class CreateWhiteCoilsTable extends Migration
     {
         Schema::create('white_coils', function(Blueprint $table){
             $table->id();
+            $table->unsignedBigInteger('provider_id')->unique();
+            $table->unsignedBigInteger('coil_type_id')->nullable();
+
+
             $table->float('peso', 8, 4);
             $table->float('largoM', 8, 4);
             $table->string('status', 9);
             $table->string('nomenclatura', 20);
             $table->string('observaciones')->nullable();
             $table->timestamps();
+
+            $table->foreign('provider_id')
+                ->references('id')
+                ->on('provider')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('coil_types_id')
+                ->references('id')
+                ->on('coil_types')
+                ->onDelete('set null')
+                ->onUpdate('cascade');                 
         });
     }
 
