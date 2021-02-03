@@ -15,10 +15,17 @@ class CreateBagMeasuresTable extends Migration
     {
         Schema::create('bag_measures', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('coil_type_id');
+            
             $table->float('ancho', 8, 4);
             $table->float('largo', 8, 4);
             //Usuario creo
             //Usuario modifico
+
+            $table->foreign('coil_type_id')
+            ->references('id')
+            ->on('coil_types');   
+
             $table->timestamps();
         });
     }

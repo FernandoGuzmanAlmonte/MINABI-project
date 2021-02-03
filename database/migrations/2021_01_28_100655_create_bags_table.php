@@ -15,6 +15,10 @@ class CreateBagsTable extends Migration
     {
         Schema::create('bags', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ribbon_id');
+            $table->unsignedBigInteger('bag_measure_id');
+            $table->unsignedBigInteger('employee_id');
+
             $table->date('fechaInicioTrabajo');
             $table->date('fechaFinTrabajo')->nullable;
             $table->time('horaInicioTrabajo');
@@ -23,7 +27,6 @@ class CreateBagsTable extends Migration
             $table->string('clienteStock', 10);
             $table->float('temperatura', 8, 4);
             $table->float('velocidad', 8, 4);
-            //quien elaboro
             $table->text('observaciones')->nullable;
             $table->boolean('pestania');
             $table->string('status', 15);
@@ -33,6 +36,19 @@ class CreateBagsTable extends Migration
             $table->string('medida', 10);
             $table->string('tipoUnidad', 8); // si es millar o ciento
             $table->string('tipo', 12); //con pestaña sin pestaña?
+
+            $table->foreign('ribbon_id')
+                ->references('id')
+                ->on('ribbons');
+                
+            $table->foreign('bag_measure_id')
+                ->references('id')
+                ->on('bag_measures');
+                
+            $table->foreign('employee_id')
+                ->references('id')
+                ->on('employees');   
+
             $table->timestamps();
         });
     }

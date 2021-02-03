@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('layouts.plantilla');
 });
+=======
+    return view('welcome');
+});
+
+Route::resource('coil', CoilController::class);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+>>>>>>> 6b83cb5e4a881a2a97add603f8d4c7da0a56f0cb

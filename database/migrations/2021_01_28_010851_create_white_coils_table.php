@@ -28,15 +28,11 @@ class CreateWhiteCoilsTable extends Migration
 
             $table->foreign('provider_id')
                 ->references('id')
-                ->on('provider')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->on('providers');
 
-            $table->foreign('coil_types_id')
+            $table->foreign('coil_type_id')
                 ->references('id')
-                ->on('coil_types')
-                ->onDelete('set null')
-                ->onUpdate('cascade');                 
+                ->on('coil_types');                 
         });
     }
 

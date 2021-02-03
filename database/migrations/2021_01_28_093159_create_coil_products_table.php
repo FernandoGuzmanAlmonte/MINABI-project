@@ -15,23 +15,32 @@ class CreateCoilProductsTable extends Migration
     {
         Schema::create('coil_products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('coil_id');
+            $table->unsignedBigInteger('ribbon_id')->nullable();
+            $table->unsignedBigInteger('coil_reel_id')->nullable();
+            $table->unsignedBigInteger('waste_ribbon_id')->nullable();
+            
             $table->string('nomenclatura', 20);
             //folio
-            $table->float('peso', 8, 4);
-            $table->float('metros', 8, 4);
-            $table->text('observaciones')->nullable;
-            //quien elaboro
-            $table->date('fechaInicioTrabajo');
-            $table->date('fechaFinTrabajo')->nullable;
-            $table->time('horaInicioTrabajo');
-            $table->time('horaFinTrabajo')->nullable;
-            //Usuario creo
-            //Usuario modifico
-            /*tipo*/
-            $table->float('temperatura', 8, 4);
-            $table->float('velocidad', 8, 4);
             $table->string('status', 15);
-            $table->float('pesoUtilizado', 8, 4);//?
+            $table->string('10', 10);// merma, rollo, hueso
+
+            $table->foreign('coil_id')
+                ->references('id')
+                ->on('coils');
+
+            $table->foreign('ribbon_id')
+                ->references('id')
+                ->on('ribbons');        
+
+            $table->foreign('coil_reel_id')
+                ->references('id')
+                ->on('coil_reels'); 
+
+            $table->foreign('waste_ribbon_id')
+                ->references('id')
+                ->on('waste_ribbons');    
+
             $table->timestamps();
         });
     }
