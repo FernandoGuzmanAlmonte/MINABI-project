@@ -16,7 +16,7 @@ class CreateCoilsTable extends Migration
         Schema::create('coils', function(Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('coil_type_id')->nullable();
-            $table->unsignedBigInteger('provider_id')->unique();
+            $table->unsignedBigInteger('provider_id');
 
             $table->string('nomenclatura', 20);
             $table->string('status', 9);
@@ -30,18 +30,19 @@ class CreateCoilsTable extends Migration
             $table->float('largoM',8 ,4);
             $table->float('pesoUtilizado',8 ,4)->nullable();
             $table->float('costo',8 ,4);
-            $table->timestamps();
 
-            $table->foreign('coil_type_id')
+           /* $table->foreign('coil_type_id')
                 ->references('id')
                 ->on('coil_types')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
+                
             $table->foreign('provider_id')
-                -references('id')
-                ->on('providers')
-                ->onDelete('cascade')
-                ->onUpdete('cascade');
+                ->references('id')
+                ->on('providers');
+           
+*/
+            $table->timestamps();
         });
     }
 
