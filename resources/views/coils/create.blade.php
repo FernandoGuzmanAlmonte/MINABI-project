@@ -82,7 +82,7 @@
         </div>
     </div>
 
-    <div class=" col-12 mt-3 text-center">
+    <div class="col-12 mt-3 text-center">
         <button class="btn btn-danger mx-3">Cancelar</button>
         <button type="submit" class="btn btn-success mx-3">Guardar</button>
     </div>

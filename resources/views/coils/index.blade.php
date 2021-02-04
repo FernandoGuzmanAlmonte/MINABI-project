@@ -6,6 +6,8 @@
 
 @section('namePage', 'Bobinas')
 
+@section('route', route('coil.create'))
+
 @section('table')
 <tr>
     <th scope="col">#</th>
@@ -24,7 +26,7 @@
         <td class="align-middle">{{$item->fArribo}}</td>
         <td class="align-middle">{{$item->coil_type_id}}</td>
         <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
-        <td><a><img src="../public/images/flecha-derecha.svg" class="iconosFlechas"></a></td>
+        <td><a><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
     </tr>
     @endforeach
 @endsection

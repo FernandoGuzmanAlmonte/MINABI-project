@@ -36,7 +36,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="/">
+                <a class="nav-item nav-link active" href="{{ route('provider.index') }}">
                     Proveedores
                 </a>
                 <a class="nav-item nav-link disabled" href="/">
@@ -45,7 +45,7 @@
                 <a class="nav-item nav-link disabled" href="/">
                     Cintilla
                 </a>
-                <a class="nav-item nav-link" href="/">
+                <a class="nav-item nav-link" href="{{ route('coil.index') }}">
                     Bobinas
                 </a>
                 <a class="nav-item nav-link disabled" href="/">
