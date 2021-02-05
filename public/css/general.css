@@ -5,3 +5,7 @@
 .iconoTitle{
     width:  50px;
 }
+
+.mirror{
+    transform:  scaleX(-1);
+}

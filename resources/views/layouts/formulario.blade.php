@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container">
-        <img src="@yield('imgUrl')">
-        <h1> @yield('namePage') </h1>
+        @yield('retornar')
+        
+        <h1 class="mt-5"> <img src="@yield('imgUrl')" class="iconoTitle"> @yield('namePage') </h1>
         <h3> Información General </h3>
     <!-- Formulario -->
         @yield('form')
