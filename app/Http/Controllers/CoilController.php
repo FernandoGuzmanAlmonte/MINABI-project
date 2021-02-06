@@ -58,7 +58,6 @@ class CoilController extends Controller
             'largoM' => 'required',
             'costo' => 'required',
             'provider_id' => 'required'
-
         ]);
 
         $coil =  new Coil();
