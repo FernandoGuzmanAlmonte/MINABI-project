@@ -13,11 +13,23 @@
     <div class="col-lg-12 d-flex mt-2">
         <div class="col-lg-4 px-2">
             <label>Nomenclatura</label>
-            <input type="text" class="form-control" name="nomenclatura">
+            <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}">
+            @error('nomenclatura')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha llegada</label>
             <input type="datetime" class="form-control" name="fArribo" >
+            @error('nomenclatura')
+                <br>
+                <small>{{$message}}</small>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
@@ -29,14 +41,29 @@
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
             <input type="text" class="form-control" name="provider_id" >
+            @error('nomenclatura')
+                <br>
+                <small>{{$message}}</small>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>
             <input type="datetime" class="form-control" name="status">
+            @error('nomenclatura')
+                <br>
+                <small>{{$message}}</small>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
             <input type="text" class="form-control" name="largoM">
+            @error('nomenclatura')
+                <br>
+                <small>{{$message}}</small>
+                <br>
+            @enderror
         </div>
     </div>
 
@@ -48,6 +75,11 @@
         <div class="col-lg-4 px-2">
             <label>Peso Neto (Kg)</label>
             <input type="datetime" class="form-control" name="pesoNeto">
+            @error('nomenclatura')
+                <br>
+                <small>{{$message}}</small>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Utilizado (Kg)</label>
@@ -74,13 +106,18 @@
         <div class="col-lg-4 px-2">
             <label>Costo</label>
             <input type="text" class="form-control" name="costo">
+            @error('nomenclatura')
+                <br>
+                <small>{{$message}}</small>
+                <br>
+            @enderror
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
-            <textarea rows="3" class="form-control" name="observaciones"></textarea>
+            <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
         </div>
     </div>
 

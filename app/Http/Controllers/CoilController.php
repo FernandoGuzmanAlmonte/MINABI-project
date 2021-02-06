@@ -48,6 +48,19 @@ class CoilController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nomenclatura' => 'required',
+            'status' => 'required',
+            'fArribo' => 'required',
+            'pesoBruto' => 'required',
+            'pesoNeto' => 'required',
+            'largoM' => 'required',
+            'costo' => 'required',
+            'provider_id' => 'required'
+
+        ]);
+
         $coil =  new Coil();
 
         $coil->nomenclatura =  $request->nomenclatura;
