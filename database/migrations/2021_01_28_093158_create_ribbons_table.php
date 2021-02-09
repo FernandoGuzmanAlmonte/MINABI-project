@@ -38,13 +38,13 @@ class CreateRibbonsTable extends Migration
            //     ->references('id')
            //     ->on('coils_products');
             
-            $table->foreign('white_ribbon_id')
           /*  $table->foreign('white_ribbon_id')
                 ->references('id')
                 ->on('white_ribbons');
 
             $table->foreign('employee_id')
                 ->references('id')
+                ->on('employees'); */   
 
             $table->timestamps();
         });

@@ -24,8 +24,12 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha llegada</label>
+            <input type="date" class="form-control" name="fArribo" >
+            @error('fArribo')
                 <br>
+                <div class="alert alert-danger">
                 <small>{{$message}}</small>
+                </div>
                 <br>
             @enderror
         </div>
@@ -40,23 +44,33 @@
             <label>Proveedor</label>
             <input type="text" class="form-control" name="provider_id" >
             @error('nomenclatura')
+            @error('provider_id')
                 <br>
+                <div class="alert alert-danger">
                 <small>{{$message}}</small>
+                </div>
                 <br>
             @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>
+            <input type="datetime" class="form-control" name="status" value="ACTIVO">
+            @error('status')
                 <br>
+                <div class="alert alert-danger">
                 <small>{{$message}}</small>
+                </div>
                 <br>
             @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
             <input type="text" class="form-control" name="largoM">
+            @error('largoM')
                 <br>
+                <div class="alert alert-danger">
                 <small>{{$message}}</small>
+                </div>
                 <br>
             @enderror
         </div>
@@ -70,8 +84,11 @@
         <div class="col-lg-4 px-2">
             <label>Peso Neto (Kg)</label>
             <input type="datetime" class="form-control" name="pesoNeto">
+            @error('pesoNeto')
                 <br>
+                <div class="alert alert-danger">
                 <small>{{$message}}</small>
+                </div>
                 <br>
             @enderror
         </div>
@@ -100,8 +117,11 @@
         <div class="col-lg-4 px-2">
             <label>Costo</label>
             <input type="text" class="form-control" name="costo">
+            @error('costo')
                 <br>
+                <div class="alert alert-danger">
                 <small>{{$message}}</small>
+                </div>
                 <br>
             @enderror
         </div>

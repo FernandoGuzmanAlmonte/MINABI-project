@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\CoilController;
+use App\Http\Controllers\CoilProductController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\RibbonController;
+use App\Models\CoilProduct;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +23,10 @@ Route::get('/', function () {
 });
 
 Route::resource('coil', CoilController::class);
+
+Route::resource('ribbon', RibbonController::class);
+
+Route::resource('coilProduct', CoilProductController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
