@@ -27,19 +27,20 @@ class CreateCoilProductsTable extends Migration
 
             $table->foreign('coil_id')
                 ->references('id')
-                ->on('coils');
+                ->onDelete('cascade');
 
             $table->foreign('ribbon_id')
                 ->references('id')
-                ->on('ribbons');        
+                ->onDelete('cascade');     
 
             $table->foreign('coil_reel_id')
                 ->references('id')
-                ->on('coil_reels'); 
+                ->on('coil_reels')
+                ->onDelete('cascade');
 
             $table->foreign('waste_ribbon_id')
                 ->references('id')
-                ->on('waste_ribbons');    
+                ->onDelete('cascade');    
 
             $table->timestamps();
         });

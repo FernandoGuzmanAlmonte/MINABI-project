@@ -48,7 +48,6 @@
                 <a class="nav-item nav-link" href="{{ route('coil.index') }}">
                     Bobinas
                 </a>
-                <a class="nav-item nav-link disabled" href="/">
                     Rollos
                 </a>
                 <a class="nav-item nav-link disabled" href="/">

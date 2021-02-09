@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\Mime\Exception\RfcComplianceException;
 
-class Coil extends Model
+class Ribbon extends Model
 {
     use HasFactory;
 
-    public function ribbons(){
+    public function coils(){
         return $this->belongsToMany('App\Models\Coil');
     }
 }
