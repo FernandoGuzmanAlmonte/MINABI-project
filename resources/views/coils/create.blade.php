@@ -43,7 +43,6 @@
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
             <input type="text" class="form-control" name="provider_id" >
-            @error('nomenclatura')
             @error('provider_id')
                 <br>
                 <div class="alert alert-danger">

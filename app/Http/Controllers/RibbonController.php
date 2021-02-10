@@ -72,6 +72,6 @@ class RibbonController extends Controller
         $ribbon->observaciones = $request->observaciones;
 
         $ribbon->save();
-        //return $request->all();
+    
     }
 }

@@ -76,6 +76,7 @@ class CoilController extends Controller
         $coil->provider_id = $request->provider_id;
 
         $coil->save();
-        //return $request->all();
+
+        return redirect()->route('coil.index');
     }
 }

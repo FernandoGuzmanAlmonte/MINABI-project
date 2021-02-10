@@ -7,7 +7,7 @@
 @section('namePage', 'Rollos')
 
 @section('form')
-<form action="{{route('ribbon.store')}}" method="POST">
+<form action="{{route('coil.store')}}" method="POST">
     @csrf
     <div class="row">
     <div class="col-lg-12 d-flex mt-2">
@@ -134,7 +134,7 @@
     </div>
 
     <div class="col-12 mt-3 text-center">
-        <a class="btn btn-danger mx-3" href="{{route('ribbon.index')}}">Cancelar</a>
+        <a class="btn btn-danger mx-3" href="{{route('coil.index')}}">Cancelar</a>
         <button type="submit" class="btn btn-success mx-3">Guardar</button>
     </div>
 </div>
