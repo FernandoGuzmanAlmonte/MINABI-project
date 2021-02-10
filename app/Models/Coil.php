@@ -9,7 +9,10 @@ class Coil extends Model
 {
     use HasFactory;
 
+    //relacion muchos a muchos poliformica
     public function ribbons(){
-        return $this->belongsToMany('App\Models\Coil');
+        return $this->morphedByMany(Ribbon::class, 'coil_products')
+                    ->withPivot('nomenclatura', 'status', 'fAdquisicion')
+                    ->withTimestamps();
     }
 }

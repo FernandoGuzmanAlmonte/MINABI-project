@@ -9,6 +9,7 @@ class CoilProductController extends Controller
 {
     public function index(){
         $coilProducts = CoilProduct::select('nomenclatura',  'status')->get();
+        $coilProducts = CoilProduct::select('nomenclatura',  'status', 'coil_id')->get();
         $coilProducts = coilProduct::paginate(10);
 
         return view('coilProducts.index', compact('coilProducts'));

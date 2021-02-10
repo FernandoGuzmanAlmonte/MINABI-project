@@ -11,6 +11,6 @@ class Ribbon extends Model
     use HasFactory;
 
     public function coils(){
-        return $this->belongsToMany('App\Models\Coil');
+        return $this->morphToMany(Coil::class, 'coil_product');
     }
 }

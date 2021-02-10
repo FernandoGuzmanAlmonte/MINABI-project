@@ -16,34 +16,19 @@ class CreateCoilProductsTable extends Migration
         Schema::create('coil_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('coil_id');
-            $table->unsignedBigInteger('ribbon_id')->nullable();
-            $table->unsignedBigInteger('coil_reel_id')->nullable();
-            $table->unsignedBigInteger('waste_ribbon_id')->nullable();
+            $table->unsignedBigInteger('coil_product_id')->nullable();
+            $table->string('coil_product_type');
             
-            $table->string('nomenclatura', 20);
-            //folio
+            $table->string('nomenclatura', 20)->nullable();
+            
             $table->string('status', 15);
-            $table->string('10', 10);// merma, rollo, hueso
+            $table->date('fAdquisicion');
 
             $table->foreign('coil_id')
                 ->references('id')
                 ->on('coils')
                 ->onDelete('cascade');
 
-            $table->foreign('ribbon_id')
-                ->references('id')
-                ->on('ribbons')
-                ->onDelete('cascade');     
-
-            $table->foreign('coil_reel_id')
-                ->references('id')
-                ->on('coil_reels')
-                ->onDelete('cascade');
-
-            $table->foreign('waste_ribbon_id')
-                ->references('id')
-                ->on('waste_ribbons')
-                ->onDelete('cascade');    
 
             $table->timestamps();
         });
