@@ -72,6 +72,12 @@ class RibbonController extends Controller
         $ribbon->observaciones = $request->observaciones;
 
         $ribbon->save();
-    
+        
+        $addProduct = Ribbon::find($ribbon->id);
+        $addProduct->coils()->attach(1, ['nomenclatura'=>$ribbon->nomenclatura,
+                                     'status'=>$ribbon->status, 
+                                     'fAdquisicion'=>$ribbon->fechaInicioTrabajo]);
+        
+        return redirect()->route('ribbon.show', compact('ribbon'));
     }
 }
