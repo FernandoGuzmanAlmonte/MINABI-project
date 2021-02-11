@@ -51,7 +51,7 @@
                 <a class="nav-item nav-link" href="{{ route('coilProduct.index') }}">
                     Rollos
                 </a>
-                <a class="nav-item nav-link disabled" href="/">
+                <a class="nav-item nav-link" href="{{ route('bag.index') }}">
                     Bolsas
                 </a>
                 <a class="nav-item nav-link disabled" href="/">

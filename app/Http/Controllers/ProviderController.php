@@ -30,7 +30,7 @@ class ProviderController extends Controller
 
         $provider->save();
 
-        return redirect()->route('provider.index');
+        return redirect()->route('provider.show', $provider);
     }
 
     public function show(Provider $provider)

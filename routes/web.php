@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CoilController;
+use App\Http\Controllers\BagController;
 use App\Http\Controllers\CoilProductController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RibbonController;
@@ -28,8 +29,8 @@ Route::resource('ribbon', RibbonController::class);
 
 Route::resource('coilProduct', CoilProductController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::resource('provider', ProviderController::class);
+
+Route::resource('bag', BagController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
