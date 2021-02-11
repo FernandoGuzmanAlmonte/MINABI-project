@@ -11,6 +11,8 @@ class Ribbon extends Model
     use HasFactory;
 
     public function coils(){
-        return $this->morphToMany(Coil::class, 'coil_product');
+        return $this->morphToMany(Coil::class, 'coil_product')
+                    ->withPivot('nomenclatura', 'status', 'fAdquisicion')
+                    ->withTimestamps();
     }
 }

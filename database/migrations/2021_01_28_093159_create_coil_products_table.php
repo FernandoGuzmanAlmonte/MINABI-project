@@ -16,7 +16,7 @@ class CreateCoilProductsTable extends Migration
         Schema::create('coil_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('coil_id');
-            $table->unsignedBigInteger('coil_product_id')->nullable();
+            $table->unsignedBigInteger('coil_product_id');
             $table->string('coil_product_type');
             
             $table->string('nomenclatura', 20)->nullable();

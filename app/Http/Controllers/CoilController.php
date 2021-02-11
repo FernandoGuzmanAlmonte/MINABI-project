@@ -44,6 +44,9 @@ class CoilController extends Controller
     public function show(Coil $coil){
 
         return view('coils.show', compact('coil'));
+        $ribbons =  Coil::find(1);
+        $ribbons = $ribbons->ribbons()->get();
+        return view('coils.show', compact('coil', 'ribbons'));
     }
 
     public function store(Request $request)
@@ -79,4 +82,5 @@ class CoilController extends Controller
 
         return redirect()->route('coil.index');
     }
+
 }

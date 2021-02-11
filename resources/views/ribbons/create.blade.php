@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>
-                <input type="text" class="form-control" name="status" value="{{old('status')}}">
+                <input type="text" class="form-control" name="status" value="ACTIVO" >
                 @error('status')
                 <br>
                 <div class="alert alert-danger">

@@ -85,9 +85,35 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$coil->observaciones}}</textarea>
         </div>
     </div>
+    <div class="col-lg-12 my-3">
+    <a class="btn btn-success float-right mb-3" href="{{route('ribbon.create', $coil->id)}}">Nuevo</a>
+    
+    <table class="table table-striped my-4" >
+        <thead class="bg-info">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nomenclatura</th>
+        <th scope="col">Fecha Adquisición</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach ($ribbons as $item)
 
+        <tr>
+            <th scope="row" class="align-middle">{{$item->id}}</th>
+            <td class="align-middle">{{$item->nomenclatura}}</td>
+            <td class="align-middle">{{$item->fechaInicioTrabajo}}</td>
+            <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
+            <td><a href="{{route('ribbon.show',$item->id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+        </tr>
+      @endforeach
+    </tbody>
+    </table>
+</div>
     <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('coil.edit', $coil->id)}}">Editar</a>
+        <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
     </div>
 </div>
 

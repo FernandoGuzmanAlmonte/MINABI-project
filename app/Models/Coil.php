@@ -11,8 +11,6 @@ class Coil extends Model
 
     //relacion muchos a muchos poliformica
     public function ribbons(){
-        return $this->morphedByMany(Ribbon::class, 'coil_products')
-                    ->withPivot('nomenclatura', 'status', 'fAdquisicion')
-                    ->withTimestamps();
+        return $this->morphedByMany(Ribbon::class, 'coil_product');
     }
 }
