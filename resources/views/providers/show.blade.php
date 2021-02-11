@@ -2,7 +2,7 @@
 
 @section('title', 'Proveedores')
 
-@section('imgUrl',  asset('images/proveedor.png'))
+@section('imgUrl',  asset('images/proveedor.svg'))
 
 @section('namePage', 'Proveedor ' . $provider->id)
 
