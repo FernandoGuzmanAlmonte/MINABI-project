@@ -74,8 +74,6 @@ class ProviderController extends Controller
 
     public function update(Request $request, Provider $provider)
     {
-        return $request;
-        
         $provider->nombreEmpresa =  $request->nombreEmpresa;
         $provider->paginaWeb     =  $request->paginaWeb;
         $provider->direccion     =  $request->direccion;

@@ -34,17 +34,19 @@ Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'
 
 Route::resource('coil', CoilController::class);
 
+Route::resource('coilProduct', CoilProductController::class);
+
 Route::resource('ribbon', RibbonController::class);
 
-Route::get('ribbon/create/{coil}', [RibbonController::class, 'createProduct'])->name('ribbon.createProduct');
+Route::resource('wasteRibbon' , WasteRibbonController::class);
 
-Route::resource('coilProduct', CoilProductController::class);
+Route::get('ribbon/create/{coil}', [RibbonController::class, 'createProduct'])->name('ribbon.createProduct');
 
 Route::resource('provider', ProviderController::class);
 
 Route::resource('bag', BagController::class);
 
-Route::resource('wasteRibbon' , WasteRibbonController::class);
+Route::resource('wasteBag', BagController::class);
 
 Route::get('wasteRibbon/create/{coil}', [WasteRibbonController::class, 'createProduct'])->name('wasteRibbon.createProduct');
 
