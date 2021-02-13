@@ -54,7 +54,6 @@ class RibbonController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
        $request->validate([
             'nomenclatura' => 'required',
             'status' => 'required'
@@ -80,7 +79,6 @@ class RibbonController extends Controller
         $ribbon->save();
         
         $addProduct = Ribbon::find($ribbon->id);
-        $addProduct->coils()->attach(1, ['nomenclatura'=>$ribbon->nomenclatura,
         $addProduct->coils()->attach($request->coilId, ['nomenclatura'=>$ribbon->nomenclatura,
                                      'status'=>$ribbon->status, 
                                      'fAdquisicion'=>$ribbon->fechaInicioTrabajo]);

@@ -9,7 +9,6 @@ class CoilProduct extends Model
 {
     use HasFactory;
 
-    
     public function taggables()
     {
         return $this->morphTo();

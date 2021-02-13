@@ -86,7 +86,6 @@
         </div>
     </div>
     <div class="col-lg-12 my-3">
-    <a class="btn btn-success float-right mb-3" href="{{route('ribbon.create', $coil->id)}}">Nuevo</a>
     <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nuevo</a>
     
     <table class="table table-striped my-4" >
@@ -107,7 +106,6 @@
             <td class="align-middle">{{$item->nomenclatura}}</td>
             <td class="align-middle">{{$item->fechaInicioTrabajo}}</td>
             <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
-            <td><a href="{{route('ribbon.show',$item->id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
            <!--Realizamos if para validacion de adonde dirgir el show-->
         @if ($item->coil_product_type == 'App\Models\Ribbon')
         <td><a href="{{route('ribbon.show',$item->coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>

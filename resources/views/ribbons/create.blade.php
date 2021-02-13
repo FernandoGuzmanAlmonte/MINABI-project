@@ -24,7 +24,6 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Tipo</label>
-                <input type="text" class="form-control" name="tipo" >
                 <input type="text" class="form-control" name="tipo">
                 @error('tipo')
                 <br>
