@@ -13,4 +13,18 @@ class Coil extends Model
     public function ribbons(){
         return $this->morphedByMany(Ribbon::class, 'coil_product');
     }
+
+    public function coilReels(){
+        return $this->morphedByMany(CoilReel::class, 'coil_product');
+    }
+
+    public function wasteRibbons(){
+        return $this->morphedByMany(wasteRibbon::class, 'coil_product');
+    }
+
+    public function related()
+    {
+    return $this->hasMany(CoilProduct::class);
+    }
+
 }

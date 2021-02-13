@@ -15,15 +15,11 @@ class CreateCoilReelsTable extends Migration
     {
         Schema::create('coil_reels', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('coil_id'); //llave foranea de bobina
+
             $table->string('nomenclatura', 20);
             $table->float('peso', 8,4); //peso del hueso
             $table->string('observaciones');
-
-            $table->foreign('coil_id')
-                ->references('id')
-                ->on('coils');
-
+            $table->string('fechaAlta');
 
             $table->timestamps();
         });

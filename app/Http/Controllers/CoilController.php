@@ -44,6 +44,8 @@ class CoilController extends Controller
     public function show(Coil $coil){
         $ribbons =  Coil::find(1);
         $ribbons = $ribbons->ribbons()->get();
+        $ribbons =  Coil::find($coil->id);
+        $ribbons = $ribbons->related()->get();
         return view('coils.show', compact('coil', 'ribbons'));
     }
 

@@ -17,6 +17,11 @@ class RibbonController extends Controller
     public function create(){
         return view('ribbons.create');
     }
+    
+    //funcion para crear relaciones con bobina
+    public function createProduct(Request $request){
+        return view('ribbons.create', ['coilId' => $request->coil]);
+    }
 
     public function edit(Ribbon $ribbon){
         return view('ribbons.edit', compact('ribbon'));
@@ -50,6 +55,7 @@ class RibbonController extends Controller
     {
 
         $request->validate([
+       $request->validate([
             'nomenclatura' => 'required',
             'status' => 'required'
         ]);
@@ -75,6 +81,7 @@ class RibbonController extends Controller
         
         $addProduct = Ribbon::find($ribbon->id);
         $addProduct->coils()->attach(1, ['nomenclatura'=>$ribbon->nomenclatura,
+        $addProduct->coils()->attach($request->coilId, ['nomenclatura'=>$ribbon->nomenclatura,
                                      'status'=>$ribbon->status, 
                                      'fAdquisicion'=>$ribbon->fechaInicioTrabajo]);
         
