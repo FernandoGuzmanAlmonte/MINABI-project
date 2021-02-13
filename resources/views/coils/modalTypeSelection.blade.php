@@ -34,7 +34,7 @@
                 <script type="text/javascript">
                     function redirect(id){
                         if(document.getElementById('flexRadioDefault1').checked == true){
-                           location.replace ("http://localhost/MINABI-project/public/ribbon/create?coil="+id)
+                           location.replace ("http://localhost/MINABI-project/public/ribbon/create/"+id)
                         }
                         if(document.getElementById('flexRadioDefault2').checked == true){
                             location.replace ("http://localhost/MINABI-project/public/wasteRibbon/create/"+id)
