@@ -33,7 +33,7 @@
         </div>
         <div class="col-12 mt-3 text-center">
             <a class="btn btn-danger mx-3" href="{{ route('provider.show', $provider) }}">Cancelar</a>
-            <button type="submit" class="btn btn-success mx-3">Guardar</button>
+            <button type="submit" name="providerForm" class="btn btn-success mx-3">Guardar</button>
         </div>
     </div>
 </form>

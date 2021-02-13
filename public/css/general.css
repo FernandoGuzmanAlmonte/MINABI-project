@@ -9,3 +9,7 @@
 .mirror{
     transform:  scaleX(-1);
 }
+
+.iconosPequeños{
+    width: 25px; height: 25px;
+}
