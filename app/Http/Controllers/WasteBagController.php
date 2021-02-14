@@ -52,7 +52,12 @@ class WasteBagController extends Controller
 
     public function show(WasteBag $wasteBag)
     {
-        return view('wasteBags.show', compact('wasteBag'));
+        //obtenemos rollo relacionado
+        $ribbon = $wasteBag->ribbons()->get()->first();
+        //obtenemos la bobina relacionada
+        $coil = $ribbon->coils()->get()->first();
+
+        return view('wasteBags.show', compact('wasteBag', 'ribbon', 'coil'));
     }
 
     public function edit(WasteBag $wasteBag)

@@ -45,8 +45,10 @@ class WasteRibbonController extends Controller
     }
 
     public function show(WasteRibbon $wasteRibbon){
+        //obtenemos bobina relacionada
+        $coil = $wasteRibbon->coils()->get()->first();
 
-        return view('wasteRibbons.show', compact('wasteRibbon'));
+        return view('wasteRibbons.show', compact('wasteRibbon', 'coil'));
     }
 
     public function store(Request $request)

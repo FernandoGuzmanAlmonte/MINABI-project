@@ -40,8 +40,8 @@ class CoilReelController extends Controller
     }
 
     public function show(CoilReel $coilReel){
-
-        return view('coilReels.show', compact('coilReel'));
+        $coil = $coilReel->coils()->get()->first();
+        return view('coilReels.show', compact('coilReel', 'coil'));
     }
 
     public function store(Request $request)
