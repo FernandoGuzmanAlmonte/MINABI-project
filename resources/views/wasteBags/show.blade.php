@@ -7,7 +7,7 @@
 @section('namePage', 'Merma de Bolsas')
 
 @section('retornar')
-<a href="{{ route('bag.index') }}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
+<a href="{{ route('ribbonProduct.index') }}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
 
 @section('form')
@@ -70,7 +70,7 @@
         </div>  
     </div>
     <div class="col-12 mt-3 text-center">
-        <a class="btn btn-danger mx-3" href="{{ route('bag.index') }}">Cancelar</a>
+        <a class="btn btn-danger mx-3" href="{{ route('ribbonProduct.index') }}">Cancelar</a>
         <button type="submit" class="btn btn-success mx-3">Guardar</button>
     </div>    
 </div>

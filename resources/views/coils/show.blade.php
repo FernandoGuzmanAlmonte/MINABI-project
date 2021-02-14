@@ -86,8 +86,9 @@
         </div>
     </div>
     <div class="col-lg-12 my-3">
-    <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nuevo</a>
-    
+    <h3> Rollos </h3>
+    <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nuevo Rollo</a>
+    <!--Tabla para rollos relacionados-->
     <table class="table table-striped my-4" >
         <thead class="bg-info">
     <tr>
@@ -118,6 +119,37 @@
       @endforeach
     </tbody>
     </table>
+
+<!--Tabla para bolsas relacionadas-->
+<h3> Bolsas </h3>
+<table class="table table-striped my-4" >
+    <thead class="bg-info">
+<tr>
+    <th scope="col">#</th>
+    <th scope="col">Nomenclatura</th>
+    <th scope="col">Fecha Adquisición</th>
+    <th scope="col">Status</th>
+    <th scope="col"></th>
+  </tr>
+</thead>
+<tbody>
+    @foreach ($ribbonProduct as $item)
+
+    <tr>
+        <th scope="row" class="align-middle">{{$item->id}}</th>
+        <td class="align-middle">{{$item->nomenclatura}}</td>
+        <td class="align-middle">{{$item->fAdquisiscion}}</td>
+        <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
+       <!--Realizamos if para validacion de adonde dirgir el show-->
+    @if ($item->ribbon_product_type == 'App\Models\Bag')
+    <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+    @elseif($item->ribbon_product_type == 'App\Models\WasteBag')
+    <td><a href="{{route('wasteBag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+    @endif
+    </tr>
+  @endforeach
+</tbody>
+</table>    
 </div>
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>

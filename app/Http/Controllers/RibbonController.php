@@ -47,8 +47,12 @@ class RibbonController extends Controller
     }
 
     public function show(Ribbon $ribbon){
-
-        return view('ribbons.show', compact('ribbon'));
+        //obtenemos la bobina relacionada al rollo
+        $coil = $ribbon->coils()->get()->first();
+        //obtenemos todas las bolsas relacionadas al rollo
+        $bags =  Ribbon::find($ribbon->id);
+        $bags = $bags->related()->get();
+        return view('ribbons.show', compact('ribbon', 'bags', 'coil'));
     }
 
     public function store(Request $request)

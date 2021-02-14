@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coil;
+use App\Models\RibbonProduct;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class CoilController extends Controller
@@ -43,8 +45,15 @@ class CoilController extends Controller
 
     public function show(Coil $coil){
         $ribbons =  Coil::find($coil->id);
+        //Obtenemos todos los rollos relacionados a la bobina
         $ribbons = $ribbons->related()->get();
-        return view('coils.show', compact('coil', 'ribbons'));
+        //obtenemos todos las objetos relacionadas a los rollos
+        $ribbonProduct =  new Collection();
+        foreach($ribbons as $ribbon ){
+        $ribbonProduct =  $ribbonProduct->concat(RibbonProduct::where('ribbon_id', '=' , $ribbon->coil_product_id)->get());
+        }
+        
+        return view('coils.show', compact('coil', 'ribbons', 'ribbonProduct'));
     }
 
     public function store(Request $request)

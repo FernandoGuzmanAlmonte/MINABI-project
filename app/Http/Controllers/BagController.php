@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bag;
+use App\Models\Ribbon;
 use Illuminate\Http\Request;
 
 class BagController extends Controller
@@ -17,6 +18,10 @@ class BagController extends Controller
     public function create()
     {
         return view('bags.create');
+    }
+
+    public function createProduct(Request $request){
+        return view('bags.create', ['ribbonId' => $request->ribbon]);
     }
 
     public function store(Request $request)
@@ -42,12 +47,21 @@ class BagController extends Controller
         
         $bag->save();
 
+        $addProduct = Bag::find($bag->id);
+        $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$bag->nomenclatura,
+                                     'status'=>$bag->status, 
+                                     'fAdquisicion'=>$bag->fechaInicioTrabajo]);
+
         return redirect()->route('bag.show', $bag);
     }
 
     public function show(Bag $bag)
     {
-        return view('bags.show', compact('bag'));
+        //obtenemos rollo relacionado
+        $ribbon = $bag->ribbons()->get()->first();
+        //obtenemos la bobina relacionada
+        $coil = $ribbon->coils()->get()->first();
+        return view('bags.show', compact('bag', 'coil', 'ribbon' ));
     }
 
     public function edit(Bag $bag)

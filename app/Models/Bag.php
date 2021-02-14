@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Bag extends Model
 {
     use HasFactory;
+
+    public function ribbons(){
+        return $this->morphToMany(Ribbon::class, 'ribbon_product')
+                    ->withPivot('nomenclatura', 'status', 'fAdquisicion')
+                    ->withTimestamps();
+    }
 }

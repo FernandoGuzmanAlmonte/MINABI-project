@@ -15,4 +15,17 @@ class Ribbon extends Model
                     ->withPivot('nomenclatura', 'status', 'fAdquisicion')
                     ->withTimestamps();
     }
+
+    public function wasteBags(){
+        return $this->morphedByMany(wasteBags::class, 'ribbon_product');
+    }
+
+    public function bags(){
+        return $this->morphedByMany(Bag::class, 'ribbon_product');
+    }
+
+    public function related()
+    {
+    return $this->hasMany(RibbonProduct::class);
+    }
 }

@@ -13,11 +13,11 @@
         <div class="col-lg-12 d-flex mt-2">
             <div class="col-lg-4 px-2">
                 <label>Fecha Inicio</label>
-                <input type="date" class="form-control" name="fInicioTrabajo">
+                <input type="date" class="form-control" name="fechaInicioTrabajo">
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Fin</label>
-                <input type="date" class="form-control" name="fFinTrabajo">
+                <input type="date" class="form-control" name="fechaFinTrabajo">
             </div>
             <div class="col-lg-4 px-2">
                 <label>Peso</label>
@@ -53,9 +53,14 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Cantidad</label>
-                <input type="time" class="form-control" name="cantidad">
+                <input type="number" class="form-control" name="cantidad">
+            </div>
+            <div class="col-lg-4 px-2">
+                <label>Nomenclatura</label>
+                <input type="text" class="form-control" name="nomenclatura">
             </div>
         </div>
+        <input type="hidden" class="form-control" name="ribbonId" value="{{$ribbonId}}">
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>

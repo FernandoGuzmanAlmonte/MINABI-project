@@ -98,6 +98,7 @@
                 </select>
             </div>
         </div>
+        <input type="hidden" class="form-control" name="ribbonId" value="{{$ribbonId}}">
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>

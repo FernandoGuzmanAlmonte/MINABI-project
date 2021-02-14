@@ -7,7 +7,7 @@
 @section('namePage', 'Rollo')
 
 @section('retornar')
-<a href="{{route('coilProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
+<a href="{{route('ribbonProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
     
 @section('form')
@@ -89,6 +89,60 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$ribbon->observaciones}}"</textarea>
         </div>
     </div>
+
+    <div class="col-lg-12 d-flex mt-5">
+    <h3>Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
+    </div>
+    
+    <div class="col-lg-12 d-flex mt-3">
+        <div class="col-lg-4 px-2">
+            <label>Nomenclatura</label>
+            <input type="text" class="form-control" name="coilNomenclatura" value="{{$coil->nomenclatura}}" disabled>
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Fecha Adquisición</label>
+            <input type="datetime" class="form-control" name="coilfArribo" value="{{$coil->fArribo}}" disabled>
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Status</label>
+            <input type="text" class="form-control" name="coilStatus" value="{{$coil->status}}" disabled>
+        </div>
+    </div>
+
+    
+    <div class="col-lg-12 my-5">
+        <h3>Bolsas</h3>
+        <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Bolsa</a>
+        
+        <table class="table table-striped my-4" >
+            <thead class="bg-info">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nomenclatura</th>
+            <th scope="col">Fecha Adquisición</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($bags as $item)
+    
+            <tr>
+                <th scope="row" class="align-middle">{{$item->id}}</th>
+                <td class="align-middle">{{$item->nomenclatura}}</td>
+                <td class="align-middle">{{$item->fechaInicioTrabajo}}</td>
+                <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
+               <!--Realizamos if para validacion de adonde dirgir el show-->
+            @if ($item->ribbon_product_type == 'App\Models\Bag')
+            <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @elseif($item->ribbon_product_type == 'App\Models\WasteRibbon')
+            <td><a href="{{route('wasteRibbon.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @endif
+            </tr>
+          @endforeach
+        </tbody>
+        </table>
+    @include('ribbons.modalTypeSelection')
 
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>

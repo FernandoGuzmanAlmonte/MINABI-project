@@ -6,10 +6,9 @@ use App\Http\Controllers\CoilProductController;
 use App\Http\Controllers\CoilReelController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RibbonController;
+use App\Http\Controllers\RibbonProductController;
+use App\Http\Controllers\WasteBagController;
 use App\Http\Controllers\WasteRibbonController;
-use App\Models\CoilProduct;
-use App\Models\CoilReel;
-use App\Models\WasteRibbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,14 +39,20 @@ Route::resource('ribbon', RibbonController::class);
 
 Route::resource('wasteRibbon' , WasteRibbonController::class);
 
+Route::get('wasteRibbon/create/{coil}', [WasteRibbonController::class, 'createProduct'])->name('wasteRibbon.createProduct');
+
 Route::get('ribbon/create/{coil}', [RibbonController::class, 'createProduct'])->name('ribbon.createProduct');
 
 Route::resource('provider', ProviderController::class);
 
 Route::resource('bag', BagController::class);
 
-Route::resource('wasteBag', BagController::class);
+Route::get('bag/create/{ribbon}', [BagController::class, 'createProduct'])->name('bagProduct.createProduct');
 
-Route::get('wasteRibbon/create/{coil}', [WasteRibbonController::class, 'createProduct'])->name('wasteRibbon.createProduct');
+Route::resource('wasteBag', WasteBagController::class);
+
+Route::get('wasteBag/create/{ribbon}', [WasteBagController::class, 'createProduct'])->name('wasteBag.createProduct');
+
+Route::resource('ribbonProduct', RibbonProductController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

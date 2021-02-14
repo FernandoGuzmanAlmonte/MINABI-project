@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CoilProduct extends Model
+class RibbonProduct extends Model
 {
     use HasFactory;
 
-    public function coilProducts()
+    public function bagProducts()
     {
         return $this->morphTo();
     }

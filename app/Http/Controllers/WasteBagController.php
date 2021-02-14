@@ -19,12 +19,16 @@ class WasteBagController extends Controller
         return view('wasteBags.create');
     }
 
+    public function createProduct(Request $request){
+        return view('wasteBags.create', ['ribbonId' => $request->ribbon]);
+    }
+
     public function store(Request $request)
     {
         $wasteBags = new WasteBag();
 
-        $wasteBags->fInicioTrabajo = $request->fInicioTrabajo;
-        $wasteBags->fFinTrabajo    = $request->fFinTrabajo;
+        $wasteBags->fechaInicioTrabajo = $request->fechaInicioTrabajo;
+        $wasteBags->fechaFinTrabajo    = $request->fechaFinTrabajo;
         $wasteBags->peso           = $request->peso;
         $wasteBags->largo          = $request->largo;
         $wasteBags->temperatura    = $request->temperatura;  
@@ -33,10 +37,17 @@ class WasteBagController extends Controller
         $wasteBags->status         = $request->status;
         $wasteBags->tipoUnidad     = $request->tipoUnidad;
         $wasteBags->cantidad       = $request->cantidad;
+        $wasteBags->nomenclatura   = $request->nomenclatura;
+
 
         $wasteBags->save();
 
-        return redirect()->route('wasteBags.show', $wasteBags);
+        $addProduct = WasteBag::find($wasteBags->id);
+        $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$wasteBags->nomenclatura,
+                                     'status'=>$wasteBags->status, 
+                                     'fAdquisicion'=>$wasteBags->fechaInicioTrabajo]);
+
+        return redirect()->route('wasteBag.show', $wasteBags);
     }
 
     public function show(WasteBag $wasteBag)
@@ -49,7 +60,7 @@ class WasteBagController extends Controller
         return view('wasteBags.edit', compact('wasteBag'));
     }
 
-    public function update(Request $request, WasteBag $wasteBag)
+    public function update(Request $request, WasteBag $wasteBags)
     {
         $wasteBags->fInicioTrabajo = $request->fInicioTrabajo;
         $wasteBags->fFinTrabajo    = $request->fFinTrabajo;
@@ -64,7 +75,7 @@ class WasteBagController extends Controller
 
         $wasteBags->save();
 
-        return redirect()->route('wasteBag.show', $wasteBag);
+        return redirect()->route('wasteBag.show', $wasteBags);
     }
 
     public function delete()
