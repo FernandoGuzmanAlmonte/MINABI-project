@@ -15,58 +15,49 @@
     <div class="col-lg-12 d-flex mt-2">
         <div class="col-lg-4 px-2">
             <label>Fecha Inicio</label>
-            <input type="date" class="form-control" name="fInicioTrabajo" value={{ $wasteBag->fInicioTrabajo }}>
+            <input type="text" class="form-control" name="fInicioTrabajo" value={{ $wasteBag->fechaInicioTrabajo }} disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha Fin</label>
-            <input type="date" class="form-control" name="fFinTrabajo" value={{ $wasteBag->fFinTrabajo }}>
+            <input type="text" class="form-control" name="fFinTrabajo" value={{ $wasteBag->fechaFinTrabajo }} disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso</label>
-            <input type="text" class="form-control" name="peso" value={{ $wasteBag->peso }}>
+            <input type="text" class="form-control" name="peso" value={{ $wasteBag->peso }} disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Largo</label>
-            <input type="text" class="form-control" name="largo" value={{ $wasteBag->largo }}>
+            <input type="text" class="form-control" name="largo" value={{ $wasteBag->largo }} disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Temperatura</label>
-            <input type="text" class="form-control" name="temperatura" value={{ $wasteBag->temperatura }}>
+            <input type="text" class="form-control" name="temperatura" value={{ $wasteBag->temperatura }} disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Velocidad</label>
-            <input type="text" class="form-control" name="velocidad" value={{ $wasteBag->velocidad }}>
+            <input type="text" class="form-control" name="velocidad" value={{ $wasteBag->velocidad }} disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Status</label>
-            <select class="form-control" name="status">
-                <option value="DISPONIBLE" {{ ($wasteBag->status === 'DISPONIBLE') ? 'Selected' : '' }}>
-                    DISPONIBLE
-                </option>
-                <option value="TERMINADO" {{ ($wasteBag->status === 'TERMINADO') ? 'Selected' : '' }}>
-                    TERMINADO
-                </option>
-            </select>
+            <input type="text" class="form-control" name="status" value={{ $wasteBag->status }} disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo Unidad</label>
-            <input type="text" class="form-control" name="tipoUnidad" value={{ $wasteBag->tipoUnidad }}>
+            <input type="text" class="form-control" name="tipoUnidad" value={{ $wasteBag->tipoUnidad }} disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Cantidad</label>
-            <input type="text" class="form-control" name="cantidad" value={{ $wasteBag->cantidad }}>
+            <input type="text" class="form-control" name="cantidad" value={{ $wasteBag->cantidad }} disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
-            <textarea rows="3" class="form-control" name="observaciones">
-                {{ $wasteBag->observaciones }}
-            </textarea>
+            <textarea rows="3" class="form-control" name="observaciones" disabled>{{ $wasteBag->observaciones }}</textarea>
         </div>  
     </div>
 

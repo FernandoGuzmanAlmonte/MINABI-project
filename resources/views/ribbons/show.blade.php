@@ -18,8 +18,8 @@
             <input type="text" class="form-control" name="nomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Tipo</label>
-            <input type="text" class="form-control" name="tipo" >
+            <label>Quién Elaboro</label>
+            <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}"  disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>
@@ -29,39 +29,35 @@
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Quien Elaboro</label>
-            <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}"  disabled>
-        </div>
-        <div class="col-lg-4 px-2">
             <label>Fecha Inicio</label>
-            <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
+            <input type="text" class="form-control" name="fechaInicioTrabajo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Hora Inicio</label>
             <input type="time" class="form-control" name="horaInicioTrabajo" value="{{$ribbon->horaInicioTrabajo}}" disabled>
         </div>
-    </div>
-
-    <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
             <input type="text" class="form-control" name="largo" value="{{$ribbon->largo}}" disabled>
         </div>
+    </div>
+
+    <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Fecha Termino</label>
-            <input type="date" class="form-control" name="fechaFinTrabajo" value="{{$ribbon->fechaFinTrabajo}}" disabled>
+            <input type="text" class="form-control" name="fechaFinTrabajo" value="{{$ribbon->fechaFinTrabajo}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Hora Termino</label>
             <input type="time" class="form-control" name="horaFinTrabajo" value="{{$ribbon->horaFinTrabajo}}" disabled>
         </div>
-    </div>
-
-    <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Peso (KG)</label>
             <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}" disabled>
         </div>
+    </div>
+
+    <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Peso Utilizado (KG)</label>
             <input type="datetime" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}" disabled>
@@ -70,24 +66,27 @@
             <label>Temperatura (C°)</label>
             <input type="text" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}" disabled>
         </div>
-    </div>
-
-    <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Velocidad</label>
             <input type="text" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}" disabled>
         </div>
+    </div>
+    <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Pestaña</label>
-            <input type="text" class="form-control" name="white_ribbon_id" value="{{$ribbon->white_ribbon_id}}" disabled>
+            <label>Cintilla Blanca</label>
+            <input type="number" class="form-control" name="white_ribbon_id" value="{{$ribbon->white_ribbon_id}}" disabled>
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
-            <textarea rows="3" class="form-control" name="observaciones" disabled>{{$ribbon->observaciones}}"</textarea>
+            <textarea rows="3" class="form-control" name="observaciones" disabled>{{$ribbon->observaciones}}</textarea>
         </div>
+    </div>
+
+    <div class="col-12 mt-3 text-center">
+        <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>
     </div>
 
     <div class="col-lg-12 d-flex mt-5">
@@ -111,7 +110,7 @@
 
     
     <div class="col-lg-12 my-5">
-        <h3>Bolsas</h3>
+        <h3>Bolsas y Mermas de Bolsa</h3>
         <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Bolsa</a>
         
         <table class="table table-striped my-4" >
@@ -143,10 +142,6 @@
         </tbody>
         </table>
     @include('ribbons.modalTypeSelection')
-
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>
-    </div>
 </div>
 
 @endsection

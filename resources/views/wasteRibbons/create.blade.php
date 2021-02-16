@@ -1,10 +1,10 @@
 @extends('layouts.formulario')
 
-@section('title', 'Rollo')
+@section('title', 'Merma de Rollo')
 
 @section('imgUrl',  asset('images/rollo-de-papel.svg'))
 
-@section('namePage', 'Rollo')
+@section('namePage', 'Merma Rollo')
 
 @section('form')
 <form action="{{route('wasteRibbon.store')}}" method="POST">
@@ -124,12 +124,12 @@
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-                <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}"</textarea>
+                <textarea rows="3" class="form-control" name="observaciones"></textarea>
             </div>
         </div>
 
         <div class="col-12 mt-3 text-center">
-            <a class="btn btn-danger mx-3" href="{{route('wasteRibbon.index')}}">Cancelar</a>
+            <a class="btn btn-danger mx-3" href="{{route('coil.show', $coilId)}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div>
 </div>

@@ -4,7 +4,7 @@
 
 @section('imgUrl',  asset('images/rollo-de-papel.svg'))
 
-@section('namePage', 'Rollos')
+@section('namePage', 'Merma Rollos')
 
 @section('route', route('wasteRibbon.create'))
 

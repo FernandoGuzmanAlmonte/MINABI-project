@@ -79,7 +79,7 @@ class RibbonController extends Controller
         $ribbon->velocidad = $request->velocidad;
         $ribbon->white_ribbon_id = $request->white_ribbon_id;
         $ribbon->observaciones = $request->observaciones;
-
+        
         $ribbon->save();
         
         $addProduct = Ribbon::find($ribbon->id);

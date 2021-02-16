@@ -18,7 +18,7 @@ class CreateCoilReelsTable extends Migration
 
             $table->string('nomenclatura', 20);
             $table->float('peso', 8,4); //peso del hueso
-            $table->string('observaciones');
+            $table->string('observaciones')->nulleable;
             $table->string('fechaAlta');
 
             $table->timestamps();

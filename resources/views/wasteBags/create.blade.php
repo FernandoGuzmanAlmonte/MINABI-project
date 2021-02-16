@@ -21,21 +21,21 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Peso</label>
-                <input type="text" class="form-control" name="peso">
+                <input type="number" step="0.0001" class="form-control" name="peso">
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Largo</label>
-                <input type="text" class="form-control" name="largo">
+                <input type="number" step="0.0001" class="form-control" name="largo">
             </div>
             <div class="col-lg-4 px-2">
                 <label>Temperatura</label>
-                <input type="text" class="form-control" name="temperatura">
+                <input type="number" step="0.0001" class="form-control" name="temperatura">
             </div>
             <div class="col-lg-4 px-2">
                 <label>Velocidad</label>
-                <input type="text" class="form-control" name="velocidad">
+                <input type="number" step="0.0001" class="form-control" name="velocidad">
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
@@ -53,8 +53,10 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Cantidad</label>
-                <input type="number" class="form-control" name="cantidad">
+                <input type="number" step="0.0001" class="form-control" name="cantidad">
             </div>
+        </div>
+        <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Nomenclatura</label>
                 <input type="text" class="form-control" name="nomenclatura">

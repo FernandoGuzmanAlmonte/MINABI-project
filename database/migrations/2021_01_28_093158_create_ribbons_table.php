@@ -21,11 +21,11 @@ class CreateRibbonsTable extends Migration
             $table->string('nomenclatura', 20); //identificador
             $table->float('peso', 8, 4); //peso del rollo
             $table->float('largo', 8, 4); //metros de largo del rollo
-            $table->text('observaciones')->nullable;
+            $table->text('observaciones')->nullable();
             $table->date('fechaInicioTrabajo'); //fecha en que se inicio a crear el rollo
-            $table->date('fechaFinTrabajo')->nullable; //fecha en la que termino de crear el rollo
+            $table->date('fechaFinTrabajo')->nullable(); //fecha en la que termino de crear el rollo
             $table->time('horaInicioTrabajo'); 
-            $table->time('horaFinTrabajo')->nullable;
+            $table->time('horaFinTrabajo')->nullable();
             //Usuario creo
             //Usuario modifico
             /*tipo*/

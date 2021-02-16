@@ -23,7 +23,7 @@ class CreateWasteBagsTable extends Migration
             $table->float('largo', 8, 4); //cantidad en metros
             $table->float('temperatura', 8, 4); //temperatura de la maquina
             $table->float('velocidad', 8, 4);  //velocidad de la maquina
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->string('status', 15); //disponible o terminada
             $table->float('cantidad', 8, 4); //cantidad de mermas generadas
             $table->string('tipoUnidad', 10); //millares o cientos

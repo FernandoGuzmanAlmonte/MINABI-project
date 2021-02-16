@@ -17,8 +17,8 @@
                 <input type="text" class="form-control" name="nomenclatura" value="{{$ribbon->nomenclatura}}">
             </div>
             <div class="col-lg-4 px-2">
-                <label>Tipo</label>
-                <input type="text" class="form-control" name="tipo" >
+                <label>Quién Elaboro</label>
+                <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}" readonly>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>
@@ -28,10 +28,6 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Quien Elaboro</label>
-                <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}">
-            </div>
-            <div class="col-lg-4 px-2">
                 <label>Fecha Inicio</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{$ribbon->fechaInicioTrabajo}}">
             </div>
@@ -39,13 +35,13 @@
                 <label>Hora Inicio</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value="{{$ribbon->horaInicioTrabajo}}">
             </div>
+            <div class="col-lg-4 px-2">
+                <label>Largo (metros)</label>
+                <input type="number" step="0.0001" class="form-control" name="largo" value="{{$ribbon->largo}}">
+            </div>
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
-                <label>Largo (metros)</label>
-                <input type="text" class="form-control" name="largo" value="{{$ribbon->largo}}">
-            </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Termino</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo" value="{{$ribbon->fechaFinTrabajo}}">
@@ -54,38 +50,38 @@
                 <label>Hora Termino</label>
                 <input type="time" class="form-control" name="horaFinTrabajo" value="{{$ribbon->horaFinTrabajo}}">
             </div>
+            <div class="col-lg-4 px-2">
+                <label>Peso (KG)</label>
+                <input type="number" step="0.0001" class="form-control" name="peso" value="{{$ribbon->peso}}">
+            </div>
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Peso (KG)</label>
-                <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}">
-            </div>
-            <div class="col-lg-4 px-2">
                 <label>Peso Utilizado (KG)</label>
-                <input type="datetime" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}">
+                <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}">
             </div>
             <div class="col-lg-4 px-2">
                 <label>Temperatura (C°)</label>
-                <input type="text" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}">
+                <input type="number" step="0.0001" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}">
+            </div>
+            <div class="col-lg-4 px-2">
+                <label>Velocidad</label>
+                <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}">
             </div>
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Velocidad</label>
-                <input type="text" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}">
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Pestaña</label>
-                <input type="text" class="form-control" name="white_ribbon_id" value="{{$ribbon->white_ribbon_id}}">
+                <label>Cintilla Blanca</label>
+                <input type="text" class="form-control" name="white_ribbon_id" value="{{$ribbon->white_ribbon_id}}" readonly>
             </div>
         </div>
     
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-                <textarea rows="3" class="form-control" name="observaciones">{{$ribbon->observaciones}}"</textarea>
+                <textarea rows="3" class="form-control" name="observaciones">{{$ribbon->observaciones}}</textarea>
             </div>
         </div>
 

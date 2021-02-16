@@ -13,19 +13,19 @@
         <div class="col-lg-12 d-flex mt-2"> 
             <div class="col-lg-4 px-2">
                 <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}">
+                <input type="text" class="form-control" name="nomenclatura">
                 @error('nomenclatura')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Tipo</label>
-                <input type="text" class="form-control" name="tipo">
-                @error('tipo')
+                <label>Quién Elaboro</label>
+                <input type="number" class="form-control" name="employee_id" value="1" readonly>
+                @error('employee_id')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>
-                <input type="text" class="form-control" name="status" value="ACTIVO" >
+                <input type="text" class="form-control" name="status" value="ACTIVO" readonly>
                 @error('status')
                 <br>
                 <div class="alert alert-danger">
@@ -48,19 +48,8 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Quien Elaboro</label>
-                <input type="text" class="form-control" name="employee_id" value="{{old('employee_id')}}">
-                @error('employee_id')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-            </div>
-            <div class="col-lg-4 px-2">
                 <label>Fecha Inicio</label>
-                <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{old('fechaInicioTrabajo')}}">
+                <input type="date" class="form-control" name="fechaInicioTrabajo">
                 @error('fechaInicioTrabajo')
                 <br>
                 <div class="alert alert-danger">
@@ -71,8 +60,19 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Hora Inicio</label>
-                <input type="time" class="form-control" name="horaInicioTrabajo" value="{{old('8horaInicioTrabajo')}}">
+                <input type="time" class="form-control" name="horaInicioTrabajo">
                 @error('horaInicioTrabajo')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+            </div>
+            <div class="col-lg-4 px-2">
+                <label>Largo (metros)</label>
+                <input type="number" step="0.0001" class="form-control" name="largo">
+                @error('largo')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -84,19 +84,8 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Largo (metros)</label>
-                <input type="text" class="form-control" name="largo" value="{{old('largo')}}">
-                @error('largo')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-            </div>
-            <div class="col-lg-4 px-2">
                 <label>Fecha Termino</label>
-                <input type="date" class="form-control" name="fechaFinTrabajo" value="{{old('fechaFinTrabajo')}}">
+                <input type="date" class="form-control" name="fechaFinTrabajo">
                 @error('fechaFinTrabajo')
                 <br>
                 <div class="alert alert-danger">
@@ -107,8 +96,19 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Hora Termino</label>
-                <input type="time" class="form-control" name="horaFinTrabajo" value="{{old('horaFinTrabajo')}}">
+                <input type="time" class="form-control" name="horaFinTrabajo">
                 @error('horaFinTrabajo')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+            </div>
+            <div class="col-lg-4 px-2">
+                <label>Peso (KG)</label>
+                <input type="number" step="0.0001" class="form-control" name="peso">
+                @error('peso')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -120,19 +120,8 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Peso (KG)</label>
-                <input type="text" class="form-control" name="peso" value="{{old('peso')}}">
-                @error('peso')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-            </div>
-            <div class="col-lg-4 px-2">
                 <label>Peso Utilizado (KG)</label>
-                <input type="datetime" class="form-control" name="pesoUtilizado" value="{{old('pesoUtilizado')}}">
+                <input type="number" step="0.0001" class="form-control" name="pesoUtilizado">
                 @error('pesoUtilizado')
                 <br>
                 <div class="alert alert-danger">
@@ -143,8 +132,19 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Temperatura (C°)</label>
-                <input type="text" class="form-control" name="temperatura" value="{{old('temperatura')}}">
+                <input type="number" step = "0.0001" class="form-control" name="temperatura">
                 @error('temperatura')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+            </div>
+            <div class="col-lg-4 px-2">
+                <label>Velocidad</label>
+                <input type="number" step = "0.0001" class="form-control" name="velocidad">
+                @error('velocidad')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -156,19 +156,8 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Velocidad</label>
-                <input type="text" class="form-control" name="velocidad" value="{{old('velocidad')}}">
-                @error('velocidad')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Pestaña</label>
-                <input type="text" class="form-control" name="white_ribbon_id" value="{{old('white_ribbon_id')}}">
+                <label>Cintilla Blanca</label>
+                <input type="number" class="form-control" name="white_ribbon_id" value="1" readonly>
                 @error('white_ribbon_id')
                 <br>
                 <div class="alert alert-danger">
@@ -184,7 +173,7 @@
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-                <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}"</textarea>
+                <textarea rows="3" class="form-control" name="observaciones"></textarea>
             </div>
         </div>
 
