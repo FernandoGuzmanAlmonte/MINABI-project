@@ -67,8 +67,8 @@ class WasteBagController extends Controller
 
     public function update(Request $request, WasteBag $wasteBags)
     {
-        $wasteBags->fInicioTrabajo = $request->fInicioTrabajo;
-        $wasteBags->fFinTrabajo    = $request->fFinTrabajo;
+        $wasteBags->fechaInicioTrabajo = $request->fechaInicioTrabajo;
+        $wasteBags->fechaFinTrabajo    = $request->fechaFinTrabajo;
         $wasteBags->peso           = $request->peso;
         $wasteBags->largo          = $request->largo;
         $wasteBags->temperatura    = $request->temperatura;  
@@ -77,6 +77,7 @@ class WasteBagController extends Controller
         $wasteBags->tipoUnidad     = $request->tipoUnidad;
         $wasteBags->cantidad       = $request->cantidad;
         $wasteBags->observaciones  = $request->observaciones;
+        $wasteBags->nomenclatura  = $request->nomenclatura;
 
         $wasteBags->save();
 

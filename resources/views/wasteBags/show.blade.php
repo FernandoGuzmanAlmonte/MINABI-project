@@ -55,11 +55,21 @@
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
+        <div class="col-lg-4 px-2">
+            <label>Nomenclatura</label>
+            <input type="text" class="form-control" name="nomenclatura" value={{ $wasteBag->nomenclatura }} disabled>
+        </div>
+    </div>
+    <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{ $wasteBag->observaciones }}</textarea>
         </div>  
     </div>
+
+    <div class="col-12 mt-3 text-center">
+        <a class="btn btn-warning mx-3" href="{{route('wasteBag.edit', $wasteBag)}}">Editar</a>
+    </div>   
 
     <div class="col-lg-12 d-flex mt-5">
         <h3>Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
@@ -98,10 +108,7 @@
                 <input type="text" class="form-control" name="coilStatus" value="{{$coil->status}}" disabled>
             </div>
         </div>
-
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-danger mx-3" href="{{ route('ribbonProduct.index') }}">Cancelar</a>
-        <button type="submit" class="btn btn-success mx-3">Guardar</button>
-    </div>    
 </div>
+<br>
+<br>
 @endsection

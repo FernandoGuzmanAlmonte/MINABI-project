@@ -14,11 +14,11 @@
         <div class="col-lg-12 d-flex mt-2">
             <div class="col-lg-4 px-2">
                 <label>Fecha Inicio</label>
-                <input type="date" class="form-control" name="fechaInicioTrabajo" value={{ $wasteBag->fInicioTrabajo }}>
+                <input type="date" class="form-control" name="fechaInicioTrabajo" value={{ $wasteBag->fechaInicioTrabajo }}>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Fin</label>
-                <input type="date" class="form-control" name="fechaFinTrabajo" value={{ $wasteBag->fFinTrabajo }}>
+                <input type="date" class="form-control" name="fechaFinTrabajo" value={{ $wasteBag->fechaFinTrabajo }}>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Peso</label>
@@ -57,7 +57,13 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Cantidad</label>
-                <input type="number" step="0.0001" class="form-control" name="cantidad" value={{ $wasteBag->horaFinTrabajo }}>
+                <input type="number" step="0.0001" class="form-control" name="cantidad" value={{ $wasteBag->cantidad }}>
+            </div>
+        </div>
+        <div class="col-lg-12 d-flex mt-3">
+            <div class="col-lg-4 px-2">
+                <label>Nomenclatura</label>
+                <input type="text" class="form-control" name="nomenclatura" value={{ $wasteBag->nomenclatura }}>
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
@@ -67,14 +73,11 @@
             </div>  
         </div>
         <div class="col-12 mt-3 text-center">
-            <a class="btn btn-danger mx-3" href="{{ route('bag.index') }}">Cancelar</a>
+            <a class="btn btn-danger mx-3" href="{{route('wasteBag.show', $wasteBag)}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
-        </div>    
+        </div>
     </div>
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-danger mx-3" href="{{route('wasteBags.show', $wasteBag)}}">Cancelar</a>
-        <button type="submit" class="btn btn-success mx-3">Guardar</button>
-    </div>
+    
 </form>
 @endsection
 
