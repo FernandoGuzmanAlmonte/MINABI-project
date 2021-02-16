@@ -18,13 +18,6 @@
             <input type="text" class="form-control" name="nomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
-<<<<<<< Updated upstream
-            <label>Quién Elaboro</label>
-            <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}"  disabled>
-        </div>
-        <div class="col-lg-4 px-2">
-=======
->>>>>>> Stashed changes
             <label>Status</label>
             <input type="text" class="form-control" name="status" value="{{$ribbon->status}}" disabled>
         </div>
@@ -36,23 +29,16 @@
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-<<<<<<< Updated upstream
-=======
             <label>Peso (KG)</label>
             <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
->>>>>>> Stashed changes
             <label>Fecha Inicio</label>
             <input type="text" class="form-control" name="fechaInicioTrabajo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Hora Inicio</label>
             <input type="time" class="form-control" name="horaInicioTrabajo" value="{{$ribbon->horaInicioTrabajo}}" disabled>
-        </div>
-        <div class="col-lg-4 px-2">
-            <label>Largo (metros)</label>
-            <input type="text" class="form-control" name="largo" value="{{$ribbon->largo}}" disabled>
         </div>
     </div>
 
@@ -66,32 +52,24 @@
             <input type="time" class="form-control" name="horaFinTrabajo" value="{{$ribbon->horaFinTrabajo}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
-<<<<<<< Updated upstream
-            <label>Peso (KG)</label>
-            <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}" disabled>
-        </div>
-    </div>
-
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
-=======
->>>>>>> Stashed changes
             <label>Peso Utilizado (KG)</label>
             <input type="datetime" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
-            <label>Temperatura (C°)</label>
-            <input type="text" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}" disabled>
-        </div>
-        <div class="col-lg-4 px-2">
-            <label>Velocidad</label>
-            <input type="text" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}" disabled>
-        </div>
     </div>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
+    <div class="col-lg-12 d-flex mt-3">
+    <div class="col-lg-4 px-2">
+        <label>Largo (metros)</label>
+        <input type="text" class="form-control" name="largo" value="{{$ribbon->largo}}" disabled>
+    </div>
+    <div class="col-lg-4 px-2">
+        <label>Temperatura (C°)</label>
+        <input type="text" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}" disabled>
+    </div>
+    <div class="col-lg-4 px-2">
+        <label>Velocidad</label>
+        <input type="text" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}" disabled>
+    </div>
+</div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Cintilla Blanca</label>
@@ -145,7 +123,7 @@
           </tr>
         </thead>
         <tbody>
-            @foreach ($bags as $item)
+            @foreach ($bag as $item)
     
             <tr>
                 <th scope="row" class="align-middle">{{$item->id}}</th>

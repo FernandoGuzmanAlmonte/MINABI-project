@@ -39,10 +39,6 @@
                 <label>Hora Inicio</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value="{{$ribbon->horaInicioTrabajo}}">
             </div>
-            <div class="col-lg-4 px-2">
-                <label>Largo (metros)</label>
-                <input type="number" step="0.0001" class="form-control" name="largo" value="{{$ribbon->largo}}">
-            </div>
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
@@ -58,15 +54,21 @@
                 <label>Peso Utilizado (KG)</label>
                 <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}">
             </div>
-            <div class="col-lg-4 px-2">
-                <label>Temperatura (C°)</label>
-                <input type="number" step="0.0001" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}">
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Velocidad</label>
-                <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}">
-            </div>
         </div>
+        <div class="col-lg-12 d-flex mt-3">
+        <div class="col-lg-4 px-2">
+            <label>Largo (metros)</label>
+            <input type="number" step="0.0001" class="form-control" name="largo" value="{{$ribbon->largo}}">
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Temperatura (C°)</label>
+            <input type="number" step="0.0001" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}">
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Velocidad</label>
+            <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}">
+        </div>
+    </div>
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">

@@ -54,7 +54,8 @@ class RibbonController extends Controller
         //obtenemos todas las bolsas relacionadas al rollo
         $bags =  Ribbon::find($ribbon->id);
         $bags = $bags->related()->get();
-        return view('ribbons.show', compact('ribbon', 'bags', 'coil'));
+        $bag = $bags;
+        return view('ribbons.show', compact('ribbon', 'bag', 'coil'));
     }
 
     public function store(Request $request)

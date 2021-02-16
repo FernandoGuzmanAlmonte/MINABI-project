@@ -80,6 +80,9 @@
                 <br>
             @enderror
             </div>
+        </div>
+    
+        <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Largo (metros)</label>
                 <input type="number" step="0.0001" class="form-control" name="largo">
@@ -91,9 +94,6 @@
                 <br>
             @enderror
             </div>
-        </div>
-    
-        <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Fecha Termino</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo">

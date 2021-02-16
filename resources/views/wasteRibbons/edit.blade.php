@@ -7,7 +7,7 @@
 @section('namePage', 'Merma Rollo')
 
 @section('form')
-<form action="{{route('ribbon.update', $ribbon)}}" method="POST">
+<form action="{{route('wasteRibbon.update', $wasteRibbon)}}" method="POST">
     @csrf
     @method('PUT')
     <div class="row">
@@ -153,7 +153,7 @@
         </div>
 
     <div class="col-12 mt-3 text-center">
-        <a class="btn btn-danger mx-3" href="{{route('ribbon.show', $ribbon->id)}}">Cancelar</a>
+        <a class="btn btn-danger mx-3" href="{{route('wasteRibbon.show', $wasteRibbon->id)}}">Cancelar</a>
         <button type="submit" class="btn btn-success mx-3">Guardar</button>
     </div>
 </div>

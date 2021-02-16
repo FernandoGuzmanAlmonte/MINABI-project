@@ -23,8 +23,8 @@ class WasteRibbonController extends Controller
         return view('wasteRibbons.create', ['coilId' => $request->coil]);
     }
 
-    public function edit(WasteRibbon $ribbon){
-        return view('wasteRibbons.edit', compact('ribbon'));
+    public function edit(WasteRibbon $wasteRibbon){
+         return view('wasteRibbons.edit', compact('wasteRibbon'));
     }
 
     public function update(Request $request, WasteRibbon $wasteRibbon){
