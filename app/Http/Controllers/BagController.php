@@ -34,7 +34,6 @@ class BagController extends Controller
         $bag->horaFinTrabajo     = $request->horaFinTrabajo;
         $bag->nomenclatura       = $request->nomenclatura;  
         $bag->clienteStock       = $request->clienteStock;
-        $bag->tipo               = $request->tipo;
         $bag->peso               = $request->peso;
         $bag->tipoUnidad         = $request->tipoUnidad;
         $bag->pestania           = $request->pestania;
@@ -77,7 +76,6 @@ class BagController extends Controller
         $bag->horaFinTrabajo     = $request->horaFinTrabajo;
         $bag->nomenclatura       = $request->nomenclatura;  
         $bag->clienteStock       = $request->clienteStock;
-        $bag->tipo               = $request->tipo;
         $bag->tipoUnidad         = $request->tipoUnidad;
         $bag->pestania           = $request->pestania;
         $bag->cantidad           = $request->cantidad;

@@ -1,10 +1,10 @@
 @extends('layouts.formulario')
 
-@section('title', 'Rollo')
+@section('title', 'Editar Hueso')
 
 @section('imgUrl',  asset('images/rollo-de-papel.svg'))
 
-@section('namePage', 'Rollo')
+@section('namePage', 'Editar Hueso ' . $coilReel->nomenclatura)
 
 @section('form')
 <form action="{{route('coilReel.update', $coilReel)}}" method="POST">
@@ -18,18 +18,30 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Peso</label>
-                <input type="number" class="form-control" name="tipo" >
+                <input type="number" step="0.0001" class="form-control" name="peso" value="{{$coilReel->peso}}" >
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Alta</label>
-                <input type="date" class="form-control" name="status" value="{{$coilReel->status}}">
+                <input type="date" class="form-control" name="fechaAlta" value="{{$coilReel->fechaAlta}}">
             </div>
         </div>
-    
+        <div class="col-lg-12 d-flex mt-2">
+            <div class="col-lg-4 px-2">
+                <label>Status</label>
+                <input type="text" class="form-control" name="status" value="N/A" readonly>
+                @error('status')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+            </div> 
+        </div>
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-                <textarea rows="3" class="form-control" name="observaciones">{{$coilReel->observaciones}}"</textarea>
+                <textarea rows="3" class="form-control" name="observaciones">{{$coilReel->observaciones}}</textarea>
             </div>
         </div>
 

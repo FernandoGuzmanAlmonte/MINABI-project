@@ -24,6 +24,7 @@ class CreateWasteRibbonsTable extends Migration
             $table->date('fechaInicioTrabajo'); //Fecha en la que se provoco la merma
             $table->date('fechaFinTrabajo');
             $table->time('horaInicioTrabajo');
+            $table->string('status', 10);
             $table->time('horaFinTrabajo'); //fecha en la que se provoco la merma
             $table->float('temperatura', 8, 4)->nullable(); //temperatura a la que se encontraba la maquina
             $table->float('velocidad', 8,4)->nullable(); //velocidad a la que se estaba trabajando la maquina

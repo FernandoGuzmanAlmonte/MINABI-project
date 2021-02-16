@@ -30,16 +30,18 @@ class RibbonController extends Controller
     public function update(Request $request, Ribbon $ribbon){
         $ribbon->nomenclatura =  $request->nomenclatura;
         $ribbon->status =  $request->status;
-        $ribbon->fArribo =  $request->fArribo;
-        $ribbon->pesoBruto =  $request->pesoBruto;
-        $ribbon->pesoNeto =  $request->pesoNeto;
-        $ribbon->observaciones =  $request->observaciones;
-        $ribbon->diametroBobina =  $request->diametroBobina;
-        $ribbon->diametroInterno =  $request->ddiametroInterno;
-        $ribbon->diametroExterno =  $request->diametroExterno;
-        $ribbon->largoM =  $request->largoM;
-        $ribbon->costo =  $request->costo;
-        $ribbon->provider_id = $request->provider_id;
+        $ribbon->employee_id =  $request->employee_id;
+        $ribbon->fechaInicioTrabajo =  $request->fechaInicioTrabajo;
+        $ribbon->horaInicioTrabajo =  $request->horaInicioTrabajo;
+        $ribbon->largo =  $request->largo;
+        $ribbon->fechaFinTrabajo =  $request->fechaFinTrabajo;
+        $ribbon->horaFinTrabajo =  $request->horaFinTrabajo;
+        $ribbon->peso =  $request->peso;
+        $ribbon->pesoUtilizado =  $request->pesoUtilizado;
+        $ribbon->temperatura =  $request->temperatura;
+        $ribbon->velocidad = $request->velocidad;
+        $ribbon->white_ribbon_id = $request->white_ribbon_id;
+        $ribbon->observaciones = $request->observaciones;
 
         $ribbon->save();
 

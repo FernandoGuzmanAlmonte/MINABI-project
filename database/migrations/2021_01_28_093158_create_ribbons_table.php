@@ -31,7 +31,7 @@ class CreateRibbonsTable extends Migration
             /*tipo*/
             $table->float('temperatura', 8, 4); //temperatura de la maquina
             $table->float('velocidad', 8, 4); //velocidad de la maquina
-            $table->string('status', 15); //disponible o terminado
+            $table->string('status', 10); //disponible o terminado
             $table->float('pesoUtilizado', 8, 4);//peso que se ha comprado en bolsas relacionadas
 
            // $table->foreign('coil_product_id')

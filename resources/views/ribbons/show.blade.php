@@ -18,17 +18,31 @@
             <input type="text" class="form-control" name="nomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
+<<<<<<< Updated upstream
             <label>Quién Elaboro</label>
             <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}"  disabled>
         </div>
         <div class="col-lg-4 px-2">
+=======
+>>>>>>> Stashed changes
             <label>Status</label>
             <input type="text" class="form-control" name="status" value="{{$ribbon->status}}" disabled>
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Quien Elaboro</label>
+            <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}"  disabled>
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
+<<<<<<< Updated upstream
+=======
+            <label>Peso (KG)</label>
+            <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}" disabled>
+        </div>
+        <div class="col-lg-4 px-2">
+>>>>>>> Stashed changes
             <label>Fecha Inicio</label>
             <input type="text" class="form-control" name="fechaInicioTrabajo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
         </div>
@@ -52,6 +66,7 @@
             <input type="time" class="form-control" name="horaFinTrabajo" value="{{$ribbon->horaFinTrabajo}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
+<<<<<<< Updated upstream
             <label>Peso (KG)</label>
             <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}" disabled>
         </div>
@@ -59,6 +74,8 @@
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
+=======
+>>>>>>> Stashed changes
             <label>Peso Utilizado (KG)</label>
             <input type="datetime" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}" disabled>
         </div>
@@ -71,6 +88,10 @@
             <input type="text" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}" disabled>
         </div>
     </div>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Cintilla Blanca</label>
@@ -90,7 +111,7 @@
     </div>
 
     <div class="col-lg-12 d-flex mt-5">
-    <h3>Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
+    <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
     </div>
     
     <div class="col-lg-12 d-flex mt-3">
@@ -110,7 +131,11 @@
 
     
     <div class="col-lg-12 my-5">
+<<<<<<< Updated upstream
         <h3>Bolsas y Mermas de Bolsa</h3>
+=======
+        <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas</h3>
+>>>>>>> Stashed changes
         <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Bolsa</a>
         
         <table class="table table-striped my-4" >
@@ -134,8 +159,8 @@
                <!--Realizamos if para validacion de adonde dirgir el show-->
             @if ($item->ribbon_product_type == 'App\Models\Bag')
             <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-            @elseif($item->ribbon_product_type == 'App\Models\WasteRibbon')
-            <td><a href="{{route('wasteRibbon.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @elseif($item->ribbon_product_type == 'App\Models\WasteBag')
+            <td><a href="{{route('wasteBag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
             @endif
             </tr>
           @endforeach

@@ -1,6 +1,6 @@
 @extends('layouts.formulario')
 
-@section('title', 'Bolsas')
+@section('title', 'Editar Bolsa')
 
 @section('imgUrl',  asset('images/bolsa-de-papel.svg'))
 
@@ -17,10 +17,6 @@
                 <input type="text" class="form-control" name="nomenclatura" value={{ $bag->nomenclatura }}>
             </div>
             <div class="col-lg-4 px-2">
-                <label>Tipo</label>
-                <input type="text" class="form-control" name="tipo" value={{ $bag->tipo }}>
-            </div>
-            <div class="col-lg-4 px-2">
                 <label>Status</label>
                 <select class="form-control" name="status">
                     <option value="DISPONIBLE" {{ ($bag->status === 'DISPONIBLE') ? 'Selected' : '' }}>
@@ -30,6 +26,10 @@
                         TERMINADO
                     </option>
                 </select>
+            </div>
+            <div class="col-lg-4 px-2">
+                <label>Cantidad</label>
+                <input type="number" step="0.0001" class="form-control" name="cantidad" value={{ $bag->cantidad }}>
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
@@ -63,15 +63,22 @@
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Tipo de unidad</label>
-                <input type="text" class="form-control" name="tipoUnidad" value={{ $bag->tipoUnidad }}>
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Cantidad</label>
-                <input type="text" class="form-control" name="cantidad" value={{ $bag->cantidad }}>
+                <select class="form-control" name="tipoUnidad">
+                    <option value="Sí" {{ ($bag->tipoUnidad === 'Millar') ? 'Selected' : '' }}>
+                        Millar
+                    </option>
+                    <option value="No" {{ ($bag->tipoUnidad === 'Ciento') ? 'Selected' : '' }}>
+                        Ciento
+                    </option>
+                </select>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Peso (Kg)</label>
-                <input type="text" class="form-control" name="peso" value={{ $bag->peso }}>
+                <input type="number" step="0.0001" class="form-control" name="peso" value={{ $bag->peso }}>
+            </div>
+            <div class="col-lg-4 px-2">
+                <label>Velocidad</label>
+                <input type="number" step="0.0001" class="form-control" name="velocidad" value={{ $bag->velocidad }}>
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
@@ -81,18 +88,21 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Cliente Stock</label>
-                <input type="text" class="form-control" name="clienteStock" value={{ $bag->clienteStock }}>
+                <select class="form-control" name="clienteStock">
+                    <option value="Sí" {{ ($bag->clienteStock === 'Cliente') ? 'Selected' : '' }}>
+                        Cliente
+                    </option>
+                    <option value="No" {{ ($bag->clienteStock === 'Stock') ? 'Selected' : '' }}>
+                        Stock
+                    </option>
+                </select>
             </div>
             <div class="col-lg-4 px-2">
-                <label>Velocidad</label>
-                <input type="text" class="form-control" name="velocidad" value={{ $bag->velocidad }}>
+                <label>Temperatura</label>
+                <input type="number" step="0.0001" class="form-control" name="temperatura" value={{ $bag->temperatura }}>
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
-                <label>Temperatura</label>
-                <input type="text" class="form-control" name="temperatura" value={{ $bag->temperatura }}>
-            </div>
             <div class="col-lg-4 px-2">
                 <label>Tiene Pestaña</label>
                 <select class="form-control" name="pestania">
@@ -108,9 +118,7 @@
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-                <textarea rows="3" class="form-control" name="observaciones">
-                    {{ $bag->observaciones }}
-                </textarea>
+                <textarea rows="3" class="form-control" name="observaciones">{{ $bag->observaciones }}</textarea>
             </div>  
         </div>
         <div class="col-12 mt-3 text-center">

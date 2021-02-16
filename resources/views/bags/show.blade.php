@@ -18,12 +18,12 @@
             <input type="text" class="form-control" name="nomenclatura" value={{ $bag->nomenclatura }} disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Tipo</label>
-            <input type="text" class="form-control" name="tipo" value={{ $bag->tipo }} disabled>
-        </div>
-        <div class="col-lg-4 px-2">
             <label>Status</label>
             <input type="text" class="form-control" name="status" value={{ $bag->status }} disabled>
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Cantidad</label>
+            <input type="text" class="form-control" name="cantidad" value={{ $bag->cantidad }} disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
@@ -60,12 +60,12 @@
             <input type="text" class="form-control" name="tipoUnidad" value={{ $bag->tipoUnidad }} disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Cantidad</label>
-            <input type="text" class="form-control" name="cantidad" value={{ $bag->cantidad }} disabled>
-        </div>
-        <div class="col-lg-4 px-2">
             <label>Peso (Kg)</label>
             <input type="text" class="form-control" name="peso" value={{ $bag->peso }} disabled>
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Velocidad</label>
+            <input type="text" class="form-control" name="velocidad" value={{ $bag->velocidad }} disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
@@ -78,15 +78,11 @@
             <input type="text" class="form-control" name="clienteStock" value={{ $bag->clienteStock }} disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Velocidad</label>
-            <input type="text" class="form-control" name="velocidad" value={{ $bag->velocidad }} disabled>
-        </div>
-    </div>
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
             <label>Temperatura</label>
             <input type="text" class="form-control" name="temperatura" value={{ $bag->temperatura }} disabled>
         </div>
+    </div>
+    <div class="col-lg-12 d-flex mt-3">  
         <div class="col-lg-4 px-2">
             <label>Tiene Pestaña</label>
             <input type="text" class="form-control" name="status" value={{ $bag->pestania }} disabled>
@@ -100,7 +96,7 @@
     </div>
 
     <div class="col-lg-12 d-flex mt-5">
-        <h3>Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
+        <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
         </div>
         
         <div class="col-lg-12 d-flex mt-3">
@@ -119,7 +115,7 @@
         </div>
 
     <div class="col-lg-12 d-flex mt-5">
-        <h3>Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
+        <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
         </div>
         
         <div class="col-lg-12 d-flex mt-3">

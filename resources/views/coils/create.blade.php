@@ -24,7 +24,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha llegada</label>
-            <input type="date" class="form-control" name="fArribo" >
+            <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}">
             @error('fArribo')
                 <br>
                 <div class="alert alert-danger">
@@ -35,14 +35,14 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="idTipoBobina">
+            <input type="text" class="form-control" name="coil_type_id" value="{{old('coil_type_id')}}">
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
-            <input type="text" class="form-control" name="provider_id" >
+            <input type="text" class="form-control" name="provider_id" value="{{old('provider_id')}}">
             @error('provider_id')
                 <br>
                 <div class="alert alert-danger">
@@ -53,7 +53,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>
-            <input type="datetime" class="form-control" name="status" value="ACTIVO">
+            <input type="datetime" class="form-control" name="status" value="DISPONIBLE" readonly>
             @error('status')
                 <br>
                 <div class="alert alert-danger">
@@ -64,7 +64,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
-            <input type="text" class="form-control" name="largoM">
+            <input type="number" step="0.0001" class="form-control" name="largoM" value="{{old('largoM')}}">
             @error('largoM')
                 <br>
                 <div class="alert alert-danger">
@@ -78,11 +78,11 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Peso Bruto (Kg)</label>
-            <input type="text" class="form-control" name="pesoBruto">
+            <input type="number" step="0.0001" class="form-control" name="pesoBruto" value="{{old('pesoBruto')}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Neto (Kg)</label>
-            <input type="datetime" class="form-control" name="pesoNeto">
+            <input type="number" step="0.0001" class="form-control" name="pesoNeto" value="{{old('pesoNeto')}}">
             @error('pesoNeto')
                 <br>
                 <div class="alert alert-danger">
@@ -93,29 +93,29 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Utilizado (Kg)</label>
-            <input type="text" class="form-control" name="pesoUtilizado">
+            <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{old('pesoUtilizado')}}">
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Diametro Exterior</label>
-            <input type="text" class="form-control" name="diametroExterno">
+            <input type="number" step="0.0001" class="form-control" name="diametroExterno" value="{{old('diametroExterno')}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Diametro Bobina</label>
-            <input type="datetime" class="form-control" name="diametroBobina">
+            <input type="number" step="0.0001" class="form-control" name="diametroBobina" value="{{old('diametroBobina')}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Diametro Interior</label>
-            <input type="text" class="form-control" name="diametroInterno">
+            <input type="number" step="0.0001" class="form-control" name="diametroInterno" value="{{old('diametroInterno')}}">
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Costo</label>
-            <input type="text" class="form-control" name="costo">
+            <input type="number" step="0.0001" class="form-control" name="costo" value="{{old('costo')}}">
             @error('costo')
                 <br>
                 <div class="alert alert-danger">

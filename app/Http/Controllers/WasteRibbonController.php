@@ -70,6 +70,7 @@ class WasteRibbonController extends Controller
         $wasteRibbon->largo =  $request->largo;
         $wasteRibbon->temperatura =  $request->temperatura;
         $wasteRibbon->velocidad =  $request->velocidad;
+        $wasteRibbon->status = 'N/A';
 
         $wasteRibbon->save();
         

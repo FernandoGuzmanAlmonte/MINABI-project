@@ -1,10 +1,14 @@
 @extends('layouts.formulario')
 
-@section('title', 'Rollo')
+@section('title', 'Merma de Rollo')
 
 @section('imgUrl',  asset('images/rollo-de-papel.svg'))
 
+<<<<<<< Updated upstream
 @section('namePage', 'Merma Rollo')
+=======
+@section('namePage', 'Merma de Rollo')
+>>>>>>> Stashed changes
 
 @section('retornar')
 <a href="{{route('coilProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
@@ -15,53 +19,34 @@
         <div class="col-lg-12 d-flex mt-2"> 
             <div class="col-lg-4 px-2">
                 <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}">
+                <input type="text" class="form-control" name="nomenclatura" value="{{$wasteRibbon->nomenclatura}}" disabled>
               
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Incio Trabajo</label>
-                <input type="date" class="form-control" name="fechaInicioTrabajo" >
-           
+                <label>Status</label>
+                <input type="text" class="form-control" name="status" value="DISPONIBLE" disabled>      
             </div>
-            <div class="col-lg-4 px-2">
-                <label>Hora Inicio Trabajo</label>
-                <input type="time" class="form-control" name="horaIncioTrabajo" >
-             
-            </div>
-        </div>
-    
-        <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Peso (KG)</label>
-                <input type="number" class="form-control" name="peso" value="{{old('peso')}}">
+                <input type="number" class="form-control" name="peso" value="{{$wasteRibbon->peso}}" disabled>
                
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Fecha Fin Trabajo</label>
-                <input type="date" class="form-control" name="fechaFinTrabajo" value="{{old('fechaFinTrabajo')}}">
-             
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Hora Fin Trabajo</label>
-                <input type="time" class="form-control" name="horaFinTrabajo" value="{{old('horaFinTrabajo')}}">
-              
             </div>
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Largo (metros)</label>
-                <input type="number" class="form-control" name="largo" value="{{old('largo')}}">
+                <input type="number" class="form-control" name="largo" value="{{$wasteRibbon->largo}}" disabled>
               
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Termino</label>
-                <input type="date" class="form-control" name="fechaFinTrabajo" value="{{old('fechaFinTrabajo')}}">
-              
+                <label>Fecha Incio Trabajo</label>
+                <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{$wasteRibbon->fechaInicioTrabajo}}" disabled>
+           
             </div>
             <div class="col-lg-4 px-2">
-                <label>Hora Termino</label>
-                <input type="time" class="form-control" name="horaFinTrabajo" value="{{old('horaFinTrabajo')}}">
+                <label>Hora Inicio Trabajo</label>
+                <input type="time" class="form-control" name="horaIncioTrabajo" value="{{$wasteRibbon->horaInicioTrabajo}}" disabled>
              
             </div>
         </div>
@@ -69,21 +54,37 @@
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Temperatura</label>
-                <input type="text" class="form-control" name="temperatura" value="{{old('temperatura')}}">
+                <input type="text" class="form-control" name="temperatura" value="{{$wasteRibbon->temperatura}}" disabled>
                 
             </div>
             <div class="col-lg-4 px-2">
-                <label>Velocidad</label>
-                <input type="number" class="form-control" name="velocidad" value="{{old('velocidad')}}">
+                <label>Fecha Fin Trabajo</label>
+                <input type="date" class="form-control" name="fechaFinTrabajo" value="{{$wasteRibbon->fechaFinTrabajo}}" disabled>
+             
             </div>
-           
+            <div class="col-lg-4 px-2">
+                <label>Hora Fin Trabajo</label>
+                <input type="time" class="form-control" name="horaFinTrabajo" value="{{$wasteRibbon->horaFinTrabajo}}" disabled>
+              
+            </div>
+                      
         </div>
     
+        <div class="col-lg-12 d-flex mt-3">
+            <div class="col-lg-4 px-2">
+                <label>Velocidad</label>
+                <input type="number" class="form-control" name="velocidad" value="{{$wasteRibbon->velocidad}}" disabled>
+            </div>
+        </div>
     
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
+<<<<<<< Updated upstream
                 <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
+=======
+                <textarea rows="3" class="form-control" name="observaciones" disabled>{{$wasteRibbon->observaciones}}</textarea>
+>>>>>>> Stashed changes
             </div>
         </div>
 

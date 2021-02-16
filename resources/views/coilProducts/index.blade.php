@@ -26,7 +26,13 @@
         <td class="align-middle">{{$item->nomenclatura}}</td>
         <td class="align-middle">{{$item->fAdquisicion}}</td>
         <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
-        <td><a href="{{route('ribbon.show', $item->coil_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+        @if ($item->coil_product_type == 'App\Models\Ribbon')
+            <td><a href="{{route('ribbon.show',$item->coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @elseif($item->coil_product_type == 'App\Models\WasteRibbon')
+            <td><a href="{{route('wasteRibbon.show',$item->coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @elseif($item->coil_product_type == 'App\Models\CoilReel')
+            <td><a href="{{route('coilReel.show',$item->coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @endif
     </tr>
     @endforeach
 </tbody>

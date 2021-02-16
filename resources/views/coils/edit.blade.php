@@ -2,9 +2,9 @@
 
 @section('title', 'Bobinas')
 
-@section('imgUrl',  asset('images/base-de-datos.svg'))
+@section('imgUrl',  asset('images/bobina.svg'))
 
-@section('namePage', 'Bobinas')
+@section('namePage', 'Bobinas ' . $coil->nomenclatura)
 
 @section('form')
 <form action="{{route('coil.update', $coil)}}" method="POST">
@@ -33,55 +33,55 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>
-            <input type="datetime" class="form-control" name="status" value="{{$coil->status}}">
+            <input type="datetime" class="form-control" name="status" value="{{$coil->status}}" readonly>
         </div>
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
-            <input type="text" class="form-control" name="largoM" value="{{$coil->largoM}}">
+            <input type="number" step="0.0001" class="form-control" name="largoM" value="{{$coil->largoM}}">
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Peso Bruto (Kg)</label>
-            <input type="text" class="form-control" name="pesoBruto" value="{{$coil->pesoBruto}}">
+            <input type="number" step="0.0001" class="form-control" name="pesoBruto" value="{{$coil->pesoBruto}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Neto (Kg)</label>
-            <input type="datetime" class="form-control" name="pesoNeto" value="{{$coil->pesoNeto}}">
+            <input type="number" step="0.0001" class="form-control" name="pesoNeto" value="{{$coil->pesoNeto}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Utilizado (Kg)</label>
-            <input type="text" class="form-control" name="pesoUtilizado" value="{{$coil->pesoUtilizado}}">
+            <input type="number" step="0.0001"class="form-control" name="pesoUtilizado" value="{{$coil->pesoUtilizado}}">
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Diametro Exterior</label>
-            <input type="text" class="form-control" name="diametroExterno" value="{{$coil->diametroExterno}}">
+            <input type="number" step="0.0001" class="form-control" name="diametroExterno" value="{{$coil->diametroExterno}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Diametro Bobina</label>
-            <input type="datetime" class="form-control" name="diametroBobina"value="{{$coil->diametroBobina}}">
+            <input type="number" step="0.0001" class="form-control" name="diametroBobina"value="{{$coil->diametroBobina}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Diametro Interior</label>
-            <input type="text" class="form-control" name="diametroInterno" value="{{$coil->diametroInterno}}">
+            <input type="number" step="0.0001" class="form-control" name="diametroInterno" value="{{$coil->diametroInterno}}">
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Costo</label>
-            <input type="text" class="form-control" name="costo" value="{{$coil->costo}}">
+            <input type="number" step="0.0001" class="form-control" name="costo" value="{{$coil->costo}}">
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
-            <textarea rows="3" class="form-control" name="observaciones">{{$coil->observaciones}}"</textarea>
+            <textarea rows="3" class="form-control" name="observaciones">{{$coil->observaciones}}</textarea>
         </div>
     </div>
 

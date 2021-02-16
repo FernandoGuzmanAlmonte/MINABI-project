@@ -20,11 +20,11 @@ class CoilReelController extends Controller
 
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
-        return view('wasteRibbons.create', ['coilId' => $request->coil]);
+        return view('coilReels.create', ['coilId' => $request->coil]);
     }
 
-    public function edit(CoilReel $coilReels){
-        return view('coilReels.edit', compact('coilReels'));
+    public function edit(CoilReel $coilReel){
+        return view('coilReels.edit', compact('coilReel'));
     }
 
     public function update(Request $request, CoilReel $coilReel){
@@ -32,11 +32,12 @@ class CoilReelController extends Controller
         $coilReel->peso =  $request->peso;
         $coilReel->observaciones =  $request->observaciones;
         $coilReel->fechaAlta =  $request->fechaAlta;
+        $coilReel->status = $request->status;
        
 
         $coilReel->save();
 
-        return redirect()->route('coilReels.show', compact('coilReel'));
+        return redirect()->route('coilReel.show', compact('coilReel'));
     }
 
     public function show(CoilReel $coilReel){
@@ -57,6 +58,7 @@ class CoilReelController extends Controller
         $coilReel->peso =  $request->peso;
         $coilReel->observaciones =  $request->observaciones;
         $coilReel->fechaAlta =  $request->fechaAlta;
+        $coilReel->status = $request->status;
 
         $coilReel->save();
         

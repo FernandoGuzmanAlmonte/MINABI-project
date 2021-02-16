@@ -19,7 +19,7 @@ class CreateCoilsTable extends Migration
             $table->unsignedBigInteger('provider_id');
 
             $table->string('nomenclatura', 20);
-            $table->string('status', 9);
+            $table->string('status', 10);
             $table->date('fArribo');
             $table->float('pesoBruto',8 ,4);
             $table->float('pesoNeto',8 ,4)->nullable();

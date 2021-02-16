@@ -4,7 +4,11 @@
 
 @section('imgUrl',  asset('images/rollo-de-papel.svg'))
 
+<<<<<<< Updated upstream
 @section('namePage', 'Merma Rollo')
+=======
+@section('namePage', 'Merma de Rollo')
+>>>>>>> Stashed changes
 
 @section('form')
 <form action="{{route('wasteRibbon.store')}}" method="POST">
@@ -124,7 +128,11 @@
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
+<<<<<<< Updated upstream
                 <textarea rows="3" class="form-control" name="observaciones"></textarea>
+=======
+                <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
+>>>>>>> Stashed changes
             </div>
         </div>
 

@@ -17,17 +17,29 @@
                 <input type="text" class="form-control" name="nomenclatura" value="{{$ribbon->nomenclatura}}">
             </div>
             <div class="col-lg-4 px-2">
+<<<<<<< Updated upstream
                 <label>Quién Elaboro</label>
                 <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}" readonly>
+=======
+                <label>Status</label>
+                <input type="text" class="form-control" name="status" value="{{$ribbon->status}}" readonly>
+>>>>>>> Stashed changes
             </div>
             <div class="col-lg-4 px-2">
-                <label>Status</label>
-                <input type="text" class="form-control" name="status" value="{{$ribbon->status}}">
+                <label>Quien Elaboro</label>
+                <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}">
             </div>
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
+<<<<<<< Updated upstream
+=======
+                <label>Peso (KG)</label>
+                <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}">
+            </div>
+            <div class="col-lg-4 px-2">
+>>>>>>> Stashed changes
                 <label>Fecha Inicio</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{$ribbon->fechaInicioTrabajo}}">
             </div>
@@ -51,6 +63,7 @@
                 <input type="time" class="form-control" name="horaFinTrabajo" value="{{$ribbon->horaFinTrabajo}}">
             </div>
             <div class="col-lg-4 px-2">
+<<<<<<< Updated upstream
                 <label>Peso (KG)</label>
                 <input type="number" step="0.0001" class="form-control" name="peso" value="{{$ribbon->peso}}">
             </div>
@@ -58,6 +71,8 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
+=======
+>>>>>>> Stashed changes
                 <label>Peso Utilizado (KG)</label>
                 <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}">
             </div>

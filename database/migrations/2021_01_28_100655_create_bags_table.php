@@ -36,7 +36,6 @@ class CreateBagsTable extends Migration
             //Usuario Creo  
             $table->string('medida', 10);
             $table->string('tipoUnidad', 8); // si es millar o ciento
-            $table->string('tipo', 12); //con pestaña sin pestaña?
 
             /*$table->foreign('ribbon_id')
                 ->references('id')

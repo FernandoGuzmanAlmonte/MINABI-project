@@ -2,7 +2,7 @@
 
 @section('title', 'Bobinas')
 
-@section('imgUrl',  asset('images/base-de-datos.svg'))
+@section('imgUrl',  asset('images/bobina.svg'))
 
 @section('namePage', 'Bobinas')
 

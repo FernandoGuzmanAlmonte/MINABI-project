@@ -2,7 +2,7 @@
 
 @section('title', 'Bobinas')
 
-@section('imgUrl',  asset('images/base-de-datos.svg'))
+@section('imgUrl',  asset('images/bobina.svg'))
 
 @section('namePage', 'Bobinas')
 
@@ -85,8 +85,8 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$coil->observaciones}}</textarea>
         </div>
     </div>
-    <div class="col-lg-12 my-3">
-    <h3> Rollos </h3>
+    <div class="col-lg-12 my-5">
+    <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollos </h3>
     <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nuevo Rollo</a>
     <!--Tabla para rollos relacionados-->
     <table class="table table-striped my-4" >
@@ -121,7 +121,7 @@
     </table>
 
 <!--Tabla para bolsas relacionadas-->
-<h3> Bolsas </h3>
+<h3 class="mt-5"> <img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas </h3>
 <table class="table table-striped my-4" >
     <thead class="bg-info">
 <tr>
