@@ -131,11 +131,7 @@
 
     
     <div class="col-lg-12 my-5">
-<<<<<<< Updated upstream
-        <h3>Bolsas y Mermas de Bolsa</h3>
-=======
-        <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas</h3>
->>>>>>> Stashed changes
+        <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas y Mermas de Bolsa</h3>
         <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Bolsa</a>
         
         <table class="table table-striped my-4" >

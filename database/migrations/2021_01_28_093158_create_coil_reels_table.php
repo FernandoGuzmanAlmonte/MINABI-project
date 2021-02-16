@@ -17,13 +17,8 @@ class CreateCoilReelsTable extends Migration
             $table->id();
 
             $table->string('nomenclatura', 20);
-<<<<<<< Updated upstream
-            $table->float('peso', 8,4); //peso del hueso
-            $table->string('observaciones')->nulleable;
-=======
             $table->float('peso', 10,4); //peso del hueso
             $table->string('observaciones')->nullable();
->>>>>>> Stashed changes
             $table->string('fechaAlta');
             $table->string('status', 10);
 

@@ -23,15 +23,9 @@
                 @enderror
             </div>
             <div class="col-lg-4 px-2">
-<<<<<<< Updated upstream
-                <label>Quién Elaboro</label>
-                <input type="number" class="form-control" name="employee_id" value="1" readonly>
-                @error('employee_id')
-=======
                 <label>Status</label>
                 <input type="text" class="form-control" name="status" value="DISPONIBLE" readonly>
                 @error('status')
->>>>>>> Stashed changes
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -40,15 +34,9 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-<<<<<<< Updated upstream
-                <label>Status</label>
-                <input type="text" class="form-control" name="status" value="ACTIVO" readonly>
-                @error('status')
-=======
                 <label>Quien Elaboro</label>
                 <input type="text" class="form-control" name="employee_id" value="{{old('employee_id')}}">
                 @error('employee_id')
->>>>>>> Stashed changes
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -60,8 +48,6 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-<<<<<<< Updated upstream
-=======
                 <label>Peso (KG)</label>
                 <input type="text" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
@@ -73,7 +59,6 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
->>>>>>> Stashed changes
                 <label>Fecha Inicio</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo">
                 @error('fechaInicioTrabajo')
@@ -131,27 +116,10 @@
                 <br>
             @enderror
             </div>
-<<<<<<< Updated upstream
-            <div class="col-lg-4 px-2">
-                <label>Peso (KG)</label>
-                <input type="number" step="0.0001" class="form-control" name="peso">
-                @error('peso')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-            </div>
-        </div>
-    
-        <div class="col-lg-12 d-flex mt-3">
-=======
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
             
->>>>>>> Stashed changes
             <div class="col-lg-4 px-2">
                 <label>Peso Utilizado (KG)</label>
                 <input type="number" step="0.0001" class="form-control" name="pesoUtilizado">
@@ -206,11 +174,7 @@
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-<<<<<<< Updated upstream
-                <textarea rows="3" class="form-control" name="observaciones"></textarea>
-=======
                 <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
->>>>>>> Stashed changes
             </div>
         </div>
 
