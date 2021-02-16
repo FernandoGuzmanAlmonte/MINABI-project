@@ -49,7 +49,7 @@
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Peso (KG)</label>
-                <input type="number" class="form-control" name="peso" value="{{old('peso')}}">
+                <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
                 <br>
                 <div class="alert alert-danger">
@@ -85,7 +85,7 @@
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Largo (metros)</label>
-                <input type="number" class="form-control" name="largo" value="{{old('largo')}}">
+                <input type="number" step="0.0001" class="form-control" name="largo" value="{{old('largo')}}">
                 @error('largo')
                 <br>
                 <div class="alert alert-danger">
@@ -107,7 +107,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Velocidad</label>
-                <input type="number" class="form-control" name="velocidad" value="{{old('velocidad')}}">
+                <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{old('velocidad')}}">
                 @error('velocidad')
                 <br>
                 <div class="alert alert-danger">

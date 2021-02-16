@@ -20,7 +20,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>
-                <input type="text" class="form-control" name="status" value="DISPONIBLE" disabled>      
+                <input type="text" class="form-control" name="status" value="N/A" disabled>      
             </div>
             <div class="col-lg-4 px-2">
                 <label>Peso (KG)</label>

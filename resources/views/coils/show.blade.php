@@ -105,7 +105,7 @@
         <tr>
             <th scope="row" class="align-middle">{{$item->id}}</th>
             <td class="align-middle">{{$item->nomenclatura}}</td>
-            <td class="align-middle">{{$item->fechaInicioTrabajo}}</td>
+            <td class="align-middle">{{$item->fAdquisicion}}</td>
             <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
            <!--Realizamos if para validacion de adonde dirgir el show-->
         @if ($item->coil_product_type == 'App\Models\Ribbon')

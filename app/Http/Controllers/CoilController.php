@@ -32,7 +32,7 @@ class CoilController extends Controller
         $coil->pesoNeto =  $request->pesoNeto;
         $coil->observaciones =  $request->observaciones;
         $coil->diametroBobina =  $request->diametroBobina;
-        $coil->diametroInterno =  $request->ddiametroInterno;
+        $coil->diametroInterno =  $request->diametroInterno;
         $coil->diametroExterno =  $request->diametroExterno;
         $coil->largoM =  $request->largoM;
         $coil->costo =  $request->costo;
