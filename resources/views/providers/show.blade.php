@@ -35,13 +35,13 @@
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>
     </div>
+    
     <div class="col-lg-12 my-3">
     {{-- Modal de contactos --}}
         <button type="button" class="btn btn-success float-right mb-3" data-toggle="modal" data-target="#create">
             Añadir Contacto
         </button>
         @include('contacts.create')
-        @include('contacts.edit')
     {{-- Modal de contactos --}}
     
     {{-- Index de contactos --}}

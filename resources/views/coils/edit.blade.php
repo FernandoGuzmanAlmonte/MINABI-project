@@ -33,7 +33,14 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>
-            <input type="datetime" class="form-control" name="status" value="{{$coil->status}}" readonly>
+            <select class="form-control" name="status">
+                <option value="DISPONIBLE" {{ ($coil->status === 'DISPONIBLE') ? 'Selected' : '' }}>
+                    DISPONIBLE
+                </option>
+                <option value="TERMINADO" {{ ($coil->status === 'TERMINADO') ? 'Selected' : '' }}>
+                    TERMINADO
+                </option>
+            </select>
         </div>
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
@@ -85,7 +92,7 @@
         </div>
     </div>
 
-    <div class="col-12 mt-3 text-center">
+    <div class="col-12 mt-4 mb-4 text-center">
         <a class="btn btn-danger mx-3" href="{{route('coil.show', $coil->id)}}">Cancelar</a>
         <button type="submit" class="btn btn-success mx-3">Guardar</button>
     </div>

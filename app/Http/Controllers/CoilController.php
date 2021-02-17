@@ -37,6 +37,7 @@ class CoilController extends Controller
         $coil->largoM =  $request->largoM;
         $coil->costo =  $request->costo;
         $coil->provider_id = $request->provider_id;
+        $coil->pesoUtilizado = $request->pesoUtilizado;
 
         $coil->save();
 

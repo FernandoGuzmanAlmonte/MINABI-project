@@ -18,11 +18,18 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>
-                <input type="text" class="form-control" name="status" value="{{$ribbon->status}}" readonly>
+                <select class="form-control" name="status">
+                    <option value="DISPONIBLE" {{ ($ribbon->status === 'DISPONIBLE') ? 'Selected' : '' }}>
+                        DISPONIBLE
+                    </option>
+                    <option value="TERMINADO" {{ ($ribbon->status === 'TERMINADO') ? 'Selected' : '' }}>
+                        TERMINADO
+                    </option>
+                </select>
             </div>
             <div class="col-lg-4 px-2">
-                <label>Quien Elaboro</label>
-                <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}">
+                <label>Quién Elaboro</label>
+                <input type="text" class="form-control" name="employee_id" value="1" readonly>
             </div>
         </div>
     
@@ -84,7 +91,7 @@
             </div>
         </div>
 
-    <div class="col-12 mt-3 text-center">
+    <div class="col-12 mt-4 mb-4 text-center">
         <a class="btn btn-danger mx-3" href="{{route('ribbon.show', $ribbon->id)}}">Cancelar</a>
         <button type="submit" class="btn btn-success mx-3">Guardar</button>
     </div>

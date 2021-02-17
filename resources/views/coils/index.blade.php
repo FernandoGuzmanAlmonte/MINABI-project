@@ -27,7 +27,11 @@
         <td class="align-middle">{{$item->nomenclatura}}</td>
         <td class="align-middle">{{$item->fArribo}}</td>
         <td class="align-middle">{{$item->coil_type_id}}</td>
-        <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
+        <td class="align-middle">
+            <label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">
+                {{$item->status}}
+            </label>
+        </td>
         <td><a href="{{route('coil.show', $item->id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
     </tr>
     @endforeach

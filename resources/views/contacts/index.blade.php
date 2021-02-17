@@ -18,12 +18,19 @@
                 <td class="align-middle">{{ $contact->apellidos }}</td>
                 <td class="align-middle">{{ $contact->correoElectronico }}</td>
                 <td class="align-middle">
-                    <a  href="{{ route('provider.edit', $contact->id) }}" value="Editar" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit">
-                        <img src="{{ asset('images/icono-editar.svg') }}" class="iconosPequeños">
-                    </a>
-                    <button type="submit" value="Eliminar" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                        <img src="{{ asset('images/icono-eliminar.svg') }}" class="iconosPequeños">
-                    </button>
+                    {{-- MODAL edit para cada contacto--}}
+                    @include('contacts.edit')
+                    {{-- MODAL edit para cada contacto--}}
+                    <form action="{{ route('provider.destroy', $contact->id) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <a href="{{ route('provider.edit', $contact->id) }}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{$contact->id}}">
+                            <img src="{{ asset('images/icono-editar.svg') }}" class="iconosPequeños">
+                        </a>
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <img src="{{ asset('images/icono-eliminar.svg') }}" class="iconosPequeños">
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach

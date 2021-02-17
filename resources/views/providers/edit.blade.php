@@ -7,7 +7,7 @@
 @section('namePage', 'Editar Proveedor ' . $provider->id)
 
 @section('form')
-<form action="{{ route('provider.update', $provider) }}" method="POST">
+<form action="{{ route('provider.update', $provider->id) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="row">

@@ -58,34 +58,50 @@ class ProviderController extends Controller
         return view('providers.show', compact('provider', 'contacts'));
     }
 
-    public function edit(Provider $provider)//Provider $provider
+    public function edit(Provider $provider)
     {
-        //if($request->has('providerForm'))
-        //{
-            return view('providers.edit', compact('provider'));
-        //}
-        //else
-        //{
-        //    $contact = Contact::find($provider);
-        //    $ribbons =  Coil::find(1);
-        //    return view('contacts.edit', compact('$contact'));
-        //}
+        return view('providers.edit', compact('provider'));
     }
 
-    public function update(Request $request, Provider $provider)
+    public function update(Request $request, $id)//$id de Provider o Contact
     {
-        $provider->nombreEmpresa =  $request->nombreEmpresa;
-        $provider->paginaWeb     =  $request->paginaWeb;
-        $provider->direccion     =  $request->direccion;
-        $provider->estado        =  $request->estado;
+        if($request->has('providerForm'))
+        {
+            $provider = Provider::find($id);
 
-        $provider->save();
+            $provider->nombreEmpresa =  $request->nombreEmpresa;
+            $provider->paginaWeb     =  $request->paginaWeb;
+            $provider->direccion     =  $request->direccion;
+            $provider->estado        =  $request->estado;
 
+            $provider->save();
+        }
+        else
+        {
+            $contact = Contact::find($id);
+            
+            $contact->provider_id       =  $request->provider_id;
+            $contact->telefono          =  $request->telefono;
+            $contact->nombre            =  $request->nombre;
+            $contact->correoElectronico =  $request->correoElectronico;
+            $contact->apellidos         =  $request->apellidos;
+
+            $contact->save();
+
+            $provider = $contact->provider;
+        }
+        
         return redirect()->route('provider.show', $provider);
     }
 
-    public function delete()
+    public function destroy($id)
     {
+        $contact = Contact::find($id);
 
+        $provider = $contact->provider;
+
+        $contact->delete();
+
+        return redirect()->route('provider.show', $provider);
     }
 }

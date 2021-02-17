@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit">
+<div class="modal fade" id="edit{{$contact->id}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,25 +7,25 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="{{ route('provider.update', $provider) }}" method="POST">
+            <form action="{{ route('provider.update', $contact->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Télefono:</label>
-                        <input type="text" class="form-control" name="telefono">
+                        <input type="number" class="form-control" name="telefono" value={{$contact->telefono}}>
                     </div>
                     <div class="form-group">
                         <label>Nombre(s):</label>
-                        <input type="text" class="form-control" name="nombre">
+                        <input type="text" class="form-control" name="nombre" value={{$contact->nombre}}>
                     </div>
                     <div class="form-group">
                         <label>Apellidos:</label>
-                        <input type="text" class="form-control" name="apellidos">
+                        <input type="text" class="form-control" name="apellidos" value={{$contact->apellidos}}>
                     </div>
                     <div class="form-group">
                         <label>Correo electrónico:</label>
-                        <input type="text" class="form-control" name="correoElectronico">
+                        <input type="email" class="form-control" name="correoElectronico" value={{$contact->correoElectronico}}>
                     </div>
                     <input type="hidden" name="provider_id" value="{{ $provider->id }}">
                 </div>

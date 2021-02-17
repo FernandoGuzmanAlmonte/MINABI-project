@@ -85,7 +85,10 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$coil->observaciones}}</textarea>
         </div>
     </div>
-    <div class="col-lg-12 my-5">
+    <div class="col-12 mt-5 text-center">
+        <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
+    </div>
+    <div class="col-lg-12 my-3">
     <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollos </h3>
     <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nuevo Rollo</a>
     <!--Tabla para rollos relacionados-->
@@ -101,12 +104,15 @@
     </thead>
     <tbody>
         @foreach ($ribbons as $item)
-
         <tr>
             <th scope="row" class="align-middle">{{$item->id}}</th>
             <td class="align-middle">{{$item->nomenclatura}}</td>
             <td class="align-middle">{{$item->fAdquisicion}}</td>
-            <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
+            <td class="align-middle">
+                <label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">
+                    {{$item->status}}
+                </label>
+            </td>
            <!--Realizamos if para validacion de adonde dirgir el show-->
         @if ($item->coil_product_type == 'App\Models\Ribbon')
         <td><a href="{{route('ribbon.show',$item->coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
@@ -151,9 +157,6 @@
 </tbody>
 </table>    
 </div>
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
-    </div>
 </div>
 @include('coils.modalTypeSelection')
 

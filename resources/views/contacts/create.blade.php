@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Télefono:</label>
-                        <input type="text" class="form-control" name="telefono">
+                        <input type="number" class="form-control" name="telefono">
                     </div>
                     <div class="form-group">
                         <label>Nombre(s):</label>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label>Correo electrónico:</label>
-                        <input type="text" class="form-control" name="correoElectronico">
+                        <input type="email" class="form-control" name="correoElectronico">
                     </div>
                     <input type="hidden" name="provider_id" value="{{ $provider->id }}">
                 </div>

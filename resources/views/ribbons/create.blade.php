@@ -34,8 +34,8 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Quien Elaboro</label>
-                <input type="text" class="form-control" name="employee_id" value="{{old('employee_id')}}">
+                <label>Quién Elaboro</label>
+                <input type="text" class="form-control" name="employee_id" value="1" readonly>
                 @error('employee_id')
                 <br>
                 <div class="alert alert-danger">
