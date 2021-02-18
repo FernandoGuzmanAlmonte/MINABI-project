@@ -35,13 +35,13 @@ class CreateCoilsTable extends Migration
                 ->references('id')
                 ->on('coil_types')
                 ->onDelete('set null')
-                ->onUpdate('cascade');
+                ->onUpdate('cascade');*/
                 
             $table->foreign('provider_id')
                 ->references('id')
                 ->on('providers');
            
-*/
+
             $table->timestamps();
         });
     }

@@ -27,4 +27,8 @@ class Coil extends Model
     return $this->hasMany(CoilProduct::class);
     }
 
+    public function provider()
+    {
+        return $this->belongsTo('App\Models\Provider'); 
+    }
 }

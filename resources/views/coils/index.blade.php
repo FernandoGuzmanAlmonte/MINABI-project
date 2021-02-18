@@ -6,7 +6,7 @@
 
 @section('namePage', 'Bobinas')
 
-@section('route', route('coil.create'))
+@section('route', route('coil.index'))
 
 @section('table')
 <table class="table table-striped my-4" >

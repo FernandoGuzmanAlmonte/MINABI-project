@@ -35,14 +35,14 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="coil_type_id" value="{{old('coil_type_id')}}">
+            <input type="text" class="form-control" name="coil_type_id" value="1" readonly>
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
-            <input type="text" class="form-control" name="provider_id" value="{{old('provider_id')}}">
+            <input type="text" class="form-control" name="provider_id" value="{{$provider->nombreEmpresa}}" readonly>
             @error('provider_id')
                 <br>
                 <div class="alert alert-danger">
@@ -132,6 +132,8 @@
             <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
         </div>
     </div>
+
+    <input type="hidden" name="provider_id" value="{{ $provider->id }}">
 
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-danger mx-3" href="{{route('coil.index')}}">Cancelar</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coil;
+use App\Models\Provider;
 use App\Models\RibbonProduct;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -16,10 +17,10 @@ class CoilController extends Controller
         return view('coils.index', compact('coils'));
     }
 
-    public function create(){
-        return view('coils.create');
+    public function create(Provider $provider){
+        return view('coils.create', compact('provider'));
     }
-
+    
     public function edit(Coil $coil){
         return view('coils.edit', compact('coil'));
     }
@@ -59,7 +60,6 @@ class CoilController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'nomenclatura' => 'required',
             'status' => 'required',
@@ -89,8 +89,11 @@ class CoilController extends Controller
         $coil->pesoUtilizado = $request->pesoUtilizado;
 
         $coil->save();
+        
+        $provider = $coil->provider;
 
-        return redirect()->route('coil.index');
+        return redirect()->route('provider.show', $provider);
+        //return redirect()->route('coil.index');
     }
 
 }

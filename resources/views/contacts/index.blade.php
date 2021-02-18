@@ -1,4 +1,4 @@
-<table class="table table-striped my-4" >
+<table class="table table-striped mt-1 mb-5" >
     <thead class="bg-info">
         <tr>
             <th scope="col">#</th>

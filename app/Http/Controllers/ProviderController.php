@@ -54,8 +54,9 @@ class ProviderController extends Controller
     public function show(Provider $provider)
     {
         $contacts = $provider->contacts;
+        $coils = $provider->coils;
 
-        return view('providers.show', compact('provider', 'contacts'));
+        return view('providers.show', compact('provider', 'contacts', 'coils'));
     }
 
     public function edit(Provider $provider)

@@ -13,4 +13,9 @@ class Provider extends Model
     {
         return $this->hasMany('App\Models\Contact');
     }
+
+    public function coils()
+    {
+        return $this->hasMany('App\Models\Coil');
+    }
 }
