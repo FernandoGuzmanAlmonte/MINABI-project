@@ -20,8 +20,8 @@ class BagController extends Controller
         return view('bags.create');
     }
 
-    public function createProduct(Request $bag){
-        return view('bags.create', ['bag' => $bag->ribbon]);
+    public function createProduct(Request $request){   
+        return view('bags.create', ['ribbonId' => $request->ribbon]);
     }
 
     public function store(Request $request)

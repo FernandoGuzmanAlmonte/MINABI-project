@@ -17,8 +17,8 @@ class CreateBagMeasuresTable extends Migration
             $table->id();
             $table->unsignedBigInteger('coil_type_id');
             
-            $table->float('ancho', 8, 4);
-            $table->float('largo', 8, 4);
+            $table->float('ancho', 10, 4);
+            $table->float('largo', 10, 4);
             //Usuario creo
             //Usuario modifico
 

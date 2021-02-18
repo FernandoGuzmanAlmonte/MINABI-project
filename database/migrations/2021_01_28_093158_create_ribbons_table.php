@@ -19,8 +19,8 @@ class CreateRibbonsTable extends Migration
             $table->unsignedBigInteger('white_ribbon_id'); //llave foranea de cintilla blanca
             $table->unsignedBigInteger('employee_id'); //llave foranea de empleados
             $table->string('nomenclatura', 20); //identificador
-            $table->float('peso', 8, 4); //peso del rollo
-            $table->float('largo', 8, 4); //metros de largo del rollo
+            $table->float('peso', 10, 4); //peso del rollo
+            $table->float('largo', 10, 4); //metros de largo del rollo
             $table->text('observaciones')->nullable();
             $table->date('fechaInicioTrabajo'); //fecha en que se inicio a crear el rollo
             $table->date('fechaFinTrabajo')->nullable(); //fecha en la que termino de crear el rollo
@@ -29,8 +29,8 @@ class CreateRibbonsTable extends Migration
             //Usuario creo
             //Usuario modifico
             /*tipo*/
-            $table->float('temperatura', 8, 4); //temperatura de la maquina
-            $table->float('velocidad', 8, 4); //velocidad de la maquina
+            $table->float('temperatura', 10, 4); //temperatura de la maquina
+            $table->float('velocidad', 10, 4); //velocidad de la maquina
             $table->string('status', 10); //disponible o terminado
             $table->float('pesoUtilizado', 8, 4);//peso que se ha comprado en bolsas relacionadas
 

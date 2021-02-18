@@ -72,8 +72,8 @@
                 <textarea rows="3" class="form-control" name="observaciones">{{ $wasteBag->observaciones }}</textarea>
             </div>  
         </div>
-        <div class="col-12 mt-4 mb-4 text-center">
-            <a class="btn btn-danger mx-3" href="{{route('wasteBag.show', $wasteBag)}}">Cancelar</a>
+        <div class="col-12 mt-3 text-center">
+            <a class="btn btn-danger mx-3" href="{{route('wasteBag.show', $wasteBag->id)}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div>
     </div>

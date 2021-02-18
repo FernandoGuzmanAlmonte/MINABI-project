@@ -24,10 +24,10 @@ class CreateBagsTable extends Migration
             $table->date('fechaFinTrabajo')->nullable;
             $table->time('horaInicioTrabajo');
             $table->time('horaFinTrabajo')->nullable;
-            $table->float('peso', 8, 4);
+            $table->float('peso', 10, 4);
             $table->string('clienteStock', 10);
-            $table->float('temperatura', 8, 4);
-            $table->float('velocidad', 8, 4);
+            $table->float('temperatura', 10, 4);
+            $table->float('velocidad', 10, 4);
             $table->text('observaciones')->nullable;
             $table->string('pestania', 4);
             $table->string('status', 11);

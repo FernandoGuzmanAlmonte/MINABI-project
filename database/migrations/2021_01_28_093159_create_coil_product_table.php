@@ -17,8 +17,8 @@ class CreateCoilProductTable extends Migration
             $table->id();
             $table->string('nomenclatura', 20);
             //folio va a ver un folio
-            $table->float('peso', 8, 4);
-            $table->float('metros', 8, 4);
+            $table->float('peso', 10, 4);
+            $table->float('metros', 10, 4);
             $table->text('observaciones')->nullable;
             //quien elaboro
             $table->date('fechaInicioTrabajo');
@@ -28,10 +28,10 @@ class CreateCoilProductTable extends Migration
             //Usuario creo
             //Usuario modifico
             /*tipo*/
-            $table->float('temperatura', 8, 4);
-            $table->float('velocidad', 8, 4);
+            $table->float('temperatura', 10, 4);
+            $table->float('velocidad', 10, 4);
             $table->string('status', 15);
-            $table->float('pesoUtilizado', 8, 4);//?
+            $table->float('pesoUtilizado', 10, 4);//?
             $table->timestamps();
         });
     }

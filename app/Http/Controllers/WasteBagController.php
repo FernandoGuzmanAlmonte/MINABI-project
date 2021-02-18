@@ -65,23 +65,23 @@ class WasteBagController extends Controller
         return view('wasteBags.edit', compact('wasteBag'));
     }
 
-    public function update(Request $request, WasteBag $wasteBags)
+    public function update(Request $request, WasteBag $wasteBag)
     {
-        $wasteBags->fechaInicioTrabajo = $request->fechaInicioTrabajo;
-        $wasteBags->fechaFinTrabajo    = $request->fechaFinTrabajo;
-        $wasteBags->peso           = $request->peso;
-        $wasteBags->largo          = $request->largo;
-        $wasteBags->temperatura    = $request->temperatura;  
-        $wasteBags->velocidad      = $request->velocidad;
-        $wasteBags->status         = $request->status;
-        $wasteBags->tipoUnidad     = $request->tipoUnidad;
-        $wasteBags->cantidad       = $request->cantidad;
-        $wasteBags->observaciones  = $request->observaciones;
-        $wasteBags->nomenclatura  = $request->nomenclatura;
+        $wasteBag->fechaInicioTrabajo = $request->fechaInicioTrabajo;
+        $wasteBag->fechaFinTrabajo    = $request->fechaFinTrabajo;
+        $wasteBag->peso           = $request->peso;
+        $wasteBag->largo          = $request->largo;
+        $wasteBag->temperatura    = $request->temperatura;  
+        $wasteBag->velocidad      = $request->velocidad;
+        $wasteBag->status         = $request->status;
+        $wasteBag->tipoUnidad     = $request->tipoUnidad;
+        $wasteBag->cantidad       = $request->cantidad;
+        $wasteBag->observaciones  = $request->observaciones;
+        $wasteBag->nomenclatura  = $request->nomenclatura;
 
-        $wasteBags->save();
+        $wasteBag->save();
 
-        return redirect()->route('wasteBag.show', $wasteBags);
+        return redirect()->route('wasteBag.show', $wasteBag);
     }
 
     public function delete()

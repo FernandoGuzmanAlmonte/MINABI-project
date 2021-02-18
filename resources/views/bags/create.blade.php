@@ -98,7 +98,7 @@
                 </select>
             </div>
         </div>
-        <input type="hidden" class="form-control" name="ribbonId" value="{{$bag}}">
+        <input type="hidden" class="form-control" name="ribbonId" value="{{$ribbonId}}">
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
@@ -106,7 +106,7 @@
             </div>  
         </div>
         <div class="col-12 mt-3 text-center">
-           {{-- <a class="btn btn-danger mx-3" href="{{ route('ribbon.show'), $ribbon = $bag }}">Cancelar</a>--}}
+            <a class="btn btn-danger mx-3" href="{{route('ribbon.show', $ribbonId)}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div>    
     </div>

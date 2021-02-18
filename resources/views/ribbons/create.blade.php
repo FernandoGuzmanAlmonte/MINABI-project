@@ -179,7 +179,7 @@
         </div>
 
         <div class="col-12 mt-3 text-center">
-            <a class="btn btn-danger mx-3" href="{{route('ribbon.index')}}">Cancelar</a>
+            <a class="btn btn-danger mx-3" href="{{route('coil.show', $coilId)}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div>
 </div>
