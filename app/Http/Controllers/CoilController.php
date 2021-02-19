@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCoil;
 use App\Models\Coil;
 use App\Models\Provider;
 use App\Models\RibbonProduct;
@@ -25,7 +26,7 @@ class CoilController extends Controller
         return view('coils.edit', compact('coil'));
     }
 
-    public function update(Request $request, Coil $coil){
+    public function update(StoreCoil $request, Coil $coil){
         $coil->nomenclatura =  $request->nomenclatura;
         $coil->status =  $request->status;
         $coil->fArribo =  $request->fArribo;
@@ -58,18 +59,8 @@ class CoilController extends Controller
         return view('coils.show', compact('coil', 'ribbons', 'ribbonProduct'));
     }
 
-    public function store(Request $request)
+    public function store(StoreCoil $request)
     {
-        $request->validate([
-            'nomenclatura' => 'required',
-            'status' => 'required',
-            'fArribo' => 'required',
-            'pesoBruto' => 'required',
-            'pesoNeto' => 'required',
-            'largoM' => 'required',
-            'costo' => 'required',
-            'provider_id' => 'required'
-        ]);
 
         $coil =  new Coil();
 

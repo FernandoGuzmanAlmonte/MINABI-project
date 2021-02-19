@@ -44,7 +44,7 @@ class WasteBagController extends Controller
 
         $addProduct = WasteBag::find($wasteBags->id);
         $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$wasteBags->nomenclatura,
-                                     'status'=>$wasteBags->status, 
+                                     'status'=>'N/A', 
                                      'fAdquisicion'=>$wasteBags->fechaInicioTrabajo]);
 
         return redirect()->route('wasteBag.show', $wasteBags);

@@ -20,9 +20,9 @@ class CreateCoilProductsTable extends Migration
             $table->string('coil_product_type');
             
             $table->string('nomenclatura', 20)->nullable();
-            
-            $table->string('status', 15);
+            $table->string('status', 10);
             $table->date('fAdquisicion');
+            $table->float('peso', 12,4);
 
             $table->foreign('coil_id')
                 ->references('id')

@@ -21,15 +21,15 @@ class CreateCoilsTable extends Migration
             $table->string('nomenclatura', 20);
             $table->string('status', 10);
             $table->date('fArribo');
-            $table->float('pesoBruto',10 ,4);
-            $table->float('pesoNeto',10 ,4)->nullable();
+            $table->float('pesoBruto',12 ,4);
+            $table->float('pesoNeto',12 ,4)->nullable();
             $table->text('observaciones')->nullable();
-            $table->float('diametroBobina',10 ,4)->nullable();
-            $table->float('diametroInterno',10 ,4)->nullable();
-            $table->float('diametroExterno',10 ,4)->nullable();
-            $table->float('largoM',10 ,4);
-            $table->float('pesoUtilizado',10 ,4)->nullable();
-            $table->float('costo',10 ,4);
+            $table->float('diametroBobina',12 ,4)->nullable();
+            $table->float('diametroInterno',12 ,4)->nullable();
+            $table->float('diametroExterno',12 ,4)->nullable();
+            $table->float('largoM',12 ,4);
+            $table->float('pesoUtilizado',12 ,4)->nullable();
+            $table->float('costo',12 ,4);
 
            /* $table->foreign('coil_type_id')
                 ->references('id')

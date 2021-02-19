@@ -77,7 +77,8 @@ class WasteRibbonController extends Controller
         $addProduct = WasteRibbon::find($wasteRibbon->id);
         $addProduct->coils()->attach($request->coilId, ['nomenclatura'=>$wasteRibbon->nomenclatura,
                                      'status'=>"N/A", 
-                                     'fAdquisicion'=>$wasteRibbon->fechaInicioTrabajo]);
+                                     'fAdquisicion'=>$wasteRibbon->fechaInicioTrabajo,
+                                     'peso' =>$wasteRibbon->peso]);
         
         return redirect()->route('wasteRibbon.show', compact('wasteRibbon'));
     }

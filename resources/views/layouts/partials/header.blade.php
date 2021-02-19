@@ -24,7 +24,7 @@
                 <a class="nav-item nav-link {{ request()->routeIs('coilProduct.*') ? 'active' : ''}}" href="{{ route('coilProduct.index') }}">
                     Rollos
                 </a>
-                <a class="nav-item nav-link {{ request()->routeIs('bag.*') ? 'active' : ''}}" href="{{ route('bag.index') }}">
+                <a class="nav-item nav-link {{ request()->routeIs('bag.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
                     Bolsas
                 </a>
                 <a class="nav-item nav-link disabled" href="/">

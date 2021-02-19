@@ -61,10 +61,6 @@ class RibbonController extends Controller
     public function store(Request $request)
     {
 
-       $request->validate([
-            'nomenclatura' => 'required',
-            'status' => 'required'
-        ]);
 
         $ribbon =  new ribbon();
 
@@ -88,7 +84,8 @@ class RibbonController extends Controller
         $addProduct = Ribbon::find($ribbon->id);
         $addProduct->coils()->attach($request->coilId, ['nomenclatura'=>$ribbon->nomenclatura,
                                      'status'=>$ribbon->status, 
-                                     'fAdquisicion'=>$ribbon->fechaInicioTrabajo]);
+                                     'fAdquisicion'=>$ribbon->fechaInicioTrabajo,
+                                     'peso' => $ribbon->peso]);
         
         return redirect()->route('ribbon.show', compact('ribbon'));
     }

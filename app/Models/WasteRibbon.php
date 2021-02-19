@@ -11,7 +11,7 @@ class WasteRibbon extends Model
 
     public function coils(){
         return $this->morphToMany(Coil::class, 'coil_product')
-                    ->withPivot('nomenclatura', 'status', 'fAdquisicion')
+                    ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso')
                     ->withTimestamps();
     }
 }

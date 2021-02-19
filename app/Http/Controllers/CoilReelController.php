@@ -65,7 +65,8 @@ class CoilReelController extends Controller
         $addProduct = CoilReel::find($coilReel->id);
         $addProduct->coils()->attach($request->coilId, ['nomenclatura'=>$coilReel->nomenclatura,
                                      'status'=>'N/A', 
-                                     'fAdquisicion'=>$coilReel->fechaAlta]);
+                                     'fAdquisicion'=>$coilReel->fechaAlta,
+                                     'peso' => $coilReel->peso]);
         
         return redirect()->route('coilReel.show', compact('coilReel'));
     }

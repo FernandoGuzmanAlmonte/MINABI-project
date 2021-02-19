@@ -15,10 +15,24 @@
         <div class="col-lg-4 px-2">
             <label>Nomenclatura</label>
             <input type="text" class="form-control" name="nomenclatura" value="{{$coil->nomenclatura}}">
+            @error('nomenclatura')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha llegada</label>
             <input type="datetime" class="form-control" name="fArribo" value="{{$coil->fArribo}}">
+            @error('fArribo')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
@@ -30,21 +44,35 @@
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
             <input type="text" class="form-control" name="provider_id" value="{{$coil->provider_id}}">
+            @error('provider_id')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>
-            <select class="form-control" name="status">
-                <option value="DISPONIBLE" {{ ($coil->status === 'DISPONIBLE') ? 'Selected' : '' }}>
-                    DISPONIBLE
-                </option>
-                <option value="TERMINADO" {{ ($coil->status === 'TERMINADO') ? 'Selected' : '' }}>
-                    TERMINADO
-                </option>
-            </select>
+            <input type="datetime" class="form-control" name="status" value="{{$coil->status}}" readonly>
+            @error('status')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
             <input type="number" step="0.0001" class="form-control" name="largoM" value="{{$coil->largoM}}">
+            @error('largoM')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
     </div>
 
@@ -52,10 +80,24 @@
         <div class="col-lg-4 px-2">
             <label>Peso Bruto (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoBruto" value="{{$coil->pesoBruto}}">
+            @error('pesoBruto')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Neto (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoNeto" value="{{$coil->pesoNeto}}">
+            @error('pesoNeto')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Utilizado (Kg)</label>
@@ -82,13 +124,27 @@
         <div class="col-lg-4 px-2">
             <label>Costo</label>
             <input type="number" step="0.0001" class="form-control" name="costo" value="{{$coil->costo}}">
+            @error('costo')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
-            <textarea rows="3" class="form-control" name="observaciones">{{$coil->observaciones}}</textarea>
+            <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{$coil->observaciones}}</textarea>
+            @error('observaciones')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
     </div>
 

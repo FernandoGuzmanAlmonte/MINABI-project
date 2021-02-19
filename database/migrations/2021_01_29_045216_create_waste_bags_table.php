@@ -19,6 +19,8 @@ class CreateWasteBagsTable extends Migration
             $table->unsignedBigInteger('employee_id')->nullable(); //llave foranea de empleados
             $table->date('fechaInicioTrabajo');  //fecha de inicio en la que se trabajo la merma
             $table->date('fechaFinTrabajo');//fecha de fin en la que se trabajo la merma
+            $table->time('horaIncioTrabajo')->nullable();
+            $table->time('horaFinTrabajo')->nullable();
             $table->float('peso', 10, 4); //peso de la merma
             $table->float('largo', 10, 4); //cantidad en metros
             $table->float('temperatura', 10, 4); //temperatura de la maquina

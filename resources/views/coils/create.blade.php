@@ -13,7 +13,7 @@
     <div class="col-lg-12 d-flex mt-2">
         <div class="col-lg-4 px-2">
             <label>Nomenclatura</label>
-            <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}">
+            <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}" id="nomenclaturas" readonly>
             @error('nomenclatura')
                 <br>
                 <div class="alert alert-danger">
@@ -24,7 +24,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha llegada</label>
-            <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}">
+            <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}" onblur="llenaNomen()" id="fArribo">
             @error('fArribo')
                 <br>
                 <div class="alert alert-danger">
@@ -33,9 +33,17 @@
                 <br>
             @enderror
         </div>
+        <script type="text/javascript">
+            function llenaNomen(){
+                var fecha = document.getElementById("fArribo");
+                var folio =  document.getElementById("nomenclaturas");
+                fecha = fecha.value.replace(/-/g, "");
+                folio.value = "MNB"+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(1,4);
+            }
+        </script>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="coil_type_id" value="1" readonly>
+            <input type="text" class="form-control" name="coil_type_id" value="1" readonly >
         </div>
     </div>
 
@@ -140,5 +148,6 @@
         <button type="submit" class="btn btn-success mx-3">Guardar</button>
     </div>
 </div>
+
 </form>
 @endsection
