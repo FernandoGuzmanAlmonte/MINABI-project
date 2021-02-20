@@ -19,7 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->date('fNacimiento'); 
             $table->date('fIngreso'); //fecha de ingreso a la empresa
             $table->integer('antiguedad'); //años de antiguedad
-            $table->float('sueldoHora', 8,4); //sueldo que gana por hora
+            $table->float('sueldoHora', 8, 4); //sueldo que gana por hora
             $table->string('telefono', 15);
             $table->string('status'); //activo o baja
             $table->timestamps();

@@ -22,7 +22,11 @@
     <tr>
         <th scope="row" class="align-middle"> {{ $provider->id }} </th>
         <td class="align-middle"> {{ $provider->nombreEmpresa }} </td>
-        <td class="align-middle"> {{ $provider->contacts->first()->telefono }} </td>
+        <td class="align-middle"> 
+            {{-- Si proveedor tiene algun contacto, se imprime el telefono del pimero de ellos.
+                 Si no tiene un contacto se imprime '-' --}}
+            {{ ($contact = $provider->contacts->first()) ? $contact->telefono : '-' }} 
+        </td>
         <td class="align-middle"> {{ $provider->direccion }} </td>
         <td><a href="{{ route('provider.show', $provider) }}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
     </tr>

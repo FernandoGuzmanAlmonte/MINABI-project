@@ -9,6 +9,7 @@ use App\Http\Controllers\RibbonController;
 use App\Http\Controllers\RibbonProductController;
 use App\Http\Controllers\WasteBagController;
 use App\Http\Controllers\WasteRibbonController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +31,8 @@ Route::get('/', function () {
 Route::resource('coilReel', CoilReelController::class);
 Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'])->name('coilReel.createProduct');
 
-Route::resource('coil', CoilController::class)->except(['create']);
-Route::get('coil/create/{provider}', [CoilController::class, 'create'])->name('coil.create');
+Route::resource('coil', CoilController::class);//->except(['create']);
+Route::get('coil/create/{provider}', [CoilController::class, 'createFromProvider'])->name('coil.createFromProvider');
 
 Route::resource('coilProduct', CoilProductController::class);
 
@@ -50,5 +51,7 @@ Route::resource('wasteBag', WasteBagController::class);
 Route::get('wasteBag/create/{ribbon}', [WasteBagController::class, 'createProduct'])->name('wasteBag.createProduct');
 
 Route::resource('ribbonProduct', RibbonProductController::class);
+
+Route::resource('employee', EmployeeController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

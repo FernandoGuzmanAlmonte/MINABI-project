@@ -30,7 +30,7 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
-            <input type="text" class="form-control" name="provider_id" value="{{$coil->provider_id}}" disabled>
+            <input type="text" class="form-control" name="provider_id" value="{{$coil->provider->nombreEmpresa}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>

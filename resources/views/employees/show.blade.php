@@ -7,7 +7,7 @@
 @section('namePage', 'Merma de Bolsas')
 
 @section('retornar')
-<a href="{{ route('ribbonProduct.index') }}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
+<a href="{{ route('employee.index') }}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
 
 @section('form')
@@ -43,7 +43,7 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Status</label>
-            <input type="text" class="form-control" name="status" value={{ $employee->status }} disabled>
+            <input type="text" class="form-control" name="status" value="{{ $employee->status }}" disabled>
         </div>
     </div>
 

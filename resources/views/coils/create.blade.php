@@ -7,7 +7,7 @@
 @section('namePage', 'Bobinas')
 
 @section('form')
-<form action="{{route('coil.store')}}" method="POST">
+<form action="{{ route('coil.store') }}" method="POST">
     @csrf
     <div class="row">
     <div class="col-lg-12 d-flex mt-2">
@@ -50,7 +50,19 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
-            <input type="text" class="form-control" name="provider_id" value="{{$provider->nombreEmpresa}}" readonly>
+            @if( Route::is('coil.createFromProvider') )
+                <input type="text" class="form-control" value={{ $provider->nombreEmpresa }} readonly>    
+            @else
+                <select class="form-control" name="provider_id">
+                    <option selected>--seleccione proveedor--</option>
+                    @foreach($providers as $provider)
+                        <option value={{ $provider->id }}>
+                            {{ $provider->nombreEmpresa }}
+                        </option>
+                    @endforeach
+                </select>
+            @endif
+            
             @error('provider_id')
                 <br>
                 <div class="alert alert-danger">
@@ -72,7 +84,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
-            <input type="number" step="0.0001" class="form-control" name="largoM" value="{{old('largoM')}}">
+            <input type="number" step="0.0001" class="form-control" name="largoM">
             @error('largoM')
                 <br>
                 <div class="alert alert-danger">
@@ -140,11 +152,17 @@
             <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
         </div>
     </div>
+    
+    @if( Route::is('coil.createFromProvider') )
+        <input type="hidden" name="provider_id" value="{{ $provider->id }}">
+    @endif
 
-    <input type="hidden" name="provider_id" value="{{ $provider->id }}">
-
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-danger mx-3" href="{{route('coil.index')}}">Cancelar</a>
+    <div class="col-12 mt-4 mb-4 text-center">
+        @if( Route::is('coil.createFromProvider') )
+            <a class="btn btn-danger mx-3" href="{{route('provider.show', $provider)}}">Cancelar</a>
+        @else
+            <a class="btn btn-danger mx-3" href="{{route('coil.index')}}">Cancelar</a>
+        @endif
         <button type="submit" class="btn btn-success mx-3">Guardar</button>
     </div>
 </div>

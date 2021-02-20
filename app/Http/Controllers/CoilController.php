@@ -18,7 +18,13 @@ class CoilController extends Controller
         return view('coils.index', compact('coils'));
     }
 
-    public function create(Provider $provider){
+    public function create(){
+        $providers = Provider::all();
+        
+        return view('coils.create', compact('providers'));
+    }
+
+    public function createFromProvider(Provider $provider){
         return view('coils.create', compact('provider'));
     }
     
@@ -59,9 +65,7 @@ class CoilController extends Controller
         return view('coils.show', compact('coil', 'ribbons', 'ribbonProduct'));
     }
 
-    public function store(StoreCoil $request)
-    {
-
+    public function store(StoreCoil $request){
         $coil =  new Coil();
 
         $coil->provider_id = $request->provider_id;
@@ -80,11 +84,7 @@ class CoilController extends Controller
         $coil->pesoUtilizado = $request->pesoUtilizado;
 
         $coil->save();
-        
-        $provider = $coil->provider;
 
-        return redirect()->route('provider.show', $provider);
-        //return redirect()->route('coil.index');
-    }
-
+        return redirect()->route('coil.show', $coil);
+    }  
 }

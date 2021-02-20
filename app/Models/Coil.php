@@ -24,7 +24,7 @@ class Coil extends Model
 
     public function related()
     {
-    return $this->hasMany(CoilProduct::class);
+        return $this->hasMany(CoilProduct::class);
     }
 
     public function provider()

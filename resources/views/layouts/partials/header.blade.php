@@ -30,6 +30,9 @@
                 <a class="nav-item nav-link disabled" href="/">
                     Rollos Cintilla
                 </a>
+                <a class="nav-item nav-link {{ request()->routeIs('employee.*') ? 'active' : ''}}" href="{{ route('employee.index') }}">
+                    Empleados
+                </a>
             </div>
         </div>
     </nav>
