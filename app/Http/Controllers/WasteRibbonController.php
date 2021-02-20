@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreWasteRibbon;
 use App\Models\WasteRibbon;
+use App\Models\Coil;
 use Illuminate\Http\Request;
 
 class WasteRibbonController extends Controller
@@ -20,14 +22,16 @@ class WasteRibbonController extends Controller
 
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
-        return view('wasteRibbons.create', ['coilId' => $request->coil]);
+        $coil = Coil::find($request->coil);
+        $nomenclatura = 'MER-' . $coil->nomenclatura . '-' . $coil->ribbons()->count()+1;
+        return view('wasteRibbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura]);
     }
 
     public function edit(WasteRibbon $wasteRibbon){
          return view('wasteRibbons.edit', compact('wasteRibbon'));
     }
 
-    public function update(Request $request, WasteRibbon $wasteRibbon){
+    public function update(StoreWasteRibbon $request, WasteRibbon $wasteRibbon){
         $wasteRibbon->nomenclatura =  $request->nomenclatura;
         $wasteRibbon->fechaInicioTrabajo =  $request->fechaInicioTrabajo;
         $wasteRibbon->fechaFinTrabajo =  $request->fechaFinTrabajo;
@@ -51,12 +55,12 @@ class WasteRibbonController extends Controller
         return view('wasteRibbons.show', compact('wasteRibbon', 'coil'));
     }
 
-    public function store(Request $request)
+    public function store(StoreWasteRibbon $request)
     {
-
-        $request->validate([
-            'nomenclatura' => 'required'
-        ]);
+        //busca la bobina
+        $coil = Coil::find($request->coilId);
+        //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
+        if($coil->pesoBruto >= ($request->peso + $coil->pesoUtilizado)){
 
         $wasteRibbon =  new WasteRibbon();
 
@@ -80,6 +84,17 @@ class WasteRibbonController extends Controller
                                      'fAdquisicion'=>$wasteRibbon->fechaInicioTrabajo,
                                      'peso' =>$wasteRibbon->peso]);
         
-        return redirect()->route('wasteRibbon.show', compact('wasteRibbon'));
+        //actualiza la bobina
+        $coil->pesoUtilizado = $request->peso + $coil->pesoUtilizado;
+        if($coil->pesoUtilizado == $coil->pesoBruto)
+        $coil->status = 'TERMINADA';                           
+        $coil->save();
+        
+        return redirect()->route('ribbon.show', compact('ribbon'));  
+        }
+        //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
+        else{
+            return redirect()->back()->withInput($request->all())->withErrors('El peso de la merma sobrepasa el limite de peso de la bobina');
+        }
     }
 }

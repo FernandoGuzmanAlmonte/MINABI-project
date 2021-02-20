@@ -101,7 +101,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Utilizado (Kg)</label>
-            <input type="number" step="0.0001"class="form-control" name="pesoUtilizado" value="{{$coil->pesoUtilizado}}">
+            <input type="number" step="0.0001"class="form-control" name="pesoUtilizado" value="{{$coil->pesoUtilizado}}" readonly>
         </div>
     </div>
 

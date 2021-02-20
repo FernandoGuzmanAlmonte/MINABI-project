@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCoilReel;
 use App\Models\CoilReel;
+use App\Models\Coil;
 use Illuminate\Http\Request;
 
 class CoilReelController extends Controller
@@ -20,14 +22,16 @@ class CoilReelController extends Controller
 
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
-        return view('coilReels.create', ['coilId' => $request->coil]);
+        $coil = Coil::find($request->coil);
+        $nomenclatura = 'HUE-' . $coil->nomenclatura . '-' . $coil->ribbons()->count()+1;
+        return view('coilReels.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura]);
     }
 
     public function edit(CoilReel $coilReel){
         return view('coilReels.edit', compact('coilReel'));
     }
 
-    public function update(Request $request, CoilReel $coilReel){
+    public function update(StoreCoilReel $request, CoilReel $coilReel){
         $coilReel->nomenclatura =  $request->nomenclatura;
         $coilReel->peso =  $request->peso;
         $coilReel->observaciones =  $request->observaciones;
@@ -45,12 +49,13 @@ class CoilReelController extends Controller
         return view('coilReels.show', compact('coilReel', 'coil'));
     }
 
-    public function store(Request $request)
+    public function store(StoreCoilReel $request)
     {
 
-        $request->validate([
-            'nomenclatura' => 'required'
-        ]);
+        //busca la bobina
+        $coil = Coil::find($request->coilId);
+        //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
+        if($coil->pesoBruto >= ($request->peso + $coil->pesoUtilizado)){
 
         $coilReel =  new coilReel();
 
@@ -68,6 +73,16 @@ class CoilReelController extends Controller
                                      'fAdquisicion'=>$coilReel->fechaAlta,
                                      'peso' => $coilReel->peso]);
         
-        return redirect()->route('coilReel.show', compact('coilReel'));
+        $coil->pesoUtilizado = $request->peso + $coil->pesoUtilizado;
+        if($coil->pesoUtilizado == $coil->pesoBruto)
+        $coil->status = 'TERMINADA';                           
+        $coil->save();
+        
+        return redirect()->route('ribbon.show', compact('ribbon'));  
+        }
+        //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
+        else{
+            return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso de la bobina');
+        }
     }
 }

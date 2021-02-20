@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRibbon;
+use App\Models\Coil;
 use App\Models\Ribbon;
 use Illuminate\Http\Request;
 
 class RibbonController extends Controller
 {
+
     public function index(){
         $ribbons = Ribbon::select('nomenclatura', 'fechaInicioTrabajo',  'status' )->get();
         $ribbons = Ribbon::paginate(10);
@@ -20,14 +23,17 @@ class RibbonController extends Controller
     
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
-        return view('ribbons.create', ['coilId' => $request->coil]);
+        //$nomenclatura = Coil::select('nomenclatura')->where('id', 1)->get()->first()->nomenclatura;
+        $coil = Coil::find($request->coil);
+        $nomenclatura = $coil->nomenclatura . '-' . $coil->ribbons()->count()+1;
+        return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura  ]);
     }
 
     public function edit(Ribbon $ribbon){
         return view('ribbons.edit', compact('ribbon'));
     }
 
-    public function update(Request $request, Ribbon $ribbon){
+    public function update(StoreRibbon $request, Ribbon $ribbon){
         $ribbon->nomenclatura =  $request->nomenclatura;
         $ribbon->status =  $request->status;
         $ribbon->employee_id =  $request->employee_id;
@@ -57,11 +63,15 @@ class RibbonController extends Controller
         $bag = $bags;
         return view('ribbons.show', compact('ribbon', 'bag', 'coil'));
     }
+   
 
-    public function store(Request $request)
+    public function store(StoreRibbon $request)
     {
-
-
+        //busca la bobina
+        $coil = Coil::find($request->coilId);
+        //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
+        if($coil->pesoBruto >= ($request->peso + $coil->pesoUtilizado)){
+          
         $ribbon =  new ribbon();
 
         $ribbon->nomenclatura =  $request->nomenclatura;
@@ -87,6 +97,18 @@ class RibbonController extends Controller
                                      'fAdquisicion'=>$ribbon->fechaInicioTrabajo,
                                      'peso' => $ribbon->peso]);
         
-        return redirect()->route('ribbon.show', compact('ribbon'));
+        //actualiza la bobina
+        $coil->pesoUtilizado = $request->peso + $coil->pesoUtilizado;
+        if($coil->pesoUtilizado == $coil->pesoBruto)
+        $coil->status = 'TERMINADA';                       
+        $coil->save();
+        
+        return redirect()->route('ribbon.show', compact('ribbon'));  
+        }
+        //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
+        else{
+            return redirect()->back()->withInput($request->all())->withErrors('El peso del rollo sobrepasa el limite de peso de la bobina');
+        }
+
     }
 }

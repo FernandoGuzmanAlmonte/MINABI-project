@@ -16,7 +16,7 @@ class CreateCoilReelsTable extends Migration
         Schema::create('coil_reels', function (Blueprint $table) {
             $table->id();
 
-            $table->string('nomenclatura', 20);
+            $table->string('nomenclatura', 24);
             $table->float('peso', 10,4); //peso del hueso
             $table->string('observaciones')->nullable();
             $table->string('fechaAlta');
