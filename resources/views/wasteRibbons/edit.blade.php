@@ -14,7 +14,7 @@
         <div class="col-lg-12 d-flex mt-2"> 
             <div class="col-lg-4 px-2">
                 <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="nomenclatura" value={{$wasteRibbon->nomenclatura}}>
+                <input type="text" class="form-control" name="nomenclatura" value={{$wasteRibbon->nomenclatura}} readonly>
                 @error('nomenclatura')
                 <br>
                 <div class="alert alert-danger">
@@ -62,7 +62,7 @@
             <div class="col-lg-4 px-2">
                 <label>Fecha Incio Trabajo</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value={{$wasteRibbon->fechaInicioTrabajo}}>
-                @error('fechaIncioTrabajo')
+                @error('fechaInicioTrabajo')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -73,7 +73,7 @@
             <div class="col-lg-4 px-2">
                 <label>Hora Inicio Trabajo</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value={{$wasteRibbon->horaInicioTrabajo}}>
-                @error('horaIncioTrabajo')
+                @error('horaInicioTrabajo')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -138,7 +138,7 @@
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-                <textarea rows="3" class="form-control" name="observaciones">{{$wasteRibbon->observaciones}}</textarea>
+                <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{$wasteRibbon->observaciones}}</textarea>
             </div>
         </div>
 

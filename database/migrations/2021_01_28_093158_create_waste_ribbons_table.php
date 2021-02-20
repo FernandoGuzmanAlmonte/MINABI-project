@@ -17,7 +17,7 @@ class CreateWasteRibbonsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('white_ribbon_id')->nullable(); //llave forante de cintilla blanca
             $table->unsignedBigInteger('employee_id')->nullable(); //llave forane de empleado que encontre la merma
-            $table->string('nomenclatura', 20);
+            $table->string('nomenclatura', 24);
             $table->float('peso', 10, 4 ); //peso de la merma en rollo
             $table->float('largo', 10, 4); //cantidad de metros que mide la merma
             $table->string('observaciones')->nullable();
