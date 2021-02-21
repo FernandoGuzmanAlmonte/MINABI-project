@@ -34,7 +34,7 @@
                 <input type="number" step="0.0001" class="form-control" name="sueldoHora">
             </div>
             <div class="col-lg-4 px-2">
-                <label>Télefono</label>
+                <label>Teléfono</label>
                 <input type="number" class="form-control" name="telefono">
             </div>
         </div>

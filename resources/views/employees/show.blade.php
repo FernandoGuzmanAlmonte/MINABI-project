@@ -1,8 +1,8 @@
 @extends('layouts.formulario')
 
-@section('title', 'Merma de Bolsas')
+@section('title', 'Empleados')
 
-@section('imgUrl',  asset('images/bolsa-de-papel.svg'))
+@section('imgUrl',  asset('images/empleado.svg'))
 
 @section('namePage', 'Merma de Bolsas')
 
@@ -32,11 +32,11 @@
             <input type="number" class="form-control" name="antiguedad" value={{ $employee->antiguedad }} disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Sueldo x Hora</label>
+            <label>Sueldo por Hora</label>
             <input type="number" step="0.0001" class="form-control" name="sueldoHora" value={{ $employee->sueldoHora }} disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Télefono</label>
+            <label>Teléfono</label>
             <input type="number" class="form-control" name="telefono" value={{ $employee->telefono }} disabled>
         </div>
     </div>
