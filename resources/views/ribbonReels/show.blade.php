@@ -7,7 +7,7 @@
 @section('namePage', 'Hueso')
 
 @section('retornar')
-<a href="{{route('ribbonReel.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
+<a href="{{route('ribbonProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
     
 @section('form')

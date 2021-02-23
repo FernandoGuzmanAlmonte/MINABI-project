@@ -32,7 +32,7 @@
             <label>Proveedor</label>
             <input type="text" class="form-control" name="provider_id" value="{{$coil->provider->nombreEmpresa}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-lg-4 px-2 disponible">
             <label>Status</label>
             <input type="datetime" class="form-control" name="status" value="{{$coil->status}}" disabled>
         </div>
@@ -147,7 +147,7 @@
         <th scope="row" class="align-middle">{{$item->id}}</th>
         <td class="align-middle">{{$item->nomenclatura}}</td>
         <td class="align-middle">{{$item->fAdquisiscion}}</td>
-        <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
+        <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
        <!--Realizamos if para validacion de adonde dirgir el show-->
     @if ($item->ribbon_product_type == 'App\Models\Bag')
     <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>

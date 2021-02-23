@@ -7,7 +7,7 @@
 @section('namePage', 'Hueso')
 
 @section('retornar')
-<a href="{{route('coilReel.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
+<a href="{{route('coilProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
     
 @section('form')

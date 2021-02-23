@@ -7,7 +7,7 @@
 @section('namePage', 'Bolsa ' . $bag->nomenclatura)
 
 @section('retornar')
-<a href="{{ route('bag.index') }}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
+<a href="{{ route('ribbonProduct.index') }}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
 
 @section('form')

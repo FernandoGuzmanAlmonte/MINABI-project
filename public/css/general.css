@@ -13,3 +13,11 @@
 .iconosPequeños{
     width: 25px; height: 25px;
 }
+
+.disponible{
+    border-color:#5cb85c;
+}
+
+.terminado{
+    border-color:#d9534f;
+}
