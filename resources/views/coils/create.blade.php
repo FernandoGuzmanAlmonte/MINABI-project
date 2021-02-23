@@ -145,7 +145,6 @@
             @enderror
         </div>
     </div>
-
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>

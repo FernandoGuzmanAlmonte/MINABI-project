@@ -9,12 +9,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link {{ request()->routeIs('provider.*') ? 'active' : ''}}" href="{{ route('provider.index') }}">
-                    Proveedores
-                </a>
-                <a class="nav-item nav-link disabled" href="/">
-                    Catálogos
-                </a>
+                <li class="nav-item dropdown {{ request()->routeIs('provider.*') || request()->routeIs('employee.*') ? 'active' : ''}}">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Catálogos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item {{ request()->routeIs('provider.*') ? 'active' : ''}}" href="{{ route('provider.index') }}">
+                            Proveedores
+                        </a>
+                        <a class="dropdown-item {{ request()->routeIs('employee.*') ? 'active' : ''}}" href="{{ route('employee.index') }}">
+                            Empleados
+                        </a>
+                    </div>
+                </li>
                 <a class="nav-item nav-link disabled" href="/">
                     Cintilla
                 </a>
@@ -29,9 +36,6 @@
                 </a>
                 <a class="nav-item nav-link disabled" href="/">
                     Rollos Cintilla
-                </a>
-                <a class="nav-item nav-link {{ request()->routeIs('employee.*') ? 'active' : ''}}" href="{{ route('employee.index') }}">
-                    Empleados
                 </a>
             </div>
         </div>

@@ -84,7 +84,29 @@
         </div>
     </div>
 
-    <div class="col-12 mt-3 text-center">
+    <div class="col-lg-12 mt-4 mb-2">
+        <h3><img src="{{ asset('images/empleado.svg') }}" class="iconoTitle"> Empleados</h3>
+        <table class="table table-striped my-4" >
+            <thead class="bg-info">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Satus</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($ribbon->employees as $employee)
+                    <tr>
+                        <th scope="row" class="align-middle">{{$employee->id}}</th>
+                        <td class="align-middle">{{$employee->nombre}}</td>
+                        <td class="align-middle">{{$employee->status}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-12 mt-2 mb-2 text-center">
         <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>
     </div>
 

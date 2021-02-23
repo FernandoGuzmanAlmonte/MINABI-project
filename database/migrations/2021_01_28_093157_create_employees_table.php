@@ -21,7 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('antiguedad'); //años de antiguedad
             $table->float('sueldoHora', 8, 4); //sueldo que gana por hora
             $table->string('telefono', 15);
-            $table->string('status'); //activo o baja
+            $table->string('status', 7); //activo o de baja
             $table->timestamps();
         });
     }

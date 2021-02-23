@@ -4,7 +4,7 @@
 
 @section('imgUrl',  asset('images/empleado.svg'))
 
-@section('namePage', 'Merma de Bolsas')
+@section('namePage', 'Empleado ' . $employee->nombre)
 
 @section('retornar')
 <a href="{{ route('employee.index') }}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>

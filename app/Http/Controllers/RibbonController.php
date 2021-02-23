@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRibbon;
 use App\Models\Coil;
 use App\Models\Ribbon;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class RibbonController extends Controller
@@ -17,16 +18,17 @@ class RibbonController extends Controller
         return view('ribbons.index', compact('ribbons'));
     }
 
-    public function create(){
-        return view('ribbons.create');
-    }
+    /*public function create(){
+
+    }*/
     
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
+        $employees = Employee::all();
         //$nomenclatura = Coil::select('nomenclatura')->where('id', 1)->get()->first()->nomenclatura;
         $coil = Coil::find($request->coil);
-        $nomenclatura = $coil->nomenclatura . '-' . $coil->ribbons()->count()+1;
-        return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura  ]);
+        $nomenclatura = ($coil->nomenclatura) . '-' . ($coil->ribbons()->count()+1);
+        return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
     }
 
     public function edit(Ribbon $ribbon){
@@ -76,7 +78,7 @@ class RibbonController extends Controller
 
         $ribbon->nomenclatura =  $request->nomenclatura;
         $ribbon->status =  $request->status;
-        $ribbon->employee_id =  $request->employee_id;
+        //$ribbon->employee_id =  $request->employee_id;
         $ribbon->fechaInicioTrabajo =  $request->fechaInicioTrabajo;
         $ribbon->horaInicioTrabajo =  $request->horaInicioTrabajo;
         $ribbon->largo =  $request->largo;
@@ -90,7 +92,10 @@ class RibbonController extends Controller
         $ribbon->observaciones = $request->observaciones;
         
         $ribbon->save();
-        
+
+        //request->input('empleados') tiene los id's de los empleados
+        $ribbon->employees()->attach($request->input('empleados'));        
+
         $addProduct = Ribbon::find($ribbon->id);
         $addProduct->coils()->attach($request->coilId, ['nomenclatura'=>$ribbon->nomenclatura,
                                      'status'=>$ribbon->status, 
@@ -104,7 +109,7 @@ class RibbonController extends Controller
         $coil->save();
         
         return redirect()->route('ribbon.show', compact('ribbon'));  
-        }
+    }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{
             return redirect()->back()->withInput($request->all())->withErrors('El peso del rollo sobrepasa el limite de peso de la bobina');

@@ -21,7 +21,9 @@
 <!-- Navbar -->
     @include('layouts.partials.header')
 <!-- Contenido -->
-    @yield('content')    
+    @yield('content')
+ <!-- Scripts -->       
     <script src="{{ asset('js/app.js') }}" defer></script> 
+    @yield('scripts')
 </body>
 </html>

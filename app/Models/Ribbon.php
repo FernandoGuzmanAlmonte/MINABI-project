@@ -28,4 +28,10 @@ class Ribbon extends Model
     {
     return $this->hasMany(RibbonProduct::class);
     }
+
+    public function employees()
+    {
+        //Relación muchos a muchos Employee_Ribbon
+        return $this->belongsToMany('App\Models\Employee');
+    }
 }
