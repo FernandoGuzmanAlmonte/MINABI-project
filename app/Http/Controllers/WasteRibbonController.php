@@ -23,8 +23,8 @@ class WasteRibbonController extends Controller
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
         $coil = Coil::find($request->coil);
-        $nomenclatura = 'MER-' . $coil->nomenclatura . '-' . $coil->ribbons()->count()+1;
-        return view('wasteRibbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura]);
+        $nomenclatura = 'HUE-' . $coil->nomenclatura . '-' . ($coil->ribbons()->count()+1);
+        return view('ribbonReel.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura]);
     }
 
     public function edit(WasteRibbon $wasteRibbon){

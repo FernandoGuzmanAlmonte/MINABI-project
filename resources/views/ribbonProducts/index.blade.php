@@ -30,8 +30,8 @@
         <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
         @elseif($item->ribbon_product_type == 'App\Models\WasteBag')
         <td><a href="{{route('wasteBag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-        @elseif($item->ribbon_product_type == 'App\Models\CoilReel')
-        <td><a href="{{route('coilReel.show',$item->coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+        @elseif($item->ribbon_product_type == 'App\Models\RibbonReel')
+        <td><a href="{{route('ribbonReel.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
         @endif
     </tr>
     @endforeach

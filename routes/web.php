@@ -10,6 +10,7 @@ use App\Http\Controllers\RibbonProductController;
 use App\Http\Controllers\WasteBagController;
 use App\Http\Controllers\WasteRibbonController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RibbonReelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,5 +54,8 @@ Route::get('wasteBag/create/{ribbon}', [WasteBagController::class, 'createProduc
 Route::resource('ribbonProduct', RibbonProductController::class);
 
 Route::resource('employee', EmployeeController::class);
+
+Route::resource('ribbonReel', RibbonReelController::class);
+Route::get('ribbonReel/create/{ribbon}', [RibbonReelController::class, 'createProduct'])->name('ribbonReel.createProduct');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

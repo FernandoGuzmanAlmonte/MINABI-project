@@ -20,6 +20,12 @@
                           Merma
                         </label>
                       </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="3">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Hueso
+                        </label>
+                      </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -32,6 +38,9 @@
                         }
                         if(document.getElementById('flexRadioDefault2').checked == true){
                             location.replace ("http://localhost/MINABI-project/public/wasteBag/create/"+id)
+                        }
+                        if(document.getElementById('flexRadioDefault3').checked == true){
+                            location.replace ("http://localhost/MINABI-project/public/ribbonReel/create/"+id)
                         }
                     }
                 </script>

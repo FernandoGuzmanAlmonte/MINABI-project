@@ -13,7 +13,7 @@
         <div class="col-lg-12 d-flex mt-2">
             <div class="col-lg-4 px-2">
                 <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="nomenclatura" readonly>
+                <input type="text" class="form-control" name="nomenclatura" value="{{$nomenclatura}}" readonly>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>

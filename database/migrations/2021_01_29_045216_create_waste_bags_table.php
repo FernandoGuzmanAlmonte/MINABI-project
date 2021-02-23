@@ -29,7 +29,7 @@ class CreateWasteBagsTable extends Migration
             $table->string('status', 15); //disponible o terminada
             $table->float('cantidad', 10, 4); //cantidad de mermas generadas
             $table->string('tipoUnidad', 10); //millares o cientos
-            $table->string('nomenclatura', 15);
+            $table->string('nomenclatura', 24);
 
     
             $table->foreign('bag_mesure_id')

@@ -25,7 +25,7 @@ class RibbonController extends Controller
     public function createProduct(Request $request){
         //$nomenclatura = Coil::select('nomenclatura')->where('id', 1)->get()->first()->nomenclatura;
         $coil = Coil::find($request->coil);
-        $nomenclatura = $coil->nomenclatura . '-' . $coil->ribbons()->count()+1;
+        $nomenclatura = $coil->nomenclatura . '-' . ($coil->ribbons()->count()+1);
         return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura  ]);
     }
 

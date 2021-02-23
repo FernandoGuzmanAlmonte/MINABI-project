@@ -23,7 +23,7 @@ class CoilReelController extends Controller
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
         $coil = Coil::find($request->coil);
-        $nomenclatura = 'HUE-' . $coil->nomenclatura . '-' . $coil->ribbons()->count()+1;
+        $nomenclatura = 'HUE-' . $coil->nomenclatura . '-' . ($coil->ribbons()->count()+1);
         return view('coilReels.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura]);
     }
 

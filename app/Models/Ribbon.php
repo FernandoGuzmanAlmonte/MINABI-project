@@ -17,11 +17,15 @@ class Ribbon extends Model
     }
 
     public function wasteBags(){
-        return $this->morphedByMany(wasteBags::class, 'ribbon_product');
+        return $this->morphedByMany(wasteBag::class, 'ribbon_product');
     }
 
     public function bags(){
         return $this->morphedByMany(Bag::class, 'ribbon_product');
+    }
+
+    public function reels(){
+        return $this->morphedByMany(RibbonReel::class, 'ribbon_product');
     }
 
     public function related()
