@@ -23,7 +23,7 @@ class CoilReelController extends Controller
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
         $coil = Coil::find($request->coil);
-        $nomenclatura = 'HUE-' . $coil->nomenclatura . '-' . $coil->ribbons()->count()+1;
+        $nomenclatura = 'HUE-' . $coil->nomenclatura . '-' . ($coil->ribbons()->count()+1);
         return view('coilReels.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura]);
     }
 
@@ -78,7 +78,7 @@ class CoilReelController extends Controller
         $coil->status = 'TERMINADA';                           
         $coil->save();
         
-        return redirect()->route('ribbon.show', compact('ribbon'));  
+        return redirect()->route('coilReel.show', compact('coilReel'));  
         }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{

@@ -27,7 +27,8 @@ class CreateCoilProductsTable extends Migration
             $table->foreign('coil_id')
                 ->references('id')
                 ->on('coils')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
 
             $table->timestamps();

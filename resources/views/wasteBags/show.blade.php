@@ -72,7 +72,7 @@
     </div>   
 
     <div class="col-lg-12 d-flex mt-5">
-        <h3>Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
+        <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
         </div>
         
         <div class="col-lg-12 d-flex mt-3">
@@ -91,7 +91,7 @@
         </div>
 
     <div class="col-lg-12 d-flex mt-5">
-        <h3>Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
+        <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle"> Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
         </div>
         
         <div class="col-lg-12 d-flex mt-3">

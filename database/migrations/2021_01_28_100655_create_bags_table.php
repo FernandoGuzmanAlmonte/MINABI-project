@@ -19,16 +19,16 @@ class CreateBagsTable extends Migration
             //$table->unsignedBigInteger('bag_measure_id');
             //$table->unsignedBigInteger('employee_id');
             
-            $table->string('nomenclatura', 20);
+            $table->string('nomenclatura', 24);
             $table->date('fechaInicioTrabajo');
-            $table->date('fechaFinTrabajo')->nullable;
+            $table->date('fechaFinTrabajo');
             $table->time('horaInicioTrabajo');
-            $table->time('horaFinTrabajo')->nullable;
+            $table->time('horaFinTrabajo');
             $table->float('peso', 10, 4);
             $table->string('clienteStock', 10);
             $table->float('temperatura', 10, 4);
             $table->float('velocidad', 10, 4);
-            $table->text('observaciones')->nullable;
+            $table->text('observaciones')->nullable();
             $table->string('pestania', 4);
             $table->string('status', 11);
             $table->integer('cantidad');

@@ -111,7 +111,7 @@
     </div>
 
     <div class="col-lg-12 d-flex mt-5">
-    <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
+    <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
     </div>
     
     <div class="col-lg-12 d-flex mt-3">
@@ -151,12 +151,14 @@
                 <th scope="row" class="align-middle">{{$item->id}}</th>
                 <td class="align-middle">{{$item->nomenclatura}}</td>
                 <td class="align-middle">{{$item->fechaInicioTrabajo}}</td>
-                <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
+                <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
                <!--Realizamos if para validacion de adonde dirgir el show-->
             @if ($item->ribbon_product_type == 'App\Models\Bag')
             <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
             @elseif($item->ribbon_product_type == 'App\Models\WasteBag')
             <td><a href="{{route('wasteBag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @elseif($item->ribbon_product_type == 'App\Models\RibbonReel')
+            <td><a href="{{route('ribbonReel.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
             @endif
             </tr>
           @endforeach

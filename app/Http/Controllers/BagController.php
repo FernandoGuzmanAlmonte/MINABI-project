@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBag;
 use App\Models\Bag;
 use App\Models\Ribbon;
 use Illuminate\Http\Request;
@@ -21,11 +22,16 @@ class BagController extends Controller
     }
 
     public function createProduct(Request $request){   
-        return view('bags.create', ['ribbonId' => $request->ribbon]);
+        $ribbon = Ribbon::find($request->ribbon);
+        $nomenclatura = $ribbon->nomenclatura . '-' . ($ribbon->bags()->count()+1);
+        return view('bags.create', ['ribbonId' => $request->ribbon, 'nomenclatura' => $nomenclatura]);
     }
 
-    public function store(Request $request)
+    public function store(StoreBag $request)
     {
+        $ribbon = Ribbon::find($request->ribbonId);
+        //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
+        if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
         $bag = new Bag();
 
         $bag->fechaInicioTrabajo = $request->fechaInicioTrabajo;
@@ -51,7 +57,18 @@ class BagController extends Controller
                                      'status'=>$bag->status, 
                                      'fAdquisicion'=>$bag->fechaInicioTrabajo]);
 
-        return redirect()->route('bag.show', $bag);
+         //actualiza la bobina
+         $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
+         if($ribbon->pesoUtilizado == $ribbon->peso)
+         $ribbon->status = 'TERMINADA';                       
+         $ribbon->save();
+         
+         return redirect()->route('ribbon.show', compact('ribbon'));  
+         }
+         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
+         else{
+             return redirect()->back()->withInput($request->all())->withErrors('El peso de la bolsa sobrepasa el limite de peso del rollo');
+         }
     }
 
     public function show(Bag $bag)
@@ -68,7 +85,7 @@ class BagController extends Controller
         return view('bags.edit', compact('bag'));
     }
 
-    public function update(Request $request, Bag $bag)
+    public function update(StoreBag $request, Bag $bag)
     {
         $bag->fechaInicioTrabajo = $request->fechaInicioTrabajo;
         $bag->fechaFinTrabajo    = $request->fechaFinTrabajo;

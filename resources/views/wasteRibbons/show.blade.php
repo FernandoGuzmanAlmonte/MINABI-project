@@ -81,7 +81,7 @@
         </div>
 
         <div class="col-lg-12 d-flex mt-5">
-            <h3>Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
+            <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
             </div>
             
             <div class="col-lg-12 d-flex mt-3">

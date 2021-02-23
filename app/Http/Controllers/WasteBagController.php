@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\WasteBag;
+use App\Models\Ribbon;
 use Illuminate\Http\Request;
 
 class WasteBagController extends Controller
@@ -20,11 +21,17 @@ class WasteBagController extends Controller
     }
 
     public function createProduct(Request $request){
-        return view('wasteBags.create', ['ribbonId' => $request->ribbon]);
+        $ribbon = Ribbon::find($request->ribbon);
+        $nomenclatura = 'MER-' . $ribbon->nomenclatura . '-' . ($ribbon->wasteBags()->count()+1);
+        return view('wasteBags.create', ['ribbonId' => $request->ribbon, 'nomenclatura' => $nomenclatura]);
     }
 
     public function store(Request $request)
     {
+        //busca la bobina
+        $ribbon = Ribbon::find($request->ribbonId);
+        //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
+        if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
         $wasteBags = new WasteBag();
 
         $wasteBags->fechaInicioTrabajo = $request->fechaInicioTrabajo;
@@ -47,7 +54,17 @@ class WasteBagController extends Controller
                                      'status'=>'N/A', 
                                      'fAdquisicion'=>$wasteBags->fechaInicioTrabajo]);
 
-        return redirect()->route('wasteBag.show', $wasteBags);
+        $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
+        if($ribbon->pesoUtilizado == $ribbon->peso)
+        $ribbon->status = 'TERMINADA';                           
+        $ribbon->save();
+                                    
+        return redirect()->route('ribbon.show', compact('ribbon'));  
+        }
+        //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
+        else{
+            return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso del rollo');
+        }
     }
 
     public function show(WasteBag $wasteBag)

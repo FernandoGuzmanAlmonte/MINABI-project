@@ -27,8 +27,13 @@ class RibbonController extends Controller
         $employees = Employee::all();
         //$nomenclatura = Coil::select('nomenclatura')->where('id', 1)->get()->first()->nomenclatura;
         $coil = Coil::find($request->coil);
+<<<<<<< HEAD
         $nomenclatura = ($coil->nomenclatura) . '-' . ($coil->ribbons()->count()+1);
         return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
+=======
+        $nomenclatura = $coil->nomenclatura . '-' . ($coil->ribbons()->count()+1);
+        return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura  ]);
+>>>>>>> 71ad110f4ed7de432f9da3dddb7e4c8984e35b3c
     }
 
     public function edit(Ribbon $ribbon){
