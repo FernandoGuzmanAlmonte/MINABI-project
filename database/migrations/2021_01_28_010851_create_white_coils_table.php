@@ -15,24 +15,27 @@ class CreateWhiteCoilsTable extends Migration
     {
         Schema::create('white_coils', function(Blueprint $table){
             $table->id();
-            $table->unsignedBigInteger('provider_id')->unique();
+            $table->unsignedBigInteger('provider_id')->nullable();
             $table->unsignedBigInteger('coil_type_id')->nullable();
 
 
-            $table->float('peso', 8, 4);
-            $table->float('largoM', 8, 4);
-            $table->string('status', 9);
-            $table->string('nomenclatura', 20);
+            $table->float('peso', 12, 4);
+            $table->integer('cantidadRollos');
+            $table->string('status', 10);
+            $table->string('nomenclatura', 24);
             $table->string('observaciones')->nullable();
+            $table->float('pesoUtilizado', 12,4);
+            $table->float('costo', 12, 4);
+            $table->date('fArribo');
             $table->timestamps();
 
-            $table->foreign('provider_id')
+            /*$table->foreign('provider_id')
                 ->references('id')
                 ->on('providers');
 
             $table->foreign('coil_type_id')
                 ->references('id')
-                ->on('coil_types');                 
+                ->on('coil_types'); */                
         });
     }
 

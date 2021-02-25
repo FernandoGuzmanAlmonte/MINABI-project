@@ -1,0 +1,128 @@
+@extends('layouts.formulario')
+
+@section('title', 'Bobinas')
+
+@section('imgUrl',  asset('images/bobina.svg'))
+
+@section('namePage', 'Bobinas ' . $whiteCoil->nomenclatura)
+
+@section('form')
+<form action="{{route('whiteCoil.update', $whiteCoil)}}" method="POST">
+    @csrf
+    @method('PUT')
+    <div class="row">
+    <div class="col-lg-12 d-flex mt-2"> 
+        <div class="col-lg-4 px-2">
+            <label>Nomenclatura</label>
+            <input type="text" class="form-control" name="nomenclatura" value="{{$whiteCoil->nomenclatura}}" readonly>
+            @error('nomenclatura')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Fecha llegada</label>
+            <input type="datetime" class="form-control" name="fArribo" value="{{$whiteCoil->fArribo}}">
+            @error('fArribo')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Tipo bobina</label>
+            <input type="text" class="form-control" name="idTipoBobina" value="{{$whiteCoil->coil_type_id}}">
+        </div>
+    </div>
+
+    <div class="col-lg-12 d-flex mt-3">
+        <div class="col-lg-4 px-2">
+            <label>Proveedor</label>
+            <input type="text" class="form-control" name="provider_id" value="{{$whiteCoil->provider_id}}">
+            @error('provider_id')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Status</label>
+            <input type="datetime" class="form-control" name="status" value="{{$whiteCoil->status}}" readonly>
+            @error('status')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Costo</label>
+            <input type="number" step="0.0001" class="form-control" name="costo" value="{{$whiteCoil->costo}}">
+            @error('costo')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-lg-12 d-flex mt-3">
+        <div class="col-lg-4 px-2">
+            <label>Peso (Kg)</label>
+            <input type="number" step="0.0001" class="form-control" name="peso" value="{{$whiteCoil->peso}}">
+            @error('peso')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Cantidad de rollos (Kg)</label>
+            <input type="number" step="0.0001" class="form-control" name="cantidadRollos" value="{{$whiteCoil->cantidadRollos}}">
+            @error('pesoNeto')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Peso Utilizado (Kg)</label>
+            <input type="number" step="0.0001"class="form-control" name="pesoUtilizado" value="{{$whiteCoil->pesoUtilizado}}" readonly>
+        </div>
+    </div>
+
+    <div class="col-lg-12 d-flex mt-4">
+        <div class="col-lg-12 px-2">
+            <label>Observaciones</label>
+            <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{$whiteCoil->observaciones}}</textarea>
+            @error('observaciones')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-12 mt-4 mb-4 text-center">
+        <a class="btn btn-danger mx-3" href="{{route('whiteCoil.show', $whiteCoil->id)}}">Cancelar</a>
+        <button type="submit" class="btn btn-success mx-3">Guardar</button>
+    </div>
+</div>
+</form>
+@endsection

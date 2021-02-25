@@ -22,9 +22,19 @@
                         </a>
                     </div>
                 </li>
-                <a class="nav-item nav-link disabled" href="/">
-                    Cintilla
-                </a>
+                <li class="nav-item dropdown {{ request()->routeIs('whiteCoil.*') || request()->routeIs('whiteRibbon.*') ? 'active' : ''}}">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cinta Blanca
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item {{ request()->routeIs('whiteCoil.*') ? 'active' : ''}}" href="{{ route('whiteCoil.index') }}">
+                            Bobina
+                        </a>
+                        <a class="dropdown-item {{ request()->routeIs('employee.*') ? 'active' : ''}}" href="{{ route('employee.index') }}">
+                            Empleados
+                        </a>
+                    </div>
+                </li>
                 <a class="nav-item nav-link {{ request()->routeIs('coil.*') ? 'active' : ''}}" href="{{ route('coil.index') }}">
                     Bobinas
                 </a>
@@ -34,9 +44,7 @@
                 <a class="nav-item nav-link {{ request()->routeIs('bag.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
                     Bolsas
                 </a>
-                <a class="nav-item nav-link disabled" href="/">
-                    Rollos Cintilla
-                </a>
+                
             </div>
         </div>
     </nav>

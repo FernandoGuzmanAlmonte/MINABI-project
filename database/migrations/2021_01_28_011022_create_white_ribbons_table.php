@@ -17,27 +17,16 @@ class CreateWhiteRibbonsTable extends Migration
             $table->id();
 
             //idBobina con CintillaRollo???
-            $table->unsignedBigInteger('coil_id')->nullable();//se puede dejar sin nulleable o unique?
-            $table->unsignedBigInteger('user_id')->nullable();
 
-            $table->float('peso');
-            $table->string('status', 9);
-            $table->float('largoM');
-            $table->string('nomenclatura', 20);
+            $table->float('peso', 12, 4);
+            $table->float('pesoUtilizado', 12, 4);
+            $table->string('status', 10);
+            $table->float('largo', 12, 4);
+            $table->string('nomenclatura', 24);
             $table->date('fArribo');
-            $table->string('tipo', 10);
+            $table->string('observaciones')->nullable();
 
-            $table->foreign('coil_id')
-                ->references('id')
-                ->on('coils')
-                ->onDelete('set null')//?
-                ->onUpdate('cascade');
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('set null')//?
-                ->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

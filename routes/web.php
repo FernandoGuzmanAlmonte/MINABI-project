@@ -11,6 +11,11 @@ use App\Http\Controllers\WasteBagController;
 use App\Http\Controllers\WasteRibbonController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RibbonReelController;
+use App\Http\Controllers\WhiteCoilController;
+use App\Http\Controllers\WhiteCoilProductController;
+use App\Http\Controllers\WhiteRibbonController;
+use App\Models\WhiteCoil;
+use App\Models\WhiteRibbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,10 +40,17 @@ Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'
 Route::resource('coil', CoilController::class);//->except(['create']);
 Route::get('coil/create/{provider}', [CoilController::class, 'createFromProvider'])->name('coil.createFromProvider');
 
+Route::resource('whiteCoil', WhiteCoilController::class);
+
 Route::resource('coilProduct', CoilProductController::class);
+
+Route::resource('whiteCoilProduct', WhiteCoilProductController::class);
 
 Route::resource('ribbon', RibbonController::class);
 Route::get('ribbon/create/{coil}', [RibbonController::class, 'createProduct'])->name('ribbon.createProduct');
+
+Route::resource('whiteRibbon', WhiteRibbonController::class);
+Route::get('whiteRibbon/create/{whiteCoil}', [WhiteRibbonController::class, 'createProduct'])->name('whiteRibbon.createProduct');
 
 Route::resource('wasteRibbon' , WasteRibbonController::class);
 Route::get('wasteRibbon/create/{coil}', [WasteRibbonController::class, 'createProduct'])->name('wasteRibbon.createProduct');
