@@ -25,7 +25,6 @@ class StoreRibbon extends FormRequest
     {
         return [
             'white_ribbon_id' => 'required',
-            'employee_id' => 'required',
             'nomenclatura' => 'required',
             'peso' => 'required',
             'largo' => 'required',

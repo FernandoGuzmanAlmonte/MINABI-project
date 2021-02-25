@@ -34,15 +34,15 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Quién Elaboro</label>
-                <input type="text" class="form-control" name="employee_id" value="1" readonly>
-                @error('employee_id')
+                <label>Cintilla Blanca</label>
+                <input type="number" class="form-control" name="white_ribbon_id" value="1" readonly>
+                @error('white_ribbon_id')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
         </div>
     
@@ -142,21 +142,10 @@
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
-                <label>Cintilla Blanca</label>
-                <input type="number" class="form-control" name="white_ribbon_id" value="1" readonly>
-                @error('white_ribbon_id')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-                @enderror
-            </div>
             <div class="form-cloned col-lg-4 px-2">
                 <label>Empleado(s)</label>
-                <button type="button" onclick="clonar()" class="btn btn-secondary btn-sm">+</button>
-                <button type="button" onclick="remover()" class="btn btn-danger btn-sm">-</button>
+                <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
+                <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
                 <select class="form-control" name="empleados[]">
                     <option selected>--seleccione empleado--</option>
                     @foreach($employees as $employee)

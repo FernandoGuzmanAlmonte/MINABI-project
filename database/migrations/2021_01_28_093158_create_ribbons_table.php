@@ -17,7 +17,6 @@ class CreateRibbonsTable extends Migration
             $table->id();
             //$table->unsignedBigInteger('coil_product_id'); //llave fonarea de producto bobina
             $table->unsignedBigInteger('white_ribbon_id'); //llave foranea de cintilla blanca
-            //$table->unsignedBigInteger('employee_id'); //llave foranea de empleados
             $table->string('nomenclatura', 24); //identificador
             $table->float('peso', 10, 4); //peso del rollo
             $table->float('largo', 10, 4); //metros de largo del rollo
@@ -40,11 +39,7 @@ class CreateRibbonsTable extends Migration
             
           /*  $table->foreign('white_ribbon_id')
                 ->references('id')
-                ->on('white_ribbons');
-
-            $table->foreign('employee_id')
-                ->references('id')
-                ->on('employees'); */   
+                ->on('white_ribbons');*/   
 
             $table->timestamps();
         });

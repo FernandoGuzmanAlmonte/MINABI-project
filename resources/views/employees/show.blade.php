@@ -15,29 +15,29 @@
     <div class="col-lg-12 d-flex mt-2">
         <div class="col-lg-4 px-2">
             <label>Nombre</label>
-            <input type="text" class="form-control" name="nombre" value={{ $employee->nombre }} disabled>
+            <input type="text" class="form-control" name="nombre" value="{{ $employee->nombre }}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha de Nacimiento</label>
-            <input type="date" class="form-control" name="fNacimiento" value={{ $employee->fNacimiento }} disabled>
+            <input type="date" class="form-control" name="fNacimiento" value="{{ $employee->fNacimiento }}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha de Ingreso</label>
-            <input type="date" class="form-control" name="fIngreso" value={{ $employee->fIngreso }} disabled>
+            <input type="date" class="form-control" name="fIngreso" value="{{ $employee->fIngreso }}" disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Años de Antigüedad</label>
-            <input type="number" class="form-control" name="antiguedad" value={{ $employee->antiguedad }} disabled>
+            <input type="number" class="form-control" name="antiguedad" value="{{ $employee->antiguedad }}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Sueldo por Hora</label>
-            <input type="number" step="0.0001" class="form-control" name="sueldoHora" value={{ $employee->sueldoHora }} disabled>
+            <input type="number" step="0.0001" class="form-control" name="sueldoHora" value="{{ $employee->sueldoHora }}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Teléfono</label>
-            <input type="number" class="form-control" name="telefono" value={{ $employee->telefono }} disabled>
+            <input type="number" class="form-control" name="telefono" value="{{ $employee->telefono }}" disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">

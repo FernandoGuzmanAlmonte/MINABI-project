@@ -27,23 +27,19 @@ class RibbonController extends Controller
         $employees = Employee::all();
         //$nomenclatura = Coil::select('nomenclatura')->where('id', 1)->get()->first()->nomenclatura;
         $coil = Coil::find($request->coil);
-<<<<<<< HEAD
         $nomenclatura = ($coil->nomenclatura) . '-' . ($coil->ribbons()->count()+1);
         return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
-=======
-        $nomenclatura = $coil->nomenclatura . '-' . ($coil->ribbons()->count()+1);
-        return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura  ]);
->>>>>>> 71ad110f4ed7de432f9da3dddb7e4c8984e35b3c
     }
 
     public function edit(Ribbon $ribbon){
-        return view('ribbons.edit', compact('ribbon'));
+        $employees = Employee::all(); 
+
+        return view('ribbons.edit', compact('ribbon', 'employees'));
     }
 
     public function update(StoreRibbon $request, Ribbon $ribbon){
         $ribbon->nomenclatura =  $request->nomenclatura;
         $ribbon->status =  $request->status;
-        $ribbon->employee_id =  $request->employee_id;
         $ribbon->fechaInicioTrabajo =  $request->fechaInicioTrabajo;
         $ribbon->horaInicioTrabajo =  $request->horaInicioTrabajo;
         $ribbon->largo =  $request->largo;
@@ -57,6 +53,9 @@ class RibbonController extends Controller
         $ribbon->observaciones = $request->observaciones;
 
         $ribbon->save();
+
+        //request->input('empleados') tiene los id's de los empleados
+        $ribbon->employees()->sync($request->input('empleados')); 
 
         return redirect()->route('ribbon.show', compact('ribbon'));
     }

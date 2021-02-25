@@ -22,8 +22,8 @@
             <input type="text" class="form-control" name="status" value="{{$ribbon->status}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Quien Elaboro</label>
-            <input type="text" class="form-control" name="employee_id" value="{{$ribbon->employee_id}}"  disabled>
+            <label>Cintilla Blanca</label>
+            <input type="number" class="form-control" name="white_ribbon_id" value="{{$ribbon->white_ribbon_id}}" disabled>
         </div>
     </div>
 
@@ -69,14 +69,7 @@
         <label>Velocidad</label>
         <input type="text" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}" disabled>
     </div>
-</div>
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
-            <label>Cintilla Blanca</label>
-            <input type="number" class="form-control" name="white_ribbon_id" value="{{$ribbon->white_ribbon_id}}" disabled>
-        </div>
-    </div>
-
+</div>    
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>

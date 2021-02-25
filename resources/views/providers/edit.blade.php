@@ -14,21 +14,21 @@
         <div class="col-lg-12 d-flex mt-2">
             <div class="col-lg-4 px-2">
                 <label>Nombre empresa</label>
-                <input type="text" class="form-control" name="nombreEmpresa" value={{ $provider->nombreEmpresa }}>
+                <input type="text" class="form-control" name="nombreEmpresa" value="{{ $provider->nombreEmpresa }}">
             </div>
             <div class="col-lg-4 px-2">
                 <label>Dirección</label>
-                <input type="text" class="form-control" name="direccion" value={{ $provider->direccion }}>
+                <input type="text" class="form-control" name="direccion" value="{{ $provider->direccion }}">
             </div>
             <div class="col-lg-4 px-2">
                 <label>Pagina web</label>
-                <input type="text" class="form-control" name="paginaWeb" value={{ $provider->paginaWeb }}>
+                <input type="text" class="form-control" name="paginaWeb" value="{{ $provider->paginaWeb }}">
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Estado</label>
-                <input type="text" class="form-control" name="estado" value={{ $provider->estado }}>
+                <input type="text" class="form-control" name="estado" value="{{ $provider->estado }}">
             </div>
         </div>
         <div class="col-12 mt-3 text-center">
