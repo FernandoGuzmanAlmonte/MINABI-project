@@ -16,7 +16,6 @@ class CreateWasteBagsTable extends Migration
         Schema::create('waste_bags', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('bag_mesure_id')->nullable(); //llave foranea del catalogo de la medida de la bolsa
-            $table->unsignedBigInteger('employee_id')->nullable(); //llave foranea de empleados
             $table->date('fechaInicioTrabajo');  //fecha de inicio en la que se trabajo la merma
             $table->date('fechaFinTrabajo');//fecha de fin en la que se trabajo la merma
             $table->time('horaIncioTrabajo')->nullable();
@@ -35,10 +34,6 @@ class CreateWasteBagsTable extends Migration
             $table->foreign('bag_mesure_id')
                 ->references('id')
                 ->on('bag_measures');
-
-            $table->foreign('employee_id')
-                ->references('id')
-                ->on('employees');
 
             $table->timestamps();
         });

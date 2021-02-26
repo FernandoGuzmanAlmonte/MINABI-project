@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBag;
 use App\Models\Bag;
 use App\Models\Ribbon;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class BagController extends Controller
@@ -23,8 +24,10 @@ class BagController extends Controller
 
     public function createProduct(Request $request){   
         $ribbon = Ribbon::find($request->ribbon);
+        $employees = Employee::all();
+
         $nomenclatura = $ribbon->nomenclatura . '-' . ($ribbon->bags()->count()+1);
-        return view('bags.create', ['ribbonId' => $request->ribbon, 'nomenclatura' => $nomenclatura]);
+        return view('bags.create', ['ribbonId' => $request->ribbon, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
     }
 
     public function store(StoreBag $request)
@@ -51,6 +54,9 @@ class BagController extends Controller
         $bag->observaciones      = $request->observaciones;
         
         $bag->save();
+
+        //request->input('empleados') tiene los id's de los empleados
+        $bag->employees()->attach($request->input('empleados'));    
 
         $addProduct = Bag::find($bag->id);
         $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$bag->nomenclatura,
@@ -82,7 +88,9 @@ class BagController extends Controller
 
     public function edit(Bag $bag)
     {
-        return view('bags.edit', compact('bag'));
+        $employees = Employee::all(); 
+
+        return view('bags.edit', compact('bag', 'employees'));
     }
 
     public function update(StoreBag $request, Bag $bag)
@@ -103,6 +111,9 @@ class BagController extends Controller
         $bag->observaciones      = $request->observaciones;
               
         $bag->save();
+
+        //request->input('empleados') tiene los id's de los empleados
+        $bag->employees()->sync($request->input('empleados')); 
 
         return redirect()->route('bag.show', $bag);
     }

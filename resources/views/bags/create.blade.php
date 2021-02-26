@@ -40,8 +40,12 @@
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Proveedor</label>
-                <!--<input type="text" class="form-control" name="proveedor">-->
+                <label>Tiene Pestaña</label>
+                <select class="form-control" name="pestania">
+                    <option selected>--seleccione una opción--</option>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
+                </select>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Inicio</label>
@@ -134,10 +138,26 @@
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
-                <label>Quién elaboro</label>
-                <!--<input type="text" class="form-control" name="estado"-->
+            <div class="form-cloned col-lg-4 px-2">
+                <label>Empleado(s)</label>
+                <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
+                <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
+                <select class="form-control" name="empleados[]">
+                    <option selected>--seleccione empleado--</option>
+                    @foreach($employees as $employee)
+                        <option value={{ $employee->id }}>
+                            {{ $employee->nombre }}
+                        </option>
+                    @endforeach
+                </select>            
             </div>
+            @error('pestania')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
             <div class="col-lg-4 px-2">
                 <label>Cliente Stock</label>
                 <select class="form-control" name="clienteStock">
@@ -158,24 +178,9 @@
                 <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{old('velocidad')}}">
             </div>
         </div>
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
-                <label>Tiene Pestaña</label>
-                <select class="form-control" name="pestania">
-                    <option selected>--seleccione una opción--</option>
-                    <option value="Sí">Sí</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-            @error('pestania')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-        </div>
+        <!--Id de bobina relacionado-->
         <input type="hidden" class="form-control" name="ribbonId" value="{{$ribbonId}}">
+        
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
@@ -206,4 +211,20 @@
 </form>
 @endsection
 
+@section('scripts')
+<script type="text/javascript">
+    function clonar()
+    {
+        var $form = $('.form-cloned .form-control').last().clone();
 
+        $form.appendTo('.form-cloned');
+    }
+
+    function remover()
+    {
+        var $form = $('.form-cloned .form-control');
+
+        if($form.length != 1) $form.last().remove();
+    }
+</script>
+@endsection

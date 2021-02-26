@@ -28,8 +28,8 @@
     </div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Proveedor</label>
-            <!--<input type="text" class="form-control" name="proveedor" value= disabled>-->
+            <label>Temperatura</label>
+            <input type="text" class="form-control" name="temperatura" value={{ $bag->temperatura }} disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha Inicio</label>
@@ -70,22 +70,12 @@
     </div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Quién elaboro</label>
-            <!--<input type="text" class="form-control" name="estado" value=disabled>-->
+            <label>Tiene Pestaña</label>
+            <input type="text" class="form-control" name="status" value={{ $bag->pestania }} disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Cliente Stock</label>
             <input type="text" class="form-control" name="clienteStock" value={{ $bag->clienteStock }} disabled>
-        </div>
-        <div class="col-lg-4 px-2">
-            <label>Temperatura</label>
-            <input type="text" class="form-control" name="temperatura" value={{ $bag->temperatura }} disabled>
-        </div>
-    </div>
-    <div class="col-lg-12 d-flex mt-3">  
-        <div class="col-lg-4 px-2">
-            <label>Tiene Pestaña</label>
-            <input type="text" class="form-control" name="status" value={{ $bag->pestania }} disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
@@ -95,6 +85,30 @@
         </div>  
     </div>
 
+    <div class="col-lg-12 mt-4 mb-2">
+        <h3><img src="{{ asset('images/empleado.svg') }}" class="iconoTitle"> Empleados</h3>
+        <table class="table table-striped my-4" >
+            <thead class="bg-info">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Satus</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($bag->employees as $employee)
+                    <tr>
+                        <th scope="row" class="align-middle">{{$employee->id}}</th>
+                        <td class="align-middle">{{$employee->nombre}}</td>
+                        <td class="align-middle">{{$employee->status}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12 mt-3 text-center">
+        <a class="btn btn-warning mx-3" href="{{ route('bag.edit', $bag) }}">Editar</a>
+    </div>
     <div class="col-lg-12 d-flex mt-5">
         <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
         </div>
@@ -132,8 +146,5 @@
                 <input type="text" class="form-control" name="coilStatus" value="{{$coil->status}}" disabled>
             </div>
         </div>
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{ route('bag.edit', $bag) }}">Editar</a>
-    </div>
 </div>
 @endsection

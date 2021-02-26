@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreWasteRibbon;
 use App\Models\WasteRibbon;
 use App\Models\Coil;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class WasteRibbonController extends Controller
@@ -23,12 +24,16 @@ class WasteRibbonController extends Controller
     //funcion para crear relaciones con bobina
     public function createProduct(Request $request){
         $coil = Coil::find($request->coil);
+        $employees = Employee::all();
+
         $nomenclatura = 'MER-' . $coil->nomenclatura . '-' . ($coil->ribbons()->count()+1);
-        return view('wasteRibbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura]);
+        return view('wasteRibbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
     }
 
     public function edit(WasteRibbon $wasteRibbon){
-         return view('wasteRibbons.edit', compact('wasteRibbon'));
+        $employees = Employee::all(); 
+
+        return view('wasteRibbons.edit', compact('wasteRibbon', 'employees'));
     }
 
     public function update(StoreWasteRibbon $request, WasteRibbon $wasteRibbon){
@@ -44,6 +49,9 @@ class WasteRibbonController extends Controller
         $wasteRibbon->velocidad =  $request->velocidad;
 
         $wasteRibbon->save();
+
+        //request->input('empleados') tiene los id's de los empleados
+        $wasteRibbon->employees()->sync($request->input('empleados')); 
 
         return redirect()->route('wasteRibbon.show', compact('wasteRibbon'));
     }
@@ -78,6 +86,9 @@ class WasteRibbonController extends Controller
 
         $wasteRibbon->save();
         
+        //request->input('empleados') tiene los id's de los empleados
+        $wasteRibbon->employees()->attach($request->input('empleados'));    
+
         $addProduct = WasteRibbon::find($wasteRibbon->id);
         $addProduct->coils()->attach($request->coilId, ['nomenclatura'=>$wasteRibbon->nomenclatura,
                                      'status'=>"N/A", 

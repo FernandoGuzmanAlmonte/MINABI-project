@@ -82,7 +82,6 @@ class RibbonController extends Controller
 
         $ribbon->nomenclatura =  $request->nomenclatura;
         $ribbon->status =  $request->status;
-        //$ribbon->employee_id =  $request->employee_id;
         $ribbon->fechaInicioTrabajo =  $request->fechaInicioTrabajo;
         $ribbon->horaInicioTrabajo =  $request->horaInicioTrabajo;
         $ribbon->largo =  $request->largo;

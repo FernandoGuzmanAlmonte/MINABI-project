@@ -139,7 +139,6 @@
         </thead>
         <tbody>
             @foreach ($bag as $item)
-    
             <tr>
                 <th scope="row" class="align-middle">{{$item->id}}</th>
                 <td class="align-middle">{{$item->nomenclatura}}</td>
