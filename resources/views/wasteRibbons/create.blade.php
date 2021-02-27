@@ -112,7 +112,7 @@
                 <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
                 <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
                 <select class="form-control" name="empleados[]">
-                    <option selected>--seleccione empleado--</option>
+                    <option value="" selected>--seleccione empleado--</option>
                     @foreach($employees as $employee)
                         <option value={{ $employee->id }}>
                             {{ $employee->nombre }}

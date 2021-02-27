@@ -29,7 +29,9 @@ class CoilController extends Controller
     }
     
     public function edit(Coil $coil){
-        return view('coils.edit', compact('coil'));
+        $providers = Provider::all();
+
+        return view('coils.edit', compact('coil', 'providers'));
     }
 
     public function update(StoreCoil $request, Coil $coil){

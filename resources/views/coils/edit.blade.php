@@ -43,7 +43,13 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
-            <input type="text" class="form-control" name="provider_id" value="{{$coil->provider_id}}">
+            <select class="form-control" name="provider_id">
+                @foreach($providers as $provider)
+                    <option {{ ($coil->provider->id == $provider->id)? 'selected': ''}} value={{ $provider->id }}>
+                        {{ $provider->nombreEmpresa }}
+                    </option>
+                @endforeach
+            </select>
             @error('provider_id')
                 <br>
                 <div class="alert alert-danger">

@@ -86,8 +86,10 @@ class WasteRibbonController extends Controller
 
         $wasteRibbon->save();
         
-        //request->input('empleados') tiene los id's de los empleados
-        $wasteRibbon->employees()->attach($request->input('empleados'));    
+        //request->input('empleados') tiene los id's de los empleados, verificamos si
+        //hay empleados antes de agregar
+        $empleados = $request->input('empleados');
+        if($empleados[0] != null) $wasteRibbon->employees()->attach($empleados);    
 
         $addProduct = WasteRibbon::find($wasteRibbon->id);
         $addProduct->coils()->attach($request->coilId, ['nomenclatura'=>$wasteRibbon->nomenclatura,
