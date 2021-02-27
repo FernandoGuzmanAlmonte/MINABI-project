@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WasteBag;
 use App\Models\Ribbon;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class WasteBagController extends Controller
@@ -22,8 +23,10 @@ class WasteBagController extends Controller
 
     public function createProduct(Request $request){
         $ribbon = Ribbon::find($request->ribbon);
+        $employees = Employee::all();
+
         $nomenclatura = 'MER-' . $ribbon->nomenclatura . '-' . ($ribbon->wasteBags()->count()+1);
-        return view('wasteBags.create', ['ribbonId' => $request->ribbon, 'nomenclatura' => $nomenclatura]);
+        return view('wasteBags.create', ['ribbonId' => $request->ribbon, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
     }
 
     public function store(Request $request)
@@ -46,8 +49,10 @@ class WasteBagController extends Controller
         $wasteBags->cantidad       = $request->cantidad;
         $wasteBags->nomenclatura   = $request->nomenclatura;
 
-
         $wasteBags->save();
+
+        //request->input('empleados') tiene los id's de los empleados
+        $wasteBags->employees()->attach($request->input('empleados'));
 
         $addProduct = WasteBag::find($wasteBags->id);
         $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$wasteBags->nomenclatura,
@@ -79,7 +84,9 @@ class WasteBagController extends Controller
 
     public function edit(WasteBag $wasteBag)
     {
-        return view('wasteBags.edit', compact('wasteBag'));
+        $employees = Employee::all(); 
+
+        return view('wasteBags.edit', compact('wasteBag', 'employees'));
     }
 
     public function update(Request $request, WasteBag $wasteBag)
@@ -97,6 +104,9 @@ class WasteBagController extends Controller
         $wasteBag->nomenclatura  = $request->nomenclatura;
 
         $wasteBag->save();
+
+        //request->input('empleados') tiene los id's de los empleados
+        $wasteBag->employees()->sync($request->input('empleados')); 
 
         return redirect()->route('wasteBag.show', $wasteBag);
     }

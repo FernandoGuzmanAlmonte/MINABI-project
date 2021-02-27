@@ -17,7 +17,6 @@ class CreateBagsTable extends Migration
             $table->id();
             //$table->unsignedBigInteger('ribbon_id');
             //$table->unsignedBigInteger('bag_measure_id');
-            //$table->unsignedBigInteger('employee_id');
             
             $table->string('nomenclatura', 24);
             $table->date('fechaInicioTrabajo');
@@ -44,10 +43,7 @@ class CreateBagsTable extends Migration
             $table->foreign('bag_measure_id')
                 ->references('id')
                 ->on('bag_measures');
-                
-            $table->foreign('employee_id')
-                ->references('id')
-                ->on('employees');   */
+            */
 
             $table->timestamps();
         });

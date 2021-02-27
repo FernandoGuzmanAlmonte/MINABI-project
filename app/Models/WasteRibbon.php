@@ -14,4 +14,10 @@ class WasteRibbon extends Model
                     ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso')
                     ->withTimestamps();
     }
+
+    public function employees()
+    {
+        //Relación muchos a muchos Employee-Waste_Ribbons
+        return $this->belongsToMany('App\Models\Employee'); 
+    }
 }

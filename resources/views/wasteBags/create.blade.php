@@ -70,6 +70,23 @@
                 <input type="number" step="0.0001" class="form-control" name="cantidad">
             </div>
         </div>
+
+        <div class="col-lg-12 d-flex mt-3">
+            <div class="form-cloned col-lg-4 px-2">
+                <label>Empleado(s)</label>
+                <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
+                <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
+                <select class="form-control" name="empleados[]">
+                    <option selected>--seleccione empleado--</option>
+                    @foreach($employees as $employee)
+                        <option value={{ $employee->id }}>
+                            {{ $employee->nombre }}
+                        </option>
+                    @endforeach
+                </select>            
+            </div>
+        </div>
+
         <input type="hidden" class="form-control" name="ribbonId" value="{{$ribbonId}}">
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-12 px-2">
@@ -85,4 +102,20 @@
 </form>
 @endsection
 
+@section('scripts')
+<script type="text/javascript">
+    function clonar()
+    {
+        var $form = $('.form-cloned .form-control').last().clone();
 
+        $form.appendTo('.form-cloned');
+    }
+
+    function remover()
+    {
+        var $form = $('.form-cloned .form-control');
+
+        if($form.length != 1) $form.last().remove();
+    }
+</script>
+@endsection

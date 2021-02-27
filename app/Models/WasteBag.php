@@ -14,4 +14,10 @@ class WasteBag extends Model
                     ->withPivot('nomenclatura', 'status', 'fAdquisicion')
                     ->withTimestamps();
     }
+
+    public function employees()
+    {
+        //Relación muchos a muchos Employee-Waste_Bags
+        return $this->belongsToMany('App\Models\Employee'); 
+    }
 }
