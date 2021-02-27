@@ -51,10 +51,10 @@ class WhiteRibbonController extends Controller
         //obtenemos la bobina relacionada al rollo
         $whiteCoil = $whiteRibbon->whiteCoils()->get()->first();
         //obtenemos todas las bolsas relacionadas al rollo
-        /*$bags =  WhiteRibbon::find($whiteRibbon->id);
-        $bags = $bags->related()->get();
-        $bag = $bags;*/
-        return view('whiteRibbons.show', compact('whiteRibbon', /*'bag',*/ 'whiteCoil'));
+        $bags =  WhiteRibbon::find($whiteRibbon->id);
+        $bag = $bags->related()->get();
+        //$bag = $bags;
+        return view('whiteRibbons.show', compact('whiteRibbon', 'bag', 'whiteCoil'));
     }
    
 

@@ -11,17 +11,11 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
                         <label class="form-check-label" for="flexRadioDefault1">
-                          Bolsas
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
-                        <label class="form-check-label" for="flexRadioDefault2">
                           Merma
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
                         <label class="form-check-label" for="flexRadioDefault2">
                           Hueso
                         </label>
@@ -29,18 +23,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-success" onclick="redirect({{$ribbon->id}})">Crear</button>  
+                    <button class="btn btn-success" onclick="redirect({{$whiteRibbon->id}})">Crear</button>  
                 </div>
                 <script type="text/javascript">
                     function redirect(id){
                         if(document.getElementById('flexRadioDefault1').checked == true){
-                           location.replace ("http://localhost/MINABI-project/public/bag/create/"+id)
+                           location.replace ("http://localhost/MINABI-project/public/WhiteWasteRibbon/create/"+id)
                         }
                         if(document.getElementById('flexRadioDefault2').checked == true){
-                            location.replace ("http://localhost/MINABI-project/public/wasteBag/create/"+id)
-                        }
-                        if(document.getElementById('flexRadioDefault3').checked == true){
-                            location.replace ("http://localhost/MINABI-project/public/ribbonReel/create/"+id)
+                            location.replace ("http://localhost/MINABI-project/public/whiteRibbonReel/create/"+id)
                         }
                     }
                 </script>

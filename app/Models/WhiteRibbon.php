@@ -14,4 +14,17 @@ class WhiteRibbon extends Model
                     ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso')
                     ->withTimestamps();
     }
+
+    public function whiteWasteRibbons(){
+        return $this->morphedByMany(WhiteWasteRibbon::class, 'white_ribbon_product');
+    }
+
+    public function whiteReels(){
+        return $this->morphedByMany(WhiteRibbonReel::class, 'white_ribbon_product');
+    }
+
+    public function related()
+    {
+    return $this->hasMany(WhiteRibbonProduct::class);
+    }
 }

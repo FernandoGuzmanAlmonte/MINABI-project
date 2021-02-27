@@ -9,7 +9,7 @@ class WhiteWaste extends Model
 {
     use HasFactory;
 
-    public function coils(){
+    public function whiteCoils(){
         return $this->morphToMany(WhiteCoil::class, 'white_coil_product')
                     ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso')
                     ->withTimestamps();

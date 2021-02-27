@@ -14,8 +14,13 @@ use App\Http\Controllers\RibbonReelController;
 use App\Http\Controllers\WhiteCoilController;
 use App\Http\Controllers\WhiteCoilProductController;
 use App\Http\Controllers\WhiteRibbonController;
+use App\Http\Controllers\WhiteRibbonReelController;
+use App\Http\Controllers\WhiteWasteController;
+use App\Http\Controllers\WhiteWasteRibbonController;
 use App\Models\WhiteCoil;
 use App\Models\WhiteRibbon;
+use App\Models\WhiteRibbonReel;
+use App\Models\WhiteWaste;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,7 +72,17 @@ Route::resource('ribbonProduct', RibbonProductController::class);
 
 Route::resource('employee', EmployeeController::class);
 
+Route::resource('whiteWaste', WhiteWasteController::class);
+Route::get('whiteWaste/create/{whiteCoil}', [WhiteWasteController::class, 'createProduct'])->name('whiteWaste.createProduct');
+
 Route::resource('ribbonReel', RibbonReelController::class);
 Route::get('ribbonReel/create/{ribbon}', [RibbonReelController::class, 'createProduct'])->name('ribbonReel.createProduct');
+
+Route::resource('whiteRibbonReel', WhiteRibbonReelController::class);
+Route::get('whiteRibbonReel/create/{whiteRibbon}', [WhiteRibbonReelController::class, 'createProduct'])->name('whiteRibbonReel.createProduct');
+
+Route::resource('whiteWasteRibbon', WhiteWasteRibbonController::class);
+Route::get('whiteWasteRibbon/create/{whiteRibbon}', [WhiteWasteRibbonController::class, 'createProduct'])->name('whiteWasteRibbon.createProduct');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

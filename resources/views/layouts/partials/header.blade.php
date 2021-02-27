@@ -30,8 +30,8 @@
                         <a class="dropdown-item {{ request()->routeIs('whiteCoil.*') ? 'active' : ''}}" href="{{ route('whiteCoil.index') }}">
                             Bobina
                         </a>
-                        <a class="dropdown-item {{ request()->routeIs('employee.*') ? 'active' : ''}}" href="{{ route('employee.index') }}">
-                            Empleados
+                        <a class="dropdown-item {{ request()->routeIs('whiteCoilProduct.*') ? 'active' : ''}}" href="{{ route('whiteCoilProduct.index') }}">
+                            Rollos
                         </a>
                     </div>
                 </li>

@@ -97,8 +97,8 @@
            <!--Realizamos if para validacion de adonde dirgir el show-->
         @if ($item->white_coil_product_type == 'App\Models\WhiteRibbon')
         <td><a href="{{route('whiteRibbon.show',$item->white_coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-        @elseif($item->white_coil_product_type == 'App\Models\WasteRibbon')
-        <td><a href="{{route('wasteRibbon.show',$item->white_coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+        @elseif($item->white_coil_product_type == 'App\Models\WhiteWaste')
+        <td><a href="{{route('whiteWaste.show',$item->white_coil_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
         @endif
         </tr>
       @endforeach
