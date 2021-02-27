@@ -44,16 +44,16 @@
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
+            <label>Peso Utilizado (KG)</label>
+            <input type="datetime" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}" disabled>
+        </div>
+        <div class="col-lg-4 px-2">
             <label>Fecha Termino</label>
             <input type="text" class="form-control" name="fechaFinTrabajo" value="{{$ribbon->fechaFinTrabajo}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Hora Termino</label>
             <input type="time" class="form-control" name="horaFinTrabajo" value="{{$ribbon->horaFinTrabajo}}" disabled>
-        </div>
-        <div class="col-lg-4 px-2">
-            <label>Peso Utilizado (KG)</label>
-            <input type="datetime" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}" disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
@@ -84,7 +84,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Satus</th>
+                <th scope="col">Sueldo por hora</th>
             </tr>
             </thead>
             <tbody>
@@ -92,7 +92,7 @@
                     <tr>
                         <th scope="row" class="align-middle">{{$employee->id}}</th>
                         <td class="align-middle">{{$employee->nombre}}</td>
-                        <td class="align-middle">{{$employee->status}}</td>
+                        <td class="align-middle">{{$employee->sueldoHora}}</td>
                     </tr>
                 @endforeach
             </tbody>

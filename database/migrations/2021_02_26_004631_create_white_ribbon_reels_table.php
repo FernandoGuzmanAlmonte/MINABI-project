@@ -4,24 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWhiteWastesTable extends Migration
+class CreateWhiteRibbonReelsTable extends Migration
 {
     /**
-     * Merma de cinta blanca de bobina
+     * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('white_wastes', function (Blueprint $table) {
+        Schema::create('white_ribbon_reels', function (Blueprint $table) {
             $table->id();
-            $table->float('peso', 8, 4); //peso de la cinta
-            $table->float('largo', 8, 4); //largo que mide el rollo en metros
+
             $table->string('nomenclatura', 24);
-            $table->string('status', 9);
+            $table->float('peso', 10,4); //peso del hueso
             $table->string('observaciones')->nullable();
-            $table->date('fAlta'); //Fecha en la que llego
-        
+            $table->string('fechaAlta');
+            $table->string('status', 10);
+
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateWhiteWastesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('white_wastes');
+        Schema::dropIfExists('white_ribbon_reels');
     }
 }

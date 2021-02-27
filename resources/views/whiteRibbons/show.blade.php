@@ -95,9 +95,9 @@
     </div>
 
     
-   {{-- <div class="col-lg-12 my-5">
-        <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas y Mermas de Bolsa</h3>
-        <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Bolsa</a>
+    <div class="col-lg-12 my-5">
+        <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Mermas de Cinta blanca y Rollos de celofan</h3>
+        <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Producto</a>
         
         <table class="table table-striped my-4" >
             <thead class="bg-info">
@@ -118,19 +118,18 @@
                 <td class="align-middle">{{$item->fechaInicioTrabajo}}</td>
                 <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
                <!--Realizamos if para validacion de adonde dirgir el show-->
-            @if ($item->ribbon_product_type == 'App\Models\Bag')
-            <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-            @elseif($item->ribbon_product_type == 'App\Models\WasteBag')
+            @if ($item->white_ribbon_product_type == 'App\Models\WhiteRibbonReel')
+            <td><a href="{{route('whiteRibbonReel.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @elseif($item->white_ribbon_product_type == 'App\Models\WasteBag')
             <td><a href="{{route('wasteBag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-            @elseif($item->ribbon_product_type == 'App\Models\RibbonReel')
+            @elseif($item->white_ribbon_product_type == 'App\Models\RibbonReel')
             <td><a href="{{route('ribbonReel.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
             @endif
             </tr>
           @endforeach
         </tbody>
         </table>
-    @include('ribbons.modalTypeSelection')
-    --}}
+    @include('whiteRibbons.modalTypeSelection')
 </div>
 
 @endsection
