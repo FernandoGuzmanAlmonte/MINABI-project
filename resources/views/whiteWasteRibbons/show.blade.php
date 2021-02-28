@@ -2,7 +2,7 @@
 
 @section('title', 'Merma de Bolsas')
 
-@section('imgUrl',  asset('images/bolsa-de-papel.svg'))
+@section('imgUrl',  asset('images/cinta.svg'))
 
 @section('namePage', 'Merma de Bolsas')
 
@@ -53,7 +53,7 @@
     </div>   
 
     <div class="col-lg-12 d-flex mt-5">
-        <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollo <a href="{{route('whiteRibbon.show', $whiteRibbon->id)}}"><small>Ver Rollo</small></a> </h3>
+        <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Rollo <a href="{{route('whiteRibbon.show', $whiteRibbon->id)}}"><small>Ver Rollo</small></a> </h3>
         </div>
         
         <div class="col-lg-12 d-flex mt-3">
@@ -72,7 +72,7 @@
         </div>
 
     <div class="col-lg-12 d-flex mt-5">
-        <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle"> Bobina <a href="{{route('whiteCoil.show', $whiteCoil->id)}}"><small>Ver Bobina</small></a> </h3>
+        <h3><img src="{{ asset('images/base-de-datos.svg') }}" class="iconoTitle"> Bobina <a href="{{route('whiteCoil.show', $whiteCoil->id)}}"><small>Ver Bobina</small></a> </h3>
         </div>
         
         <div class="col-lg-12 d-flex mt-3">

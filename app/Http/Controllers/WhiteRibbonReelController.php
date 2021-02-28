@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\WhiteRibbonReel;
 use App\Models\WhiteRibbon;
 use App\Http\Requests\StoreWhiteRibbonReel;
+use App\Models\WhiteCoilProduct;
 use Illuminate\Http\Request;
 
 class WhiteRibbonReelController extends Controller
@@ -48,7 +49,7 @@ class WhiteRibbonReelController extends Controller
         $whiteRibbon = $whiteRibbonReel->whiteRibbons()->get()->first();
         //obtenemos la bobina relacionada
         $whiteCoil = $whiteRibbon->whiteCoils()->get()->first();
-        return view('whiteRibbonReels.show', compact('whiteRibbonreel', 'ribbon', 'coil'));
+        return view('whiteRibbonReels.show', compact('whiteRibbonReel', 'whiteRibbon', 'whiteCoil'));
     }
 
     public function store(StoreWhiteRibbonReel $request)
@@ -75,8 +76,14 @@ class WhiteRibbonReelController extends Controller
                                      'fAdquisicion'=>$whiteRibbonReel->fechaAlta]);
         
         $whiteRibbon->pesoUtilizado = $request->peso + $whiteRibbon->pesoUtilizado;
-        if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso)
-        $whiteRibbon->status = 'TERMINADA';                           
+        if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso){
+        $whiteRibbon->status = 'TERMINADA';  
+        //actualizando tabla intermedia de bobinas y rollos (whiteCilProduct)          
+        $whiteCoilProduct = WhiteCoilProduct::where('white_coil_product_id','=', $whiteRibbon->id)->first();
+        $whiteCoilProduct->status = 'TERMINADA';
+        $whiteCoilProduct->save();
+        }
+                                 
         $whiteRibbon->save();
         
         return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  

@@ -120,17 +120,6 @@
             @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Cantidad de rollos (Kg)</label>
-            <input type="number" step="0.0001" class="form-control" name="cantidadRollos" value="{{$whiteCoil->cantidadRollos}}">
-            @error('pesoNeto')
-                <br>
-                <div class="alert alert-danger">
-                <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-        </div>
-        <div class="col-lg-4 px-2">
             <label>Peso Utilizado (Kg)</label>
             <input type="number" step="0.0001"class="form-control" name="pesoUtilizado" value="{{$whiteCoil->pesoUtilizado}}" readonly>
         </div>

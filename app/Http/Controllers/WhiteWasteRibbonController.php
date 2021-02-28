@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CoilProduct;
+use App\Models\WhiteCoilProduct;
 use App\Models\WhiteRibbon;
 use App\Models\WhiteWasteRibbon;
 use Illuminate\Http\Request;
@@ -51,11 +53,17 @@ class WhiteWasteRibbonController extends Controller
                                      'fAdquisicion'=>$whiteWasteRibbons->fAlta]);
 
         $whiteRibbon->pesoUtilizado = $request->peso + $whiteRibbon->pesoUtilizado;
-        if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso)
-        $whiteRibbon->status = 'TERMINADA';                           
+        if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso){
+        $whiteRibbon->status = 'TERMINADA';         
+        //actualizando tabla intermedia de bobinas y rollos (whiteCilProduct)          
+        $whiteCoilProduct = WhiteCoilProduct::where('white_coil_product_id','=', $whiteRibbon->id)->first();
+        $whiteCoilProduct->status = 'TERMINADA';
+        $whiteCoilProduct->save();
+
+        }        
         $whiteRibbon->save();
                                     
-        return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  
+        //return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  
         }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{

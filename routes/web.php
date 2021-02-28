@@ -71,6 +71,8 @@ Route::get('wasteBag/create/{ribbon}', [WasteBagController::class, 'createProduc
 
 Route::resource('ribbonProduct', RibbonProductController::class);
 
+Route::resource('whiteRibbonProduct', WhiteRibbonController::class);
+
 Route::resource('employee', EmployeeController::class);
 
 Route::resource('whiteWaste', WhiteWasteController::class);

@@ -2,7 +2,7 @@
 
 @section('title', 'Bobinas de cinta blanca')
 
-@section('imgUrl',  asset('images/bobina.svg'))
+@section('imgUrl',  asset('images/base-de-datos.svg'))
 
 @section('namePage', 'Bobinas de cinta blanca')
 

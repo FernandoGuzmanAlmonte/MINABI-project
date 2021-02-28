@@ -111,17 +111,6 @@
         @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Cantidad de Rollos</label>
-            <input type="number" class="form-control" name="cantidadRollos" value="{{old('cantidadRollos')}}">
-            @error('cantidadRollos')
-                <br>
-                <div class="alert alert-danger">
-                <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-        </div>
-        <div class="col-lg-4 px-2">
             <label>Peso Utilizado (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="0" readonly>
         </div>

@@ -19,7 +19,6 @@ class CreateWhiteCoilsTable extends Migration
             $table->unsignedBigInteger('coil_type_id')->nullable();
 
             $table->float('peso', 12, 4);
-            $table->integer('cantidadRollos');
             $table->string('status', 10);
             $table->string('nomenclatura', 24);
             $table->string('observaciones')->nullable();

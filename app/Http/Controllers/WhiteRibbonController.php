@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWhiteRibbon;
+use App\Models\CoilProduct;
 use App\Models\WhiteRibbon;
 use App\Models\WhiteCoil;
 use Illuminate\Http\Request;
@@ -88,8 +89,8 @@ class WhiteRibbonController extends Controller
         
         //actualiza la bobina
         $whiteCoil->pesoUtilizado = $request->peso + $whiteCoil->pesoUtilizado;
-        if($whiteCoil->pesoUtilizado == $whiteCoil->pesoBruto)
-        $whiteCoil->status = 'TERMINADA';                       
+        if($whiteCoil->pesoUtilizado == $whiteCoil->peso)
+            $whiteCoil->status = 'TERMINADA';                
         $whiteCoil->save();
         
         return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  

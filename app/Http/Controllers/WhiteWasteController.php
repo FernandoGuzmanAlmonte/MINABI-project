@@ -27,8 +27,8 @@ class WhiteWasteController extends Controller
         return view('whiteWastes.create', ['whiteCoilId' => $request->whiteCoil, 'nomenclatura' => $nomenclatura]);
     }
 
-    public function edit(WhiteWaste $whiteWastes){
-         return view('whiteWastes.edit', compact('whiteWastes'));
+    public function edit(WhiteWaste $whiteWaste){
+         return view('whiteWastes.edit', compact('whiteWaste'));
     }
 
     public function update(StoreWhiteWaste $request, WhiteWaste $whiteWaste){

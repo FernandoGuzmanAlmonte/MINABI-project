@@ -26,7 +26,6 @@ class StoreWhiteCoil extends FormRequest
         return [
             'nomenclatura' => 'required',
             'peso' => 'required',
-            'cantidadRollos' => 'required',
             'status' => 'required',
             'observaciones' => 'max:255',
             'pesoUtilizado' => 'required',

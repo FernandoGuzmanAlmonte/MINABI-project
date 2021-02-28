@@ -2,7 +2,7 @@
 
 @section('title', 'Merma de Rollo de cinta blanca')
 
-@section('imgUrl',  asset('images/rollo-de-papel.svg'))
+@section('imgUrl',  asset('images/cinta.svg'))
 
 @section('namePage', 'Merma Rollo de cinta blanca')
 
@@ -24,7 +24,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Arribo</label>
-                <input type="date" class="form-control" name="fArribo" value="{{$whiteWaste->fArribo}}" disabled>
+                <input type="date" class="form-control" name="fAlta" value="{{$whiteWaste->fAlta}}" disabled>
            
             </div>
         </div>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="col-lg-12 d-flex mt-5">
-            <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle"> Bobina <a href="{{route('whiteCoil.show', $whiteCoil->id)}}"><small>Ver Bobina</small></a> </h3>
+            <h3><img src="{{ asset('images/base-de-datos.svg') }}" class="iconoTitle"> Bobina <a href="{{route('whiteCoil.show', $whiteCoil->id)}}"><small>Ver Bobina</small></a> </h3>
             </div>
             
             <div class="col-lg-12 d-flex mt-3">

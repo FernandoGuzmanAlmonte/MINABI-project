@@ -6,6 +6,7 @@ use App\Http\Requests\StoreWhiteCoil;
 use App\Models\WhiteCoil;
 use App\Models\Provider;
 use App\Models\CoilType;
+use App\Models\WhiteRibbonProduct;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -44,7 +45,6 @@ class WhiteCoilController extends Controller
         $whiteCoil->status =  $request->status;
         $whiteCoil->fArribo =  $request->fArribo;
         $whiteCoil->peso =  $request->peso;
-        $whiteCoil->cantidadRollos =  $request->cantidadRollos;
         $whiteCoil->observaciones =  $request->observaciones;
         $whiteCoil->pesoUtilizado = $request->pesoUtilizado;
         $whiteCoil->costo = $request->costo;
@@ -59,12 +59,12 @@ class WhiteCoilController extends Controller
         //Obtenemos todos los rollos relacionados a la bobina
         $whiteRibbons = $whiteRibbons->related()->get();
         //obtenemos todos las objetos relacionadas a los rollos
-      /*  $ribbonProduct =  new Collection();
-        foreach($whiteRibbons as $ribbon ){
-        $ribbonProduct =  $ribbonProduct->concat(RibbonProduct::where('ribbon_id', '=' , $ribbon->coil_product_id)->get());
-        }*/
+        $whiteRibbonProduct =  new Collection();
+        foreach($whiteRibbons as $whiteRibbon ){
+        $whiteRibbonProduct =  $whiteRibbonProduct->concat(WhiteRibbonProduct::where('white_ribbon_id', '=' , $whiteRibbon->white_coil_product_id)->get());
+        }
         
-    return view('whiteCoils.show', compact('whiteCoil', 'whiteRibbons'/*, 'ribbonProduct'*/));
+    return view('whiteCoils.show', compact('whiteCoil', 'whiteRibbons', 'whiteRibbonProduct'));
     }
 
     public function store(StoreWhiteCoil $request){
@@ -79,7 +79,6 @@ class WhiteCoilController extends Controller
         $whiteCoil->status =  $request->status;
         $whiteCoil->fArribo =  $request->fArribo;
         $whiteCoil->peso =  $request->peso;
-        $whiteCoil->cantidadRollos =  $request->cantidadRollos;
         $whiteCoil->observaciones =  $request->observaciones;
         $whiteCoil->pesoUtilizado = $request->pesoUtilizado;
         $whiteCoil->costo = $request->costo;

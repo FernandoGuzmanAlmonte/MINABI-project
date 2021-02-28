@@ -48,10 +48,6 @@
             <input type="text" class="form-control" name="peso" value="{{$whiteCoil->peso}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Cantidad de Rollos</label>
-            <input type="number" class="form-control" name="cantidadRollos" value="{{$whiteCoil->cantidadRollos}}" disabled>
-        </div>
-        <div class="col-lg-4 px-2">
             <label>Peso Utilizado (Kg)</label>
             <input type="text" class="form-control" name="pesoUtilizado" value="{{$whiteCoil->pesoUtilizado}}" disabled>
         </div>
@@ -67,7 +63,7 @@
         <a class="btn btn-warning mx-3 mb-5" href="{{route('whiteCoil.edit', $whiteCoil->id)}}">Editar</a>
     </div>
     <div class="col-lg-12 my-3">
-    <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollos de Cinta </h3>
+    <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Rollos de Cinta </h3>
     <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Cinta</a>
     <!--Tabla para rollos de cinta relacionados-->
     <table class="table table-striped my-4" >
@@ -103,7 +99,7 @@
       @endforeach
     </tbody>
     </table>
-{{--
+
 <!--Tabla para bolsas relacionadas-->
 <h3 class="mt-5"> <img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas </h3>
 <table class="table table-striped my-4" >
@@ -117,7 +113,7 @@
   </tr>
 </thead>
 <tbody>
-    @foreach ($ribbonProduct as $item)
+    @foreach ($whiteRibbonProduct as $item)
 
     <tr>
         <th scope="row" class="align-middle">{{$item->id}}</th>
@@ -125,17 +121,17 @@
         <td class="align-middle">{{$item->fAdquisiscion}}</td>
         <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
        <!--Realizamos if para validacion de adonde dirgir el show-->
-    @if ($item->ribbon_product_type == 'App\Models\Bag')
+    @if ($item->white_ribbon_product_type == 'App\Models\Bag')
     <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-    @elseif($item->ribbon_product_type == 'App\Models\WasteBag')
-    <td><a href="{{route('wasteBag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-    @elseif($item->ribbon_product_type == 'App\Models\RibbonReel')
-    <td><a href="{{route('ribbonReel.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+    @elseif($item->white_ribbon_product_type == 'App\Models\WhiteWasteRibbon')
+    <td><a href="{{route('whiteWasteRibbon.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+    @elseif($item->white_ribbon_product_type == 'App\Models\WhiteRibbonReel')
+    <td><a href="{{route('whiteRibbonReel.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
     @endif
     </tr>
   @endforeach
 </tbody>
-</table>    --}}
+</table>    
 </div>
 </div>
 @include('whiteCoils.modalTypeSelection')

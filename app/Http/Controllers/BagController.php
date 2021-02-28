@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBag;
 use App\Models\Bag;
+use App\Models\CoilProduct;
 use App\Models\Ribbon;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -65,11 +66,16 @@ class BagController extends Controller
 
          //actualiza la bobina
          $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
-         if($ribbon->pesoUtilizado == $ribbon->peso)
-         $ribbon->status = 'TERMINADA';                       
+         if($ribbon->pesoUtilizado == $ribbon->peso){
+            $ribbon->status = 'TERMINADA';   
+            $coilProduct = CoilProduct::where('coil_product_id','=', $ribbon->id)->first();
+            $coilProduct->status = 'TERMINADA';
+            $coilProduct->save();  
+         }
+                           
          $ribbon->save();
          
-         return redirect()->route('ribbon.show', compact('ribbon'));  
+         return redirect()->route('bag.show', compact('bag'));  
          }
          //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
          else{

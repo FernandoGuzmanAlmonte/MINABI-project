@@ -21,7 +21,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Alta</label>
-                <input type="date" class="form-control" name="fechaAlta">
+                <input type="date" class="form-control" name="fAlta">
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">

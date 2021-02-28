@@ -2,7 +2,7 @@
 
 @section('title', 'Rollo')
 
-@section('imgUrl',  asset('images/rollo-de-papel.svg'))
+@section('imgUrl',  asset('images/cinta.svg'))
 
 @section('namePage', 'Rollo')
 
@@ -14,7 +14,7 @@
         <div class="col-lg-12 d-flex mt-2"> 
             <div class="col-lg-4 px-2">
                 <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="nomenclatura" value="{{$whiteRibbon->nomenclatura}}">
+                <input type="text" class="form-control" name="nomenclatura" value="{{$whiteRibbon->nomenclatura}}" readonly>
                 @error('nomenclatura')
                 <br>
                 <div class="alert alert-danger">
@@ -62,7 +62,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Peso Utilizado (KG)</label>
-                <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{$whiteRibbon->pesoUtilizado}}">
+                <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{$whiteRibbon->pesoUtilizado}}" readonly>
                 @error('pesoUtilizado')
                 <br>
                 <div class="alert alert-danger">

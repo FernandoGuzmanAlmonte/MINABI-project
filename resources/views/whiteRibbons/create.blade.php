@@ -2,7 +2,7 @@
 
 @section('title', 'Rollo')
 
-@section('imgUrl',  asset('images/rollo-de-papel.svg'))
+@section('imgUrl',  asset('images/cinta.svg'))
 
 @section('namePage', 'Rollo')
 

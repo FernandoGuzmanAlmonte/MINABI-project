@@ -2,12 +2,12 @@
 
 @section('title', 'Rollo')
 
-@section('imgUrl',  asset('images/rollo-de-papel.svg'))
+@section('imgUrl',  asset('images/cinta.svg'))
 
 @section('namePage', 'Rollo')
 
 @section('retornar')
-<a href="{{route('coilProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
+<a href="{{route('whiteCoilProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
     
 @section('form')
@@ -76,7 +76,7 @@
     </div>
 
     <div class="col-lg-12 d-flex mt-5">
-    <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina de cinta blanca <a href="{{route('whiteCoil.show', $whiteCoil->id)}}"><small>Ver Bobina</small></a> </h3>
+    <h3><img src="{{ asset('images/base-de-datos.svg') }}" class="iconoTitle">Bobina de cinta blanca <a href="{{route('whiteCoil.show', $whiteCoil->id)}}"><small>Ver Bobina</small></a> </h3>
     </div>
     
     <div class="col-lg-12 d-flex mt-3">
@@ -96,7 +96,7 @@
 
     
     <div class="col-lg-12 my-5">
-        <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Mermas de Cinta blanca y Rollos de celofan</h3>
+        <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Mermas de Cinta blanca y Rollos de celofan</h3>
         <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Producto</a>
         
         <table class="table table-striped my-4" >
@@ -120,8 +120,8 @@
                <!--Realizamos if para validacion de adonde dirgir el show-->
             @if ($item->white_ribbon_product_type == 'App\Models\WhiteRibbonReel')
             <td><a href="{{route('whiteRibbonReel.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-            @elseif($item->white_ribbon_product_type == 'App\Models\WasteBag')
-            <td><a href="{{route('wasteBag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @elseif($item->white_ribbon_product_type == 'App\Models\WhiteWasteRibbon')
+            <td><a href="{{route('whiteWasteRibbon.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
             @elseif($item->white_ribbon_product_type == 'App\Models\RibbonReel')
             <td><a href="{{route('ribbonReel.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
             @endif

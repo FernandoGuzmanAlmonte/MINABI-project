@@ -7,7 +7,7 @@
 @section('namePage', 'Hueso')
 
 @section('retornar')
-<a href="{{route('ribbonProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
+<a href="{{route('whiteRibbonProduct.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
     
 @section('form')
@@ -15,21 +15,21 @@
     <div class="col-lg-12 d-flex mt-2"> 
         <div class="col-lg-4 px-2">
             <label>Nomenclatura</label>
-            <input type="text" class="form-control" name="nomenclatura" value="{{$ribbonReel->nomenclatura}}" disabled>
+            <input type="text" class="form-control" name="nomenclatura" value="{{$whiteRibbonReel->nomenclatura}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso</label>
-            <input type="text" class="form-control" name="peso" value="{{$ribbonReel->peso}}" disabled>
+            <input type="text" class="form-control" name="peso" value="{{$whiteRibbonReel->peso}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha Alta</label>
-            <input type="date" class="form-control" name="status" value="{{$ribbonReel->fechaAlta}}" disabled>
+            <input type="date" class="form-control" name="status" value="{{$whiteRibbonReel->fechaAlta}}" disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-2">
         <div class="col-lg-4 px-2">
             <label>Status</label>
-            <input type="text" class="form-control" name="status" value="{{$ribbonReel->status}}" disabled>
+            <input type="text" class="form-control" name="status" value="{{$whiteRibbonReel->status}}" disabled>
             @error('status')s
             <br>
             <div class="alert alert-danger">
@@ -42,51 +42,51 @@
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
-            <textarea rows="3" class="form-control" name="observaciones" disabled>{{$ribbonReel->observaciones}}</textarea>
+            <textarea rows="3" class="form-control" name="observaciones" disabled>{{$whiteRibbonReel->observaciones}}</textarea>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-5">
-        <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
+        <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle">Rollo <a href="{{route('whiteRibbon.show', $whiteRibbon->id)}}"><small>Ver Rollo</small></a> </h3>
         </div>
         
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="coilNomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
+                <input type="text" class="form-control" name="coilNomenclatura" value="{{$whiteRibbon->nomenclatura}}" disabled>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Adquisición</label>
-                <input type="datetime" class="form-control" name="coilfArribo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
+                <input type="datetime" class="form-control" name="coilfArribo" value="{{$whiteRibbon->fechaInicioTrabajo}}" disabled>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>
-                <input type="text" class="form-control" name="coilStatus" value="{{$ribbon->status}}" disabled>
+                <input type="text" class="form-control" name="coilStatus" value="{{$whiteRibbon->status}}" disabled>
             </div>
         </div>
 
     <div class="col-lg-12 d-flex mt-5">
-        <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
+        <h3><img src="{{ asset('images/base-de-datos.svg') }}" class="iconoTitle">Bobina <a href="{{route('whiteCoil.show', $whiteCoil->id)}}"><small>Ver Bobina</small></a> </h3>
         </div>
         
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="coilNomenclatura" value="{{$coil->nomenclatura}}" disabled>
+                <input type="text" class="form-control" name="coilNomenclatura" value="{{$whiteCoil->nomenclatura}}" disabled>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Adquisición</label>
-                <input type="datetime" class="form-control" name="coilfArribo" value="{{$coil->fArribo}}" disabled>
+                <input type="datetime" class="form-control" name="coilfArribo" value="{{$whiteCoil->fArribo}}" disabled>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>
-                <input type="text" class="form-control" name="coilStatus" value="{{$coil->status}}" disabled>
+                <input type="text" class="form-control" name="coilStatus" value="{{$whiteCoil->status}}" disabled>
             </div>
         </div>
 
     
 
     <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('ribbonReel.edit', $ribbonReel->id)}}">Editar</a>
+        <a class="btn btn-warning mx-3" href="{{route('whiteRibbonReel.edit', $whiteRibbonReel->id)}}">Editar</a>
     </div>
 </div>
 
