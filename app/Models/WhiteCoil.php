@@ -21,4 +21,14 @@ class WhiteCoil extends Model
     {
         return $this->hasMany(WhiteCoilProduct::class);
     }
+
+    public function provider()
+    {
+        return $this->belongsTo('App\Models\Provider'); 
+    }
+    
+    public function coilType()
+    {
+        return $this->belongsTo('App\Models\CoilType'); 
+    }
 }

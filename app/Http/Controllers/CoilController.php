@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCoil;
 use App\Models\Coil;
 use App\Models\Provider;
+use App\Models\CoilType;
 use App\Models\RibbonProduct;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -20,8 +21,9 @@ class CoilController extends Controller
 
     public function create(){
         $providers = Provider::all();
+        $coilTypes = CoilType::all();
         
-        return view('coils.create', compact('providers'));
+        return view('coils.create', compact('providers', 'coilTypes'));
     }
 
     public function createFromProvider(Provider $provider){
@@ -30,11 +32,15 @@ class CoilController extends Controller
     
     public function edit(Coil $coil){
         $providers = Provider::all();
+        $coilTypes = CoilType::all();
 
-        return view('coils.edit', compact('coil', 'providers'));
+        return view('coils.edit', compact('coil', 'providers', 'coilTypes'));
     }
 
     public function update(StoreCoil $request, Coil $coil){
+        $coil->provider_id = $request->provider_id;
+        $coil->coil_type_id = $request->coil_type_id;
+
         $coil->nomenclatura =  $request->nomenclatura;
         $coil->status =  $request->status;
         $coil->fArribo =  $request->fArribo;
@@ -46,7 +52,6 @@ class CoilController extends Controller
         $coil->diametroExterno =  $request->diametroExterno;
         $coil->largoM =  $request->largoM;
         $coil->costo =  $request->costo;
-        $coil->provider_id = $request->provider_id;
         $coil->pesoUtilizado = $request->pesoUtilizado;
 
         $coil->save();
@@ -61,7 +66,7 @@ class CoilController extends Controller
         //obtenemos todos las objetos relacionadas a los rollos
         $ribbonProduct =  new Collection();
         foreach($ribbons as $ribbon ){
-        $ribbonProduct =  $ribbonProduct->concat(RibbonProduct::where('ribbon_id', '=' , $ribbon->coil_product_id)->get());
+            $ribbonProduct =  $ribbonProduct->concat(RibbonProduct::where('ribbon_id', '=' , $ribbon->coil_product_id)->get());
         }
         
         return view('coils.show', compact('coil', 'ribbons', 'ribbonProduct'));

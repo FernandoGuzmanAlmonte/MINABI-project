@@ -17,6 +17,7 @@ use App\Http\Controllers\WhiteRibbonController;
 use App\Http\Controllers\WhiteRibbonReelController;
 use App\Http\Controllers\WhiteWasteController;
 use App\Http\Controllers\WhiteWasteRibbonController;
+use App\Http\Controllers\CoilTypeController;
 use App\Models\WhiteCoil;
 use App\Models\WhiteRibbon;
 use App\Models\WhiteRibbonReel;
@@ -84,5 +85,6 @@ Route::get('whiteRibbonReel/create/{whiteRibbon}', [WhiteRibbonReelController::c
 Route::resource('whiteWasteRibbon', WhiteWasteRibbonController::class);
 Route::get('whiteWasteRibbon/create/{whiteRibbon}', [WhiteWasteRibbonController::class, 'createProduct'])->name('whiteWasteRibbon.createProduct');
 
+Route::resource('coilType', CoilTypeController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

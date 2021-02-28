@@ -36,14 +36,45 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="idTipoBobina" value="{{$whiteCoil->coil_type_id}}">
+            <select class="form-control" name="coil_type_id">
+                @if($whiteCoil->coilType != null)
+                    <option selected value="">--seleccione tipo de bobina--</option>
+                    @foreach($coilTypes as $coilType)
+                        <option {{ ($coilType->id == $whiteCoil->coilType->id) ? 'selected' : '' }} value={{ $coilType->id }}>
+                            {{ $coilType->alias }}
+                        </option>
+                    @endforeach
+                @else
+                    <option selected value="">--seleccione tipo de bobina--</option> 
+                    @foreach($coilTypes as $coilType)    
+                        <option value={{ $coilType->id }}>
+                            {{ $coilType->alias }}
+                        </option>
+                    @endforeach
+                @endif
+            </select>
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
-            <input type="text" class="form-control" name="provider_id" value="{{$whiteCoil->provider_id}}">
+            <select class="form-control" name="provider_id">
+                @if($whiteCoil->provider != null)
+                    @foreach($providers as $provider)
+                        <option {{ ($provider->id == $whiteCoil->provider->id) ? 'selected' : '' }} value={{ $provider->id }}>
+                            {{ $provider->nombreEmpresa }}
+                        </option>
+                    @endforeach
+                @else
+                    <option selected value="">--seleccione tipo de bobina--</option>
+                    @foreach($providers as $provider)
+                        <option value={{ $provider->id }}>
+                            {{ $provider->nombreEmpresa }}
+                        </option>
+                    @endforeach
+                @endif
+            </select>
             @error('provider_id')
                 <br>
                 <div class="alert alert-danger">

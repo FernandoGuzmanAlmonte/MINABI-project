@@ -18,7 +18,6 @@ class CreateWhiteCoilsTable extends Migration
             $table->unsignedBigInteger('provider_id')->nullable();
             $table->unsignedBigInteger('coil_type_id')->nullable();
 
-
             $table->float('peso', 12, 4);
             $table->integer('cantidadRollos');
             $table->string('status', 10);
@@ -29,13 +28,13 @@ class CreateWhiteCoilsTable extends Migration
             $table->date('fArribo');
             $table->timestamps();
 
-            /*$table->foreign('provider_id')
+            $table->foreign('provider_id')
                 ->references('id')
                 ->on('providers');
-
+            
             $table->foreign('coil_type_id')
                 ->references('id')
-                ->on('coil_types'); */                
+                ->on('coil_types');               
         });
     }
 

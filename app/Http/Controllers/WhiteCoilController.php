@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWhiteCoil;
 use App\Models\WhiteCoil;
+use App\Models\Provider;
+use App\Models\CoilType;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -17,9 +19,10 @@ class WhiteCoilController extends Controller
     }
 
     public function create(){
-       // $providers = Provider::all();
+       $providers = Provider::all();
+       $coilTypes = CoilType::all();
         
-    return view('whiteCoils.create'/*, compact('providers')*/);
+        return view('whiteCoils.create', compact('providers', 'coilTypes'));
     }
 
    /* public function createFromProvider(Provider $provider){
@@ -27,10 +30,16 @@ class WhiteCoilController extends Controller
     }*/
     
     public function edit(WhiteCoil $whiteCoil){
-        return view('whiteCoils.edit', compact('whiteCoil'));
+        $providers = Provider::all();
+        $coilTypes = CoilType::all();
+
+        return view('whiteCoils.edit', compact('whiteCoil', 'providers', 'coilTypes'));
     }
 
     public function update(StoreWhiteCoil $request, WhiteCoil $whiteCoil){
+        $whiteCoil->provider_id = $request->provider_id;
+        $whiteCoil->coil_type_id = $request->coil_type_id;
+
         $whiteCoil->nomenclatura =  $request->nomenclatura;
         $whiteCoil->status =  $request->status;
         $whiteCoil->fArribo =  $request->fArribo;
@@ -60,6 +69,11 @@ class WhiteCoilController extends Controller
 
     public function store(StoreWhiteCoil $request){
         $whiteCoil =  new WhiteCoil();
+
+        if($request->provider_id != null) 
+            $whiteCoil->provider_id = $request->provider_id;
+        if($request->coil_type_id != null) 
+            $whiteCoil->coil_type_id = $request->coil_type_id;
 
         $whiteCoil->nomenclatura =  $request->nomenclatura;
         $whiteCoil->status =  $request->status;

@@ -43,25 +43,28 @@
         </script>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="coil_type_id" value="1" readonly >
+            <select class="form-control" name="coil_type_id">
+                <option selected value="">--seleccione tipo de bobina--</option>
+                @foreach($coilTypes as $coilType)
+                    <option value={{ $coilType->id }}>
+                        {{ $coilType->alias }}
+                    </option>
+                @endforeach
+            </select>
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Proveedor</label>{{--
-            @if( Route::is('coil.createFromProvider') )
-                <input type="text" class="form-control" value={{ $provider->nombreEmpresa }} readonly>    
-            @else
-                <select class="form-control" name="provider_id">
-                    <option selected>--seleccione proveedor--</option>
-                    @foreach($providers as $provider)
-                        <option value={{ $provider->id }}>
-                            {{ $provider->nombreEmpresa }}
-                        </option>
-                    @endforeach
-                </select>
-            @endif
+            <label>Proveedor</label>
+            <select class="form-control" name="provider_id">
+                <option selected value="">--seleccione proveedor--</option>
+                @foreach($providers as $provider)
+                    <option value={{ $provider->id }}>
+                        {{ $provider->nombreEmpresa }}
+                    </option>
+                @endforeach
+            </select>
             
             @error('provider_id')
                 <br>
@@ -69,7 +72,7 @@
                 <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror--}}
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Status</label>

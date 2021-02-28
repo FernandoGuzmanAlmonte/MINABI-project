@@ -23,7 +23,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="idTipoBobina" value="{{$coil->coil_type_id}}" disabled>
+            <input type="text" class="form-control" name="idTipoBobina" value="{{$coil->coilType->alias}}" disabled>
         </div>
     </div>
 

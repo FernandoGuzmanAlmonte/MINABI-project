@@ -36,7 +36,13 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="idTipoBobina" value="{{$coil->coil_type_id}}">
+            <select class="form-control" name="coil_type_id">
+                @foreach($coilTypes as $coilType)
+                    <option {{ ($coilType->id == $coil->coilType->id) ? 'selected' : '' }} value={{ $coilType->id }}>
+                        {{ $coilType->alias }}
+                    </option>
+                @endforeach
+            </select>
         </div>
     </div>
 

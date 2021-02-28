@@ -23,8 +23,9 @@ class CreateBagMeasuresTable extends Migration
             //Usuario modifico
 
             $table->foreign('coil_type_id')
-            ->references('id')
-            ->on('coil_types');   
+                ->references('id')->on('coil_types')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');;   
 
             $table->timestamps();
         });

@@ -23,14 +23,14 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="coil_type_id" value="{{$whiteCoil->coil_type_id}}" disabled>
+            <input type="text" class="form-control" name="coil_type_id" value="{{(($coilType = $whiteCoil->coilType) != null) ? $coilType->alias : ''}}" disabled>
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
-            <input type="text" class="form-control" name="provider_id" value="{{$whiteCoil->provider_id/*provider->nombreEmpresa*/}}" disabled>
+            <input type="text" class="form-control" name="provider_id" value="{{(($provider = $whiteCoil->provider) != null) ? $provider->nombreEmpresa : ''}}" disabled>
         </div>
         <div class="col-lg-4 px-2 disponible">
             <label>Status</label>
@@ -56,7 +56,6 @@
             <input type="text" class="form-control" name="pesoUtilizado" value="{{$whiteCoil->pesoUtilizado}}" disabled>
         </div>
     </div>
-
 
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">

@@ -37,7 +37,6 @@
     </div>
     
     <div class="col-lg-12 d-flex mt-5">
-    {{-- Modal de contactos --}}
         <div class="col-lg-6 px-2 float-left">
             <h3><img src="{{ asset('images/contactos.svg') }}" class="iconoTitle"> Contactos </h3>
         </div>

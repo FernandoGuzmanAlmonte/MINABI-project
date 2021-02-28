@@ -9,7 +9,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <li class="nav-item dropdown {{ request()->routeIs('provider.*') || request()->routeIs('employee.*') ? 'active' : ''}}">
+                <li class="nav-item dropdown {{ request()->routeIs('employee.*', 'coilType.*', 'provider.*') ? 'active' : ''}}">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Catálogos
                     </a>
@@ -20,9 +20,12 @@
                         <a class="dropdown-item {{ request()->routeIs('employee.*') ? 'active' : ''}}" href="{{ route('employee.index') }}">
                             Empleados
                         </a>
+                        <a class="dropdown-item {{ request()->routeIs('coilType.*') ? 'active' : ''}}" href="{{ route('coilType.index') }}">
+                            Tipos de Bobina
+                        </a>
                     </div>
                 </li>
-                <li class="nav-item dropdown {{ request()->routeIs('whiteCoil.*') || request()->routeIs('whiteRibbon.*') ? 'active' : ''}}">
+                <li class="nav-item dropdown {{ request()->routeIs('whiteCoil.*', 'whiteRibbon.*', 'whiteCoilProduct.*') ? 'active' : ''}}">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Cinta Blanca
                     </a>

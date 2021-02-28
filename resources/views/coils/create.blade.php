@@ -43,7 +43,14 @@
         </script>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <input type="text" class="form-control" name="coil_type_id" value="1" readonly >
+            <select class="form-control" name="coil_type_id">
+                <option selected>--seleccione tipo de bobina--</option>
+                @foreach($coilTypes as $coilType)
+                    <option value={{ $coilType->id }}>
+                        {{ $coilType->alias }}
+                    </option>
+                @endforeach
+            </select>
         </div>
     </div>
 

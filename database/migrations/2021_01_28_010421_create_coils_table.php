@@ -31,11 +31,9 @@ class CreateCoilsTable extends Migration
             $table->float('pesoUtilizado',12 ,4)->nullable();
             $table->float('costo',12 ,4);
 
-           /* $table->foreign('coil_type_id')
+            $table->foreign('coil_type_id')
                 ->references('id')
-                ->on('coil_types')
-                ->onDelete('set null')
-                ->onUpdate('cascade');*/
+                ->on('coil_types');
                 
             $table->foreign('provider_id')
                 ->references('id')

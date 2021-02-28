@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Provider extends Model
+class CoilType extends Model
 {
     use HasFactory;
-
-    public function contacts()
-    {
-        return $this->hasMany('App\Models\Contact');
-    }
 
     public function coils()
     {
@@ -22,5 +17,10 @@ class Provider extends Model
     public function whiteCoils()
     {
         return $this->hasMany('App\Models\WhiteCoil');
+    }
+
+    public function bagMeasures()
+    {
+        return $this->hasMany('App\Models\BagMeasure');
     }
 }

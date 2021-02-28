@@ -31,4 +31,9 @@ class Coil extends Model
     {
         return $this->belongsTo('App\Models\Provider'); 
     }
+
+    public function coilType()
+    {
+        return $this->belongsTo('App\Models\CoilType'); 
+    }
 }
