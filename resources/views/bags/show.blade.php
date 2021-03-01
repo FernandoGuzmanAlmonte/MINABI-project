@@ -77,6 +77,10 @@
             <label>Cliente Stock</label>
             <input type="text" class="form-control" name="clienteStock" value={{ $bag->clienteStock }} disabled>
         </div>
+        <div class="col-lg-4 px-2">
+            <label>Medida de Bolsa (largo x ancho)</label>
+            <input type="text" class="form-control" name="bag_measure_id" value="{{ $bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho}}" disabled>
+        </div>
     </div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-12 px-2">

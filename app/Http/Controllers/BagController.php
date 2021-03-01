@@ -63,47 +63,47 @@ class BagController extends Controller
         $ribbon = Ribbon::find($request->ribbonId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
         if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
-        $bag = new Bag();
-        
-        $bag->bag_measure_id     = $request->bag_measure_id;
-        $bag->fechaInicioTrabajo = $request->fechaInicioTrabajo;
-        $bag->fechaFinTrabajo    = $request->fechaFinTrabajo;
-        $bag->horaInicioTrabajo  = $request->horaInicioTrabajo;
-        $bag->horaFinTrabajo     = $request->horaFinTrabajo;
-        $bag->nomenclatura       = $request->nomenclatura;  
-        $bag->clienteStock       = $request->clienteStock;
-        $bag->peso               = $request->peso;
-        $bag->tipoUnidad         = $request->tipoUnidad;
-        $bag->pestania           = $request->pestania;
-        $bag->cantidad           = $request->cantidad;
-        $bag->medida             = $request->medida;
-        $bag->status             = $request->status;
-        $bag->temperatura        = $request->temperatura;
-        $bag->velocidad          = $request->velocidad;
-        $bag->observaciones      = $request->observaciones;
-        
-        $bag->save();
+            $bag = new Bag();
+            
+            $bag->bag_measure_id     = $request->bag_measure_id;
+            $bag->fechaInicioTrabajo = $request->fechaInicioTrabajo;
+            $bag->fechaFinTrabajo    = $request->fechaFinTrabajo;
+            $bag->horaInicioTrabajo  = $request->horaInicioTrabajo;
+            $bag->horaFinTrabajo     = $request->horaFinTrabajo;
+            $bag->nomenclatura       = $request->nomenclatura;  
+            $bag->clienteStock       = $request->clienteStock;
+            $bag->peso               = $request->peso;
+            $bag->tipoUnidad         = $request->tipoUnidad;
+            $bag->pestania           = $request->pestania;
+            $bag->cantidad           = $request->cantidad;
+            $bag->medida             = $request->medida;
+            $bag->status             = $request->status;
+            $bag->temperatura        = $request->temperatura;
+            $bag->velocidad          = $request->velocidad;
+            $bag->observaciones      = $request->observaciones;
+            
+            $bag->save();
 
-        //request->input('empleados') tiene los id's de los empleados
-        $bag->employees()->attach($request->input('empleados'));    
+            //request->input('empleados') tiene los id's de los empleados
+            $bag->employees()->attach($request->input('empleados'));    
 
-        $addProduct = Bag::find($bag->id);
-        $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$bag->nomenclatura,
-                                     'status'=>$bag->status, 
-                                     'fAdquisicion'=>$bag->fechaInicioTrabajo]);
+            $addProduct = Bag::find($bag->id);
+            $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$bag->nomenclatura,
+                                        'status'=>$bag->status, 
+                                        'fAdquisicion'=>$bag->fechaInicioTrabajo]);
 
-         //actualiza la bobina
-         $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
-         if($ribbon->pesoUtilizado == $ribbon->peso){
-            $ribbon->status = 'TERMINADA';   
-            $coilProduct = CoilProduct::where('coil_product_id','=', $ribbon->id)->first();
-            $coilProduct->status = 'TERMINADA';
-            $coilProduct->save();  
-         }
-                           
-         $ribbon->save();
-         
-         return redirect()->route('bag.show', compact('bag'));  
+            //actualiza la bobina
+            $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
+            if($ribbon->pesoUtilizado == $ribbon->peso){
+                $ribbon->status = 'TERMINADA';   
+                $coilProduct = CoilProduct::where('coil_product_id','=', $ribbon->id)->first();
+                $coilProduct->status = 'TERMINADA';
+                $coilProduct->save();  
+            }
+                            
+            $ribbon->save();
+            
+            return redirect()->route('bag.show', compact('bag'));  
          }
          //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
          else{
@@ -122,13 +122,40 @@ class BagController extends Controller
 
     public function edit(Bag $bag)
     {
-        $employees = Employee::all(); 
+        $employees = Employee::all();
+        
+        //
+        //obtenemos rollo relacionado
+        $ribbon = $bag->ribbons()->get()->first();
 
-        return view('bags.edit', compact('bag', 'employees'));
+        $bagMeasures = array();
+
+        foreach($ribbon->coils as $coil)
+        {
+            if(empty($bagMeasures))
+            {
+                $bagMeasures = $coil->coilType->bagMeasures;
+            }
+            else
+            {
+                $bagMeasures = array_merge($bagMeasures, $coil->coilType->bagMeasures);
+            }
+        }
+
+        $combinedBagMeasures = array();
+        
+        foreach($bagMeasures as $bagMeasure)
+        {
+            $combinedBagMeasures[$bagMeasure->id] = $bagMeasure->largo . ' x ' . $bagMeasure->ancho;
+        }
+        ///
+
+        return view('bags.edit', compact('bag', 'employees', 'combinedBagMeasures'));
     }
 
     public function update(StoreBag $request, Bag $bag)
     {
+        $bag->bag_measure_id     = $request->bag_measure_id;
         $bag->fechaInicioTrabajo = $request->fechaInicioTrabajo;
         $bag->fechaFinTrabajo    = $request->fechaFinTrabajo;
         $bag->horaInicioTrabajo  = $request->horaInicioTrabajo;

@@ -167,6 +167,16 @@
                 <br>
             @enderror
             </div>
+            <div class="col-lg-4 px-2">
+                <label>Medida de Bolsa (largo x ancho)</label>
+                <select class="form-control" name="bag_measure_id">
+                    @foreach($combinedBagMeasures as $key => $bagMeasure)                    
+                        <option {{ ($key == $bag->bag_measure_id) ? 'selected' : ''}} value="{{ $key }}">
+                            {{ $bagMeasure }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <div class="col-lg-12 d-flex mt-5 mb-2">
