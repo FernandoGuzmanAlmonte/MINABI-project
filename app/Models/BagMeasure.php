@@ -13,4 +13,9 @@ class BagMeasure extends Model
     {
         return $this->belongsTo('App\Models\CoilType'); 
     }
+
+    public function bags()
+    {
+        return $this->hasMany('App\Models\Bag'); 
+    }
 }

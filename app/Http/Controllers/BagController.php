@@ -25,10 +25,37 @@ class BagController extends Controller
 
     public function createProduct(Request $request){   
         $ribbon = Ribbon::find($request->ribbon);
+
+        ///
+        $bagMeasures = array();
+
+        foreach($ribbon->coils as $coil)
+        {
+            if(empty($bagMeasures))
+            {
+                $bagMeasures = $coil->coilType->bagMeasures;
+            }
+            else
+            {
+                $bagMeasures = array_merge($bagMeasures, $coil->coilType->bagMeasures);
+            }
+        }
+
+        $combinedBagMeasures = array();
+        
+        foreach($bagMeasures as $bagMeasure)
+        {
+            $combinedBagMeasures[$bagMeasure->id] = $bagMeasure->largo . ' x ' . $bagMeasure->ancho;
+        }
+        ///
+
         $employees = Employee::all();
 
         $nomenclatura = $ribbon->nomenclatura . '-' . ($ribbon->bags()->count()+1);
-        return view('bags.create', ['ribbonId' => $request->ribbon, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
+        return view('bags.create', ['ribbonId' => $request->ribbon, 
+                                    'nomenclatura' => $nomenclatura, 
+                                    'employees' => $employees, 
+                                    'combinedBagMeasures' => $combinedBagMeasures]);
     }
 
     public function store(StoreBag $request)
@@ -37,7 +64,8 @@ class BagController extends Controller
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
         if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
         $bag = new Bag();
-
+        
+        $bag->bag_measure_id     = $request->bag_measure_id;
         $bag->fechaInicioTrabajo = $request->fechaInicioTrabajo;
         $bag->fechaFinTrabajo    = $request->fechaFinTrabajo;
         $bag->horaInicioTrabajo  = $request->horaInicioTrabajo;

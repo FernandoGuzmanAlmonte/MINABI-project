@@ -30,7 +30,7 @@
         <div class="col-lg-4 px-2">
             <label>Estado</label>
             <input type="text" class="form-control" name="estado" value="{{ $provider->estado }}" disabled>
-        </div>"
+        </div>
     </div>
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>

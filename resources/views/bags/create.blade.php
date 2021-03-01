@@ -178,6 +178,17 @@
                 <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{old('velocidad')}}">
             </div>
         </div>
+        <div class="col-lg-12 d-flex mt-3">
+            <div class="col-lg-4 px-2">
+                <label>Medida de Bolsa (largo x ancho)</label>
+                <select class="form-control" name="bag_measure_id">
+                    <option selected value="">--seleccione medida--</option>
+                    @foreach($combinedBagMeasures as $key => $bagMeasure)                    
+                        <option value="{{ $key }}">{{ $bagMeasure }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <!--Id de bobina relacionado-->
         <input type="hidden" class="form-control" name="ribbonId" value="{{$ribbonId}}">
         

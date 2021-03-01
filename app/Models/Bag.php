@@ -20,4 +20,9 @@ class Bag extends Model
         //Relación muchos a muchos Employee_Bag
         return $this->belongsToMany('App\Models\Employee'); 
     }
+
+    public function bagMeasure()
+    {
+        return $this->belongsTo('App\Models\BagMeasure');
+    }
 }
