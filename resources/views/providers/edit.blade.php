@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-lg-12 d-flex mt-2">
             <div class="col-lg-4 px-2">
-                <label>Nombre empresa</label>
+                <label>Nombre Empresa</label>
                 <input type="text" class="form-control" name="nombreEmpresa" value="{{ $provider->nombreEmpresa }}">
             </div>
             <div class="col-lg-4 px-2">

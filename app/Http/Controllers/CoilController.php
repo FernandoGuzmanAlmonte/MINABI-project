@@ -21,7 +21,7 @@ class CoilController extends Controller
 
     public function create(){
         $providers = Provider::all();
-        $coilTypes = CoilType::all();
+        $coilTypes = CoilType::select('id','alias')->where('tipo','=','CELOFAN')->get();
         
         return view('coils.create', compact('providers', 'coilTypes'));
     }

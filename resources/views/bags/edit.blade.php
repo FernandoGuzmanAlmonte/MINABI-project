@@ -69,15 +69,14 @@
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Medida</label>
-                <input type="text" class="form-control" name="medida" value={{ $bag->medida }}>
-                @error('medida')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
+                <label>Medida (largo x ancho)</label>
+                <select class="form-control" name="bag_measure_id">
+                    @foreach($combinedBagMeasures as $key => $bagMeasure)                    
+                        <option {{ ($key == $bag->bag_measure_id) ? 'selected' : ''}} value="{{ $key }}">
+                            {{ $bagMeasure }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Termino</label>
@@ -166,16 +165,6 @@
                 </div>
                 <br>
             @enderror
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Medida de Bolsa (largo x ancho)</label>
-                <select class="form-control" name="bag_measure_id">
-                    @foreach($combinedBagMeasures as $key => $bagMeasure)                    
-                        <option {{ ($key == $bag->bag_measure_id) ? 'selected' : ''}} value="{{ $key }}">
-                            {{ $bagMeasure }}
-                        </option>
-                    @endforeach
-                </select>
             </div>
         </div>
 

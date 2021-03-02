@@ -1,10 +1,10 @@
 @extends('layouts.formulario')
 
-@section('title', 'Merma de Bolsas')
+@section('title', 'Editar Empleado')
 
 @section('imgUrl',  asset('images/bolsa-de-papel.svg'))
 
-@section('namePage', 'Editar Merma de Bolsas')
+@section('namePage', 'Editar Empleado')
 
 @section('form')
 <form action="{{ route('employee.update', $employee) }}" method="POST">

@@ -15,7 +15,7 @@ class CreateCoilsTable extends Migration
     {
         Schema::create('coils', function(Blueprint $table){
             $table->id();
-            $table->unsignedBigInteger('coil_type_id')->nullable();
+            $table->unsignedBigInteger('coil_type_id');
             $table->unsignedBigInteger('provider_id');
 
             $table->string('nomenclatura', 20);

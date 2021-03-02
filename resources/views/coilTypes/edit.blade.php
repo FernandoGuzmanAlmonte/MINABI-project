@@ -36,13 +36,16 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Calibre</label>
-                <input type="text" class="form-control" name="calibre" value="{{ $coilType->calibre }}">
+                <input type="number" step="0.0001" class="form-control" name="calibre" value="{{ $coilType->calibre }}">
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Tipo</label>
-                <input type="text" class="form-control" name="tipo" value="{{ $coilType->tipo }}">
+                <select class="form-control" name="tipo">
+                    <option {{ ($coilType->tipo == 'CELOFAN') ? 'selected' : ''}} value="CELOFAN">CELOFÁN</option>
+                    <option {{ ($coilType->tipo == 'CENEFA') ? 'selected' : ''}} value="CENEFA">CENEFA</option>
+                </select>
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-4">

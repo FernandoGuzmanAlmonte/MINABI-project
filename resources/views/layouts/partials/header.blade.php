@@ -21,7 +21,7 @@
                             Empleados
                         </a>
                         <a class="dropdown-item {{ request()->routeIs('coilType.*') ? 'active' : ''}}" href="{{ route('coilType.index') }}">
-                            Tipos de Bobina
+                            Medidas de Bobina
                         </a>
                     </div>
                 </li>

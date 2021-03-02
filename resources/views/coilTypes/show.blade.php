@@ -43,7 +43,7 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Tipo</label>
-            <input type="text" class="form-control" name="tipo" value="{{ $coilType->tipo }}" disabled>
+            <input type="text" class="form-control" name="tipo" value="{{ ($coilType->tipo == 'CELOFAN') ? 'CELOFÁN' : 'CENEFA'}}" disabled>
         </div>
     </div>
     <div class="col-lg-12 d-flex mt-4">

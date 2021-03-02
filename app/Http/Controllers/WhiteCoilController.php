@@ -21,7 +21,7 @@ class WhiteCoilController extends Controller
 
     public function create(){
        $providers = Provider::all();
-       $coilTypes = CoilType::all();
+       $coilTypes = CoilType::select('id','alias')->where('tipo','=','CENEFA')->get();
         
         return view('whiteCoils.create', compact('providers', 'coilTypes'));
     }
