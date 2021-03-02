@@ -20,8 +20,10 @@ class CreateRibbonProductsTable extends Migration
             $table->string('ribbon_product_type');
             
             $table->string('nomenclatura', 20);
+            $table->float('peso',12,4);
+            $table->string('medidaBolsa', 10);
             
-            $table->string('status', 15);
+            $table->string('status', 10);
             $table->date('fAdquisicion');
 
             $table->foreign('ribbon_id')

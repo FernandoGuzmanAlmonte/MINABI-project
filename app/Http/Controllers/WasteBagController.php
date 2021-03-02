@@ -60,7 +60,8 @@ class WasteBagController extends Controller
         $addProduct = WasteBag::find($wasteBags->id);
         $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$wasteBags->nomenclatura,
                                      'status'=>'N/A', 
-                                     'fAdquisicion'=>$wasteBags->fechaInicioTrabajo]);
+                                     'fAdquisicion'=>$wasteBags->fechaInicioTrabajo,
+                                     'peso'=>$wasteBags->peso]);
 
         $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
         if($ribbon->pesoUtilizado == $ribbon->peso){

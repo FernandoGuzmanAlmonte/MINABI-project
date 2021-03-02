@@ -16,6 +16,12 @@ class Ribbon extends Model
                     ->withTimestamps();
     }
 
+    public function whiteRibbons(){
+        return $this->morphToMany(WhiteRibbon::class, 'white_ribbon_product')
+                    ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso')
+                    ->withTimestamps();
+    }
+
     public function wasteBags(){
         return $this->morphedByMany(wasteBag::class, 'ribbon_product');
     }

@@ -73,7 +73,9 @@ class WhiteRibbonReelController extends Controller
         $addProduct = WhiteRibbonReel::find($whiteRibbonReel->id);
         $addProduct->whiteRibbons()->attach($request->whiteRibbonId, ['nomenclatura'=>$whiteRibbonReel->nomenclatura,
                                      'status'=>'N/A', 
-                                     'fAdquisicion'=>$whiteRibbonReel->fechaAlta]);
+                                     'fAdquisicion'=>$whiteRibbonReel->fechaAlta,
+                                     'peso'=>$whiteRibbonReel->peso,
+                                     'largo' => $request->whiteLength]);
         
         $whiteRibbon->pesoUtilizado = $request->peso + $whiteRibbon->pesoUtilizado;
         if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso){

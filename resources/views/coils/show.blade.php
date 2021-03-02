@@ -135,6 +135,7 @@
 <tr>
     <th scope="col">#</th>
     <th scope="col">Nomenclatura</th>
+    <th scope="col">Peso</th>
     <th scope="col">Fecha Adquisición</th>
     <th scope="col">Status</th>
     <th scope="col"></th>
@@ -146,7 +147,8 @@
     <tr>
         <th scope="row" class="align-middle">{{$item->id}}</th>
         <td class="align-middle">{{$item->nomenclatura}}</td>
-        <td class="align-middle">{{$item->fAdquisiscion}}</td>
+        <td class="align-middle">{{$item->peso}}</td>
+        <td class="align-middle">{{$item->fAdquisicion}}</td>
         <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
        <!--Realizamos if para validacion de adonde dirgir el show-->
     @if ($item->ribbon_product_type == 'App\Models\Bag')

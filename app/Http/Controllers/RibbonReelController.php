@@ -73,7 +73,8 @@ class RibbonReelController extends Controller
         $addProduct = ribbonReel::find($ribbonReel->id);
         $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$ribbonReel->nomenclatura,
                                      'status'=>'N/A', 
-                                     'fAdquisicion'=>$ribbonReel->fechaAlta]);
+                                     'fAdquisicion'=>$ribbonReel->fechaAlta,
+                                     'peso' =>$ribbonReel->peso]);
         
         $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
         if($ribbon->pesoUtilizado == $ribbon->peso){

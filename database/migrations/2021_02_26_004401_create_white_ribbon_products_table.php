@@ -20,6 +20,8 @@ class CreateWhiteRibbonProductsTable extends Migration
             $table->string('white_ribbon_product_type');
             
             $table->string('nomenclatura', 20);
+            $table->float('peso',12,4);
+            $table->float('largo', 12, 4);
             
             $table->string('status', 15);
             $table->date('fAdquisicion');

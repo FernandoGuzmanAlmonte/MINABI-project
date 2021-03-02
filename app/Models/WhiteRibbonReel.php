@@ -11,7 +11,7 @@ class WhiteRibbonReel extends Model
 
     public function whiteRibbons(){
         return $this->morphToMany(WhiteRibbon::class, 'white_ribbon_product')
-                    ->withPivot('nomenclatura', 'status', 'fAdquisicion')
+                    ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso')
                     ->withTimestamps();
     }
 }

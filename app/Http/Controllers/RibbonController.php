@@ -6,6 +6,8 @@ use App\Http\Requests\StoreRibbon;
 use App\Models\Coil;
 use App\Models\Ribbon;
 use App\Models\Employee;
+use App\Models\WhiteRibbon;
+use DateTime;
 use Illuminate\Http\Request;
 
 class RibbonController extends Controller
@@ -28,7 +30,8 @@ class RibbonController extends Controller
         //$nomenclatura = Coil::select('nomenclatura')->where('id', 1)->get()->first()->nomenclatura;
         $coil = Coil::find($request->coil);
         $nomenclatura = ($coil->nomenclatura) . '-' . ($coil->ribbons()->count()+1);
-        return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
+        $cintaBlancas = WhiteRibbon::where('status', '=', 'DISPONIBLE')->get();
+        return view('ribbons.create', ['coilId' => $request->coil, 'nomenclatura' => $nomenclatura, 'employees' => $employees, 'cintaBlancas' => $cintaBlancas]);
     }
 
     public function edit(Ribbon $ribbon){
@@ -67,6 +70,12 @@ class RibbonController extends Controller
         $bags =  Ribbon::find($ribbon->id);
         $bags = $bags->related()->get();
         $bag = $bags;
+        $tiempo1 = new DateTime($ribbon->fechaInicioTrabajo . 'T' . $ribbon->horaInicioTrabajo);
+        $tiempo2 = new DateTime($ribbon->fechaFinTrabajo . 'T' . $ribbon->horaFinTrabajo);
+        $tiempod = $tiempo1->diff($tiempo2);
+        $minutos = $tiempod->h * 60 + $tiempod->i;
+
+       // echo $minutos;
         return view('ribbons.show', compact('ribbon', 'bag', 'coil'));
     }
    
@@ -91,10 +100,18 @@ class RibbonController extends Controller
         $ribbon->pesoUtilizado =  $request->pesoUtilizado;
         $ribbon->temperatura =  $request->temperatura;
         $ribbon->velocidad = $request->velocidad;
-        $ribbon->white_ribbon_id = $request->white_ribbon_id;
+        //$ribbon->white_ribbon_id = $request->white_ribbon_id;
         $ribbon->observaciones = $request->observaciones;
         
         $ribbon->save();
+
+        //si agregaron un rollo se crea relación
+        if($request->white_ribbon_id != 'N/A' )
+        $ribbon->whiteRibbons()->attach($request->white_ribbon_id,['nomenclatura'=>$ribbon->nomenclatura,
+                                                                    'status'=>$ribbon->status, 
+                                                                    'fAdquisicion'=>$ribbon->fechaInicioTrabajo,
+                                                                    'peso' => 0,
+                                                                    'largo' => $request->whiteLength]);
 
         //request->input('empleados') tiene los id's de los empleados
         $ribbon->employees()->attach($request->input('empleados'));        

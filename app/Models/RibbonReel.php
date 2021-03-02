@@ -11,7 +11,7 @@ class RibbonReel extends Model
 
     public function ribbons(){
         return $this->morphToMany(Ribbon::class, 'ribbon_product')
-                    ->withPivot('nomenclatura', 'status', 'fAdquisicion')
+                    ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso')
                     ->withTimestamps();
     }
 }

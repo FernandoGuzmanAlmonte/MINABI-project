@@ -50,7 +50,9 @@ class WhiteWasteRibbonController extends Controller
         $addProduct = WhiteWasteRibbon::find($whiteWasteRibbons->id);
         $addProduct->whiteRibbons()->attach($request->whiteRibbonId, ['nomenclatura'=>$whiteWasteRibbons->nomenclatura,
                                      'status'=>'N/A', 
-                                     'fAdquisicion'=>$whiteWasteRibbons->fAlta]);
+                                     'fAdquisicion'=>$whiteWasteRibbons->fAlta,
+                                     'peso'=>$whiteWasteRibbons->peso,
+                                     'largo' => $request->whiteLength]);
 
         $whiteRibbon->pesoUtilizado = $request->peso + $whiteRibbon->pesoUtilizado;
         if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso){
@@ -63,7 +65,7 @@ class WhiteWasteRibbonController extends Controller
         }        
         $whiteRibbon->save();
                                     
-        //return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  
+        return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  
         }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{

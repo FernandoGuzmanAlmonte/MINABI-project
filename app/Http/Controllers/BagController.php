@@ -90,7 +90,8 @@ class BagController extends Controller
             $addProduct = Bag::find($bag->id);
             $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$bag->nomenclatura,
                                         'status'=>$bag->status, 
-                                        'fAdquisicion'=>$bag->fechaInicioTrabajo]);
+                                        'fAdquisicion'=>$bag->fechaInicioTrabajo,
+                                        'peso'=>$bag->peso]);
 
             //actualiza la bobina
             $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;

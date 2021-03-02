@@ -34,23 +34,23 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Cintilla Blanca</label>
-                <input type="number" class="form-control" name="white_ribbon_id" value="1" readonly>
-                @error('white_ribbon_id')
+                <label>Peso (KG)</label>
+                <input type="text" class="form-control" name="peso" value="{{old('peso')}}">
+                @error('peso')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
                 </div>
                 <br>
-                @enderror
+            @enderror
             </div>
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Peso (KG)</label>
-                <input type="text" class="form-control" name="peso" value="{{old('peso')}}">
-                @error('peso')
+                <label>Largo (metros)</label>
+                <input type="number" step="0.0001" class="form-control" name="largo" value="{{old('largo')}}">
+                @error('largo')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -84,15 +84,15 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Largo (metros)</label>
-                <input type="number" step="0.0001" class="form-control" name="largo" value="{{old('largo')}}">
-                @error('largo')
+                <label>Peso Utilizado (KG)</label>
+                <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="0" readonly>
+                @error('pesoUtilizado')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                 @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Termino</label>
@@ -119,18 +119,6 @@
         </div>
     
         <div class="col-lg-12 d-flex mt-3">
-            
-            <div class="col-lg-4 px-2">
-                <label>Peso Utilizado (KG)</label>
-                <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="0" readonly>
-                @error('pesoUtilizado')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-                 @enderror
-            </div>
             <div class="col-lg-4 px-2">
                 <label>Temperatura (C°)</label>
                 <input type="number" step = "0.0001" class="form-control" name="temperatura" value="{{old('temperatura')}}">
@@ -139,9 +127,6 @@
                 <label>Velocidad</label>
                 <input type="number" step = "0.0001" class="form-control" name="velocidad" value="{{old('velocidad')}}">
             </div>
-        </div>
-    
-        <div class="col-lg-12 d-flex mt-3">
             <div class="form-cloned col-lg-4 px-2">
                 <label>Empleado(s)</label>
                 <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
@@ -154,6 +139,29 @@
                         </option>
                     @endforeach
                 </select>            
+            </div>
+        </div>
+    
+        <div class="col-lg-12 d-flex mt-3">
+            <div class="col-lg-4 px-2" id="CintaBlanca">
+                <label>Cintilla Blanca</label>
+                <button type="button" onclick="clonarCinta()" class="btn btn-success btn-sm">+</button>
+                <button type="button" onclick="removerCinta()" class="btn btn-secondary btn-sm">-</button>
+                <select class="form-control" name="white_ribbon_id[]">
+                    <option selected>N/A</option>
+                    @foreach($cintaBlancas as $cintaBlanca)
+                        <option value={{$cintaBlanca->id}}>
+                            {{$cintaBlanca->nomenclatura}}
+                        </option>
+                    @endforeach
+                </select>
+                @error('white_ribbon_id')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+                @enderror
             </div>
             <!--Id de bobina relacionado-->
                 <input type="hidden" class="form-control" name="coilId" value="{{$coilId}}">
@@ -201,6 +209,20 @@
     function remover()
     {
         var $form = $('.form-cloned .form-control');
+
+        if($form.length != 1) $form.last().remove();
+    }
+
+    function clonarCinta()
+    {
+        var $form = $('#CintaBlanca .form-control').last().clone();
+
+        $form.appendTo('#CintaBlanca');
+    }
+
+    function removerCinta()
+    {
+        var $form = $('#CintaBlanca .form-control');
 
         if($form.length != 1) $form.last().remove();
     }

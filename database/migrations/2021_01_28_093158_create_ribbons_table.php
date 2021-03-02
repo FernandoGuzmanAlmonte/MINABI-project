@@ -16,7 +16,7 @@ class CreateRibbonsTable extends Migration
         Schema::create('ribbons', function (Blueprint $table) {
             $table->id();
             //$table->unsignedBigInteger('coil_product_id'); //llave fonarea de producto bobina
-            $table->unsignedBigInteger('white_ribbon_id'); //llave foranea de cintilla blanca
+            //$table->unsignedBigInteger('white_ribbon_id'); //llave foranea de cintilla blanca
             $table->string('nomenclatura', 24); //identificador
             $table->float('peso', 10, 4); //peso del rollo
             $table->float('largo', 10, 4); //metros de largo del rollo

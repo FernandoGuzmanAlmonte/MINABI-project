@@ -23,6 +23,10 @@ class WhiteRibbon extends Model
         return $this->morphedByMany(WhiteRibbonReel::class, 'white_ribbon_product');
     }
 
+    public function ribbons(){
+        return $this->morphedByMany(Ribbon::class, 'white_ribbon_product');
+    }
+
     public function related()
     {
     return $this->hasMany(WhiteRibbonProduct::class);
