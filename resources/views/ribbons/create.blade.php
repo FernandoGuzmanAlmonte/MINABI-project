@@ -142,12 +142,13 @@
             </div>
         </div>
     
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2" id="CintaBlanca">
+        <div class="col-lg-12  mt-3" id="cajaCompleta">
+            <div class="col-lg-8 d-flex" id="cintaBlanca">
+            <div class="col-lg-6 px-2" >
                 <label>Cintilla Blanca</label>
                 <button type="button" onclick="clonarCinta()" class="btn btn-success btn-sm">+</button>
                 <button type="button" onclick="removerCinta()" class="btn btn-secondary btn-sm">-</button>
-                <select class="form-control" name="white_ribbon_id[]">
+                <select class="form-control" name="white_ribbon_ids[]" id="cajas">
                     <option selected>N/A</option>
                     @foreach($cintaBlancas as $cintaBlanca)
                         <option value={{$cintaBlanca->id}}>
@@ -163,10 +164,22 @@
                 <br>
                 @enderror
             </div>
-            <!--Id de bobina relacionado-->
-                <input type="hidden" class="form-control" name="coilId" value="{{$coilId}}">
+            <div class="col-lg-6 px-2">
+                <label>Largo (metros)</label>
+               <input type="number" step="0.0001" class="form-control" name="largos[]" id="cajas">
+                @error('white_ribbon_id')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+                @enderror
+            </div>
         </div>
-    
+            
+        </div>
+    <!--Id de bobina relacionado-->
+    <input type="hidden"  name="coilId" value="{{$coilId}}">
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
@@ -215,14 +228,22 @@
 
     function clonarCinta()
     {
-        var $form = $('#CintaBlanca .form-control').last().clone();
+        var $form = $('#cajaCompleta #cintaBlanca').last().clone();
 
-        $form.appendTo('#CintaBlanca');
+        $form.find(':input').each(function () {
+    if ($(this).is('select')) {
+      this.selectedIndex = 0;
+    } else {
+      this.value = '';
+    }
+    });
+
+        $form.appendTo('#cajaCompleta');
     }
 
     function removerCinta()
     {
-        var $form = $('#CintaBlanca .form-control');
+        var $form = $('#cajaCompleta #cintaBlanca');
 
         if($form.length != 1) $form.last().remove();
     }

@@ -75,7 +75,7 @@ class WhiteRibbonReelController extends Controller
                                      'status'=>'N/A', 
                                      'fAdquisicion'=>$whiteRibbonReel->fechaAlta,
                                      'peso'=>$whiteRibbonReel->peso,
-                                     'largo' => $request->whiteLength]);
+                                     'largo' => '0']);
         
         $whiteRibbon->pesoUtilizado = $request->peso + $whiteRibbon->pesoUtilizado;
         if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso){

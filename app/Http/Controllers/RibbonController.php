@@ -106,13 +106,16 @@ class RibbonController extends Controller
         $ribbon->save();
 
         //si agregaron un rollo se crea relación
-        if($request->white_ribbon_id != 'N/A' )
-        $ribbon->whiteRibbons()->attach($request->white_ribbon_id,['nomenclatura'=>$ribbon->nomenclatura,
+        foreach ($request->input('white_ribbon_ids', []) as $i => $white_ribbon_id){
+            if($white_ribbon_id != 'N/A' )
+                 $ribbon->whiteRibbons()->attach($white_ribbon_id,['nomenclatura'=>$ribbon->nomenclatura,
                                                                     'status'=>$ribbon->status, 
                                                                     'fAdquisicion'=>$ribbon->fechaInicioTrabajo,
                                                                     'peso' => 0,
-                                                                    'largo' => $request->whiteLength]);
-
+                                                                    'largo' => $request->input('largos.'. $i)]);
+                                                            
+        }
+        
         //request->input('empleados') tiene los id's de los empleados
         $ribbon->employees()->attach($request->input('empleados'));        
 
@@ -128,7 +131,7 @@ class RibbonController extends Controller
         $coil->status = 'TERMINADA';                       
         $coil->save();
         
-        return redirect()->route('ribbon.show', compact('ribbon'));  
+        return redirect()->route('ribbon.show', compact('ribbon')); 
     }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{

@@ -52,7 +52,7 @@ class WhiteWasteRibbonController extends Controller
                                      'status'=>'N/A', 
                                      'fAdquisicion'=>$whiteWasteRibbons->fAlta,
                                      'peso'=>$whiteWasteRibbons->peso,
-                                     'largo' => $request->whiteLength]);
+                                     'largo' => $request->largo]);
 
         $whiteRibbon->pesoUtilizado = $request->peso + $whiteRibbon->pesoUtilizado;
         if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso){
