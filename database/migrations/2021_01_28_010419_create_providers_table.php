@@ -15,10 +15,10 @@ class CreateProvidersTable extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreEmpresa', 25);
-            $table->string('direccion', 40);
-            $table->string('estado', 20);
-            $table->string('paginaWeb', 20);
+            $table->string('nombreEmpresa', 45);
+            $table->string('direccion', 80);
+            $table->string('estado', 45);
+            $table->string('paginaWeb', 45)->nullable();
             $table->timestamps();
         });
     }

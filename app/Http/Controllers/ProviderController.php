@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Provider;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProvider;
 
 class ProviderController extends Controller
 {
@@ -20,7 +21,7 @@ class ProviderController extends Controller
         return view('providers.create');
     }
     
-    public function store(Request $request)
+    public function store(StoreProvider $request)
     {
         if($request->has('providerForm'))
         {
@@ -64,7 +65,7 @@ class ProviderController extends Controller
         return view('providers.edit', compact('provider'));
     }
 
-    public function update(Request $request, $id)//$id de Provider o Contact
+    public function update(StoreProvider $request, $id)//$id de Provider o Contact
     {
         if($request->has('providerForm'))
         {

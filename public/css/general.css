@@ -25,3 +25,7 @@
 .iconosDiminutos{
     width: 15px; height: 15px;
 }
+
+.required{    
+    color: #E3342F;
+}

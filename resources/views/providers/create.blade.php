@@ -12,22 +12,42 @@
     <div class="row">
         <div class="col-lg-12 d-flex mt-2">
             <div class="col-lg-4 px-2">
-                <label>Nombre Empresa</label>
-                <input type="text" class="form-control" name="nombreEmpresa">
+                <label><span class="required">*</span> Nombre Empresa</label>
+                <input type="text" class="form-control" name="nombreEmpresa" value="{{ old('nombreEmpresa') }}">
+                @error('nombreEmpresa')
+                    <div class="alert alert-danger mt-2">   
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Dirección</label>
-                <input type="text" class="form-control" name="direccion">
+                <label><span class="required">*</span> Dirección</label>
+                <input type="text" class="form-control" name="direccion" value="{{ old('direccion') }}">
+                @error('direccion')
+                    <div class="alert alert-danger mt-2">   
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Pagina web</label>
-                <input type="text" class="form-control" name="paginaWeb">
+                <input type="text" class="form-control" name="paginaWeb" value="{{ old('paginaWeb') }}">
+                @error('paginaWeb')
+                    <div class="alert alert-danger mt-2">   
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Estado</label>
-                <input type="text" class="form-control" name="estado">
+                <label><span class="required">*</span> Estado</label>
+                <input type="text" class="form-control" name="estado" value="{{ old('estado') }}">
+                @error('estado')
+                    <div class="alert alert-danger mt-2">   
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="col-12 mt-3 text-center">
