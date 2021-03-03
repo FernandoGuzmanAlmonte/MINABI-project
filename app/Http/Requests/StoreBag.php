@@ -38,7 +38,6 @@ class StoreBag extends FormRequest
             'pestania'=> 'required',
             'status' => 'required',
             'cantidad'=> 'required',
-            'medida' => 'required',
             'tipoUnidad' => ['required', Rule::in(['MILLAR', 'CIENTO'])]
         ];
     }

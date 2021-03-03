@@ -33,7 +33,7 @@ class CreateBagsTable extends Migration
             $table->integer('cantidad');
             //Usuario modifioc
             //Usuario Creo  
-            $table->string('medida', 10);
+            //$table->string('medida', 10);
             $table->string('tipoUnidad', 8); // si es millar o ciento
 
             /*$table->foreign('ribbon_id')

@@ -73,10 +73,12 @@ class RibbonController extends Controller
         $tiempo1 = new DateTime($ribbon->fechaInicioTrabajo . 'T' . $ribbon->horaInicioTrabajo);
         $tiempo2 = new DateTime($ribbon->fechaFinTrabajo . 'T' . $ribbon->horaFinTrabajo);
         $tiempod = $tiempo1->diff($tiempo2);
-        $minutos = $tiempod->h * 60 + $tiempod->i;
+        $minutosLaborados = $tiempod->h * 60 + $tiempod->i;
 
-       // echo $minutos;
-        return view('ribbons.show', compact('ribbon', 'bag', 'coil'));
+        //mandamos cintilla en caso de que haya
+        $cinta =  $ribbon->whiteRibbons()->get();
+
+        return view('ribbons.show', compact('ribbon', 'bag', 'coil', 'cinta', 'minutosLaborados' ));
     }
    
 
@@ -127,8 +129,13 @@ class RibbonController extends Controller
         
         //actualiza la bobina
         $coil->pesoUtilizado = $request->peso + $coil->pesoUtilizado;
-        if($coil->pesoUtilizado == $coil->pesoBruto)
-        $coil->status = 'TERMINADA';                       
+        if($coil->pesoUtilizado == $coil->pesoBruto){
+            $coil->status = 'TERMINADA';                       
+            $coil->pesoNeto = $coil->related()
+                                    ->where('coil_product_type', '=', 'App\Models\Ribbon')
+                                    ->orWhere('coil_product_type', '=', 'App\Models\WasteRibbon')
+                                    ->sum('peso');
+        }
         $coil->save();
         
         return redirect()->route('ribbon.show', compact('ribbon')); 

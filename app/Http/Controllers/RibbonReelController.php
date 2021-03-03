@@ -81,6 +81,7 @@ class RibbonReelController extends Controller
             $ribbon->status = 'TERMINADA';   
             $coilProduct = CoilProduct::where('coil_product_id','=', $ribbon->id)->first();
             $coilProduct->status = 'TERMINADA';
+            
             $coilProduct->save();  
          }                           
         $ribbon->save();

@@ -122,13 +122,16 @@
             <td><a href="{{route('whiteRibbonReel.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
             @elseif($item->white_ribbon_product_type == 'App\Models\WhiteWasteRibbon')
             <td><a href="{{route('whiteWasteRibbon.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
-            @elseif($item->white_ribbon_product_type == 'App\Models\RibbonReel')
-            <td><a href="{{route('ribbonReel.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+            @elseif($item->white_ribbon_product_type == 'App\Models\Ribbon')
+            <td><a href="{{route('ribbon.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
             @endif
             </tr>
           @endforeach
         </tbody>
         </table>
+    </div>
+
+
     @include('whiteRibbons.modalTypeSelection')
 </div>
 

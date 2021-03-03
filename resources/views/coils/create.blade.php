@@ -109,7 +109,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Neto (Kg)</label>
-            <input type="number" step="0.0001" class="form-control" name="pesoNeto" value="{{old('pesoNeto')}}">
+            <input type="number" step="0.0001" class="form-control" name="pesoNeto" value="0" readonly>
             @error('pesoNeto')
                 <br>
                 <div class="alert alert-danger">

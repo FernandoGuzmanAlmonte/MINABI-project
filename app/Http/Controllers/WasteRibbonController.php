@@ -99,8 +99,13 @@ class WasteRibbonController extends Controller
         
         //actualiza la bobina
         $coil->pesoUtilizado = $request->peso + $coil->pesoUtilizado;
-        if($coil->pesoUtilizado == $coil->pesoBruto)
-        $coil->status = 'TERMINADA';                           
+        if($coil->pesoUtilizado == $coil->pesoBruto){
+            $coil->status = 'TERMINADA';                       
+            $coil->pesoNeto = $coil->related()
+                                    ->where('coil_product_type', '=', 'App\Models\Ribbon')
+                                    ->orWhere('coil_product_type', '=', 'App\Models\WasteRibbon')
+                                    ->sum('peso');
+        }                      
         $coil->save();
         
         return redirect()->route('wasteRibbon.show', compact('wasteRibbon'));  

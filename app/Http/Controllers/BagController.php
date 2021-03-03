@@ -76,7 +76,6 @@ class BagController extends Controller
             $bag->tipoUnidad         = $request->tipoUnidad;
             $bag->pestania           = $request->pestania;
             $bag->cantidad           = $request->cantidad;
-            $bag->medida             = $request->medida;
             $bag->status             = $request->status;
             $bag->temperatura        = $request->temperatura;
             $bag->velocidad          = $request->velocidad;
@@ -91,7 +90,8 @@ class BagController extends Controller
             $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$bag->nomenclatura,
                                         'status'=>$bag->status, 
                                         'fAdquisicion'=>$bag->fechaInicioTrabajo,
-                                        'peso'=>$bag->peso]);
+                                        'peso'=>$bag->peso,
+                                        'medidaBolsa'=>$bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho]);
 
             //actualiza la bobina
             $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
@@ -166,7 +166,6 @@ class BagController extends Controller
         $bag->tipoUnidad         = $request->tipoUnidad;
         $bag->pestania           = $request->pestania;
         $bag->cantidad           = $request->cantidad;
-        $bag->medida             = $request->medida;
         $bag->status             = $request->status;
         $bag->temperatura        = $request->temperatura;
         $bag->velocidad          = $request->velocidad;

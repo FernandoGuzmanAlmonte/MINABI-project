@@ -22,8 +22,8 @@
             <input type="text" class="form-control" name="status" value="{{$ribbon->status}}" disabled>
         </div>
         <div class="col-lg-4 px-2">
-            <label>Cintilla Blanca</label>
-            <input type="number" class="form-control" name="white_ribbon_id" value="{{$ribbon->white_ribbon_id}}" disabled>
+            <label>Largo (metros)</label>
+            <input type="text" class="form-control" name="largo" value="{{$ribbon->largo}}" disabled>
         </div>
     </div>
 
@@ -58,10 +58,6 @@
     </div>
     <div class="col-lg-12 d-flex mt-3">
     <div class="col-lg-4 px-2">
-        <label>Largo (metros)</label>
-        <input type="text" class="form-control" name="largo" value="{{$ribbon->largo}}" disabled>
-    </div>
-    <div class="col-lg-4 px-2">
         <label>Temperatura (C°)</label>
         <input type="text" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}" disabled>
     </div>
@@ -84,7 +80,9 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Minutos Trabajados</th>
                 <th scope="col">Sueldo por hora</th>
+                <th scope="col">Mano de obra</th>
             </tr>
             </thead>
             <tbody>
@@ -92,11 +90,17 @@
                     <tr>
                         <th scope="row" class="align-middle">{{$employee->id}}</th>
                         <td class="align-middle">{{$employee->nombre}}</td>
-                        <td class="align-middle">{{$employee->sueldoHora}}</td>
+                        <td class="align-middle">{{$minutosLaborados}}</td>
+                        <td class="align-middle">$ {{$employee->sueldoHora}}</td>
+                        <td class="align-middle">$ {{$employee->sueldoHora*$minutosLaborados}}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <div class="col-12 mt-2 mb-2 text-center">
+        <h4>Costo materia prima = $ {{round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4)}}</h5>
     </div>
 
     <div class="col-12 mt-2 mb-2 text-center">
@@ -122,7 +126,38 @@
         </div>
     </div>
 
-    
+    @if ($cinta != null)
+        <div class="col-lg-12 my-5">
+            <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Cinta blanca</h3>
+            
+            <table class="table table-striped my-4" >
+                <thead class="bg-info">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nomenclatura</th>
+                <th scope="col">Fecha Adquisición</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach ($cinta as $item)
+        
+                <tr>
+                    <th scope="row" class="align-middle">{{$item->id}}</th>
+                    <td class="align-middle">{{$item->nomenclatura}}</td>
+                    <td class="align-middle">{{$item->fArribo}}</td>
+                    <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
+                   <!--Realizamos if para validacion de adonde dirgir el show-->
+                
+                <td><a href="{{route('whiteRibbon.show',$item->id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+                </tr>
+              @endforeach
+            </tbody>
+            </table>
+        </div>
+        @endif
+
     <div class="col-lg-12 my-5">
         <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas y Mermas de Bolsa</h3>
         <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Bolsa</a>
@@ -133,6 +168,7 @@
             <th scope="col">#</th>
             <th scope="col">Nomenclatura</th>
             <th scope="col">Peso</th>
+            <th scope="col">Medida</th>
             <th scope="col">Fecha Adquisición</th>
             <th scope="col">Status</th>
             <th scope="col"></th>
@@ -144,6 +180,7 @@
                 <th scope="row" class="align-middle">{{$item->id}}</th>
                 <td class="align-middle">{{$item->nomenclatura}}</td>
                 <td class="align-middle">{{$item->peso}}</td>
+                <td class="align-middle">{{$item->medidaBolsa}}</td>
                 <td class="align-middle">{{$item->fAdquisicion}}</td>
                 <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
                <!--Realizamos if para validacion de adonde dirgir el show-->
@@ -158,6 +195,7 @@
           @endforeach
         </tbody>
         </table>
+    </div>
     @include('ribbons.modalTypeSelection')
 </div>
 
