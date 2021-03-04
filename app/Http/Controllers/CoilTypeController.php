@@ -21,7 +21,7 @@ class CoilTypeController extends Controller
         return view('coilTypes.create');
     }
     
-    public function store(Request $request)
+    public function store(StoreCoilType $request)
     {
         if($request->has('coilTypeForm'))
         {
