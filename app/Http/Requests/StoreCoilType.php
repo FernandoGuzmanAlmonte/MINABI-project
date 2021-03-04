@@ -22,16 +22,25 @@ class StoreCoilType extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {   
+        if($this->has('coilTypeForm'))
+        {
+            return [
+                'alias' => 'required',
+                'anchoCm' => 'required',
+                'largoM' => 'required',
+                'densidad' => 'required',
+                'material' => 'required',
+                'calibre' => 'required',
+                'tipo' => 'required',
+                'observaciones' => 'max:255'
+            ];
+        }
+
+        //REQUEST PARA MEDIDAS DE BOLSA
         return [
-            'alias' => 'required',
-            'anchoCm' => 'required',
-            'largoM' => 'required',
-            'densidad' => 'required',
-            'material' => 'required',
-            'calibre' => 'required',
-            'tipo' => 'required',
-            'observaciones' => 'max:255'
+            'ancho' => 'required',
+            'largo' => 'required'
         ];
     }
 
