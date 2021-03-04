@@ -32,7 +32,7 @@ class CoilController extends Controller
     
     public function edit(Coil $coil){
         $providers = Provider::all();
-        $coilTypes = CoilType::all();
+        $coilTypes = CoilType::select('id','alias')->where('tipo','=','CELOFAN')->get();
 
         return view('coils.edit', compact('coil', 'providers', 'coilTypes'));
     }

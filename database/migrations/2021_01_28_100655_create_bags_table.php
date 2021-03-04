@@ -28,7 +28,6 @@ class CreateBagsTable extends Migration
             $table->float('temperatura', 10, 4);
             $table->float('velocidad', 10, 4);
             $table->text('observaciones')->nullable();
-            $table->string('pestania', 4);
             $table->string('status', 11);
             $table->integer('cantidad');
             //Usuario modifioc

@@ -82,7 +82,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Minutos Trabajados</th>
                 <th scope="col">Sueldo por hora</th>
-                <th scope="col">Mano de obra</th>
+                <th scope="col">Costo de Mano de obra</th>
             </tr>
             </thead>
             <tbody>
@@ -98,10 +98,25 @@
             </tbody>
         </table>
     </div>
-
-    <div class="col-12 mt-2 mb-2 text-center">
-        <h4>Costo materia prima = $ {{round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4)}}</h5>
+    @if ($coil->status == 'TERMINADA')
+    
+    <div class="col-12 mt-2 mb-2 text-right">
+        <h3 class="text-left"><img src="{{ asset('images/moneda-de-dinero.svg') }}" class="iconoTitle"> Costos</h3>
+        <div class="d-flex">
+            <div class="h5 col-11 ">Costo materia prima =</div>
+            <div class="h5 col-1 ">$ {{round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4)}}</div>
+        </div>
+        <div class="d-flex">
+            <div class="h5 col-11">Costo de mano de obra =</div>
+            <div class="h5 col-1">$ {{$ribbon->employees->sum('sueldoHora')*$minutosLaborados}}</div>
+        </div>
+        <hr>
+        <div class="d-flex">
+            <div class="h5 col-11">Total =</div>
+            <div class="h5 col-1">$ {{(($ribbon->employees->sum('sueldoHora')*$minutosLaborados)+ round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4))}}</div>
+        </div>
     </div>
+    @endif 
 
     <div class="col-12 mt-2 mb-2 text-center">
         <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>
@@ -126,7 +141,7 @@
         </div>
     </div>
 
-    @if ($cinta != null)
+    @if ($cinta->empty() == false)
         <div class="col-lg-12 my-5">
             <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Cinta blanca</h3>
             

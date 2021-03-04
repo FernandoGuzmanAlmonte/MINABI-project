@@ -14,7 +14,7 @@
     <div class="col-lg-12 d-flex mt-2"> 
         <div class="col-lg-4 px-2">
             <label>Nomenclatura</label>
-            <input type="text" class="form-control" name="nomenclatura" value="{{$coil->nomenclatura}}">
+            <input type="text" class="form-control" name="nomenclatura" value="{{$coil->nomenclatura}}" id="nomenclaturas" readonly>
             @error('nomenclatura')
                 <br>
                 <div class="alert alert-danger">
@@ -25,7 +25,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha llegada</label>
-            <input type="datetime" class="form-control" name="fArribo" value="{{$coil->fArribo}}">
+            <input type="date" class="form-control" name="fArribo" value="{{$coil->fArribo}}" onblur="llenaNomen()" id="fArribo">
             @error('fArribo')
                 <br>
                 <div class="alert alert-danger">
@@ -36,9 +36,9 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <select class="form-control" name="coil_type_id">
+            <select class="form-control" name="coil_type_id" id="tipo" onblur="llenaNomen()">
                 @foreach($coilTypes as $coilType)
-                    <option {{ ($coilType->id == $coil->coilType->id) ? 'selected' : '' }} value={{ $coilType->id }}>
+                    <option {{ ($coilType->id == $coil->coilType->id) ? 'selected' : '' }} value={{ $coilType->id }} >
                         {{ $coilType->alias }}
                     </option>
                 @endforeach
@@ -102,7 +102,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Neto (Kg)</label>
-            <input type="number" step="0.0001" class="form-control" name="pesoNeto" value="{{$coil->pesoNeto}}">
+            <input type="number" step="0.0001" class="form-control" name="pesoNeto" value="{{$coil->pesoNeto}}" readonly>
             @error('pesoNeto')
                 <br>
                 <div class="alert alert-danger">
@@ -166,4 +166,14 @@
     </div>
 </div>
 </form>
+<script type="text/javascript">
+    function llenaNomen(){
+        var fecha = document.getElementById("fArribo");
+        var tipo = document.getElementById("tipo");
+        var seleccion = tipo.options[tipo.selectedIndex].text;
+        var folio =  document.getElementById("nomenclaturas");
+        fecha = fecha.value.replace(/-/g, "");
+        folio.value = "MNB"+seleccion+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(1,4);
+    }
+</script>
 @endsection

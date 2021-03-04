@@ -40,12 +40,15 @@
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Tiene Pestaña</label>
-                <select class="form-control" name="pestania">
-                    <option selected>--seleccione una opción--</option>
-                    <option value="Sí">Sí</option>
-                    <option value="No">No</option>
-                </select>
+                <label>Peso (Kg)</label>
+                <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
+                @error('peso')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Inicio</label>
@@ -120,19 +123,12 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Peso (Kg)</label>
-                <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
-                @error('peso')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
-            </div>
-            <div class="col-lg-4 px-2">
                 <label>Temperatura</label>
                 <input type="number" step="0.0001" class="form-control" name="temperatura" value="{{old('temperatura')}}">
+            </div>
+            <div class="col-lg-4 px-2">
+                <label>Velocidad</label>
+                <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{old('velocidad')}}">
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
@@ -170,10 +166,6 @@
                 </div>
                 <br>
             @enderror
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Velocidad</label>
-                <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{old('velocidad')}}">
             </div>
         </div>
         <!--Id de bobina relacionado-->

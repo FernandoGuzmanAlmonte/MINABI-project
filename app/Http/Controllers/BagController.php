@@ -74,7 +74,6 @@ class BagController extends Controller
             $bag->clienteStock       = $request->clienteStock;
             $bag->peso               = $request->peso;
             $bag->tipoUnidad         = $request->tipoUnidad;
-            $bag->pestania           = $request->pestania;
             $bag->cantidad           = $request->cantidad;
             $bag->status             = $request->status;
             $bag->temperatura        = $request->temperatura;
@@ -164,7 +163,6 @@ class BagController extends Controller
         $bag->nomenclatura       = $request->nomenclatura;  
         $bag->clienteStock       = $request->clienteStock;
         $bag->tipoUnidad         = $request->tipoUnidad;
-        $bag->pestania           = $request->pestania;
         $bag->cantidad           = $request->cantidad;
         $bag->status             = $request->status;
         $bag->temperatura        = $request->temperatura;

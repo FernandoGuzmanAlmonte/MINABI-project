@@ -33,17 +33,9 @@
                 <br>
             @enderror
         </div>
-        <script type="text/javascript">
-            function llenaNomen(){
-                var fecha = document.getElementById("fArribo");
-                var folio =  document.getElementById("nomenclaturas");
-                fecha = fecha.value.replace(/-/g, "");
-                folio.value = "MNB"+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(1,4);
-            }
-        </script>
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
-            <select class="form-control" name="coil_type_id">
+            <select class="form-control" name="coil_type_id" id="tipo" onblur="llenaNomen()">
                 <option selected>--seleccione tipo de bobina--</option>
                 @foreach($coilTypes as $coilType)
                     <option value={{ $coilType->id }}>
@@ -174,4 +166,17 @@
 </div>
 
 </form>
+<script type="text/javascript">
+    function llenaNomen(){
+var fecha = document.getElementById("fArribo");
+var tipo = document.getElementById("tipo");
+var seleccion = tipo.options[tipo.selectedIndex].text;
+var folio =  document.getElementById("nomenclaturas");
+fecha = fecha.value.replace(/-/g, "");
+if(seleccion == "--seleccione tipo de bobina--")
+folio.value = "MNB"+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(1,4);
+else
+folio.value = "MNB"+seleccion+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(1,4);
+}
+</script>
 @endsection

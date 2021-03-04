@@ -104,6 +104,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nomenclatura</th>
+            <th scope="col">Largo</th>
             <th scope="col">Fecha Adquisición</th>
             <th scope="col">Status</th>
             <th scope="col"></th>
@@ -115,6 +116,7 @@
             <tr>
                 <th scope="row" class="align-middle">{{$item->id}}</th>
                 <td class="align-middle">{{$item->nomenclatura}}</td>
+                <td class="align-middle">{{$item->largo}}</td>
                 <td class="align-middle">{{$item->fAdquisicion}}</td>
                 <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
                <!--Realizamos if para validacion de adonde dirgir el show-->

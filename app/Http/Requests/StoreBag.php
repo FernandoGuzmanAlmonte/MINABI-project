@@ -35,7 +35,6 @@ class StoreBag extends FormRequest
             'temperatura' => 'required',
             'velocidad' => 'required',
             'observaciones' => 'max:255',
-            'pestania'=> 'required',
             'status' => 'required',
             'cantidad'=> 'required',
             'tipoUnidad' => ['required', Rule::in(['MILLAR', 'CIENTO'])]

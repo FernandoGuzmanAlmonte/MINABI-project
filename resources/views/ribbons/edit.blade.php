@@ -35,9 +35,9 @@
                 @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Cintilla Blanca</label>
-                <input type="text" class="form-control" name="white_ribbon_id" value="{{$ribbon->white_ribbon_id}}" readonly>
-                @error('white_ribbon_id')
+                <label>Peso (KG)</label>
+                <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}">
+                @error('peso')
                 <br>
                 <div class="alert alert-danger">
                     <small>{{$message}}</small>
@@ -49,15 +49,15 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Peso (KG)</label>
-                <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}">
-                @error('peso')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-                @enderror
+                <label>Largo (metros)</label>
+                <input type="number" step="0.0001" class="form-control" name="largo" value="{{$ribbon->largo}}">
+                @error('largo')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                    @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Inicio</label>
@@ -85,6 +85,17 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
+                <label>Peso Utilizado (KG)</label>
+                <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}" readonly>
+                @error('pesoUtilizado')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+                @enderror
+            </div>
+            <div class="col-lg-4 px-2">
                 <label>Fecha Termino</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo" value="{{$ribbon->fechaFinTrabajo}}">
                 @error('fechaFinTermino')
@@ -106,30 +117,8 @@
                 <br>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
-                <label>Peso Utilizado (KG)</label>
-                <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}">
-                @error('pesoUtilizado')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-                @enderror
-            </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
-                <label>Largo (metros)</label>
-                <input type="number" step="0.0001" class="form-control" name="largo" value="{{$ribbon->largo}}">
-                @error('largo')
-                    <br>
-                    <div class="alert alert-danger">
-                        <small>{{$message}}</small>
-                    </div>
-                    <br>
-                    @enderror
-            </div>
             <div class="col-lg-4 px-2">
                 <label>Temperatura (C°)</label>
                 <input type="number" step="0.0001" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}">
