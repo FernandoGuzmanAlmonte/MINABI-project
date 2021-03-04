@@ -12,46 +12,86 @@
     <div class="row">
         <div class="col-lg-12 d-flex mt-2">
             <div class="col-lg-4 px-2">
-                <label>Alias</label>
-                <input type="text" class="form-control" name="alias">
+                <label><span class="required">*</span> Alias</label>
+                <input type="text" class="form-control" name="alias" value="{{ old('alias') }}">
+                @error('alias')
+                    <div class="alert alert-danger mt-2">
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Ancho (cm)</label>
-                <input type="number" step="0.0001" class="form-control" name="anchoCm">
+                <label><span class="required">*</span> Ancho (cm)</label>
+                <input type="number" step="0.0001" class="form-control" name="anchoCm" value="{{ old('anchoCm') }}">
+                @error('anchoCm')
+                    <div class="alert alert-danger mt-2">
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Largo (m)</label>
-                <input type="number" step="0.0001" class="form-control" name="largoM">
+                <label><span class="required">*</span> Largo (m)</label>
+                <input type="number" step="0.0001" class="form-control" name="largoM" value="{{ old('largoM') }}">
+                @error('largoM')
+                    <div class="alert alert-danger mt-2">
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Densidad</label>
-                <input type="number" step="0.0001" class="form-control" name="densidad">
+                <label><span class="required">*</span> Densidad</label>
+                <input type="number" step="0.0001" class="form-control" name="densidad" value="{{ old('densidad') }}">
+                @error('densidad')
+                    <div class="alert alert-danger mt-2">
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Material</label>
-                <input type="text" class="form-control" name="material">
+                <label><span class="required">*</span> Material</label>
+                <input type="text" class="form-control" name="material" value="{{ old('material') }}">
+                @error('material')
+                    <div class="alert alert-danger mt-2">
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Calibre</label>
-                <input type="number" step="0.0001" class="form-control" name="calibre">
+                <label><span class="required">*</span> Calibre</label>
+                <input type="number" step="0.0001" class="form-control" name="calibre" value="{{ old('calibre') }}">
+                @error('calibre')
+                    <div class="alert alert-danger mt-2">
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Tipo</label>
+                <label><span class="required">*</span> Tipo</label>
                 <select class="form-control" name="tipo">
                     <option value="" selected>--seleccione tipo--</option>
-                    <option value="CELOFAN">CELOFÁN</option>
-                    <option value="CENEFA">CENEFA</option>
+                    <option value="CELOFAN" {{ (old('tipo') == 'CELOFAN') ? 'selected' : '' }}>CELOFÁN</option>
+                    <option value="CENEFA" {{ (old('tipo') == 'CENEFA') ? 'selected' : '' }}>CENEFA</option>
                 </select>
+                @error('tipo')
+                    <div class="alert alert-danger mt-2">
+                        <small>{{ $message }}</small>
+                    </div>
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-                <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres"></textarea>
+                <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{ old('observaciones') }}</textarea>
+                @error('observaciones')
+                        <div class="alert alert-danger mt-2">
+                            <small>{{ $message }}</small>
+                        </div>
+                @enderror
             </div>
         </div>
         <div class="col-12 mt-3 text-center">

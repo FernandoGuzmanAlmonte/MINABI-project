@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CoilType;
 use App\Models\BagMeasure;
+use App\Http\Requests\StoreCoilType;
 
 class CoilTypeController extends Controller
 {
@@ -20,7 +21,7 @@ class CoilTypeController extends Controller
         return view('coilTypes.create');
     }
     
-    public function store(Request $request)
+    public function store(StoreCoilType $request)
     {
         if($request->has('coilTypeForm'))
         {
@@ -65,7 +66,7 @@ class CoilTypeController extends Controller
         return view('coilTypes.edit', compact('coilType'));
     }
 
-    public function update(Request $request, $id)//$id de CoilType o BagMeasure
+    public function update(StoreCoilType $request, $id)//$id de CoilType o BagMeasure
     {
         if($request->has('coilTypeForm'))
         {
