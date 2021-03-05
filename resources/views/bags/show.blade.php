@@ -43,7 +43,7 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Medida (largo x ancho)</label>
-            <input type="text" class="form-control" name="bag_measure_id" value="{{ $bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho}}" disabled>
+            <input type="text" class="form-control" name="bag_measure_id" value="{{ $bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho . ($cinta->isEmpty()? ' ' :  ' C/P')  }}" disabled>
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha Termino</label>
@@ -70,10 +70,6 @@
     </div>
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Tiene Pestaña</label>
-            <input type="text" class="form-control" name="status" value={{ $bag->pestania }} disabled>
-        </div>
-        <div class="col-lg-4 px-2">
             <label>Cliente Stock</label>
             <input type="text" class="form-control" name="clienteStock" value={{ $bag->clienteStock }} disabled>
         </div>
@@ -89,19 +85,19 @@
         <h3><img src="{{ asset('images/empleado.svg') }}" class="iconoTitle"> Empleados</h3>
         <table class="table table-striped my-4" >
             <thead class="bg-info">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Satus</th>
-            </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Satus</th>
+                </tr>
             </thead>
             <tbody>
                 @foreach ($bag->employees as $employee)
-                    <tr>
-                        <th scope="row" class="align-middle">{{$employee->id}}</th>
-                        <td class="align-middle">{{$employee->nombre}}</td>
-                        <td class="align-middle">{{$employee->status}}</td>
-                    </tr>
+                <tr>
+                    <th scope="row" class="align-middle">{{$employee->id}}</th>
+                    <td class="align-middle">{{$employee->nombre}}</td>
+                    <td class="align-middle">{{$employee->status}}</td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -111,40 +107,70 @@
     </div>
     <div class="col-lg-12 d-flex mt-5">
         <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
+    </div>
+    
+    <div class="col-lg-12 d-flex mt-3">
+        <div class="col-lg-4 px-2">
+            <label>Nomenclatura</label>
+            <input type="text" class="form-control" name="coilNomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
         </div>
-        
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
-                <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="coilNomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Fecha Adquisición</label>
-                <input type="datetime" class="form-control" name="coilfArribo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Status</label>
-                <input type="text" class="form-control" name="coilStatus" value="{{$ribbon->status}}" disabled>
-            </div>
+        <div class="col-lg-4 px-2">
+            <label>Fecha Adquisición</label>
+            <input type="datetime" class="form-control" name="coilfArribo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
         </div>
+        <div class="col-lg-4 px-2">
+            <label>Status</label>
+            <input type="text" class="form-control" name="coilStatus" value="{{$ribbon->status}}" disabled>
+        </div>
+    </div>
 
     <div class="col-lg-12 d-flex mt-5">
         <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
+    </div>
+    
+    <div class="col-lg-12 d-flex mt-3">
+        <div class="col-lg-4 px-2">
+            <label>Nomenclatura</label>
+            <input type="text" class="form-control" name="coilNomenclatura" value="{{$coil->nomenclatura}}" disabled>
         </div>
+        <div class="col-lg-4 px-2">
+            <label>Fecha Adquisición</label>
+            <input type="datetime" class="form-control" name="coilfArribo" value="{{$coil->fArribo}}" disabled>
+        </div>
+        <div class="col-lg-4 px-2">
+            <label>Status</label>
+            <input type="text" class="form-control" name="coilStatus" value="{{$coil->status}}" disabled>
+        </div>
+    </div>
+    @if (!$cinta->isEmpty() )
+    <div class="col-lg-12 my-5">
+        <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Cinta blanca</h3>
         
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
-                <label>Nomenclatura</label>
-                <input type="text" class="form-control" name="coilNomenclatura" value="{{$coil->nomenclatura}}" disabled>
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Fecha Adquisición</label>
-                <input type="datetime" class="form-control" name="coilfArribo" value="{{$coil->fArribo}}" disabled>
-            </div>
-            <div class="col-lg-4 px-2">
-                <label>Status</label>
-                <input type="text" class="form-control" name="coilStatus" value="{{$coil->status}}" disabled>
-            </div>
-        </div>
+        <table class="table table-striped my-4" >
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nomenclatura</th>
+                    <th scope="col">Fecha Adquisición</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($cinta as $item)
+                <tr>
+                    <th scope="row" class="align-middle">{{$item->id}}</th>
+                    <td class="align-middle">{{$item->nomenclatura}}</td>
+                    <td class="align-middle">{{$item->fArribo}}</td>
+                    <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
+                    <!--Realizamos if para validacion de adonde dirgir el show-->
+                    
+                    <td><a href="{{route('whiteRibbon.show',$item->id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endif
 </div>
 @endsection

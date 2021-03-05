@@ -138,17 +138,6 @@
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Tiene Pestaña</label>
-                <select class="form-control" name="pestania">
-                    <option value="Sí" {{ ($bag->pestania === 'Sí') ? 'Selected' : '' }}>
-                        Sí
-                    </option>
-                    <option value="No" {{ ($bag->pestania === 'No') ? 'Selected' : '' }}>
-                        No
-                    </option>
-                </select>
-            </div>
-            <div class="col-lg-4 px-2">
                 <label>Cliente Stock</label>
                 <select class="form-control" name="clienteStock">
                     <option value="CLIENTE" {{ ($bag->clienteStock === 'CLIENTE') ? 'Selected' : '' }}>

@@ -121,8 +121,8 @@
         <td class="align-middle">{{$item->fAdquisicion}}</td>
         <td class="align-middle"><label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">{{$item->status}}</label></td>
        <!--Realizamos if para validacion de adonde dirgir el show-->
-    @if ($item->white_ribbon_product_type == 'App\Models\Bag')
-    <td><a href="{{route('bag.show',$item->ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+    @if ($item->white_ribbon_product_type == 'App\Models\Ribbon')
+    <td><a href="{{route('ribbon.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
     @elseif($item->white_ribbon_product_type == 'App\Models\WhiteWasteRibbon')
     <td><a href="{{route('whiteWasteRibbon.show',$item->white_ribbon_product_id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
     @elseif($item->white_ribbon_product_type == 'App\Models\WhiteRibbonReel')

@@ -20,7 +20,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Status</label>
@@ -35,7 +35,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
@@ -48,7 +48,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Inicio</label>
@@ -59,7 +59,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Hora Inicio</label>
@@ -70,7 +70,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
@@ -79,7 +79,7 @@
                 <select class="form-control" name="bag_measure_id">
                     <option selected value="">--seleccione medida--</option>
                     @foreach($combinedBagMeasures as $key => $bagMeasure)                    
-                        <option value="{{ $key }}">{{ $bagMeasure }}</option>
+                    <option value="{{ $key }}">{{ $bagMeasure }}</option>
                     @endforeach
                 </select>
             </div>
@@ -92,7 +92,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Hora Termino</label>
@@ -103,7 +103,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
@@ -120,7 +120,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Temperatura</label>
@@ -139,18 +139,18 @@
                 <select class="form-control" name="empleados[]">
                     <option selected>--seleccione empleado--</option>
                     @foreach($employees as $employee)
-                        <option value={{ $employee->id }}>
-                            {{ $employee->nombre }}
-                        </option>
+                    <option value={{ $employee->id }}>
+                        {{ $employee->nombre }}
+                    </option>
                     @endforeach
                 </select>            
             </div>
             @error('pestania')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
+            <br>
+            <div class="alert alert-danger">
+                <small>{{$message}}</small>
+            </div>
+            <br>
             @enderror
             <div class="col-lg-4 px-2">
                 <label>Cliente Stock</label>
@@ -165,7 +165,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
         </div>
         <!--Id de bobina relacionado-->
@@ -177,20 +177,20 @@
                 <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
             </div>  
             @error('observaciones')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
+            <br>
+            <div class="alert alert-danger">
+                <small>{{$message}}</small>
+            </div>
+            <br>
             @enderror
         </div>
         @if($errors->any())
         <div class="col-12 mt-3 text-center">
             <br>
-                <div class="alert alert-danger">
-                    {{$errors->first()}}
-                </div>
-                <br>
+            <div class="alert alert-danger">
+                {{$errors->first()}}
+            </div>
+            <br>
         </div>
         @endif
         <div class="col-12 mt-3 text-center">

@@ -103,17 +103,17 @@
     <div class="col-12 mt-2 mb-2 text-right">
         <h3 class="text-left"><img src="{{ asset('images/moneda-de-dinero.svg') }}" class="iconoTitle"> Costos</h3>
         <div class="d-flex">
-            <div class="h5 col-11 ">Costo materia prima =</div>
-            <div class="h5 col-1 ">$ {{round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4)}}</div>
+            <div class="h5 col-10 ">Costo materia prima =</div>
+            <div class="h5 col-2 ">$ {{round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4)}}</div>
         </div>
         <div class="d-flex">
-            <div class="h5 col-11">Costo de mano de obra =</div>
-            <div class="h5 col-1">$ {{$ribbon->employees->sum('sueldoHora')*$minutosLaborados}}</div>
+            <div class="h5 col-10">Costo de mano de obra =</div>
+            <div class="h5 col-2">$ {{$ribbon->employees->sum('sueldoHora')*$minutosLaborados}}</div>
         </div>
         <hr>
         <div class="d-flex">
-            <div class="h5 col-11">Total =</div>
-            <div class="h5 col-1">$ {{(($ribbon->employees->sum('sueldoHora')*$minutosLaborados)+ round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4))}}</div>
+            <div class="h5 col-10">Total =</div>
+            <div class="h5 col-2">$ {{(($ribbon->employees->sum('sueldoHora')*$minutosLaborados)+ round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4))}}</div>
         </div>
     </div>
     @endif 
@@ -141,7 +141,7 @@
         </div>
     </div>
 
-    @if ($cinta->empty() == false)
+    @if (!$cinta->isEmpty())
         <div class="col-lg-12 my-5">
             <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Cinta blanca</h3>
             

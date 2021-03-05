@@ -9,9 +9,9 @@
 @section('retornar')
 <a href="{{route('ribbon.index')}}" ><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas mirror"></a>
 @endsection
-    
+
 @section('form')
-    <div class="row">
+<div class="row">
     <div class="col-lg-12 d-flex mt-2"> 
         <div class="col-lg-4 px-2">
             <label>Nomenclatura</label>

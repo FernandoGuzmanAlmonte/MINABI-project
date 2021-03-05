@@ -90,7 +90,7 @@ class BagController extends Controller
                                         'status'=>$bag->status, 
                                         'fAdquisicion'=>$bag->fechaInicioTrabajo,
                                         'peso'=>$bag->peso,
-                                        'medidaBolsa'=>$bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho]);
+                                        'medidaBolsa'=>$bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho . ($ribbon->whiteRibbons()->get()->isEmpty()? '' : ' C/P')]);
 
             //actualiza la bobina
             $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
@@ -117,7 +117,9 @@ class BagController extends Controller
         $ribbon = $bag->ribbons()->get()->first();
         //obtenemos la bobina relacionada
         $coil = $ribbon->coils()->get()->first();
-        return view('bags.show', compact('bag', 'coil', 'ribbon' ));
+        //obtenemos las cintas relacionadas en los rollos en caso de existir
+        $cinta =  $ribbon->whiteRibbons()->get();
+        return view('bags.show', compact('bag', 'coil', 'ribbon', 'cinta' ));
     }
 
     public function edit(Bag $bag)
