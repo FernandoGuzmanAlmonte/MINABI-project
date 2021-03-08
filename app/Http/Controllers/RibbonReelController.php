@@ -58,7 +58,7 @@ class RibbonReelController extends Controller
         //busca la bobina
         $ribbon = Ribbon::find($request->ribbonId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
-        if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
+       // if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
 
         $ribbonReel =  new ribbonReel();
 
@@ -86,10 +86,10 @@ class RibbonReelController extends Controller
         $ribbon->save();
         
         return redirect()->route('ribbonReel.show', compact('ribbonReel'));  
-        }
+       /* }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{
             return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso del rollo');
-        }
+        }*/
     }
 }

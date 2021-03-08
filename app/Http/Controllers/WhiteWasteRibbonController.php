@@ -33,7 +33,7 @@ class WhiteWasteRibbonController extends Controller
         //busca la bobina
         $whiteRibbon = WhiteRibbon::find($request->whiteRibbonId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
-        if($whiteRibbon->peso >= ($request->peso + $whiteRibbon->pesoUtilizado)){
+        //if($whiteRibbon->peso >= ($request->peso + $whiteRibbon->pesoUtilizado)){
         $whiteWasteRibbons = new WhiteWasteRibbon();
 
         $whiteWasteRibbons->fAlta = $request->fAlta;
@@ -66,11 +66,11 @@ class WhiteWasteRibbonController extends Controller
         $whiteRibbon->save();
                                     
         return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  
-        }
+       /* }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{
             return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso del rollo');
-        }
+        }*/
     }
 
     public function show(WhiteWasteRibbon $whiteWasteRibbon)

@@ -46,6 +46,8 @@ Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'
 Route::resource('coil', CoilController::class);//->except(['create']);
 Route::get('coil/create/{provider}', [CoilController::class, 'createFromProvider'])->name('coil.createFromProvider');
 
+Route::get('coil/terminar/{coil}', [CoilController::class, 'terminar'])->name('coil.terminar');
+
 Route::resource('whiteCoil', WhiteCoilController::class);
 
 Route::resource('coilProduct', CoilProductController::class);

@@ -103,8 +103,12 @@
     <div class="col-12 mt-2 mb-2 text-right">
         <h3 class="text-left"><img src="{{ asset('images/moneda-de-dinero.svg') }}" class="iconoTitle"> Costos</h3>
         <div class="d-flex">
-            <div class="h5 col-10 ">Costo materia prima =</div>
-            <div class="h5 col-2 ">$ {{round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4)}}</div>
+            <div class="h5 col-10 ">Costo materia prima Cenefa=</div>
+            <div class="h5 col-2 ">$ {{round($ribbon->costoCinta, 4)}}</div>
+        </div>
+        <div class="d-flex">
+            <div class="h5 col-10 ">Costo materia prima Celofan=</div>
+            <div class="h5 col-2 ">$ {{round($ribbon->costoCelofan, 4)}}</div>
         </div>
         <div class="d-flex">
             <div class="h5 col-10">Costo de mano de obra =</div>
@@ -113,7 +117,7 @@
         <hr>
         <div class="d-flex">
             <div class="h5 col-10">Total =</div>
-            <div class="h5 col-2">$ {{(($ribbon->employees->sum('sueldoHora')*$minutosLaborados)+ round(($coil->costo/$coil->pesoNeto)*$ribbon->peso, 4))}}</div>
+            <div class="h5 col-2">$ {{round(($ribbon->employees->sum('sueldoHora')*$minutosLaborados)+$ribbon->costoCelofan + $ribbon->costoCinta,4)}}</div>
         </div>
     </div>
     @endif 

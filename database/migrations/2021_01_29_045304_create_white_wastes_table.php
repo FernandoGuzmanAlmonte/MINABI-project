@@ -20,7 +20,8 @@ class CreateWhiteWastesTable extends Migration
             $table->string('nomenclatura', 24);
             $table->string('status', 9);
             $table->string('observaciones')->nullable();
-            $table->date('fAlta'); //Fecha en la que llego
+            $table->date('fAlta');
+            $table->float('costo')->nullable(); //Fecha en la que llego
         
             $table->timestamps();
         });

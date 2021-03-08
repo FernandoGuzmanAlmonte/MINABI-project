@@ -87,6 +87,7 @@
     </div>
     <div class="col-12 mt-5 text-center">
         <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
+        <button class="btn btn-danger mx-3 mb-5"  onclick="terminar({{$coil->id}})" href="{{route('coil.terminar', $coil->id)}}">Terminar</button>
     </div>
     <div class="col-lg-12 my-3">
     <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollos </h3>
@@ -167,5 +168,13 @@
 </div>
 </div>
 @include('coils.modalTypeSelection')
+<script type="text/javascript">
+    function terminar(id){
+        var opcion = confirm("¿Esta seguro que desea terminar la bobina?");
+        if (opcion == true) {
+        location.replace ("http://localhost/MINABI-project/public/coil/terminar/"+id)
+	    } 
+    }
+</script>
 
 @endsection

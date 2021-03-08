@@ -25,6 +25,9 @@ class CreateWhiteRibbonsTable extends Migration
             $table->string('nomenclatura', 24);
             $table->date('fArribo');
             $table->string('observaciones')->nullable();
+            $table->float('pesoNeto', 12, 4)->nullable();
+            $table->float('kiloMetro',12,4)->nullable();
+            $table->float('costo')->nullable();
 
             $table->timestamps();
         });

@@ -55,7 +55,7 @@ class CoilReelController extends Controller
         //busca la bobina
         $coil = Coil::find($request->coilId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
-        if($coil->pesoBruto >= ($request->peso + $coil->pesoUtilizado)){
+       // if($coil->pesoBruto >= ($request->peso + $coil->pesoUtilizado)){
 
         $coilReel =  new coilReel();
 
@@ -74,20 +74,20 @@ class CoilReelController extends Controller
                                      'peso' => $coilReel->peso]);
         
         $coil->pesoUtilizado = $request->peso + $coil->pesoUtilizado;
-        if($coil->pesoUtilizado == $coil->pesoBruto){
+        /*if($coil->pesoUtilizado == $coil->pesoBruto){
             $coil->status = 'TERMINADA';                       
             $coil->pesoNeto = $coil->related()
                                     ->where('coil_product_type', '=', 'App\Models\Ribbon')
                                     ->orWhere('coil_product_type', '=', 'App\Models\WasteRibbon')
                                     ->sum('peso');
-        }            
+        }  */          
         $coil->save();
         
         return redirect()->route('coilReel.show', compact('coilReel'));  
-        }
+        /*}
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{
             return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso de la bobina');
-        }
+        }*/
     }
 }

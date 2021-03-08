@@ -30,6 +30,8 @@ class CreateBagsTable extends Migration
             $table->text('observaciones')->nullable();
             $table->string('status', 11);
             $table->integer('cantidad');
+            $table->float('costoTotal', 12, 4)->nullable();
+            $table->float('costoCiento', 12, 4)->nullable();
             //Usuario modifioc
             //Usuario Creo  
             //$table->string('medida', 10);

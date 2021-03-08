@@ -58,7 +58,7 @@ class WhiteRibbonReelController extends Controller
         //busca la bobina
         $whiteRibbon = WhiteRibbon::find($request->whiteRibbonId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
-        if($whiteRibbon->peso >= ($request->peso + $whiteRibbon->pesoUtilizado)){
+        //if($whiteRibbon->peso >= ($request->peso + $whiteRibbon->pesoUtilizado)){
 
         $whiteRibbonReel =  new WhiteRibbonReel();
 
@@ -78,21 +78,21 @@ class WhiteRibbonReelController extends Controller
                                      'largo' => '0']);
         
         $whiteRibbon->pesoUtilizado = $request->peso + $whiteRibbon->pesoUtilizado;
-        if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso){
+        /*if($whiteRibbon->pesoUtilizado == $whiteRibbon->peso){
         $whiteRibbon->status = 'TERMINADA';  
         //actualizando tabla intermedia de bobinas y rollos (whiteCilProduct)          
         $whiteCoilProduct = WhiteCoilProduct::where('white_coil_product_id','=', $whiteRibbon->id)->first();
         $whiteCoilProduct->status = 'TERMINADA';
         $whiteCoilProduct->save();
-        }
+        }*/
                                  
         $whiteRibbon->save();
         
         return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  
-        }
+       /* }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{
             return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso del rollo');
-        }
+        }*/
     }
 }

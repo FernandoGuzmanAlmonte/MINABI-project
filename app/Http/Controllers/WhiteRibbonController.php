@@ -64,7 +64,7 @@ class WhiteRibbonController extends Controller
         //busca la bobina
         $whiteCoil = WhiteCoil::find($request->whiteCoilId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
-        if($whiteCoil->peso >= ($request->peso + $whiteCoil->pesoUtilizado)){
+       // if($whiteCoil->peso >= ($request->peso + $whiteCoil->pesoUtilizado)){
           
         $whiteRibbon =  new WhiteRibbon();
 
@@ -75,6 +75,27 @@ class WhiteRibbonController extends Controller
         $whiteRibbon->peso =  $request->peso;
         $whiteRibbon->Observaciones =  $request->Observaciones;
         $whiteRibbon->pesoUtilizado = $request->pesoUtilizado;
+        $pesoTotal = $whiteCoil->related()->where('white_coil_product_type', '=', 'App\Models\WhiteRibbonReel')->orWhere('white_coil_product_type', '=', 'App\Models\WhiteRibbon')->sum('peso');
+        if($pesoTotal != 0){
+        $pesoTotal = $pesoTotal + $request->peso;
+        $costo = ($whiteCoil->costo/$pesoTotal)*$request->peso;
+        foreach ($whiteCoil->whiteRibbons()->get() as $whiteRibbonRelated ){    
+            $costoRelacionado = ($whiteCoil->costo/$pesoTotal)*$whiteRibbonRelated->peso;
+            $whiteRibbonRelated->costo = $costoRelacionado ;
+            $whiteRibbonRelated->save();
+
+        }
+        foreach ($whiteCoil->whiteWaste()->get() as $whiteWaste ){    
+            $costoRelacionado = ($whiteCoil->costo/$pesoTotal)*$whiteWaste->peso;
+            $whiteWaste->costo = $costoRelacionado ;
+            $whiteWaste->save();
+        }
+        }
+        else{
+        $pesoTotal + $request->peso;
+        $costo = $whiteCoil->costo;
+        }
+        $whiteRibbon->costo = $costo;
         
         $whiteRibbon->save();
 
@@ -89,16 +110,16 @@ class WhiteRibbonController extends Controller
         
         //actualiza la bobina
         $whiteCoil->pesoUtilizado = $request->peso + $whiteCoil->pesoUtilizado;
-        if($whiteCoil->pesoUtilizado == $whiteCoil->peso)
-            $whiteCoil->status = 'TERMINADA';                
+       // if($whiteCoil->pesoUtilizado == $whiteCoil->peso)
+         //   $whiteCoil->status = 'TERMINADA';                
         $whiteCoil->save();
         
         return redirect()->route('whiteRibbon.show', compact('whiteRibbon'));  
-    }
+    /*}
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{
             return redirect()->back()->withInput($request->all())->withErrors('El peso del rollo de cinta sobrepasa el limite de peso de la bobina de cinta');
-        }
+        }*/
 
     }
 }

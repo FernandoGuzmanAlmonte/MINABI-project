@@ -87,7 +87,7 @@ class RibbonController extends Controller
         //busca la bobina
         $coil = Coil::find($request->coilId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
-        if($coil->pesoBruto >= ($request->peso + $coil->pesoUtilizado)){
+        //if($coil->pesoBruto >= ($request->peso + $coil->pesoUtilizado)){
           
         $ribbon =  new ribbon();
 
@@ -129,21 +129,21 @@ class RibbonController extends Controller
         
         //actualiza la bobina
         $coil->pesoUtilizado = $request->peso + $coil->pesoUtilizado;
-        if($coil->pesoUtilizado == $coil->pesoBruto){
+        /*if($coil->pesoUtilizado == $coil->pesoBruto){
             $coil->status = 'TERMINADA';                       
             $coil->pesoNeto = $coil->related()
                                     ->where('coil_product_type', '=', 'App\Models\Ribbon')
                                     ->orWhere('coil_product_type', '=', 'App\Models\WasteRibbon')
                                     ->sum('peso');
-        }
+        }*/
         $coil->save();
         
         return redirect()->route('ribbon.show', compact('ribbon')); 
-    }
+   /* }
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{
             return redirect()->back()->withInput($request->all())->withErrors('El peso del rollo sobrepasa el limite de peso de la bobina');
-        }
+        }*/
 
     }
 }

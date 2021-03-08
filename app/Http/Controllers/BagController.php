@@ -62,7 +62,7 @@ class BagController extends Controller
     {
         $ribbon = Ribbon::find($request->ribbonId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
-        if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
+       // if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
             $bag = new Bag();
             
             $bag->bag_measure_id     = $request->bag_measure_id;
@@ -94,21 +94,21 @@ class BagController extends Controller
 
             //actualiza la bobina
             $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
-            if($ribbon->pesoUtilizado == $ribbon->peso){
+            /*if($ribbon->pesoUtilizado == $ribbon->peso){
                 $ribbon->status = 'TERMINADA';   
                 $coilProduct = CoilProduct::where('coil_product_id','=', $ribbon->id)->first();
                 $coilProduct->status = 'TERMINADA';
                 $coilProduct->save();  
-            }
+            }*/
                             
             $ribbon->save();
             
             return redirect()->route('bag.show', compact('bag'));  
-         }
+        /* }
          //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
          else{
              return redirect()->back()->withInput($request->all())->withErrors('El peso de la bolsa sobrepasa el limite de peso del rollo');
-         }
+         }*/
     }
 
     public function show(Bag $bag)
