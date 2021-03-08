@@ -49,7 +49,7 @@
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
-            <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres" disabled>{{ $coilType->observaciones }}</textarea>
+            <textarea rows="3" class="form-control" name="observaciones" disabled>{{ $coilType->observaciones }}</textarea>
         </div>
     </div>
     <div class="col-12 mt-4 mb-4 text-center">
@@ -61,7 +61,7 @@
             <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Medidas de Bolsas </h3>
         </div>
         <div class="col-lg-6 px-2 mt-2 float-left">
-            <button type="button" class="btn btn-success float-right mb-3" data-toggle="modal" data-target="#create">
+            <button type="button" class="btn btn-success float-right mb-3" data-toggle="modal" data-target="#create" onclick="cleanModal()">
                 Añadir Medida de Bolsa
             </button>
         </div>
@@ -78,4 +78,118 @@
 </div>
 @endsection
 
+@section('scripts')
+<script type="text/javascript">
+    function formValidation()
+    {
+        var formBagMeasure = $("#formBagMeasure");
+        var formData = formBagMeasure.serialize(); //variable con el valor de todos los input del formulario
 
+        //Limpiamos el contenido de los div de errores
+        cleanErrorsModal();
+
+        $.ajax({
+            url: "{{ route('coilType.store') }}",
+            type: 'POST',
+            data: formData,
+            success: function(response)
+                     {
+                        if (response)
+                        {
+                            $('#create').modal('toggle'); //cerramos modal #create
+                            location.reload(); // recargamos la página
+                        }
+                     },
+            error: function(response)
+                   {
+                        if(errorMessageAncho = response.responseJSON.errors.ancho)
+                        {
+                            $(".ancho-error").html(
+                                '<div class="alert alert-danger mt-2">' +
+                                    '<small>'+ errorMessageAncho +'</small>' +
+                                '</div>');
+                        }
+                        if(errorMessageLargo = response.responseJSON.errors.largo)
+                        {
+                            $(".largo-error").html(
+                                '<div class="alert alert-danger mt-2">' +
+                                    '<small>'+ errorMessageLargo +'</small>' +
+                                '</div>');
+                        }
+                   }
+        });
+    }
+    function cleanModal()
+    {
+        cleanErrorsModal();
+        cleanInputValueModal();
+    }
+    function cleanErrorsModal()
+    {
+        //Limpiamos el contenido de los div de errores del modal #create
+        $(".ancho-error").html('');
+        $(".largo-error").html(''); 
+    }
+    function cleanInputValueModal()
+    {
+        //Limpiamos el contenido de los input del modal #create
+        $('input[name=largo]').val('');
+        $('input[name=ancho]').val('');
+    }
+
+    //Funciones para el form modal de Edit
+
+    function formValidationEdit(item)
+    {
+        var idBagMeasure = item.id;
+
+        var formBagMeasureEdit = $('#formBagMeasureEdit' + idBagMeasure);
+        var formData = formBagMeasureEdit.serialize(); //variable con el valor de todos los input del formulario
+
+        //Limpiamos el contenido de los div de errores
+        cleanErrorsModalEdit(idBagMeasure);
+
+        //Aqui guardamos la ruta con un id temporal
+        var url = "route('coilType.update', ['id' => 'temp'])";
+        //Aqui sustituimos la variable temp por el id de bagMeasure
+        url = url.replace('temp', idBagMeasure);
+        
+        $.ajax({
+            url: "/coilType/" + idBagMeasure,
+            type: 'POST',
+            data: formData,
+            success: function(response)
+                     {
+                        if (response)
+                        {
+                            $('#edit'+ idBagMeasure).modal('toggle'); //cerramos modal #create
+                            location.reload(); // recargamos la página
+                        }
+                     },
+            error: function(response)
+                   {
+                        if(errorMessageAncho = response.responseJSON.errors.ancho)
+                        {
+                            $(".ancho-error"+ idBagMeasure).html(
+                                '<div class="alert alert-danger mt-2">' +
+                                    '<small>'+ errorMessageAncho +'</small>' +
+                                '</div>');
+                        }
+                        if(errorMessageLargo = response.responseJSON.errors.largo)
+                        {
+                            $(".largo-error"+ idBagMeasure).html(
+                                '<div class="alert alert-danger mt-2">' +
+                                    '<small>'+ errorMessageLargo +'</small>' +
+                                '</div>');
+                        }
+                   }
+        });
+    }
+    function cleanErrorsModalEdit(idBagMeasure)
+    {
+        //Limpiamos el contenido de los input del modal #editID
+        $(".ancho-error"+ idBagMeasure).html('')
+        $(".largo-error"+ idBagMeasure).html(''); 
+    }
+</script>
+@endsection

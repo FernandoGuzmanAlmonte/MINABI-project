@@ -36,7 +36,7 @@ class StoreCoilType extends FormRequest
                 'observaciones' => 'max:255'
             ];
         }
-
+        
         //REQUEST PARA MEDIDAS DE BOLSA
         return [
             'ancho' => 'required',

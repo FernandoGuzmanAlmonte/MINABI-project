@@ -51,7 +51,7 @@ class CoilTypeController extends Controller
             $coilType = $bagMeasure->coilType;
         }
         
-        return redirect()->route('coilType.show', $coilType);
+        return redirect()->route('coilType.show', $coilType); //NOTA: Necesita el metodo location.reload(); en el ajax para funcionar
     }
 
     public function show(CoilType $coilType)

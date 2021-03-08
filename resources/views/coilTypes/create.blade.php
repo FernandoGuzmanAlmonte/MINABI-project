@@ -72,7 +72,7 @@
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span> Tipo</label>
                 <select class="form-control" name="tipo">
-                    <option value="" selected>--seleccione tipo--</option>
+                    <option value="" class="text-muted" selected disabled>--seleccione tipo--</option>
                     <option value="CELOFAN" {{ (old('tipo') == 'CELOFAN') ? 'selected' : '' }}>CELOFÁN</option>
                     <option value="CENEFA" {{ (old('tipo') == 'CENEFA') ? 'selected' : '' }}>CENEFA</option>
                 </select>
@@ -101,5 +101,3 @@
     </div>
 </form>
 @endsection
-
-
