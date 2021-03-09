@@ -16,8 +16,8 @@ class CreateWhiteRibbonReelsTable extends Migration
         Schema::create('white_ribbon_reels', function (Blueprint $table) {
             $table->id();
 
-            $table->string('nomenclatura', 24);
-            $table->float('peso', 10,4); //peso del hueso
+            $table->string('nomenclatura', 28);
+            $table->float('peso', 14,4); //peso del hueso
             $table->string('observaciones')->nullable();
             $table->string('fechaAlta');
             $table->string('status', 10);

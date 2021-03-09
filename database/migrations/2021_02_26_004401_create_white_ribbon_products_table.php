@@ -19,9 +19,9 @@ class CreateWhiteRibbonProductsTable extends Migration
             $table->unsignedBigInteger('white_ribbon_product_id');
             $table->string('white_ribbon_product_type');
             
-            $table->string('nomenclatura', 20);
-            $table->float('peso',12,4);
-            $table->float('largo', 12, 4);
+            $table->string('nomenclatura', 28);
+            $table->float('peso',14,4);
+            $table->float('largo', 14, 4);
             
             $table->string('status', 15);
             $table->date('fAdquisicion');

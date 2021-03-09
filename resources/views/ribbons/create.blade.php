@@ -34,7 +34,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Peso (KG)</label>
+                <label><span class="required">*</span>Peso (KG)</label>
                 <input type="text" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
                 <br>
@@ -48,7 +48,7 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Largo (metros)</label>
+                <label><span class="required">*</span>Largo (metros)</label>
                 <input type="number" step="0.0001" class="form-control" name="largo" value="{{old('largo')}}">
                 @error('largo')
                 <br>
@@ -59,7 +59,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Inicio</label>
+                <label><span class="required">*</span>Fecha Inicio</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{old('fechaInicioTrabajo')}}">
                 @error('fechaInicioTrabajo')
                 <br>
@@ -70,7 +70,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Hora Inicio</label>
+                <label><span class="required">*</span>Hora Inicio</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value="{{old('horaInicioTrabajo')}}">
                 @error('horaInicioTrabajo')
                 <br>
@@ -95,7 +95,7 @@
                  @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Termino</label>
+                <label><span class="required">*</span>Fecha Termino</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo" value="{{old('fechaFinTrabajo')}}">
                 @error('fechaFinTrabajo')
                 <br>
@@ -106,7 +106,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Hora Termino</label>
+                <label><span class="required">*</span>Hora Termino</label>
                 <input type="time" class="form-control" name="horaFinTrabajo" value="{{old('horaFinTrabajo')}}">
                 @error('horaFinTrabajo')
                 <br>
@@ -128,7 +128,7 @@
                 <input type="number" step = "0.0001" class="form-control" name="velocidad" value="{{old('velocidad')}}">
             </div>
             <div class="form-cloned col-lg-4 px-2">
-                <label>Empleado(s)</label>
+                <label><span class="required">*</span>Empleado(s)</label>
                 <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
                 <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
                 <select class="form-control" name="empleados[]">
@@ -145,7 +145,7 @@
         <div class="col-lg-12  mt-3" id="cajaCompleta">
             <div class="col-lg-8 d-flex" id="cintaBlanca">
             <div class="col-lg-6 px-2" >
-                <label>Cintilla Blanca</label>
+                <label><span class="required">*</span>Cintilla Blanca</label>
                 <button type="button" onclick="clonarCinta()" class="btn btn-success btn-sm">+</button>
                 <button type="button" onclick="removerCinta()" class="btn btn-secondary btn-sm">-</button>
                 <select class="form-control" name="white_ribbon_ids[]" id="cajas">
@@ -165,7 +165,7 @@
                 @enderror
             </div>
             <div class="col-lg-6 px-2">
-                <label>Largo (metros)</label>
+                <label><span class="required">*</span>Largo (metros)</label>
                <input type="number" step="0.0001" class="form-control" name="largos[]" id="cajas">
                 @error('white_ribbon_id')
                 <br>

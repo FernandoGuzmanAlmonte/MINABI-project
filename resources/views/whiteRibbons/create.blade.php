@@ -34,7 +34,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Peso (KG)</label>
+                <label><span class="required">*</span>Peso (KG)</label>
                 <input type="text" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
                 <br>
@@ -48,7 +48,7 @@
     
         <div class="col-lg-12 d-flex mt-3"> 
             <div class="col-lg-4 px-2">
-                <label>Fecha Arribo</label>
+                <label><span class="required">*</span>Fecha Arribo</label>
                 <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}">
                 @error('fArribo')
                 <br>
@@ -59,7 +59,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Largo (metros)</label>
+                <label><span class="required">*</span>Largo (metros)</label>
                 <input type="number" step="0.0001" class="form-control" name="largo" value="{{old('largo')}}">
                 @error('largo')
                 <br>

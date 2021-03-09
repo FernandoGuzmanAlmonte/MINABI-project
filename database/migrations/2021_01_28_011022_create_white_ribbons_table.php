@@ -18,15 +18,15 @@ class CreateWhiteRibbonsTable extends Migration
 
             //idBobina con CintillaRollo???
 
-            $table->float('peso', 12, 4);
-            $table->float('pesoUtilizado', 12, 4);
+            $table->float('peso', 14, 4);
+            $table->float('pesoUtilizado', 14, 4);
             $table->string('status', 10);
-            $table->float('largo', 12, 4);
-            $table->string('nomenclatura', 24);
+            $table->float('largo', 14, 4);
+            $table->string('nomenclatura', 28);
             $table->date('fArribo');
             $table->string('observaciones')->nullable();
-            $table->float('pesoNeto', 12, 4)->nullable();
-            $table->float('kiloMetro',12,4)->nullable();
+            $table->float('pesoNeto', 14, 4)->nullable();
+            $table->float('kiloMetro',14,4)->nullable();
             $table->float('costo')->nullable();
 
             $table->timestamps();

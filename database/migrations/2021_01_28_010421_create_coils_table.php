@@ -18,19 +18,19 @@ class CreateCoilsTable extends Migration
             $table->unsignedBigInteger('coil_type_id');
             $table->unsignedBigInteger('provider_id');
 
-            $table->string('nomenclatura', 20);
+            $table->string('nomenclatura', 28);
             $table->string('status', 10);
             $table->date('fArribo');
-            $table->float('pesoBruto',12 ,4);
-            $table->float('pesoNeto',12 ,4)->nullable();
+            $table->float('pesoBruto',14 ,4);
+            $table->float('pesoNeto',14 ,4)->nullable();
             $table->text('observaciones')->nullable();
-            $table->float('diametroBobina',12 ,4)->nullable();
-            $table->float('diametroInterno',12 ,4)->nullable();
-            $table->float('diametroExterno',12 ,4)->nullable();
-            $table->float('largoM',12 ,4);
-            $table->float('pesoUtilizado',12 ,4)->nullable();
-            $table->float('costo',12 ,4);
-            $table->float('metrosUtilizados', 12,4)->nullable();
+            $table->float('diametroBobina',14 ,4)->nullable();
+            $table->float('diametroInterno',14 ,4)->nullable();
+            $table->float('diametroExterno',14 ,4)->nullable();
+            $table->float('largoM',14 ,4);
+            $table->float('pesoUtilizado',14 ,4)->nullable();
+            $table->float('costo',14 ,4);
+            $table->float('metrosUtilizados', 14,4)->nullable();
 
             $table->foreign('coil_type_id')
                 ->references('id')

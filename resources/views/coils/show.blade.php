@@ -88,6 +88,15 @@
     <div class="col-12 mt-5 text-center">
         <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
         <button class="btn btn-danger mx-3 mb-5"  onclick="terminar({{$coil->id}})" href="{{route('coil.terminar', $coil->id)}}">Terminar</button>
+        @if($errors->any())
+        <div class="col-12 mt-3 text-center">
+            <br>
+                <div class="alert alert-danger">
+                    {{$errors->first()}}
+                </div>
+                <br>
+        </div>
+        @endif
     </div>
     <div class="col-lg-12 my-3">
     <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollos </h3>

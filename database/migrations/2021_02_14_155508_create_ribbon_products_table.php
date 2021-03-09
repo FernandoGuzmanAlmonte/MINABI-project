@@ -19,8 +19,8 @@ class CreateRibbonProductsTable extends Migration
             $table->unsignedBigInteger('ribbon_product_id');
             $table->string('ribbon_product_type');
             
-            $table->string('nomenclatura', 20);
-            $table->float('peso',12,4);
+            $table->string('nomenclatura', 28);
+            $table->float('peso',14,4);
             $table->string('medidaBolsa', 10)->nullable();
             
             $table->string('status', 10);

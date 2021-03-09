@@ -23,7 +23,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Inicio Trabajo</label>
+                <label><span class="required">*</span>Fecha Inicio Trabajo</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{old('fechaInicioTrabajo')}}">
                 @error('fechaInicioTrabajo')
                 <br>
@@ -34,7 +34,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Hora Inicio Trabajo</label>
+                <label><span class="required">*</span>Hora Inicio Trabajo</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value="{{old('horaInicioTrabajo')}}">
                 @error('horaInicioTrabajo')
                 <br>
@@ -48,7 +48,7 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Peso (KG)</label>
+                <label><span class="required">*</span>Peso (KG)</label>
                 <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
                 <br>
@@ -59,7 +59,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Fin Trabajo</label>
+                <label><span class="required">*</span>Fecha Fin Trabajo</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo" value="{{old('fechaFinTrabajo')}}">
                 @error('fechaFinTrabajo')
                 <br>
@@ -70,7 +70,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Hora Fin Trabajo</label>
+                <label><span class="required">*</span>Hora Fin Trabajo</label>
                 <input type="time" class="form-control" name="horaFinTrabajo" value="{{old('horaFinTrabajo')}}">
                 @error('horaFinTrabajo')
                 <br>
@@ -84,7 +84,7 @@
     
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Largo (metros)</label>
+                <label><span class="required">*</span>Largo (metros)</label>
                 <input type="number" step="0.0001" class="form-control" name="largo" value="{{old('largo')}}">
                 @error('largo')
                 <br>
