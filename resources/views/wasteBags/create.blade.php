@@ -20,27 +20,27 @@
                 <input type="text" class="form-control" name="status" value="N/A" readonly>
             </div>
             <div class="col-lg-4 px-2">
-                <label>Peso</label>
+                <label><span class="required">*</span>Peso</label>
                 <input type="number" step="0.0001" class="form-control" name="peso">
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Largo</label>
+                <label><span class="required">*</span>Largo</label>
                 <input type="number" step="0.0001" class="form-control" name="largo">
             </div> 
             <div class="col-lg-4 px-2">
-                <label>Fecha Inicio</label>
+                <label><span class="required">*</span>Fecha Inicio</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo">
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Inicio</label>
+                <label><span class="required">*</span>Fecha Inicio</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo">
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Tipo Unidad</label>
+                <label><span class="required">*</span>Tipo Unidad</label>
                 <select class="form-control" name="tipoUnidad">
                     <option selected>--seleccione una opción--</option>
                     <option value="DISPONIBLE">MILLAR</option>
@@ -48,11 +48,11 @@
                 </select>
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Fin</label>
+                <label><span class="required">*</span>Fecha Fin</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo">
             </div>
             <div class="col-lg-4 px-2">
-                <label>Hora Fin</label>
+                <label><span class="required">*</span>Hora Fin</label>
                 <input type="time" class="form-control" name="horaFinTrabajo">
             </div>
         </div>
@@ -66,7 +66,7 @@
                 <input type="number" step="0.0001" class="form-control" name="velocidad">
             </div>
             <div class="col-lg-4 px-2">
-                <label>Cantidad</label>
+                <label><span class="required">*</span>Cantidad</label>
                 <input type="number" step="0.0001" class="form-control" name="cantidad">
             </div>
         </div>

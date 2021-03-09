@@ -59,11 +59,11 @@
         <div class="col-lg-6 px-2 float-left">
             <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle"> Bobinas </h3>
         </div>
-        <div class="col-lg-6 px-2 mt-2 float-left">
+       {{-- <div class="col-lg-6 px-2 mt-2 float-left">
             <a type="button" class="btn btn-success float-right mb-3" href="{{ route('coil.createFromProvider', $provider->id) }}">
                 Añadir Bobina
             </a>
-        </div>
+        </div>--}}
     </div>
     <div class="col-lg-12 d-flex">
         <table class="table table-striped mt-1 mb-5" >

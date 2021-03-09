@@ -19,10 +19,10 @@ class CreateWhiteCoilProductsTable extends Migration
             $table->unsignedBigInteger('white_coil_product_id');
             $table->string('white_coil_product_type');
             
-            $table->string('nomenclatura', 20)->nullable();
+            $table->string('nomenclatura', 28)->nullable();
             $table->string('status', 10);
             $table->date('fAdquisicion');
-            $table->float('peso', 12,4);
+            $table->float('peso', 14,4);
 
             $table->foreign('white_coil_id')
                 ->references('id')

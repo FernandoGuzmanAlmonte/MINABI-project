@@ -113,6 +113,12 @@ class CoilController extends Controller
         $ribbon->costoCelofan = 0;
         $ribbon->save();
     }
+    //accedemos a todas las mermas de la bobina
+    foreach($coil->wasteRibbons() as $wasteRibbon){
+        $wasteRibbon->costo = ($coil->costo * $wasteRibbon->peso)/ $pesoNetoBobina;
+        $wasteRibbon->save(); 
+    }
+
     //accedemos a todos los rollos
     foreach ($coil->ribbons()->get() as $ribbon){
     //obtenemos el peso neto del rollo, sumando los pesos de las bosas y mermas

@@ -20,16 +20,16 @@ class CreateWasteBagsTable extends Migration
             $table->date('fechaFinTrabajo');//fecha de fin en la que se trabajo la merma
             $table->time('horaIncioTrabajo')->nullable();
             $table->time('horaFinTrabajo')->nullable();
-            $table->float('peso', 10, 4); //peso de la merma
-            $table->float('largo', 10, 4); //cantidad en metros
-            $table->float('temperatura', 10, 4); //temperatura de la maquina
-            $table->float('velocidad', 10, 4);  //velocidad de la maquina
+            $table->float('peso', 14, 4); //peso de la merma
+            $table->float('largo', 14, 4); //cantidad en metros
+            $table->float('temperatura', 14, 4)->nullable(); //temperatura de la maquina
+            $table->float('velocidad', 14, 4)->nullable();  //velocidad de la maquina
             $table->string('observaciones')->nullable();
             $table->string('status', 15); //disponible o terminada
-            $table->float('cantidad', 10, 4); //cantidad de mermas generadas
+            $table->float('cantidad', 14, 4); //cantidad de mermas generadas
             $table->string('tipoUnidad', 10); //millares o cientos
-            $table->string('nomenclatura', 24);
-            $table->float('costo', 12, 4)->nullable();
+            $table->string('nomenclatura', 28);
+            $table->float('costo', 14, 4)->nullable();
 
     
             $table->foreign('bag_mesure_id')

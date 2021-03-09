@@ -18,12 +18,12 @@ class CreateWhiteCoilsTable extends Migration
             $table->unsignedBigInteger('provider_id')->nullable();
             $table->unsignedBigInteger('coil_type_id')->nullable();
 
-            $table->float('peso', 12, 4);
+            $table->float('peso', 14, 4);
             $table->string('status', 10);
-            $table->string('nomenclatura', 24);
+            $table->string('nomenclatura', 28);
             $table->string('observaciones')->nullable();
-            $table->float('pesoUtilizado', 12,4);
-            $table->float('costo', 12, 4);
+            $table->float('pesoUtilizado', 14,4);
+            $table->float('costo', 14, 4);
             $table->date('fArribo');
             $table->timestamps();
 

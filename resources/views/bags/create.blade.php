@@ -27,7 +27,7 @@
                 <input type="text" class="form-control" name="status" value="DISPONIBLE" readonly>
             </div>
             <div class="col-lg-4 px-2">
-                <label>Cantidad</label>
+                <label><span class="required">*</span>Cantidad</label>
                 <input type="number" step="0.0001" class="form-control" name="cantidad" value="{{old('cantidad')}}">
                 @error('cantidad')
                 <br>
@@ -40,7 +40,7 @@
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Peso (Kg)</label>
+                <label><span class="required">*</span>Peso (Kg)</label>
                 <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
                 <br>
@@ -51,7 +51,7 @@
                 @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Inicio</label>
+                <label><span class="required">*</span>Fecha Inicio</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{old('fechaInicioTrabajo')}}">
                 @error('fechaInicioTrabajo')
                 <br>
@@ -62,7 +62,7 @@
                 @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Hora Inicio</label>
+                <label><span class="required">*</span>Hora Inicio</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value="{{old('horaInicioTrabajo')}}">
                 @error('horaInicioTrabajo')
                 <br>
@@ -75,7 +75,7 @@
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Medida (largo x ancho)</label>
+                <label><span class="required">*</span>Medida (largo x ancho)</label>
                 <select class="form-control" name="bag_measure_id">
                     <option selected value="">--seleccione medida--</option>
                     @foreach($combinedBagMeasures as $key => $bagMeasure)                    
@@ -84,7 +84,7 @@
                 </select>
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Termino</label>
+                <label><span class="required">*</span>Fecha Termino</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo" value="{{old('fechaFinTrabajo')}}">
                 @error('fechaFinTrabajo')
                 <br>
@@ -95,7 +95,7 @@
                 @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Hora Termino</label>
+                <label><span class="required">*</span>Hora Termino</label>
                 <input type="time" class="form-control" name="horaFinTrabajo" value="{{old('horaFinTrabajo')}}">
                 @error('horaFinTrabajo')
                 <br>
@@ -108,11 +108,11 @@
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
-                <label>Tipo de unidad</label>
+                <label><span class="required">*</span>Tipo de unidad</label>
                 <select class="form-control" name="tipoUnidad">
-                    <option selected>--seleccione una opción--</option>
-                    <option value="MILLAR">MILLAR</option>
-                    <option value="CIENTO">CIENTO</option>
+                    <option value="" class="text-muted" selected disabled>--seleccione una opción--</option>
+                    <option value="MILLAR" {{ (old('tipoUnidad') == 'MILLAR') ? 'selected' : '' }}>MILLAR</option>
+                    <option value="CIENTO"  {{ (old('tipoUnidad') == 'CIENTO') ? 'selected' : '' }}>CIENTO</option>
                 </select>
                 @error('tipoUnidad')
                 <br>
@@ -133,7 +133,7 @@
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="form-cloned col-lg-4 px-2">
-                <label>Empleado(s)</label>
+                <label><span class="required">*</span>Empleado(s)</label>
                 <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
                 <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
                 <select class="form-control" name="empleados[]">
@@ -153,11 +153,11 @@
             <br>
             @enderror
             <div class="col-lg-4 px-2">
-                <label>Cliente Stock</label>
+                <label><span class="required">*</span>Cliente Stock</label>
                 <select class="form-control" name="clienteStock">
-                    <option selected>--seleccione una opción--</option>
-                    <option value="CLIENTE">CLIENTE</option>
-                    <option value="STOCK">STOCK</option>
+                    <option value="" class="text-muted" selected disabled>--seleccione una opción--</option>
+                    <option value="CLIENTE" {{ (old('clienteStock') == 'CLIENTE') ? 'selected' : '' }}>CLIENTE</option>
+                    <option value="STOCK" {{ (old('clienteStock') == 'STOCK') ? 'selected' : '' }}>STOCK</option>
                 </select>
                 @error('clienteStock')
                 <br>

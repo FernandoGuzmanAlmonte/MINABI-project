@@ -15,13 +15,13 @@ class CreateWhiteWastesTable extends Migration
     {
         Schema::create('white_wastes', function (Blueprint $table) {
             $table->id();
-            $table->float('peso', 8, 4); //peso de la cinta
-            $table->float('largo', 8, 4); //largo que mide el rollo en metros
-            $table->string('nomenclatura', 24);
+            $table->float('peso', 14, 4); //peso de la cinta
+            $table->float('largo', 14, 4); //largo que mide el rollo en metros
+            $table->string('nomenclatura', 28);
             $table->string('status', 9);
             $table->string('observaciones')->nullable();
             $table->date('fAlta');
-            $table->float('costo')->nullable(); //Fecha en la que llego
+            $table->float('costo', 14, 4)->nullable(); //Fecha en la que llego
         
             $table->timestamps();
         });

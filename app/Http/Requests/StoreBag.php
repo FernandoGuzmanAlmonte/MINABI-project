@@ -32,8 +32,6 @@ class StoreBag extends FormRequest
             'horaFinTrabajo' => 'required',
             'peso' => 'required',
             'clienteStock' => ['required', Rule::in(['CLIENTE', 'STOCK'])],
-            'temperatura' => 'required',
-            'velocidad' => 'required',
             'observaciones' => 'max:255',
             'status' => 'required',
             'cantidad'=> 'required',

@@ -23,7 +23,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Peso</label>
+                <label><span class="required">*</span>Peso</label>
                 <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
                 <br>
@@ -34,7 +34,7 @@
             @enderror
             </div>
             <div class="col-lg-4 px-2">
-                <label>Fecha Alta</label>
+                <label><span class="required">*</span>Fecha Alta</label>
                 <input type="date" class="form-control" name="fechaAlta" value="{{old('fechaAlta')}}">
                 @error('fechaAlta')
                 <br>

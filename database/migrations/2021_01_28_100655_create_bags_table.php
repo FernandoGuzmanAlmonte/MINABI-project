@@ -18,20 +18,20 @@ class CreateBagsTable extends Migration
             //$table->unsignedBigInteger('ribbon_id');
             $table->unsignedBigInteger('bag_measure_id');
             
-            $table->string('nomenclatura', 24);
+            $table->string('nomenclatura', 28);
             $table->date('fechaInicioTrabajo');
             $table->date('fechaFinTrabajo');
             $table->time('horaInicioTrabajo');
             $table->time('horaFinTrabajo');
-            $table->float('peso', 10, 4);
+            $table->float('peso', 14, 4);
             $table->string('clienteStock', 10);
-            $table->float('temperatura', 10, 4);
-            $table->float('velocidad', 10, 4);
+            $table->float('temperatura', 14, 4);
+            $table->float('velocidad', 14, 4);
             $table->text('observaciones')->nullable();
             $table->string('status', 11);
             $table->integer('cantidad');
-            $table->float('costoTotal', 12, 4)->nullable();
-            $table->float('costoCiento', 12, 4)->nullable();
+            $table->float('costoTotal', 14, 4)->nullable();
+            $table->float('costoCiento', 14, 4)->nullable();
             //Usuario modifioc
             //Usuario Creo  
             //$table->string('medida', 10);

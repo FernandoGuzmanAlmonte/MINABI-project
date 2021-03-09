@@ -17,8 +17,8 @@ class CreateRibbonRollsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('white_ribbon_id'); // id de la cinta blanca
             $table->unsignedBigInteger('coil_product_id')->nullable(); // id del producto bobina
-            $table->float('peso', 8, 4); //peso que se uso en el rollo de celofan
-            $table->float('largo', 8, 4); //largo en metros del rollo de celofan
+            $table->float('peso', 14, 4); //peso que se uso en el rollo de celofan
+            $table->float('largo', 14, 4); //largo en metros del rollo de celofan
 
             $table->foreign('white_ribbon_id')
                 ->references('id')

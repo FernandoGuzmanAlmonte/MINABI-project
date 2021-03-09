@@ -23,7 +23,7 @@
             @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Fecha llegada</label>
+            <label><span class="required">*</span>Fecha llegada</label>
             <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}" onblur="llenaNomen()" id="fArribo">
             @error('fArribo')
                 <br>
@@ -34,7 +34,7 @@
             @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Tipo bobina</label>
+            <label><span class="required">*</span>Tipo bobina</label>
             <select class="form-control" name="coil_type_id" id="tipo" onblur="llenaNomen()">
                 <option selected>--seleccione tipo de bobina--</option>
                 @foreach($coilTypes as $coilType)
@@ -48,7 +48,7 @@
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Proveedor</label>
+            <label><span class="required">*</span>Proveedor</label>
             @if( Route::is('coil.createFromProvider') )
                 <input type="text" class="form-control" value={{ $provider->nombreEmpresa }} readonly>    
             @else
@@ -82,7 +82,7 @@
             @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Largo (metros)</label>
+            <label><span class="required">*</span>Largo (metros)</label>
             <input type="number" step="0.0001" class="form-control" name="largoM">
             @error('largoM')
                 <br>
@@ -96,7 +96,7 @@
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Peso Bruto (Kg)</label>
+            <label><span class="required">*</span>Peso Bruto (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoBruto" value="{{old('pesoBruto')}}">
         </div>
         <div class="col-lg-4 px-2">
@@ -133,7 +133,7 @@
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Costo</label>
+            <label><span class="required">*</span>Costo</label>
             <input type="number" step="0.0001" class="form-control" name="costo" value="{{old('costo')}}">
             @error('costo')
                 <br>
