@@ -101,7 +101,7 @@
     </table>
 
 <!--Tabla para bolsas relacionadas-->
-<h3 class="mt-5"> <img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas </h3>
+<h3 class="mt-5"> <img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Hueso, Merma o Rollo de Celofán </h3>
 <table class="table table-striped my-4" >
     <thead class="bg-info">
 <tr>

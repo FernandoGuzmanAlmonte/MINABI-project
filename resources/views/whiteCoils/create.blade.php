@@ -12,7 +12,7 @@
     <div class="row">
     <div class="col-lg-12 d-flex mt-2">
         <div class="col-lg-4 px-2">
-            <label>Nomenclatura</label>
+            <label><span class="required">*</span> Nomenclatura</label>
             <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}" id="nomenclaturas" readonly>
             @error('nomenclatura')
                 <br>
@@ -23,7 +23,7 @@
             @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Fecha llegada</label>
+            <label><span class="required">*</span> Fecha llegada</label>
             <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}" onblur="llenaNomen()" id="fArribo">
             @error('fArribo')
                 <br>
@@ -44,12 +44,13 @@
         <div class="col-lg-4 px-2">
             <label>Tipo bobina</label>
             <select class="form-control" name="coil_type_id">
-                <option selected value="">--seleccione tipo de bobina--</option>
+                <option selected value="" class="text-muted" disabled>--seleccione tipo de bobina--</option>
                 @foreach($coilTypes as $coilType)
                     <option value={{ $coilType->id }}>
                         {{ $coilType->alias }}
                     </option>
                 @endforeach
+                <option value="">Ninguno</option>
             </select>
         </div>
     </div>
@@ -58,12 +59,13 @@
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
             <select class="form-control" name="provider_id">
-                <option selected value="">--seleccione proveedor--</option>
+                <option selected value="" class="text-muted" disabled>--seleccione proveedor--</option>
                 @foreach($providers as $provider)
                     <option value={{ $provider->id }}>
                         {{ $provider->nombreEmpresa }}
                     </option>
                 @endforeach
+                <option value="">Ninguno</option>
             </select>
             
             @error('provider_id')
@@ -75,7 +77,7 @@
             @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Status</label>
+            <label><span class="required">*</span> Status</label>
             <input type="datetime" class="form-control" name="status" value="DISPONIBLE" readonly>
             @error('status')
                 <br>
@@ -86,7 +88,7 @@
             @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Costo</label>
+            <label><span class="required">*</span> Costo</label>
             <input type="number" step="0.0001" class="form-control" name="costo" value="{{old('costo')}}">
             @error('costo')
                 <br>
@@ -100,7 +102,7 @@
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
-            <label>Peso( Kg)</label>
+            <label><span class="required">*</span> Peso( Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
             @error('peso')
             <br>
@@ -111,7 +113,7 @@
         @enderror
         </div>
         <div class="col-lg-4 px-2">
-            <label>Peso Utilizado (Kg)</label>
+            <label><span class="required">*</span> Peso Utilizado (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="0" readonly>
         </div>
     </div>

@@ -33,4 +33,11 @@ class StoreWhiteCoil extends FormRequest
             'fArribo' => 'required'
         ];
     }
+
+    public function attributes()
+    {
+        return[
+            'fArribo' => 'fecha llegada'
+        ];
+    }
 }

@@ -31,7 +31,18 @@ class StoreCoil extends FormRequest
             'largoM' => 'required',
             'costo' => 'required',
             'provider_id' => 'required',
+            'coil_type_id' => 'required',
             'observaciones' => 'max:255'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'coil_type_id' => 'tipo bobina',
+            'provider_id' => 'proveedor',
+            'fArribo' => 'fecha llegada',
+            'largoM' => 'largo(metros)'
         ];
     }
 }

@@ -36,13 +36,20 @@
         <div class="col-lg-4 px-2">
             <label><span class="required">*</span>Tipo bobina</label>
             <select class="form-control" name="coil_type_id" id="tipo" onblur="llenaNomen()">
-                <option selected>--seleccione tipo de bobina--</option>
+                <option selected value="" class="text-muted" disabled>--seleccione tipo de bobina--</option>
                 @foreach($coilTypes as $coilType)
                     <option value={{ $coilType->id }}>
                         {{ $coilType->alias }}
                     </option>
                 @endforeach
             </select>
+            @error('coil_type_id')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
     </div>
 
@@ -53,7 +60,7 @@
                 <input type="text" class="form-control" value={{ $provider->nombreEmpresa }} readonly>    
             @else
                 <select class="form-control" name="provider_id">
-                    <option selected>--seleccione proveedor--</option>
+                    <option selected value="" class="text-muted" disabled>--seleccione proveedor--</option>
                     @foreach($providers as $provider)
                         <option value={{ $provider->id }}>
                             {{ $provider->nombreEmpresa }}
@@ -98,6 +105,13 @@
         <div class="col-lg-4 px-2">
             <label><span class="required">*</span>Peso Bruto (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoBruto" value="{{old('pesoBruto')}}">
+            @error('pesoBruto')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
         <div class="col-lg-4 px-2">
             <label>Peso Neto (Kg)</label>

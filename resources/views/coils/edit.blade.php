@@ -25,7 +25,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Fecha llegada</label>
-            <input type="date" class="form-control" name="fArribo" value="{{$coil->fArribo}}" onblur="llenaNomen()" id="fArribo">
+            <input type="date" class="form-control" name="fArribo" value="{{old('fArribo', $coil->fArribo)}}" onblur="llenaNomen()" id="fArribo">
             @error('fArribo')
                 <br>
                 <div class="alert alert-danger">
@@ -43,6 +43,13 @@
                     </option>
                 @endforeach
             </select>
+            @error('coil_type_id')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
     </div>
 
@@ -77,7 +84,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label>Largo (metros)</label>
-            <input type="number" step="0.0001" class="form-control" name="largoM" value="{{$coil->largoM}}">
+            <input type="number" step="0.0001" class="form-control" name="largoM" value="{{old('largoM', $coil->largoM)}}">
             @error('largoM')
                 <br>
                 <div class="alert alert-danger">
@@ -91,7 +98,7 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Peso Bruto (Kg)</label>
-            <input type="number" step="0.0001" class="form-control" name="pesoBruto" value="{{$coil->pesoBruto}}">
+            <input type="number" step="0.0001" class="form-control" name="pesoBruto" value="{{old('pesoBruto', $coil->pesoBruto)}}">
             @error('pesoBruto')
                 <br>
                 <div class="alert alert-danger">
@@ -120,22 +127,22 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Diametro Exterior</label>
-            <input type="number" step="0.0001" class="form-control" name="diametroExterno" value="{{$coil->diametroExterno}}">
+            <input type="number" step="0.0001" class="form-control" name="diametroExterno" value="{{old('diametroExterno', $coil->diametroExterno)}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Diametro Bobina</label>
-            <input type="number" step="0.0001" class="form-control" name="diametroBobina"value="{{$coil->diametroBobina}}">
+            <input type="number" step="0.0001" class="form-control" name="diametroBobina"value="{{old('diametroBobina', $coil->diametroBobina)}}">
         </div>
         <div class="col-lg-4 px-2">
             <label>Diametro Interior</label>
-            <input type="number" step="0.0001" class="form-control" name="diametroInterno" value="{{$coil->diametroInterno}}">
+            <input type="number" step="0.0001" class="form-control" name="diametroInterno" value="{{old('diametroInterno', $coil->diametroInterno)}}">
         </div>
     </div>
 
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Costo</label>
-            <input type="number" step="0.0001" class="form-control" name="costo" value="{{$coil->costo}}">
+            <input type="number" step="0.0001" class="form-control" name="costo" value="{{old('costo', $coil->costo)}}">
             @error('costo')
                 <br>
                 <div class="alert alert-danger">
@@ -149,7 +156,7 @@
     <div class="col-lg-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
-            <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{$coil->observaciones}}</textarea>
+            <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{old('observaciones', $coil->observaciones)}}</textarea>
             @error('observaciones')
                 <br>
                 <div class="alert alert-danger">
