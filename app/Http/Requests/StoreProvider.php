@@ -23,11 +23,38 @@ class StoreProvider extends FormRequest
      */
     public function rules()
     {
+        if($this->has('providerForm'))
+        {
+            return [
+                'nombreEmpresa' => 'required|max:45',
+                'direccion' => 'required|max:80',
+                'paginaWeb' => 'max:45',
+                'estado' => 'required|max:45'           
+            ];
+        }
+
+        //REQUEST PARA CONTACTOS
         return [
-            'nombreEmpresa' => 'required|max:45',
-            'direccion' => 'required|max:80',
-            'paginaWeb' => 'max:45',
-            'estado' => 'required|max:45'           
+            'telefono' => 'required',
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'correoElectronico' => 'required|email'
+        ];
+    }
+
+    public function attributes()
+    {
+        if(!$this->has('providerForm'))
+        {
+            return [
+                'correoElectronico' => 'correo electrónico',
+                'telefono' => 'teléfono',
+                'nombre' => 'nombre(s)'
+            ];
+        }
+
+        return [
+            
         ];
     }
 }

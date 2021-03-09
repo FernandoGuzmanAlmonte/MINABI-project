@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit{{$contact->id}}">
+<div class="modal fade" id="edit{{ $contact->id }}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,31 +7,35 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form action="{{ route('provider.update', $contact->id) }}" method="POST">
+            <form id="formContactEdit{{ $contact->id }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Télefono:</label>
-                        <input type="number" class="form-control" name="telefono" value={{$contact->telefono}}>
+                        <input type="number" class="form-control" name="telefono" id="telefono{{ $contact->id }}" value={{$contact->telefono}}>
+                        <div class="telefono-error{{ $contact->id }}"></div>
                     </div>
                     <div class="form-group">
                         <label>Nombre(s):</label>
-                        <input type="text" class="form-control" name="nombre" value={{$contact->nombre}}>
+                        <input type="text" class="form-control" name="nombre" id="nombre{{ $contact->id }}" value={{$contact->nombre}}>
+                        <div class="nombre-error{{ $contact->id }}"></div>
                     </div>
                     <div class="form-group">
                         <label>Apellidos:</label>
-                        <input type="text" class="form-control" name="apellidos" value={{$contact->apellidos}}>
+                        <input type="text" class="form-control" name="apellidos" id="apellidos{{ $contact->id }}" value={{$contact->apellidos}}>
+                        <div class="apellidos-error{{ $contact->id }}"></div>
                     </div>
                     <div class="form-group">
                         <label>Correo electrónico:</label>
-                        <input type="email" class="form-control" name="correoElectronico" value={{$contact->correoElectronico}}>
+                        <input type="email" class="form-control" name="correoElectronico" id="correoElectronico{{ $contact->id }}" value={{$contact->correoElectronico}}>
+                        <div class="correoElectronico-error{{ $contact->id }}"></div>
                     </div>
                     <input type="hidden" name="provider_id" value="{{ $provider->id }}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" name="contactForm" class="btn btn-success">Guardar Cambios</button>
+                    <button id="{{ $contact->id }}" type="button" name="contactForm" class="btn btn-success" onclick="formValidationEdit(this)">Guardar Cambios</button>
                 </div>
             </form>
         </div>
