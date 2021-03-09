@@ -8,6 +8,7 @@ use App\Models\CoilProduct;
 use App\Models\Ribbon;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use DateTime;
 
 class BagController extends Controller
 {
@@ -119,7 +120,12 @@ class BagController extends Controller
         $coil = $ribbon->coils()->get()->first();
         //obtenemos las cintas relacionadas en los rollos en caso de existir
         $cinta =  $ribbon->whiteRibbons()->get();
-        return view('bags.show', compact('bag', 'coil', 'ribbon', 'cinta' ));
+        $tiempo1 = new DateTime($ribbon->fechaInicioTrabajo . 'T' . $ribbon->horaInicioTrabajo);
+        $tiempo2 = new DateTime($ribbon->fechaFinTrabajo . 'T' . $ribbon->horaFinTrabajo);
+        $tiempod = $tiempo1->diff($tiempo2);
+        $minutosLaborados = $tiempod->h * 60 + $tiempod->i;
+
+        return view('bags.show', compact('bag', 'coil', 'ribbon', 'cinta', 'minutosLaborados' ));
     }
 
     public function edit(Bag $bag)

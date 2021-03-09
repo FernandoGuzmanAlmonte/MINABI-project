@@ -85,23 +85,50 @@
         <h3><img src="{{ asset('images/empleado.svg') }}" class="iconoTitle"> Empleados</h3>
         <table class="table table-striped my-4" >
             <thead class="bg-info">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Satus</th>
-                </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Minutos Trabajados</th>
+                <th scope="col">Sueldo por hora</th>
+                <th scope="col">Costo de Mano de obra</th>
+            </tr>
             </thead>
             <tbody>
                 @foreach ($bag->employees as $employee)
-                <tr>
-                    <th scope="row" class="align-middle">{{$employee->id}}</th>
-                    <td class="align-middle">{{$employee->nombre}}</td>
-                    <td class="align-middle">{{$employee->status}}</td>
-                </tr>
+                    <tr>
+                        <th scope="row" class="align-middle">{{$employee->id}}</th>
+                        <td class="align-middle">{{$employee->nombre}}</td>
+                        <td class="align-middle">{{$minutosLaborados}}</td>
+                        <td class="align-middle">$ {{$employee->sueldoHora}}</td>
+                        <td class="align-middle">$ {{$employee->sueldoHora*$minutosLaborados}}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+    @if ($coil->status == 'TERMINADA')
+    
+    <div class="col-12 mt-2 mb-2 text-right">
+        <h3 class="text-left"><img src="{{ asset('images/moneda-de-dinero.svg') }}" class="iconoTitle"> Costos</h3>
+        <div class="d-flex">
+            <div class="h5 col-10 ">Costo Materia Prima=</div>
+            <div class="h5 col-2 ">$ {{round($bag->costoTotal, 4)}}</div>
+        </div>
+        <div class="d-flex">
+            <div class="h5 col-10">Costo de mano de obra =</div>
+            <div class="h5 col-2">$ {{$bag->employees->sum('sueldoHora')*$minutosLaborados}}</div>
+        </div>
+        <hr>
+        <div class="d-flex">
+            <div class="h5 col-10">Total =</div>
+            <div class="h5 col-2">$ {{round(($bag->employees->sum('sueldoHora')*$minutosLaborados)+ $bag->costoTotal,4)}}</div>
+        </div>
+        <div class="d-flex">
+            <div class="h5 col-10">Costo por unidad =</div>
+            <div class="h5 col-2">$ {{round((($bag->employees->sum('sueldoHora')*$minutosLaborados)+ $bag->costoTotal)/$bag->cantidad,4)}}</div>
+        </div>
+    </div>
+    @endif 
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{ route('bag.edit', $bag) }}">Editar</a>
     </div>

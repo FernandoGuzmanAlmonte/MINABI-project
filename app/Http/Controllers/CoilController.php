@@ -99,62 +99,81 @@ class CoilController extends Controller
     }  
 
     public function terminar(Coil $coil){
+    //obtenemos el total de los metros utilizados    
     $totalMetrosRollos = $coil->ribbons()->sum('largo');
-    $pesoNetoBobina =  $coil->pesoBruto - $coil->coilReels()->get()->first()->peso;
-    //echo 'Peso neto de la bobina = '. $pesoNetoBobina . '<br>'; 
+    //calculamos peso neto de bobina
+    $pesoNetoBobina =  $coil->pesoBruto - $coil->coilReels()->get()->first()->peso; 
     $coil->pesoNeto = $pesoNetoBobina;
     $coil->metrosUtilizados = $totalMetrosRollos; 
+    //actualizamos todos los monntos de rollos para volver a calcular
     foreach ($coil->ribbons()->get() as $ribbon){
         $ribbon->pesoCelofan = 0;
         $ribbon->pesoCinta = 0;
+        $ribbon->costoCinta = 0;
+        $ribbon->costoCelofan = 0;
         $ribbon->save();
     }
+    //accedemos a todos los rollos
     foreach ($coil->ribbons()->get() as $ribbon){
+    //obtenemos el peso neto del rollo, sumando los pesos de las bosas y mermas
        $pesoNetoRollo = $ribbon->related()->where('ribbon_product_type', '=', 'App\Models\Bag')->orWhere('ribbon_product_type', '=', 'App\Models\WasteBag')->sum('peso');
        //obtenemos datos de las bolsas generadas
        $ribbon->pesoNeto = $pesoNetoRollo;
-       //obtenemos datos de la cinta relacionada
+       //if para validar si tiene bobinas blancas ligadas
+       if ($ribbon->whiteRibbons()->get()->isEmpty() ){
+        $pesoCelofan = $pesoNetoRollo;
+        $ribbon->pesoCelofan = $pesoCelofan;
+        $costoCelofan = ($coil->costo * $pesoCelofan) / $pesoNetoBobina;
+        $ribbon->costoCelofan = $costoCelofan;
+       }
+       else {
+        //obtenemos datos de la cinta relacionada
        foreach($ribbon->whiteRibbons()->get() as $whiteRibbon){
-           //echo 'Rollo de cinta blanca relacionada ' . $whiteRibbon->nomenclatura . '<br>';
+           //Obtenemos el peso de la cinta blanca
            $huesoCinta =  $whiteRibbon->related()->where('white_ribbon_product_type', '=', 'App\Models\WhiteRibbonReel')->first();
-           //echo 'El hueso de la cinta blanca pesa ' . $huesoCinta->peso. '<br>';
+           //calculamos el peso neto de la cinta
            $pesoNetoCinta = ($whiteRibbon->peso - $huesoCinta->peso);
            $whiteRibbon->pesoNeto = $pesoNetoCinta; 
-           //echo 'El peso neto de la cinta blanca es ' . $pesoNetoCinta . '<br>';
+           //obtenemos el largo de la cinta
            $largoCinta =$whiteRibbon->related()->where('white_ribbon_product_type', '=', 'App\Models\Ribbon')->where('white_ribbon_product_id', '=', $ribbon->id)->get();
-           //echo 'Largo de la cinta utilizado ' . $largoCinta;
+           //calculamos el peso por metro de la cinta blanca
            $pesoXMetroCinta = ( $pesoNetoCinta / $largoCinta->first()->largo);
            $whiteRibbon->kiloMetro = round($pesoXMetroCinta,4);
-           //echo 'El peso por metro de la cinta blanca es ' . $pesoXMetroCinta . '<br>';
+           //calulamos el peso de la cinta utilizado en el rollo
            $pesoCinta = ($pesoXMetroCinta * $largoCinta->first()->largo);
            $ribbon->pesoCinta = $ribbon->pesoCinta + $pesoCinta;
-           //echo 'El peso por toda la cinta blanca del rollo es ' . $pesoCinta . '<br>';
+           //calculamos el peso del celofan
            $pesoCelofan = $pesoNetoRollo - $pesoCinta;
            $ribbon->pesoCelofan = $pesoCelofan;
-           //echo 'El peso del celofan del rollo es '. $pesoCelofan . '<br>';
+           //calculamos costos
            $costoCelofan = ($coil->costo * $pesoCelofan) / $pesoNetoBobina;
            $ribbon->costoCelofan = $costoCelofan;
-           //echo 'El costo del celofan es ' . $costoCelofan . '<br>';
+           
            $costoCinta = ($whiteRibbon->costo * $pesoCinta) / $pesoNetoCinta;
            $ribbon->costoCinta = $ribbon->costoCinta + $costoCinta;
+           //cambiamos status de rollo y ponemos como terminada
            $whiteRibbon->status = 'TERMINADA';
            $whiteRibbon->save();
            //echo 'El costo de la cinta blanca es '. $costoCinta . '<br>';
        }
+    }
        $ribbon->status = 'TERMINADA';
        $tiempo1 = new DateTime($ribbon->fechaInicioTrabajo . 'T' . $ribbon->horaInicioTrabajo);
        $tiempo2 = new DateTime($ribbon->fechaFinTrabajo . 'T' . $ribbon->horaFinTrabajo);
        $tiempod = $tiempo1->diff($tiempo2);
        $minutosLaborados = $tiempod->h * 60 + $tiempod->i;
        $costoManoObra = $ribbon->employees->sum('sueldoHora')*$minutosLaborados;
-       $ribbon->costoTotal =  round($costoCelofan + $costoCinta + $costoManoObra, 4);
+       $ribbon->costoTotal =  round($ribbon->costoCelofan + $ribbon->costoCinta + $costoManoObra, 4);
        $ribbon->save();
 
-       $pesoTotalBolsas = $ribbon->related()->where('ribbon_product_type', '=', 'App\Models\Bag')->orWhere('ribbon_product_type', '=', 'App\Models\RibbonWaste')->sum('peso');
+       $pesoTotalBolsas = $ribbon->related()->where('ribbon_product_type', '=', 'App\Models\Bag')->orWhere('ribbon_product_type', '=', 'App\Models\WasteBag')->sum('peso');
        foreach ($ribbon->bags()->get() as $bag){
-          
         $bag->costoTotal = (($ribbon->costoTotal/$pesoTotalBolsas) * $bag->peso);
         $bag->save();
+       }
+       foreach($ribbon->wasteBags()->get() as $wasteBag){
+        $wasteBag->costo = (($ribbon->costoTotal/$pesoTotalBolsas) * $wasteBag->peso);
+        $wasteBag->save();
        }
        // echo '<br>';
     }

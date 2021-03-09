@@ -26,7 +26,7 @@
         <th scope="row" class="align-middle">{{$item->id}}</th>
         <td class="align-middle">{{$item->nomenclatura}}</td>
         <td class="align-middle">{{$item->fArribo}}</td>
-        <td class="align-middle">{{$item->coil_type_id}}</td>
+        <td class="align-middle">{{$item->coilType->alias}}</td>
         <td class="align-middle">
             <label class="btn btn-outline-{{ ($item->status == 'DISPONIBLE') ? 'success' : 'danger' }} m-0">
                 {{$item->status}}

@@ -1,12 +1,10 @@
-@extends('layouts.tablaIndex')
+@extends('layouts.tablaIndexSinAgregar')
 
 @section('title', 'Rollos de cinta blanca')
 
 @section('imgUrl',  asset('images/rollo-de-papel.svg'))
 
 @section('namePage', 'Rollos de cinta blanca')
-
-@section('route', route('whiteRibbon.create'))
 
 @section('table')
 <table class="table table-striped my-4" >

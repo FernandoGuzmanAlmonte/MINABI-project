@@ -1,12 +1,10 @@
-@extends('layouts.tablaIndex')
+@extends('layouts.tablaIndexSinAgregar')
 
 @section('title', 'Bolsas')
 
 @section('imgUrl',  asset('images/bolsa-de-papel.svg'))
 
 @section('namePage', 'Bolsas')
-
-@section('route', route('ribbon.create'))
 
 @section('table')
 <table class="table table-striped my-4" >

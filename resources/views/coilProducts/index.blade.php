@@ -1,4 +1,4 @@
-@extends('layouts.tablaIndex')
+@extends('layouts.tablaIndexSinAgregar')
 
 @section('title', 'Rollos')
 
@@ -6,7 +6,6 @@
 
 @section('namePage', 'Rollos')
 
-@section('route', route('ribbon.create'))
 
 @section('table')
 <table class="table table-striped my-4" >

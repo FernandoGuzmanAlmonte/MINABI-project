@@ -36,32 +36,32 @@ class WasteBagController extends Controller
         $ribbon = Ribbon::find($request->ribbonId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
         //if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
-        $wasteBags = new WasteBag();
+        $wasteBag = new WasteBag();
 
-        $wasteBags->fechaInicioTrabajo = $request->fechaInicioTrabajo;
-        $wasteBags->fechaFinTrabajo    = $request->fechaFinTrabajo;
-        $wasteBags->peso           = $request->peso;
-        $wasteBags->largo          = $request->largo;
-        $wasteBags->temperatura    = $request->temperatura;  
-        $wasteBags->velocidad      = $request->velocidad;
-        $wasteBags->observaciones  = $request->observaciones;
-        $wasteBags->status         = $request->status;
-        $wasteBags->tipoUnidad     = $request->tipoUnidad;
-        $wasteBags->cantidad       = $request->cantidad;
-        $wasteBags->nomenclatura   = $request->nomenclatura;
+        $wasteBag->fechaInicioTrabajo = $request->fechaInicioTrabajo;
+        $wasteBag->fechaFinTrabajo    = $request->fechaFinTrabajo;
+        $wasteBag->peso           = $request->peso;
+        $wasteBag->largo          = $request->largo;
+        $wasteBag->temperatura    = $request->temperatura;  
+        $wasteBag->velocidad      = $request->velocidad;
+        $wasteBag->observaciones  = $request->observaciones;
+        $wasteBag->status         = $request->status;
+        $wasteBag->tipoUnidad     = $request->tipoUnidad;
+        $wasteBag->cantidad       = $request->cantidad;
+        $wasteBag->nomenclatura   = $request->nomenclatura;
 
-        $wasteBags->save();
+        $wasteBag->save();
 
         //request->input('empleados') tiene los id's de los empleados, verificamos si
         //hay empleados antes de agregar
         $empleados = $request->input('empleados');
-        if($empleados[0] != null) $wasteBags->employees()->attach($empleados);   
+        if($empleados[0] != null) $wasteBag->employees()->attach($empleados);   
 
-        $addProduct = WasteBag::find($wasteBags->id);
-        $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$wasteBags->nomenclatura,
+        $addProduct = WasteBag::find($wasteBag->id);
+        $addProduct->ribbons()->attach($request->ribbonId, ['nomenclatura'=>$wasteBag->nomenclatura,
                                      'status'=>'N/A', 
-                                     'fAdquisicion'=>$wasteBags->fechaInicioTrabajo,
-                                     'peso'=>$wasteBags->peso]);
+                                     'fAdquisicion'=>$wasteBag->fechaInicioTrabajo,
+                                     'peso'=>$wasteBag->peso]);
 
         $ribbon->pesoUtilizado = $request->peso + $ribbon->pesoUtilizado;
        /* if($ribbon->pesoUtilizado == $ribbon->peso){
@@ -69,10 +69,10 @@ class WasteBagController extends Controller
             $coilProduct = CoilProduct::where('coil_product_id','=', $ribbon->id)->first();
             $coilProduct->status = 'TERMINADA';
             $coilProduct->save();  
-         }                      
-        $ribbon->save();*/
+         }              */        
+        $ribbon->save();
                                     
-        return redirect()->route('wasteBag.show', compact('wasteBags'));  
+        return redirect()->route('wasteBag.show', compact('wasteBag'));  
         /*}
         //en caso de que no pase el if regresamos el formulario con los valores y el mensaje de error
         else{
