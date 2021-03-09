@@ -99,6 +99,17 @@ class CoilController extends Controller
     }  
 
     public function terminar(Coil $coil){
+        //validaciones de que se pueda terminar la bobina
+    if($coil->coilReels()->get()->isEmpty()){
+    
+        return redirect()->back()->withErrors('La bobina no cuenta con hueso');
+    }
+    foreach( $coil->ribbons()->get() as $ribbon){
+        if($ribbon->reels()->get()->first() == null ){
+            return redirect()->back()->withErrors('Alguno de los rollos no cuenta con hueso');
+        }    
+    }
+    
     //obtenemos el total de los metros utilizados    
     $totalMetrosRollos = $coil->ribbons()->sum('largo');
     //calculamos peso neto de bobina
@@ -112,11 +123,12 @@ class CoilController extends Controller
         $ribbon->costoCinta = 0;
         $ribbon->costoCelofan = 0;
         $ribbon->save();
+        
     }
     //accedemos a todas las mermas de la bobina
     foreach($coil->wasteRibbons() as $wasteRibbon){
         $wasteRibbon->costo = ($coil->costo * $wasteRibbon->peso)/ $pesoNetoBobina;
-        $wasteRibbon->save(); 
+        $wasteRibbon->save();
     }
 
     //accedemos a todos los rollos
@@ -171,11 +183,26 @@ class CoilController extends Controller
        $costoManoObra = $ribbon->employees->sum('sueldoHora')*$minutosLaborados;
        $ribbon->costoTotal =  round($ribbon->costoCelofan + $ribbon->costoCinta + $costoManoObra, 4);
        $ribbon->save();
-
+       $coilProduct = $coil->related()
+       ->where('coil_id', '=', $coil->id)
+       ->where('coil_product_id', '=', $ribbon->id)
+       ->where('coil_product_type', '=', 'App\Models\Ribbon')
+       ->get()
+       ->first();
+        $coilProduct->status = 'TERMINADA';
+        $coilProduct->save();
        $pesoTotalBolsas = $ribbon->related()->where('ribbon_product_type', '=', 'App\Models\Bag')->orWhere('ribbon_product_type', '=', 'App\Models\WasteBag')->sum('peso');
        foreach ($ribbon->bags()->get() as $bag){
         $bag->costoTotal = (($ribbon->costoTotal/$pesoTotalBolsas) * $bag->peso);
         $bag->save();
+        $coilProduct = $coil->related()
+                            ->where('coil_id', '=', $coil->id)
+                            ->where('coil_product_id', '=', $bag->id)
+                            ->where('coil_product_type', '=', 'App\Models\Bag')
+                            ->get()
+                            ->first();
+        $coilProduct->status = 'TERMINADA';
+        $coilProduct->save();
        }
        foreach($ribbon->wasteBags()->get() as $wasteBag){
         $wasteBag->costo = (($ribbon->costoTotal/$pesoTotalBolsas) * $wasteBag->peso);
