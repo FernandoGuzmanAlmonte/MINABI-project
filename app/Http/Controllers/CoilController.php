@@ -107,7 +107,12 @@ class CoilController extends Controller
     foreach( $coil->ribbons()->get() as $ribbon){
         if($ribbon->reels()->get()->first() == null ){
             return redirect()->back()->withErrors('Alguno de los rollos no cuenta con hueso');
-        }    
+        }
+        foreach($ribbon->whiteRibbons()->get() as $whiteRibbon){
+                if($whiteRibbon->whiteReels()->get()->first() == null){
+                    return redirect()->back()->withErrors('Alguno de los rollos de cinta blanca no cuenta con hueso');
+                }
+        }
     }
     
     //obtenemos el total de los metros utilizados    
@@ -126,7 +131,7 @@ class CoilController extends Controller
         
     }
     //accedemos a todas las mermas de la bobina
-    foreach($coil->wasteRibbons() as $wasteRibbon){
+    foreach($coil->wasteRibbons()->get() as $wasteRibbon){
         $wasteRibbon->costo = ($coil->costo * $wasteRibbon->peso)/ $pesoNetoBobina;
         $wasteRibbon->save();
     }
@@ -153,12 +158,12 @@ class CoilController extends Controller
            $pesoNetoCinta = ($whiteRibbon->peso - $huesoCinta->peso);
            $whiteRibbon->pesoNeto = $pesoNetoCinta; 
            //obtenemos el largo de la cinta
-           $largoCinta =$whiteRibbon->related()->where('white_ribbon_product_type', '=', 'App\Models\Ribbon')->where('white_ribbon_product_id', '=', $ribbon->id)->get();
+           $largoCinta =$whiteRibbon->related()->where('white_ribbon_product_type', '=', 'App\Models\Ribbon')/*->where('white_ribbon_product_id', '=', $ribbon->id)*/->get()->sum('largo');
            //calculamos el peso por metro de la cinta blanca
-           $pesoXMetroCinta = ( $pesoNetoCinta / $largoCinta->first()->largo);
+           $pesoXMetroCinta = ( $pesoNetoCinta / $largoCinta);
            $whiteRibbon->kiloMetro = round($pesoXMetroCinta,4);
            //calulamos el peso de la cinta utilizado en el rollo
-           $pesoCinta = ($pesoXMetroCinta * $largoCinta->first()->largo);
+           $pesoCinta = ($pesoXMetroCinta * $largoCinta);
            $ribbon->pesoCinta = $ribbon->pesoCinta + $pesoCinta;
            //calculamos el peso del celofan
            $pesoCelofan = $pesoNetoRollo - $pesoCinta;
@@ -180,7 +185,7 @@ class CoilController extends Controller
        $tiempo2 = new DateTime($ribbon->fechaFinTrabajo . 'T' . $ribbon->horaFinTrabajo);
        $tiempod = $tiempo1->diff($tiempo2);
        $minutosLaborados = $tiempod->h * 60 + $tiempod->i;
-       $costoManoObra = $ribbon->employees->sum('sueldoHora')*$minutosLaborados;
+       $costoManoObra = ($ribbon->employees->sum('sueldoHora'))/60*$minutosLaborados;
        $ribbon->costoTotal =  round($ribbon->costoCelofan + $ribbon->costoCinta + $costoManoObra, 4);
        $ribbon->save();
        $coilProduct = $coil->related()
@@ -194,15 +199,15 @@ class CoilController extends Controller
        $pesoTotalBolsas = $ribbon->related()->where('ribbon_product_type', '=', 'App\Models\Bag')->orWhere('ribbon_product_type', '=', 'App\Models\WasteBag')->sum('peso');
        foreach ($ribbon->bags()->get() as $bag){
         $bag->costoTotal = (($ribbon->costoTotal/$pesoTotalBolsas) * $bag->peso);
-        $bag->save();
-        $coilProduct = $coil->related()
-                            ->where('coil_id', '=', $coil->id)
-                            ->where('coil_product_id', '=', $bag->id)
-                            ->where('coil_product_type', '=', 'App\Models\Bag')
+        $coilProduct = $ribbon->related()
+                            ->where('ribbon_id', '=', $ribbon->id)
+                            ->where('ribbon_product_id', '=', $bag->id)
+                            ->where('ribbon_product_type', '=', 'App\Models\Bag')
                             ->get()
                             ->first();
         $coilProduct->status = 'TERMINADA';
         $coilProduct->save();
+        $bag->save();
        }
        foreach($ribbon->wasteBags()->get() as $wasteBag){
         $wasteBag->costo = (($ribbon->costoTotal/$pesoTotalBolsas) * $wasteBag->peso);

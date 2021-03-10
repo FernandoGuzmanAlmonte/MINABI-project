@@ -178,6 +178,58 @@
             </div>
             <div class="col-lg-2 px-2"></div>
         </div>
+        @if (!$ribbon->whiteRibbons()->get()->isEmpty())
+        <div class="col-lg-12 d-flex mt-5 mb-2">
+            <div class="col-lg-2 px-2"></div>
+            <div class="col-lg-8 px-2">
+                <div class="col-lg-12 d-flex">
+                    <div class="col-lg-10 px-0">
+                        <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Cinta Blaca</h3>
+                    </div>
+                    <div class="col-lg-2 px-0 pt-3">
+                        <button type="button" class="btn btn-success  float-right" data-toggle="modal" data-target="#createCinta">
+                            Agregar
+                        </button>    
+                    </div>
+                </div>
+                <table class="table table-striped my-2" id="tablaCintas">
+                    {{-- Modal crear empleado --}}
+                    @include('ribbons/modalCreateCinta')
+                    {{-- Modal crear empleado --}}
+                    
+                    <thead class="bg-info">
+                    <tr>                        
+                        <th scope="col">Nomenclatura</th>
+                        <th scope="col">Largo</th>
+                        <th scope="col">Quitar o Cambiar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($ribbon->whiteRibbons as $whiteRibbon)
+                        @include('ribbons.modalEditCinta')
+                            <tr>
+                                <td class="align-middle">
+                                    <input type="hidden" name="empleados[]" class="form-control" value="{{$whiteRibbon->id}}">
+                                    {{$whiteRibbon->nomenclatura}}
+                                </td>
+                                <td class="align-middle">{{$whiteRibbon->largo}}</td>
+                                <td class="align-middle">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                                        <img src="{{ asset('images/cruz.svg') }}" class="iconosPequeños">
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" onclick="editarFila(this)" data-target="#edit{{$employee->id}}" disabled>
+                                        <img src="{{ asset('images/cambiar-empleado.svg') }}" class="iconosPequeños">
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-2 px-2"></div>
+        </div>
+        @endif
+        
         <div class="col-lg-12 d-flex mt-4">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>

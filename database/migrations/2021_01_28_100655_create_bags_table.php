@@ -29,7 +29,7 @@ class CreateBagsTable extends Migration
             $table->float('velocidad', 14, 4);
             $table->text('observaciones')->nullable();
             $table->string('status', 11);
-            $table->integer('cantidad');
+            $table->float('cantidad', 14 ,4);
             $table->float('costoTotal', 14, 4)->nullable();
             $table->float('costoCiento', 14, 4)->nullable();
             //Usuario modifioc

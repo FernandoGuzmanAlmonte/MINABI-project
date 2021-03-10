@@ -36,8 +36,8 @@ class RibbonController extends Controller
 
     public function edit(Ribbon $ribbon){
         $employees = Employee::all(); 
-
-        return view('ribbons.edit', compact('ribbon', 'employees'));
+        $cintaBlancas = WhiteRibbon::where('status', '=', 'DISPONIBLE')->get();
+        return view('ribbons.edit', compact('ribbon', 'employees', 'cintaBlancas'));
     }
 
     public function update(StoreRibbon $request, Ribbon $ribbon){
@@ -52,7 +52,6 @@ class RibbonController extends Controller
         $ribbon->pesoUtilizado =  $request->pesoUtilizado;
         $ribbon->temperatura =  $request->temperatura;
         $ribbon->velocidad = $request->velocidad;
-        //$ribbon->white_ribbon_id = $request->white_ribbon_id;
         $ribbon->observaciones = $request->observaciones;
 
         $ribbon->save();

@@ -100,7 +100,7 @@
                         <td class="align-middle">{{$employee->nombre}}</td>
                         <td class="align-middle">{{$minutosLaborados}}</td>
                         <td class="align-middle">$ {{$employee->sueldoHora}}</td>
-                        <td class="align-middle">$ {{$employee->sueldoHora*$minutosLaborados}}</td>
+                        <td class="align-middle">$ {{($employee->sueldoHora/60)*$minutosLaborados}}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -111,21 +111,21 @@
     <div class="col-12 mt-2 mb-2 text-right">
         <h3 class="text-left"><img src="{{ asset('images/moneda-de-dinero.svg') }}" class="iconoTitle"> Costos</h3>
         <div class="d-flex">
-            <div class="h5 col-10 ">Costo Materia Prima=</div>
+            <div class="h5 col-10 ">Costo Rollo=</div>
             <div class="h5 col-2 ">$ {{round($bag->costoTotal, 4)}}</div>
         </div>
         <div class="d-flex">
             <div class="h5 col-10">Costo de mano de obra =</div>
-            <div class="h5 col-2">$ {{$bag->employees->sum('sueldoHora')*$minutosLaborados}}</div>
+            <div class="h5 col-2">$ {{($bag->employees->sum('sueldoHora')/60)*$minutosLaborados}}</div>
         </div>
         <hr>
         <div class="d-flex">
             <div class="h5 col-10">Total =</div>
-            <div class="h5 col-2">$ {{round(($bag->employees->sum('sueldoHora')*$minutosLaborados)+ $bag->costoTotal,4)}}</div>
+            <div class="h5 col-2">$ {{round((($bag->employees->sum('sueldoHora')/60)*$minutosLaborados)+ $bag->costoTotal,4)}}</div>
         </div>
         <div class="d-flex">
             <div class="h5 col-10">Costo por unidad =</div>
-            <div class="h5 col-2">$ {{round((($bag->employees->sum('sueldoHora')*$minutosLaborados)+ $bag->costoTotal)/$bag->cantidad,4)}}</div>
+            <div class="h5 col-2">$ {{round(((($bag->employees->sum('sueldoHora')/60)*$minutosLaborados)+ $bag->costoTotal)/$bag->cantidad,4)}}</div>
         </div>
     </div>
     @endif 

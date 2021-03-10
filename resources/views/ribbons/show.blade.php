@@ -92,7 +92,7 @@
                         <td class="align-middle">{{$employee->nombre}}</td>
                         <td class="align-middle">{{$minutosLaborados}}</td>
                         <td class="align-middle">$ {{$employee->sueldoHora}}</td>
-                        <td class="align-middle">$ {{$employee->sueldoHora*$minutosLaborados}}</td>
+                        <td class="align-middle">$ {{($employee->sueldoHora/60)*$minutosLaborados}}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -112,12 +112,12 @@
         </div>
         <div class="d-flex">
             <div class="h5 col-10">Costo de mano de obra =</div>
-            <div class="h5 col-2">$ {{$ribbon->employees->sum('sueldoHora')*$minutosLaborados}}</div>
+            <div class="h5 col-2">$ {{($ribbon->employees->sum('sueldoHora'))/60*$minutosLaborados}}</div>
         </div>
         <hr>
         <div class="d-flex">
             <div class="h5 col-10">Total =</div>
-            <div class="h5 col-2">$ {{round(($ribbon->employees->sum('sueldoHora')*$minutosLaborados)+$ribbon->costoCelofan + $ribbon->costoCinta,4)}}</div>
+            <div class="h5 col-2">$ {{round((($ribbon->employees->sum('sueldoHora'))/60*$minutosLaborados)+$ribbon->costoCelofan + $ribbon->costoCinta,4)}}</div>
         </div>
     </div>
     @endif 
