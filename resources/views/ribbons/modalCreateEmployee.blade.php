@@ -11,20 +11,21 @@
                     <div class="col-lg-8 px-2">
                         <label align-midle> Empleado:</label>
                         <select class="form-control" id="modalEmpleado" onchange="cambio()">
-                            <option selected>--seleccione empleado--</option>
+                            <option selected class="text-muted" disabled value="">--seleccione empleado--</option>
                             @foreach($employees as $employee)
                                 <option value={{ $employee->id }}>{{ $employee->nombre }}</option>
                             @endforeach
-                        </select>    
+                        </select>
+                        <div class="error-empleado"></div>    
                     </div>
                     <div class="col-lg-4 px-2">
                         <label> Status:</label>
-                        <input type="text" class="form-control" id="modalStatusEmpleado"readonly>
+                        <input type="text" class="form-control" id="modalStatusEmpleado" readonly>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="crearFila()">Agregar Empleado</button>
+                    <button type="button" class="btn btn-success" onclick="crearFila()">Agregar Empleado</button>
                 </div>
         </div>
     </div>

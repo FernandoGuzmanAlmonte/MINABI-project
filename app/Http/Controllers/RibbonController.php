@@ -52,7 +52,7 @@ class RibbonController extends Controller
         $ribbon->pesoUtilizado =  $request->pesoUtilizado;
         $ribbon->temperatura =  $request->temperatura;
         $ribbon->velocidad = $request->velocidad;
-        $ribbon->white_ribbon_id = $request->white_ribbon_id;
+        //$ribbon->white_ribbon_id = $request->white_ribbon_id;
         $ribbon->observaciones = $request->observaciones;
 
         $ribbon->save();
