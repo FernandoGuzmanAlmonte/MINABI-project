@@ -156,15 +156,15 @@
                     </thead>
                     <tbody id="tabla">
                         @foreach ($ribbon->employees as $employee)
-                        @include('ribbons.modalEditEmployee')
                             <tr class="row{{$employee->id}}">
+                                @include('ribbons.modalEditEmployee')
                                 <input type="hidden" name="empleados[]" class="form-control" value="{{$employee->id}}">
                                 <td class="align-middle" id="nombre">
                                     {{$employee->nombre}}
                                 </td>
                                 <td class="align-middle" id="status">{{$employee->status}}</td>
                                 <td class="align-middle">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                                    <button type="button" class="btn btn-danger btn-sm" id="btnDelete" onclick="eliminarFila(this, id='{{$employee->id}}')">
                                         <img src="{{ asset('images/cruz.svg') }}" class="iconosPequeños">
                                     </button>
                                     <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#edit{{$employee->id}}">
@@ -206,7 +206,7 @@
                     </thead>
                     <tbody>
                         @foreach ($ribbon->whiteRibbons as $whiteRibbon)
-                        @include('ribbons.modalEditCinta')
+                            @include('ribbons.modalEditCinta')
                             <tr>
                                 <td class="align-middle">
                                     <input type="hidden" name="empleados[]" class="form-control" value="{{$whiteRibbon->id}}">
@@ -339,12 +339,17 @@
         statusEmpleado.value = empleado[0].status;
     }
 
-    function eliminarFila(t)
+    function eliminarFila(t, id)
     {
         var td = t.parentNode;
         var tr = td.parentNode;
         var table = tr.parentNode;
-        table.removeChild(tr);
+        table.removeChild(tr); // Borramos la fila 
+
+
+        var child = document.getElementById('edit'+id);
+        var parent = child.parentNode;
+        parent.removeChild(child); // Borramos el modal correspondiente a esa fila
     }
 
     function cambioEdit(id)
@@ -402,17 +407,18 @@
                 $(".button"+nuevoId).attr('onclick', "editRow(id='"+ nuevoId +"')");
                 $(".error-empleado"+id).attr('class', "error-empleado"+nuevoId);
 
-                //a=$('.row'+id).html();//
+                //a=$('.row'+id).find('button#btnDelete').attr('onclick');//
 
                 $('.row'+id).find('input').val(nuevoId);
                 $('.row'+id).attr('class', 'row'+nuevoId);
                 $('.row'+nuevoId).find('td#nombre').text(nuevoNombre);
                 $('.row'+nuevoId).find('td#status').text(nuevoStatus);
                 $('.row'+nuevoId).find('button#btnEdit').attr('data-target', "#edit"+nuevoId);
+                $('.row'+nuevoId).find('button#btnDelete').attr('onclick', "eliminarFila(this, id='"+nuevoId+"')");
 
                 $("#edit"+nuevoId).modal("toggle");
-
-                //b=$('.row'+nuevoId).html();//
+                
+                //b=$('.row'+nuevoId).find('button#btnDelete').attr('onclick');//
                 //console.log(a+'\n');//
                 //console.log(b);//
             }            
