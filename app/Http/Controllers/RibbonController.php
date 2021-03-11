@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\WhiteRibbon;
 use DateTime;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class RibbonController extends Controller
 {
@@ -41,6 +42,7 @@ class RibbonController extends Controller
     }
 
     public function update(StoreRibbon $request, Ribbon $ribbon){
+        echo $request;
         $ribbon->nomenclatura =  $request->nomenclatura;
         $ribbon->status =  $request->status;
         $ribbon->fechaInicioTrabajo =  $request->fechaInicioTrabajo;
@@ -57,6 +59,7 @@ class RibbonController extends Controller
         $ribbon->save();
 
         //request->input('empleados') tiene los id's de los empleados
+        if(empty($request->input('empleados')) != true )
         $ribbon->employees()->sync($request->input('empleados')); 
 
         return redirect()->route('ribbon.show', compact('ribbon'));

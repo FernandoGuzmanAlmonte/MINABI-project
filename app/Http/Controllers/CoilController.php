@@ -163,8 +163,9 @@ class CoilController extends Controller
            $pesoXMetroCinta = ( $pesoNetoCinta / $largoCinta);
            $whiteRibbon->kiloMetro = round($pesoXMetroCinta,4);
            //calulamos el peso de la cinta utilizado en el rollo
-           $pesoCinta = ($pesoXMetroCinta * $largoCinta);
-           $ribbon->pesoCinta = $ribbon->pesoCinta + $pesoCinta;
+           $largoCintaRollo = $whiteRibbon->related()->where('white_ribbon_product_type', '=', 'App\Models\Ribbon')->where('white_ribbon_product_id', '=', $ribbon->id)->get()->first()->largo;
+           $pesoCinta = ($pesoXMetroCinta * $largoCintaRollo);
+           $ribbon->pesoCinta =  $ribbon->pesoCinta + $pesoCinta;
            //calculamos el peso del celofan
            $pesoCelofan = $pesoNetoRollo - $pesoCinta;
            $ribbon->pesoCelofan = $pesoCelofan;
