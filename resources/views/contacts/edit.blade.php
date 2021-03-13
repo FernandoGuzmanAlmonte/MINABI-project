@@ -7,7 +7,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <form id="formContactEdit{{ $contact->id }}" method="POST">
+            <form id="formContactEdit{{ $contact->id }}" method="POST" action="{{ route('provider.update', $contact->id) }}">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">

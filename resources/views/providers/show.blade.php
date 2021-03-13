@@ -184,16 +184,14 @@
         var formContactEdit = $('#formContactEdit' + idContact);
         var formData = formContactEdit.serialize(); //variable con el valor de todos los input del formulario
 
+        //Se guarda la ruta provider.update en la variable url        
+        var url = formContactEdit.attr('action');
+
         //Limpiamos el contenido de los div de errores
         cleanErrorsModalEdit(idContact);
 
-        //Aqui guardamos la ruta con un id temporal
-        var url = "route('provider.update', ['id' => 'temp'])";
-        //Aqui sustituimos la variable temp por el id de Contact
-        url = url.replace('temp', idContact);
-        
         $.ajax({
-            url: "/provider/" + idContact,
+            url: url,
             type: 'POST',
             data: formData,
             success: function(response)
