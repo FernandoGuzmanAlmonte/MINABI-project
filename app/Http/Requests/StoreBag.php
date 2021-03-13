@@ -35,7 +35,25 @@ class StoreBag extends FormRequest
             'observaciones' => 'max:255',
             'status' => 'required',
             'cantidad'=> 'required',
-            'tipoUnidad' => ['required', Rule::in(['MILLAR', 'CIENTO'])]
+            'tipoUnidad' => ['required', Rule::in(['MILLAR', 'CIENTO'])],
+            'empleados.*' => 'required|distinct',
+            'bag_measure_id' => 'required'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'empleados.*' => 'empleados',
+            'bag_measure_id' => 'medida'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'empleados.*.distinct' => 'Empleados duplicados',
+            'empleados.*.required' => 'No puede dejar los campos de empleados vacíos',
         ];
     }
 }

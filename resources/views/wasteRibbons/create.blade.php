@@ -111,14 +111,36 @@
                 <label>Empleado(s)</label>
                 <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
                 <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
-                <select class="form-control" name="empleados[]">
-                    <option value="" selected>--seleccione empleado--</option>
-                    @foreach($employees as $employee)
-                        <option value={{ $employee->id }}>
-                            {{ $employee->nombre }}
-                        </option>
+                @if(old('empleados'))   
+                    @foreach(old('empleados') as $empleado)
+                        <select class="form-control" name="empleados[]">
+                            <option selected class="text-muted" value="">--seleccione una opción--</option>
+                            @foreach($employees as $employee)
+                                <option value={{ $employee->id }} {{ ($empleado ==  $employee->id) ? 'selected' : ''}}>
+                                    {{ $employee->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
                     @endforeach
-                </select>            
+                @else
+                    <select class="form-control" name="empleados[]">
+                        <option selected class="text-muted" value="">--seleccione empleado--</option>
+                        @foreach($employees as $employee)
+                            <option value={{ $employee->id }}>
+                                {{ $employee->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                @endif
+                @error('empleados.*')
+                    <div class="error-empleado">
+                        <br>
+                        <div class="alert alert-danger">
+                            <small>{{$message}}</small>
+                        </div>
+                        <br>
+                    </div>
+                @enderror                           
             </div>
         </div>
     
@@ -132,7 +154,7 @@
                     <small>{{$message}}</small>
                 </div>
                 <br>
-            @enderror
+                @enderror
             </div>
         </div>
         @if($errors->any())
@@ -144,7 +166,7 @@
                 <br>
         </div>
         @endif
-        <div class="col-12 mt-3 text-center">
+        <div class="col-12 mt-4 mb-4 text-center">
             <a class="btn btn-danger mx-3" href="{{route('coil.show', $coilId)}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div>
@@ -157,6 +179,8 @@
     function clonar()
     {
         var $form = $('.form-cloned .form-control').last().clone();
+
+        $('.error-empleado').html('');
 
         $form.appendTo('.form-cloned');
     }

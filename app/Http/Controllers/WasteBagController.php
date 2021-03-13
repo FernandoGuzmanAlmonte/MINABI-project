@@ -7,6 +7,7 @@ use App\Models\WasteBag;
 use App\Models\Ribbon;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreWasteBag;
 
 class WasteBagController extends Controller
 {
@@ -30,7 +31,7 @@ class WasteBagController extends Controller
         return view('wasteBags.create', ['ribbonId' => $request->ribbon, 'nomenclatura' => $nomenclatura, 'employees' => $employees]);
     }
 
-    public function store(Request $request)
+    public function store(StoreWasteBag $request)
     {
         //busca la bobina
         $ribbon = Ribbon::find($request->ribbonId);

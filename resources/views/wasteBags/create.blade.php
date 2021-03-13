@@ -21,69 +21,147 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Peso</label>
-                <input type="number" step="0.0001" class="form-control" name="peso">
+                <input type="number" step="0.0001" class="form-control" name="peso" value={{ old('peso') }}>
+                @error('peso')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Largo</label>
-                <input type="number" step="0.0001" class="form-control" name="largo">
+                <input type="number" step="0.0001" class="form-control" name="largo" value={{ old('largo') }}>
+                @error('largo')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div> 
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Fecha Inicio</label>
-                <input type="date" class="form-control" name="fechaInicioTrabajo">
+                <input type="date" class="form-control" name="fechaInicioTrabajo" value={{ old('fechaInicioTrabajo') }}>
+                @error('fechaInicioTrabajo')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Fecha Inicio</label>
-                <input type="time" class="form-control" name="horaInicioTrabajo">
+                <input type="time" class="form-control" name="horaInicioTrabajo" value={{ old('horaInicioTrabajo') }}>
+                @error('horaInicioTrabajo')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Tipo Unidad</label>
                 <select class="form-control" name="tipoUnidad">
-                    <option selected>--seleccione una opción--</option>
-                    <option value="DISPONIBLE">MILLAR</option>
-                    <option value="TERMINADO">CIENTO</option>
+                    <option selected class="text-muted" disabled value="">--seleccione una opción--</option>
+                    <option {{ (old('tipoUnidad') == 'MILLAR') ? 'selected' : '' }} value="MILLAR">MILLAR</option>
+                    <option {{ (old('tipoUnidad') == 'CIENTO') ? 'selected' : '' }} value="CIENTO">CIENTO</option>
                 </select>
+                @error('tipoUnidad')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Fecha Fin</label>
-                <input type="date" class="form-control" name="fechaFinTrabajo">
+                <input type="date" class="form-control" name="fechaFinTrabajo" value={{ old('fechaFinTrabajo') }}>
+                @error('fechaFinTrabajo')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Hora Fin</label>
-                <input type="time" class="form-control" name="horaFinTrabajo">
+                <input type="time" class="form-control" name="horaFinTrabajo" value={{ old('horaFinTrabajo') }}>
+                @error('horaFinTrabajo')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-4 px-2">
                 <label>Temperatura</label>
-                <input type="number" step="0.0001" class="form-control" name="temperatura">
+                <input type="number" step="0.0001" class="form-control" name="temperatura" value={{ old('temperatura') }}>
             </div>
             <div class="col-lg-4 px-2">
                 <label>Velocidad</label>
-                <input type="number" step="0.0001" class="form-control" name="velocidad">
+                <input type="number" step="0.0001" class="form-control" name="velocidad" value={{ old('velocidad') }}>
             </div>
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Cantidad</label>
-                <input type="number" step="0.0001" class="form-control" name="cantidad">
+                <input type="number" step="0.0001" class="form-control" name="cantidad" value={{ old('cantidad') }}>
+                @error('cantidad')
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div>
         </div>
 
         <div class="col-lg-12 d-flex mt-3">
             <div class="form-cloned col-lg-4 px-2">
-                <label>Empleado(s)</label>
+                <label><span class="required">*</span>Empleado(s)</label>
                 <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
                 <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
-                <select class="form-control" name="empleados[]">
-                    <option value="" selected>--seleccione empleado--</option>
-                    @foreach($employees as $employee)
-                        <option value={{ $employee->id }}>
-                            {{ $employee->nombre }}
-                        </option>
+                @if(old('empleados'))
+                    @foreach(old('empleados') as $empleado)
+                        <select class="form-control" name="empleados[]">
+                            <option selected class="text-muted" value="">--seleccione una opción--</option>
+                            @foreach($employees as $employee)
+                                <option value={{ $employee->id }} {{ ($empleado ==  $employee->id) ? 'selected' : ''}}>
+                                    {{ $employee->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
                     @endforeach
-                </select>            
+                @else
+                    <select class="form-control" name="empleados[]">
+                        <option selected class="text-muted" value="">--seleccione una opción--</option>
+                        @foreach($employees as $employee)
+                            <option value={{ $employee->id }}>
+                                {{ $employee->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                @endif
+                @error('empleados.*')
+                    <div class="error-empleado">
+                        <br>
+                        <div class="alert alert-danger">
+                            <small>{{$message}}</small>
+                        </div>
+                        <br>
+                    </div>
+                @enderror            
             </div>
         </div>
 
@@ -91,7 +169,7 @@
         <div class="col-lg-12 d-flex mt-3">
             <div class="col-lg-12 px-2">
                 <label>Observaciones</label>
-                <textarea rows="3" class="form-control" name="observaciones"></textarea>
+                <textarea rows="3" class="form-control" name="observaciones">{{ old('observaciones') }}</textarea>
             </div>  
         </div>
         <div class="col-12 mt-3 text-center">
@@ -107,6 +185,8 @@
     function clonar()
     {
         var $form = $('.form-cloned .form-control').last().clone();
+
+        $('.error-empleado').html('');
 
         $form.appendTo('.form-cloned');
     }

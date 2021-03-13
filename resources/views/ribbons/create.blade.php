@@ -109,12 +109,12 @@
                 <label><span class="required">*</span>Hora Termino</label>
                 <input type="time" class="form-control" name="horaFinTrabajo" value="{{old('horaFinTrabajo')}}">
                 @error('horaFinTrabajo')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
-            @enderror
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
+                @enderror
             </div>
         </div>
     
@@ -131,53 +131,112 @@
                 <label><span class="required">*</span>Empleado(s)</label>
                 <button type="button" onclick="clonar()" class="btn btn-success btn-sm">+</button>
                 <button type="button" onclick="remover()" class="btn btn-secondary btn-sm">-</button>
-                <select class="form-control" name="empleados[]">
-                    <option selected>--seleccione empleado--</option>
-                    @foreach($employees as $employee)
-                        <option value={{ $employee->id }}>
-                            {{ $employee->nombre }}
-                        </option>
+                @if(old('empleados'))
+                    @foreach(old('empleados') as $empleado)
+                        <select class="form-control" name="empleados[]">
+                            <option selected class="text-muted" value="">--seleccione una opción--</option>
+                            @foreach($employees as $employee)
+                                <option value={{ $employee->id }} {{ ($empleado ==  $employee->id) ? 'selected' : ''}}>
+                                    {{ $employee->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
                     @endforeach
-                </select>            
+                @else
+                    <select class="form-control" name="empleados[]">
+                        <option selected class="text-muted" value="">--seleccione una opción--</option>
+                        @foreach($employees as $employee)
+                            <option value={{ $employee->id }}>
+                                {{ $employee->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                @endif
+                @error('empleados.*')
+                    <div class="error-empleado">
+                        <br>
+                        <div class="alert alert-danger">
+                            <small>{{$message}}</small>
+                        </div>
+                        <br>
+                    </div>
+                @enderror              
             </div>
         </div>
     
-        <div class="col-lg-12  mt-3" id="cajaCompleta">
-            <div class="col-lg-8 d-flex" id="cintaBlanca">
-            <div class="col-lg-6 px-2" >
-                <label><span class="required">*</span>Cintilla Blanca</label>
-                <button type="button" onclick="clonarCinta()" class="btn btn-success btn-sm">+</button>
-                <button type="button" onclick="removerCinta()" class="btn btn-secondary btn-sm">-</button>
-                <select class="form-control" name="white_ribbon_ids[]" id="cajas">
-                    <option selected>N/A</option>
-                    @foreach($cintaBlancas as $cintaBlanca)
-                        <option value={{$cintaBlanca->id}}>
-                            {{$cintaBlanca->nomenclatura}}
-                        </option>
+        <div class="col-lg-8 d-flex mt-3">
+            <div class="col-lg-6 px-2" id="cajaCompleta">
+                @if(old('white_ribbon_ids'))
+                    @php($i=0)
+                    @foreach(old('white_ribbon_ids') as $white_ribbon_id)
+                        <div id="cintaBlanca">
+                            <label><span class="required">*</span>Cintilla Blanca</label>
+                            @if($i == 0)
+                                <button type="button" onclick="clonarCinta()" class="btn btn-success btn-sm">+</button>
+                                <button type="button" onclick="removerCinta()" class="btn btn-secondary btn-sm">-</button>
+                                @php($i++)
+                            @endif
+                            <select class="form-control" name="white_ribbon_ids[]" id="cajas">
+                                <option selected value="">N/A</option>
+                                @foreach($cintaBlancas as $cintaBlanca)
+                                    <option value={{$cintaBlanca->id}} {{ ($white_ribbon_id ==  $cintaBlanca->id) ? 'selected' : ''}}>
+                                        {{$cintaBlanca->nomenclatura}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div> 
                     @endforeach
-                </select>
-                @error('white_ribbon_id')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
+                @else
+                    <div id="cintaBlanca">
+                        <label><span class="required">*</span>Cintilla Blanca</label>
+                        <button type="button" id="bClon" onclick="clonarCinta()" class="btn btn-success btn-sm">+</button>
+                        <button type="button" id="bRemove" onclick="removerCinta()" class="btn btn-secondary btn-sm">-</button>
+                        <select class="form-control" name="white_ribbon_ids[]" id="cajas">
+                            <option selected value="">N/A</option>
+                            @foreach($cintaBlancas as $cintaBlanca)
+                                <option value={{$cintaBlanca->id}}>
+                                    {{$cintaBlanca->nomenclatura}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>  
+                @endif
+                @error('white_ribbon_ids.*')
+                <div class="error-whiteRibbon">
+                    <br>
+                    <div class="alert alert-danger">
+                        <small>{{$message}}</small>
+                    </div>
+                    <br>
                 </div>
-                <br>
                 @enderror
             </div>
-            <div class="col-lg-6 px-2">
-                <label><span class="required">*</span>Largo (metros)</label>
-               <input type="number" step="0.0001" class="form-control" name="largos[]" id="cajas">
-                @error('white_ribbon_id')
-                <br>
-                <div class="alert alert-danger">
-                    <small>{{$message}}</small>
-                </div>
-                <br>
+            <div class="col-lg-6 px-2" id="contentLargos">
+                @if(old('largos'))
+                    @foreach(old('largos') as $largo)
+                        <div id="inputLargos">
+                            <label><span class="required">*</span>Largo (metros)</label>
+                            <input type="number" step="0.0001" class="form-control" name="largos[]" value="{{ $largo }}">
+                        </div>
+                    @endforeach
+                @else
+                    <div id="inputLargos">
+                        <label><span class="required">*</span>Largo (metros)</label>
+                        <input type="number" step="0.0001" class="form-control" name="largos[]">
+                    </div>
+                @endif
+                @error('largos.*')
+                    <div class="error-largos">
+                        <br>
+                        <div class="alert alert-danger">
+                            <small>{{$message}}</small>
+                        </div>
+                        <br>
+                    </div>
                 @enderror
             </div>
         </div>
             
-        </div>
     <!--Id de bobina relacionado-->
     <input type="hidden"  name="coilId" value="{{$coilId}}">
         <div class="col-lg-12 d-flex mt-4">
@@ -194,15 +253,15 @@
             </div>
         </div>
         @if($errors->any())
-        <div class="col-12 mt-3 text-center">
-            <br>
-                <div class="alert alert-danger">
-                    {{$errors->first()}}
-                </div>
+            <div class="col-12 mt-3 text-center">
                 <br>
-        </div>
+                    <div class="alert alert-danger">
+                        {{$errors->first()}}
+                    </div>
+                    <br>
+            </div>
         @endif
-        <div class="col-12 mt-3 text-center">
+        <div class="col-12 mt-4 mb-4 text-center">
             <a class="btn btn-danger mx-3" href="{{route('coil.show', $coilId)}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div>
@@ -215,6 +274,8 @@
     function clonar()
     {
         var $form = $('.form-cloned .form-control').last().clone();
+
+        $('.error-empleado').html('');
 
         $form.appendTo('.form-cloned');
     }
@@ -229,23 +290,45 @@
     function clonarCinta()
     {
         var $form = $('#cajaCompleta #cintaBlanca').last().clone();
+        
+        $form.html('<label><span class="required">*</span>Cintilla Blanca</label>' +
+            '<select class="form-control" name="white_ribbon_ids[]" id="cajas">' +
+                '<option selected value="">N/A</option>' +
+                '@foreach($cintaBlancas as $cintaBlanca)'+
+                    '<option value={{$cintaBlanca->id}}>' +
+                        '{{$cintaBlanca->nomenclatura}}' +
+                    '</option>' +
+                '@endforeach' +
+            '</select>')   
 
+        $('.error-whiteRibbon').html('');
+        $('.error-largos').html('');
+        
         $form.find(':input').each(function () {
-    if ($(this).is('select')) {
-      this.selectedIndex = 0;
-    } else {
-      this.value = '';
-    }
-    });
+            if ($(this).is('select')) {
+                this.selectedIndex = 0;
+            } else {
+                this.value = '';
+            }
+        });
 
         $form.appendTo('#cajaCompleta');
+
+        $form = $('#contentLargos #inputLargos').last().clone(); 
+        $form.find('input').val('');
+        $form.appendTo('#contentLargos');
     }
 
     function removerCinta()
     {
         var $form = $('#cajaCompleta #cintaBlanca');
+        var $formLargo = $('#contentLargos #inputLargos');
 
-        if($form.length != 1) $form.last().remove();
+        if($form.length != 1) 
+        {
+            $form.last().remove();
+            $formLargo.last().remove();
+        }        
     }
 </script>
 @endsection

@@ -32,7 +32,15 @@ class StoreWasteRibbon extends FormRequest
             'horaInicioTrabajo'  => 'required',
             'horaFinTrabajo'  => 'required',
             'horaFinTrabajo'  => 'required',
-            'observaciones' => 'max:255'
+            'observaciones' => 'max:255',
+            'empleados.*' => 'distinct'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'empleados.*.distinct' => 'Empleados duplicados'
         ];
     }
 }

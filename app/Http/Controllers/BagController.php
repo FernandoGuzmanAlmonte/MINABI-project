@@ -60,7 +60,7 @@ class BagController extends Controller
     }
 
     public function store(StoreBag $request)
-    {
+    {        
         $ribbon = Ribbon::find($request->ribbonId);
         //si el pesoutilizado mas el peso de rollo es menor o igual al peso de la bobina entonces crear el rollo
        // if($ribbon->peso >= ($request->peso + $ribbon->pesoUtilizado)){
