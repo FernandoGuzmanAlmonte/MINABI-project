@@ -42,7 +42,8 @@ class RibbonController extends Controller
     }
 
     public function update(StoreRibbon $request, Ribbon $ribbon){
-        echo $request;
+        //echo ;
+        return $request->all();
         $ribbon->nomenclatura =  $request->nomenclatura;
         $ribbon->status =  $request->status;
         $ribbon->fechaInicioTrabajo =  $request->fechaInicioTrabajo;

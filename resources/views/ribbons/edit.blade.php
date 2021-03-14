@@ -184,10 +184,10 @@
             <div class="col-lg-8 px-2">
                 <div class="col-lg-12 d-flex">
                     <div class="col-lg-10 px-0">
-                        <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Cinta Blaca</h3>
+                        <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Cinta Blanca</h3>
                     </div>
                     <div class="col-lg-2 px-0 pt-3">
-                        <button type="button" class="btn btn-success  float-right" data-toggle="modal" data-target="#createCinta">
+                        <button type="button" class="btn btn-success  float-right" data-toggle="modal" data-target="#createCinta" onclick="limpiarInputsModalCreateCinta()">
                             Agregar
                         </button>    
                     </div>
@@ -204,20 +204,23 @@
                         <th scope="col">Quitar o Cambiar</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tablaCinta">
                         @foreach ($ribbon->whiteRibbons as $whiteRibbon)
-                            @include('ribbons.modalEditCinta')
-                            <tr>
-                                <td class="align-middle">
-                                    <input type="hidden" name="empleados[]" class="form-control" value="{{$whiteRibbon->id}}">
+                            <tr class="rowCinta{{$whiteRibbon->id}}">
+                                @include('ribbons.modalEditCinta')
+                                <input type="hidden" name="cintas[]" id="cintaTD" class="form-control" value="{{$whiteRibbon->id}}">
+                                <input type="hidden" name="largos[]" id="largoTD" class="form-control" value="{{$whiteRibbon->largo}}">
+                                <td class="align-middle" id="nomenclatura">
                                     {{$whiteRibbon->nomenclatura}}
                                 </td>
-                                <td class="align-middle">{{$whiteRibbon->largo}}</td>
+                                <td class="align-middle" id="largo">
+                                    {{$whiteRibbon->largo}}
+                                </td>
                                 <td class="align-middle">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                                    <button type="button" class="btn btn-danger btn-sm" id="btnDeleteCinta" onclick="eliminarFilaCinta(this, id='{{$whiteRibbon->id}}')">
                                         <img src="{{ asset('images/cruz.svg') }}" class="iconosPequeños">
                                     </button>
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" onclick="editarFila(this)" data-target="#edit{{$employee->id}}" disabled>
+                                    <button type="button" class="btn btn-warning btn-sm" id="btnEditCinta" data-toggle="modal" data-target="#editCinta{{$whiteRibbon->id}}">
                                         <img src="{{ asset('images/cambiar-empleado.svg') }}" class="iconosPequeños">
                                     </button>
                                 </td>
@@ -254,6 +257,7 @@
 
 @section('scripts')
 <script type="text/javascript">
+///////////////////EMPLEADOS//////////////////////
     function crearFila()
     {
         var idEmpleado = $("#modalEmpleado").val();
@@ -294,7 +298,7 @@
                         '</button>'+
                     '</td>'+
                 '</tr>'        
-
+                
                 $('#tablaEmpleadosLaboraron').append(fila);
                 $('#create').modal('toggle');
             }
@@ -427,8 +431,222 @@
         {
             $("#edit"+nuevoId).modal("toggle");
         }
-
     }
+
+///////////////////CINTILLAS//////////////////////
+    function crearFilaCinta()
+    {
+        var idCinta = $("#modalCinta").val();
+        var idEstaRepetido = false;
+
+        var largo = $("#largoCinta").val();
+
+        if(idCinta != null )
+        {
+            if(largo != '')
+            {
+                $('#tablaCinta').find('tr').find('input#cintaTD').each(function(){
+                    if(idCinta == $(this).val())
+                    {
+                        idEstaRepetido = true;
+                        return;
+                    }      
+                })
+                if(idEstaRepetido)
+                {
+                    mostrarErrorRepetidoCintas();
+                    return;
+                }
+                else
+                {
+                    var nomenclatura = $("#modalCinta option:selected").text();
+                    
+                    var fila =
+                    '<tr>'+
+                        '<input type="hidden" name="cintas[]" id="cintaTD" class="form-control" value="'+idCinta+'">'+
+                        '<input type="hidden" name="largos[]" id="largoTD" class="form-control" value="'+largo+'">'+
+                        '<td class="align-middle" id="nomenclatura">'+
+                            nomenclatura+
+                        '</td>'+
+                        '<td class="align-middle" id="largo">'+
+                            largo+
+                        '</td>'+
+                        '<td class="align-middle">'+
+                            '<button type="button" class="btn btn-danger btn-sm" onclick="eliminarFilaCinta(this)">'+
+                                '<img src="{{ asset('images/cruz.svg') }}" class="iconosPequeños">'+
+                            '</button>'+
+                            '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editCinta'+idCinta+'" disabled>'+
+                                '<img src="{{ asset('images/cambiar-empleado.svg') }}" class="iconosPequeños">'+
+                            '</button>'+
+                        '</td>'+
+                    '</tr>'        
+
+                    $('#tablaCintas').append(fila);
+                    $('#createCinta').modal('toggle');
+                }    
+            }
+            else
+            {
+                $(".error-largo").html(
+                '<div class="alert alert-danger mt-2">' +
+                    '<small>El campo largo no puede estar vacío</small>' +
+                '</div>');    
+            }
+        }
+        else
+        {
+            $(".error-nomenclatura").html(
+                '<div class="alert alert-danger mt-2">' +
+                    '<small>Debe seleccionar una cinta</small>' +
+                '</div>');
+        }
+    }
+
+    function mostrarErrorRepetidoCintas()
+    {
+        $(".error-nomenclatura").html(
+                '<div class="alert alert-danger mt-2">' +
+                    '<small>La cinta ya está agregada</small>' +
+                '</div>');
+    }
+
+    function limpiarInputsModalCreateCinta()
+    {
+        $('#modalCinta').val('');
+        $('#largoCinta').val('');
+
+        $(".error-nomenclatura").html('');
+        $(".error-largo").html('');
+    }
+    function cambioCinta()
+    {
+        var idCinta = $("#modalCinta").val();
+        //Obtengo el array de cintas que pase desde el controlador y lo convierto en un objeto json
+        //para poder utilizarlo en javascript. Se utilizó la clausula json de laravel
+        var cintas = @json($cintaBlancas);
+        //Obtengo un array(cinta) con los elementos que coincidan del array(cinta) 
+        //filtrandolos por el id
+        var cinta = cintas.filter(function (cinta) { return cinta.id == idCinta; });
+        
+        var largo = document.getElementById("largoCinta");
+
+        largo.value = cinta[0].largo;
+    }
+
+    function eliminarFilaCinta(t, id)
+    {
+        var td = t.parentNode;
+        var tr = td.parentNode;
+        var table = tr.parentNode;
+        table.removeChild(tr); // Borramos la fila 
+
+
+        var child = document.getElementById('editCinta'+id);
+        var parent = child.parentNode;
+        parent.removeChild(child); // Borramos el modal correspondiente a esa fila
+    }
+
+    function cambioEditCinta(id)
+    {
+        var idCinta = $(".modalCinta" + id).val();
+
+        //Obtengo el array de empleados que pase desde el controlador y lo convierto en un objeto json
+        //para poder utilizarlo en javascript. Se utilizó la clausula json de laravel
+        var cintas = @json($cintaBlancas);
+        
+        //Obtengo un array(empleado) con los elementos que coincidan del array(empleados) 
+        //filtrandolos por el id
+        var cinta = cintas.filter(function (cinta) { return cinta.id == idCinta; });
+        
+        var largo = document.getElementById("modalLargoCinta" + id);
+
+        largo.value = cinta[0].largo;
+    }
+
+    function editRowCinta(id)
+    {
+        var idEstaRepetido = false;  
+        var nuevoId=$(".modalCinta"+id).val(); //obtenemos en nuevo ID que selecciono el usuario en el <select> de empleado
+        var largo = $("#modalLargoCinta"+id).val();
+        
+        $(".error-nomenclatura"+id).html('');
+        $(".error-largo"+id).html('');
+
+        if(nuevoId != id)
+        {
+            if(largo != '')
+            {
+                $('#tablaCinta').find('tr').find('input#cintaTD').each(function(){
+                    if(nuevoId == $(this).val())
+                    {
+                        idEstaRepetido = true;
+                        return;
+                    }      
+                })
+
+                if(idEstaRepetido)
+                {
+                    $(".error-nomenclatura"+id).html(
+                        '<div class="alert alert-danger mt-2">' +
+                            '<small>La cinta ya está agregado</small>' +
+                        '</div>');
+                    return;
+                }
+                else
+                {
+                    var nomenclatura = $('.modalCinta'+ id +' option:selected').text();
+                    
+                    $("#editCinta"+id).attr('id', 'editCinta' + nuevoId);
+                    $(".modalCinta"+id).attr('class', 'form-control modalCinta' + nuevoId);
+                    $(".modalCinta"+nuevoId).attr('onchange', "cambioEditCinta(id='"+ nuevoId +"')");
+                    $("#modalLargoCinta"+id).attr('id', "modalLargoCinta"+ nuevoId);
+                    $(".buttonCinta"+id).attr('class', "btn btn-success buttonCinta"+ nuevoId);
+                    $(".buttonCinta"+nuevoId).attr('onclick', "editRowCinta(id='"+ nuevoId +"')");
+                    $(".error-nomenclatura"+id).attr('class', "error-nomenclatura"+nuevoId);
+                    $(".error-largo"+id).attr('class', "error-largo"+nuevoId);
+
+                    //a=$('.row'+id).find('button#btnDelete').attr('onclick');//
+                    $('.rowCinta'+id).find('input#cintaTD').val(nuevoId);
+                    $('.rowCinta'+id).find('input#largoTD').val(largo);
+                    $('.rowCinta'+id).attr('class', 'rowCinta'+nuevoId);
+                    $('.rowCinta'+nuevoId).find('td#largo').text(largo);
+                    $('.rowCinta'+nuevoId).find('td#nomenclatura').text(nomenclatura);
+                    $('.rowCinta'+nuevoId).find('button#btnEditCinta').attr('data-target', "#editCinta"+nuevoId);
+                    $('.rowCinta'+nuevoId).find('button#btnDeleteCinta').attr('onclick', "eliminarFilaCinta(this, id='"+nuevoId+"')");
+
+                    $("#editCinta"+nuevoId).modal("toggle");/////Me quede aqui
+                    
+                    //b=$('.row'+nuevoId).find('button#btnDelete').attr('onclick');//
+                    //console.log(a+'\n');//
+                    //console.log(b);//
+                }            
+            }
+            else
+            {
+                $(".error-largo"+id).html(
+                '<div class="alert alert-danger mt-2">' +
+                    '<small>El campo largo no puede estar vacío</small>' +
+                '</div>');    
+            }
+        }
+        else
+        {
+            if(largo != '')
+            {
+                $('.rowCinta'+id).find('input#largoTD').val(largo);
+                console.log($('.rowCinta'+id).find('input#largoTD').val())
+                $('.rowCinta'+id).find('td#largo').text(largo);
+                $("#editCinta"+id).modal("toggle");
+            }
+            else
+            {
+                $(".error-largo"+id).html(
+                '<div class="alert alert-danger mt-2">' +
+                    '<small>El campo largo no puede estar vacío</small>' +
+                '</div>');    
+            }
+        }
+    }    
 </script>
 @endsection
 
