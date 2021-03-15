@@ -156,7 +156,7 @@
             @enderror
             </div>
         </div>
-
+        
         <div class="col-lg-12 d-flex mt-5 mb-2">
             <div class="col-lg-2 px-2"></div>
             <div class="col-lg-8 px-2">
@@ -165,14 +165,14 @@
                         <h3><img src="{{ asset('images/empleado.svg') }}" class="iconoTitle"> Empleados que laboraron</h3>
                     </div>
                     <div class="col-lg-2 px-0 pt-3">
-                        <button type="button" class="btn btn-success  float-right" data-toggle="modal" data-target="#create">
+                        <button type="button" class="btn btn-success  float-right" data-toggle="modal" data-target="#create" onclick="limpiarInputsModalCreate()">
                             Agregar
                         </button>    
                     </div>
                 </div>
                 <table class="table table-striped my-2" id="tablaEmpleadosLaboraron">
                     {{-- Modal crear empleado --}}
-                    @include('bags/modalCreateEmployee')
+                    @include('bags.modalCreateEmployee')
                     {{-- Modal crear empleado --}}
                     
                     <thead class="bg-info">
@@ -182,20 +182,20 @@
                         <th scope="col">Quitar o Cambiar</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tabla">
                         @foreach ($bag->employees as $employee)
-                        @include('bags.modalEditEmployee')
-                            <tr>
-                                <td class="align-middle">
-                                    <input type="hidden" name="empleados[]" class="form-control" value="{{$employee->id}}">
+                            <tr class="row{{$employee->id}}">
+                                @include('bags.modalEditEmployee')
+                                <input type="hidden" name="empleados[]" class="form-control" value="{{$employee->id}}">
+                                <td class="align-middle" id="nombre">
                                     {{$employee->nombre}}
                                 </td>
-                                <td class="align-middle">{{$employee->status}}</td>
+                                <td class="align-middle" id="status">{{$employee->status}}</td>
                                 <td class="align-middle">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                                    <button type="button" class="btn btn-danger btn-sm" id="btnDelete" onclick="eliminarFila(this, id='{{$employee->id}}')">
                                         <img src="{{ asset('images/cruz.svg') }}" class="iconosPequeños">
                                     </button>
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" onclick="editarFila(this)" data-target="#edit{{$employee->id}}" disabled>
+                                    <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#edit{{$employee->id}}">
                                         <img src="{{ asset('images/cambiar-empleado.svg') }}" class="iconosPequeños">
                                     </button>
                                 </td>
@@ -220,7 +220,7 @@
             @enderror
             </div>  
         </div>
-        <div class="col-12 mt-3 text-center">
+        <div class="col-12 mt-4 mb-4 text-center">
             <a class="btn btn-danger mx-3" href="{{ route('bag.show', $bag) }}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div>
@@ -233,29 +233,73 @@
     function crearFila()
     {
         var idEmpleado = $("#modalEmpleado").val();
-        var nombreEmpleado = $("#modalEmpleado option:selected").text();
-        var statusEmpleado = $("#modalStatusEmpleado").val();
-        
-        var fila =
-        '<tr>'+
-            '<td class="align-middle">'+
-                '<input type="hidden" name="empleados[]" class="form-control" value="'+idEmpleado+'">'+
-                nombreEmpleado+
-            '</td>'+
-            '<td class="align-middle">'+statusEmpleado+'</td>'+
-            '<td class="align-middle">'+
-                '<button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">'+
-                    '<img src="{{ asset('images/cruz.svg') }}" class="iconosPequeños">'+
-                '</button>'+
-                '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit'+idEmpleado+'" disabled>'+
-                    '<img src="{{ asset('images/cambiar-empleado.svg') }}" class="iconosPequeños">'+
-                '</button>'+
-            '</td>'+
-        '</tr>';
+        var idEstaRepetido = false;
 
-        $('#tablaEmpleadosLaboraron').append(fila);
+        if(idEmpleado != null)
+        {
+            $('#tabla').find('tr').find('input').each(function(){
+                if(idEmpleado == $(this).val())
+                {
+                    idEstaRepetido = true;
+                    return;
+                }      
+            })
+            if(idEstaRepetido)
+            {
+                mostrarErrorRepetido();
+                return;
+            }
+            else
+            {
+                var nombreEmpleado = $("#modalEmpleado option:selected").text();
+                var statusEmpleado = $("#modalStatusEmpleado").val();
+                
+                var fila =
+                '<tr>'+
+                    '<td class="align-middle">'+
+                        '<input type="hidden" name="empleados[]" class="form-control" value="'+idEmpleado+'">'+
+                        nombreEmpleado+
+                    '</td>'+
+                    '<td class="align-middle">'+statusEmpleado+'</td>'+
+                    '<td class="align-middle">'+
+                        '<button type="button" class="btn btn-danger btn-sm" onclick="eliminarFila(this)">'+
+                            '<img src="{{ asset('images/cruz.svg') }}" class="iconosPequeños">'+
+                        '</button>'+
+                        '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit'+idEmpleado+'" disabled>'+
+                            '<img src="{{ asset('images/cambiar-empleado.svg') }}" class="iconosPequeños">'+
+                        '</button>'+
+                    '</td>'+
+                '</tr>'        
+                
+                $('#tablaEmpleadosLaboraron').append(fila);
+                $('#create').modal('toggle');
+            }
+            
+        }
+        else
+        {
+            $(".error-empleado").html(
+                '<div class="alert alert-danger mt-2">' +
+                    '<small>Debe seleccionar un empleado</small>' +
+                '</div>');
+        }
     }
 
+    function mostrarErrorRepetido()
+    {
+        $(".error-empleado").html(
+                '<div class="alert alert-danger mt-2">' +
+                    '<small>El usuario ya está agregado</small>' +
+                '</div>');
+    }
+
+    function limpiarInputsModalCreate()
+    {
+        $('#modalStatusEmpleado').val('');
+        $('#modalEmpleado').val('');
+
+        $(".error-empleado").html('');
+    }
     function cambio()
     {
         var idEmpleado = $("#modalEmpleado").val();
@@ -271,17 +315,95 @@
         statusEmpleado.value = empleado[0].status;
     }
 
-    function eliminarFila(t)
+    function eliminarFila(t, id)
     {
         var td = t.parentNode;
         var tr = td.parentNode;
         var table = tr.parentNode;
-        table.removeChild(tr);
+        table.removeChild(tr); // Borramos la fila 
+
+
+        var child = document.getElementById('edit'+id);
+        var parent = child.parentNode;
+        parent.removeChild(child); // Borramos el modal correspondiente a esa fila
     }
 
-    function editarFila(item)
+    function cambioEdit(id)
     {
-        console.log(item);
+        var idEmpleado = $(".modalEmpleado" + id).val();
+
+        //Obtengo el array de empleados que pase desde el controlador y lo convierto en un objeto json
+        //para poder utilizarlo en javascript. Se utilizó la clausula json de laravel
+        var empleados = @json($employees);
+        
+        //Obtengo un array(empleado) con los elementos que coincidan del array(empleados) 
+        //filtrandolos por el id
+        var empleado = empleados.filter(function (empleado) { return empleado.id == idEmpleado; });
+        
+        var statusEmpleado = document.getElementById("modalStatusEmpleado" + id);
+
+        statusEmpleado.value = empleado[0].status;
     }
+
+    function editRow(id)
+    {
+        var idEstaRepetido = false;  
+        var nuevoId=$(".modalEmpleado"+id).val(); //obtenemos en nuevo ID que selecciono el usuario en el <select> de empleado
+        
+        $(".error-empleado"+id).html('');
+
+        if(nuevoId != id)
+        {
+            $('#tabla').find('tr').find('input').each(function(){
+                if(nuevoId == $(this).val())
+                {
+                    idEstaRepetido = true;
+                    return;
+                }      
+            })
+
+            if(idEstaRepetido)
+            {
+                $(".error-empleado"+id).html(
+                    '<div class="alert alert-danger mt-2">' +
+                        '<small>El usuario ya está agregado</small>' +
+                    '</div>');
+                return;
+            }
+            else
+            {
+                var nuevoNombre = $('.modalEmpleado'+ id +' option:selected').text();
+                var nuevoStatus = $('#modalStatusEmpleado'+id).val();
+                
+                $("#edit"+id).attr('id', 'edit' + nuevoId);
+                $(".modalEmpleado"+id).attr('class', 'form-control modalEmpleado' + nuevoId);
+                $(".modalEmpleado"+nuevoId).attr('onchange', "cambioEdit(id='"+ nuevoId +"')");
+                $("#modalStatusEmpleado"+id).attr('id', "modalStatusEmpleado"+ nuevoId);
+                $(".button"+id).attr('class', "btn btn-success button"+ nuevoId);
+                $(".button"+nuevoId).attr('onclick', "editRow(id='"+ nuevoId +"')");
+                $(".error-empleado"+id).attr('class', "error-empleado"+nuevoId);
+
+                //a=$('.row'+id).find('button#btnDelete').attr('onclick');//
+
+                $('.row'+id).find('input').val(nuevoId);
+                $('.row'+id).attr('class', 'row'+nuevoId);
+                $('.row'+nuevoId).find('td#nombre').text(nuevoNombre);
+                $('.row'+nuevoId).find('td#status').text(nuevoStatus);
+                $('.row'+nuevoId).find('button#btnEdit').attr('data-target', "#edit"+nuevoId);
+                $('.row'+nuevoId).find('button#btnDelete').attr('onclick', "eliminarFila(this, id='"+nuevoId+"')");
+
+                $("#edit"+nuevoId).modal("toggle");
+                
+                //b=$('.row'+nuevoId).find('button#btnDelete').attr('onclick');//
+                //console.log(a+'\n');//
+                //console.log(b);//
+            }            
+        }
+        else
+        {
+            $("#edit"+nuevoId).modal("toggle");
+        }
+    }
+
 </script>
 @endsection
