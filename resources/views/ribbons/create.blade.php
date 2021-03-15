@@ -168,6 +168,7 @@
             <div class="col-lg-6 px-2" id="cajaCompleta">
                 @if(old('white_ribbon_ids'))
                     @php($i=0)
+                    @php($j=0)
                     @foreach(old('white_ribbon_ids') as $white_ribbon_id)
                         <div id="cintaBlanca">
                             <label><span class="required">*</span>Cintilla Blanca</label>
@@ -176,7 +177,7 @@
                                 <button type="button" onclick="removerCinta()" class="btn btn-secondary btn-sm">-</button>
                                 @php($i++)
                             @endif
-                            <select class="form-control" name="white_ribbon_ids[]" id="cajas">
+                            <select class="form-control" name="white_ribbon_ids[]" id="{{++$j}}" onchange="cambioCintaBlanca(this)">
                                 <option selected value="">N/A</option>
                                 @foreach($cintaBlancas as $cintaBlanca)
                                     <option value={{$cintaBlanca->id}} {{ ($white_ribbon_id ==  $cintaBlanca->id) ? 'selected' : ''}}>
@@ -191,7 +192,7 @@
                         <label><span class="required">*</span>Cintilla Blanca</label>
                         <button type="button" id="bClon" onclick="clonarCinta()" class="btn btn-success btn-sm">+</button>
                         <button type="button" id="bRemove" onclick="removerCinta()" class="btn btn-secondary btn-sm">-</button>
-                        <select class="form-control" name="white_ribbon_ids[]" id="cajas">
+                        <select class="form-control" name="white_ribbon_ids[]" id="1" onchange="cambioCintaBlanca(this)">
                             <option selected value="">N/A</option>
                             @foreach($cintaBlancas as $cintaBlanca)
                                 <option value={{$cintaBlanca->id}}>
@@ -213,16 +214,17 @@
             </div>
             <div class="col-lg-6 px-2" id="contentLargos">
                 @if(old('largos'))
+                    @php($i=0)
                     @foreach(old('largos') as $largo)
                         <div id="inputLargos">
                             <label><span class="required">*</span>Largo (metros)</label>
-                            <input type="number" step="0.0001" class="form-control" name="largos[]" value="{{ $largo }}">
+                            <input type="number" step="0.0001" class="form-control" id="largo{{++$i}}" name="largos[]" value="{{ $largo }}">
                         </div>
                     @endforeach
                 @else
                     <div id="inputLargos">
                         <label><span class="required">*</span>Largo (metros)</label>
-                        <input type="number" step="0.0001" class="form-control" name="largos[]">
+                        <input type="number" step="0.0001" class="form-control" id="largo1" name="largos[]" readonly>
                     </div>
                 @endif
                 @error('largos.*')
@@ -263,9 +265,9 @@
         @endif
         <div class="col-12 mt-4 mb-4 text-center">
             <a class="btn btn-danger mx-3" href="{{route('coil.show', $coilId)}}">Cancelar</a>
-            <button type="submit" class="btn btn-success mx-3">Guardar</button>
+            <button type="submit" class="btn btn-success mx-3" onclick="guardar()">Guardar</button>
         </div>
-</div>
+    </div>
 </form>
 @endsection
 
@@ -278,6 +280,7 @@
         $('.error-empleado').html('');
 
         $form.appendTo('.form-cloned');
+        
     }
 
     function remover()
@@ -291,16 +294,19 @@
     {
         var $form = $('#cajaCompleta #cintaBlanca').last().clone();
         
+        var id = $form.find('select').attr('id');  
+        id = parseInt(id, 10);
+        
         $form.html('<label><span class="required">*</span>Cintilla Blanca</label>' +
-            '<select class="form-control" name="white_ribbon_ids[]" id="cajas">' +
+            '<select class="form-control" name="white_ribbon_ids[]" id="'+(++id)+'" onchange="cambioCintaBlanca(this)">' +
                 '<option selected value="">N/A</option>' +
                 '@foreach($cintaBlancas as $cintaBlanca)'+
                     '<option value={{$cintaBlanca->id}}>' +
                         '{{$cintaBlanca->nomenclatura}}' +
                     '</option>' +
                 '@endforeach' +
-            '</select>')   
-
+            '</select>');   
+        
         $('.error-whiteRibbon').html('');
         $('.error-largos').html('');
         
@@ -314,8 +320,10 @@
 
         $form.appendTo('#cajaCompleta');
 
-        $form = $('#contentLargos #inputLargos').last().clone(); 
+        $form = $('#contentLargos #inputLargos').last().clone();
+        $form.find('input').attr('id','largo'+id)        
         $form.find('input').val('');
+        $form.find('input').prop('readonly', true);
         $form.appendTo('#contentLargos');
     }
 
@@ -329,6 +337,47 @@
             $form.last().remove();
             $formLargo.last().remove();
         }        
+    }
+    
+    function cambioCintaBlanca(item)
+    {
+        var id = $(item).attr('id');
+        id = parseInt(id, 10);
+
+        var largo = $('#largo'+id);
+
+        if($(item).val() != '')
+        {
+            largo.prop('readonly', false);
+            largo.attr('name', 'largos[]');
+            $(item).attr('name', 'white_ribbon_ids[]');
+        }
+        else
+        {
+            largo.prop('readonly', true);
+            largo.removeAttr('name');
+            $(item).removeAttr('name');
+        }
+    }
+    function guardar()
+    {
+        
+        $('#cajaCompleta').find('select').each(
+            function()
+            {
+                if($(this).val() == '')
+                {
+                    var child = this.parentNode;
+                    var parent = child.parentNode;
+                    parent.removeChild(child); 
+                    
+                    var id = $(this).attr('id');
+                    child = document.getElementById('largo'+id).parentNode;
+                    parent = child.parentNode;
+                    parent.removeChild(child); 
+                }
+            }
+        )
     }
 </script>
 @endsection

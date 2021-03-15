@@ -35,7 +35,7 @@ class StoreRibbon extends FormRequest
             'pesoUtilizado' => 'required',
             'observaciones' => 'max:255',
             'empleados.*' => 'required|distinct',
-            'white_ribbon_ids.*' => 'required|distinct',
+            'white_ribbon_ids.*' => 'distinct',
             'largos.*' => 'required'
         ];
     }
