@@ -42,8 +42,8 @@ class RibbonController extends Controller
     }
 
     public function update(StoreRibbon $request, Ribbon $ribbon){
-        //echo ;
-        return $request->all();
+        //echo $request->all();
+        //return $request->all();
         $ribbon->nomenclatura =  $request->nomenclatura;
         $ribbon->status =  $request->status;
         $ribbon->fechaInicioTrabajo =  $request->fechaInicioTrabajo;
@@ -61,9 +61,21 @@ class RibbonController extends Controller
 
         //request->input('empleados') tiene los id's de los empleados
         if(empty($request->input('empleados')) != true )
-        $ribbon->employees()->sync($request->input('empleados')); 
+        $ribbon->employees()->sync($request->input('empleados'));
+        
+        //if(empty($request->input('cintas')) != true or empty($request->input('largos')) != true)
+        $ribbon->whiteRibbons()->detach();
+        foreach ($request->input('cintas', []) as $i => $cinta){
+        echo $request->input('largos.'. $i);
+        $ribbon->whiteRibbons()->attach($cinta,['nomenclatura'=>$ribbon->nomenclatura,
+            'status'=>$ribbon->status, 
+            'fAdquisicion'=>$ribbon->fechaInicioTrabajo,
+            'peso' => 0,
+            'largo' => 1]);
+        }                                 
+        
 
-        return redirect()->route('ribbon.show', compact('ribbon'));
+        //return redirect()->route('ribbon.show', compact('ribbon'));
     }
 
     public function show(Ribbon $ribbon){

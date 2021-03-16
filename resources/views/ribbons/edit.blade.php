@@ -205,7 +205,7 @@
                     </tr>
                     </thead>
                     <tbody id="tablaCinta">
-                        @foreach ($ribbon->whiteRibbons as $whiteRibbon)
+                        @foreach ($ribbon->whiteRibbons()->get() as $whiteRibbon)
                             <tr class="rowCinta{{$whiteRibbon->id}}">
                                 @include('ribbons.modalEditCinta')
                                 <input type="hidden" name="cintas[]" id="cintaTD" class="form-control" value="{{$whiteRibbon->id}}">
@@ -214,7 +214,7 @@
                                     {{$whiteRibbon->nomenclatura}}
                                 </td>
                                 <td class="align-middle" id="largo">
-                                    {{$whiteRibbon->largo}}
+                                    {{$whiteRibbon->pivot->largo}}
                                 </td>
                                 <td class="align-middle">
                                     <button type="button" class="btn btn-danger btn-sm" id="btnDeleteCinta" onclick="eliminarFilaCinta(this, id='{{$whiteRibbon->id}}')">

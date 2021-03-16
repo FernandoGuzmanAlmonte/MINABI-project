@@ -18,7 +18,7 @@ class Ribbon extends Model
 
     public function whiteRibbons(){
         return $this->morphToMany(WhiteRibbon::class, 'white_ribbon_product')
-                    ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso')
+                    ->withPivot('nomenclatura', 'status', 'fAdquisicion', 'peso', 'largo')
                     ->withTimestamps();
     }
 
