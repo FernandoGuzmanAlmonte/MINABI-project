@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-4 px-2">
                     <label> Largo (metros):</label>
-                    <input type="number" step="0.0001" class="form-control" id="modalLargoCinta{{ $whiteRibbon->id }}" value="{{ $whiteRibbon->largo }}" >
+                    <input type="number" step="0.0001" class="form-control" id="modalLargoCinta{{ $whiteRibbon->id }}" value="{{$whiteRibbon->pivot->largo }}" >
                     <div class="error-largo{{$whiteRibbon->id}}"></div>
                 </div>
             </div>

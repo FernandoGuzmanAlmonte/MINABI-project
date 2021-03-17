@@ -209,7 +209,7 @@
                             <tr class="rowCinta{{$whiteRibbon->id}}">
                                 @include('ribbons.modalEditCinta')
                                 <input type="hidden" name="cintas[]" id="cintaTD" class="form-control" value="{{$whiteRibbon->id}}">
-                                <input type="hidden" name="largos[]" id="largoTD" class="form-control" value="{{$whiteRibbon->largo}}">
+                                <input type="hidden" name="largos[]" id="largoTD" class="form-control" value="{{$whiteRibbon->pivot->largo}}">
                                 <td class="align-middle" id="nomenclatura">
                                     {{$whiteRibbon->nomenclatura}}
                                 </td>

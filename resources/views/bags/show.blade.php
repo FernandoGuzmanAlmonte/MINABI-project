@@ -100,7 +100,7 @@
                         <td class="align-middle">{{$employee->nombre}}</td>
                         <td class="align-middle">{{$minutosLaborados}}</td>
                         <td class="align-middle">$ {{$employee->sueldoHora}}</td>
-                        <td class="align-middle">$ {{($employee->sueldoHora/60)*$minutosLaborados}}</td>
+                        <td class="align-middle">$ {{round(($employee->sueldoHora/60)*$minutosLaborados,4)}}</td>
                     </tr>
                 @endforeach
             </tbody>

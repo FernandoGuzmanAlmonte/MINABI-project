@@ -1,23 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.plantilla')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+    <div class=" justify-content-center text-center mt-4">
+        <img src={{ asset('images/logotipo.png') }} width="170" height="300" class="my-5" alt="">
     </div>
 </div>
 @endsection

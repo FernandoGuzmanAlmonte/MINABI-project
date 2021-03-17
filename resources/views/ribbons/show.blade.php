@@ -112,7 +112,7 @@
         </div>
         <div class="d-flex">
             <div class="h5 col-10">Costo de mano de obra =</div>
-            <div class="h5 col-2">$ {{($ribbon->employees->sum('sueldoHora'))/60*$minutosLaborados}}</div>
+            <div class="h5 col-2">$ {{round(($ribbon->employees->sum('sueldoHora')/60*$minutosLaborados),4)}}</div>
         </div>
         <hr>
         <div class="d-flex">

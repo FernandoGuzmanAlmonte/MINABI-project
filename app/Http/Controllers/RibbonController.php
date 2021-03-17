@@ -66,16 +66,15 @@ class RibbonController extends Controller
         //if(empty($request->input('cintas')) != true or empty($request->input('largos')) != true)
         $ribbon->whiteRibbons()->detach();
         foreach ($request->input('cintas', []) as $i => $cinta){
-        echo $request->input('largos.'. $i);
         $ribbon->whiteRibbons()->attach($cinta,['nomenclatura'=>$ribbon->nomenclatura,
             'status'=>$ribbon->status, 
             'fAdquisicion'=>$ribbon->fechaInicioTrabajo,
             'peso' => 0,
-            'largo' => 1]);
+            'largo' => $request->input('largos.'. $i)]);
         }                                 
         
 
-        //return redirect()->route('ribbon.show', compact('ribbon'));
+        return redirect()->route('ribbon.show', compact('ribbon'));
     }
 
     public function show(Ribbon $ribbon){

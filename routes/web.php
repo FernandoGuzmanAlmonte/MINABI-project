@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CoilController;
 use App\Http\Controllers\BagController;
 use App\Http\Controllers\CoilProductController;
@@ -22,6 +23,7 @@ use App\Models\WhiteCoil;
 use App\Models\WhiteRibbon;
 use App\Models\WhiteRibbonReel;
 use App\Models\WhiteWaste;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +41,18 @@ Route::get('/', function () {
     return view('layouts.plantilla');
 });
 
+Route::view('login', 'login')->name('login')->middleware('guest');
+Route::post('login', function(){
+    $credentials =  request()->only('email', 'password');
+    $remember =  request()->filled('remember');
+    if(Auth::attempt($credentials, $remember)){
+        request()->session()->regenerate();
+
+        return redirect('home');
+    }
+    return redirect('login');
+
+    });
 
 Route::resource('coilReel', CoilReelController::class);
 Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'])->name('coilReel.createProduct');
@@ -91,4 +105,4 @@ Route::get('whiteWasteRibbon/create/{whiteRibbon}', [WhiteWasteRibbonController:
 
 Route::resource('coilType', CoilTypeController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

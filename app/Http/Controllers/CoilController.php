@@ -7,6 +7,7 @@ use App\Models\Coil;
 use App\Models\Provider;
 use App\Models\CoilType;
 use App\Models\RibbonProduct;
+use App\Models\WhiteCoilProduct;
 use App\Models\WhiteRibbonProduct;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -178,6 +179,11 @@ class CoilController extends Controller
            //cambiamos status de rollo y ponemos como terminada
            $whiteRibbon->status = 'TERMINADA';
            $whiteRibbon->save();
+
+           $whitecoilproduct = WhiteCoilProduct::where('white_coil_product_id', '=', $whiteRibbon->id)->where('white_coil_product_type', '=', 'App\Models\WhiteRibbon')->get()->first();
+           
+           $whitecoilproduct->status = 'TERMINADA';
+           $whitecoilproduct->save();
            //echo 'El costo de la cinta blanca es '. $costoCinta . '<br>';
        }
     }
