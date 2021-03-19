@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CoilController;
 use App\Http\Controllers\BagController;
 use App\Http\Controllers\CoilProductController;
@@ -23,8 +24,7 @@ use App\Models\WhiteCoil;
 use App\Models\WhiteRibbon;
 use App\Models\WhiteRibbonReel;
 use App\Models\WhiteWaste;
-use Dotenv\Exception\ValidationException;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,20 +43,19 @@ Route::get('/', function () {
 });
 
 Route::view('login', 'login')->name('login')->middleware('guest');
-Route::post('login', function(){
-    $credentials =  request()->validate([
-        'email' => ['required', 'email', 'string'], 
-        'password' => ['required', 'string']
-        ]);
-    $remember =  request()->filled('remember');
-    if(Auth::attempt($credentials, $remember)){
-        request()->session()->regenerate();
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout']);
 
-        return redirect('home');
-    }
-    return redirect('login');
+Route::view('register', 'users/register')->name('register')->middleware('auth');
+Route::post('register', [RegisterController::class, 'create']);
 
-    });
+Route::get('base', function () {
+        Artisan::call('migrate:fresh');
+        });
+
+Route::get('seeder', function () {
+        Artisan::call('db:seed');
+        });
 
 Route::resource('coilReel', CoilReelController::class)->middleware('auth');
 Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'])->name('coilReel.createProduct')->middleware('auth');

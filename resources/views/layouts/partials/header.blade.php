@@ -47,8 +47,12 @@
                 <a class="nav-item nav-link {{ request()->routeIs('bag.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
                     Bolsas
                 </a>
-                
+               
             </div>
+            <form action="logout" method="POST" class="ml-lg-auto text-md-left navbar-nav">
+                @csrf
+                <a href="#" class="nav-item nav-link" onclick="this.closest('form').submit()">Cerrar sesion</a>
+            </form>      
         </div>
     </nav>
 </header>    

@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-lg-8">
                         <h6 class="text-info font-weight-bold">Usuario</h6>
-                        <input class="form-control" type="text" placeholder="Usuario" name="email" >
+                        <input class="form-control" type="text" placeholder="Usuario" name="email" value="{{old('email')}}" >
                     </div>
                 </div>
                 <div class="row mt-4">
