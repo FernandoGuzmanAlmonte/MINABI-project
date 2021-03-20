@@ -23,7 +23,7 @@
                         <a class="dropdown-item {{ request()->routeIs('coilType.*') ? 'active' : ''}}" href="{{ route('coilType.index') }}">
                             Medidas de Bobina
                         </a>
-                        <a class="dropdown-item {{ request()->routeIs('users.*') ? 'active' : ''}}" href="{{ route('users.index') }}">
+                        <a class="dropdown-item {{ request()->routeIs('user.*') ? 'active' : ''}}" href="{{ route('user.index') }}">
                             Usuarios
                         </a>
                     </div>

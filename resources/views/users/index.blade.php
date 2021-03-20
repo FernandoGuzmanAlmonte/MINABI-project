@@ -6,7 +6,7 @@
 
 @section('namePage', 'Usuarios')
 
-@section('route', route('register'))
+@section('route', route('user.create'))
 
 @section('table')
 <table class="table table-striped my-4" >
@@ -24,7 +24,7 @@
         <th scope="row" class="align-middle">{{$item->id}}</th>
         <td class="align-middle">{{$item->name}}</td>
         <td class="align-middle">{{$item->email}}</td>
-        <td><form action="{{ route('user.delete', $item->id) }}" method="POST">
+        <td><form action="{{ route('user.destroy', $item->id) }}" method="POST">
             @csrf
             @method('delete')
             <button type="submit" class="btn btn-danger btn-sm">

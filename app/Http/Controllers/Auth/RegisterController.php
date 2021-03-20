@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -65,27 +66,35 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(Request $request)
+
+     public function create(){
+        
+        $roles = Role::all();
+        return view('users.register', compact('roles'));
+     }
+
+    protected function store(Request $request)
     {
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
 
-        return view('users.index');
+        $user->roles()->sync($request->role_id);
+
+        return redirect()->route('user.index');
     }
 
     public function index(){
         $users = User::all();
         $users = USer::paginate(10);
-
         return view('users.index', compact('users'));
     }
 
     public function destroy($id){
         $user = User::find($id);
         User::destroy($user->id);
-        return redirect()->route('users.index');
+        return redirect()->route('user.index');
     }
 }

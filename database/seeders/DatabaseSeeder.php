@@ -11,10 +11,14 @@ use App\Models\Employee;
 use App\Models\Provider;
 use App\Models\Ribbon;
 use App\Models\RibbonReel;
+use App\Models\User;
 use App\Models\WhiteCoil;
 use App\Models\WhiteRibbon;
 use App\Models\WhiteRibbonReel;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,8 +27,10 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
+
         $employee = new Employee();
         $employee->nombre       =   "ARTURO";
         $employee->fNacimiento  =   "1999-02-02";
@@ -349,6 +355,12 @@ class DatabaseSeeder extends Seeder
                                         'medidaBolsa'=>$bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho . ($ribbon->whiteRibbons()->get()->isEmpty()? '' : ' C/P')]);
         
 
+        $this->call(RoleSeeder::class);
 
+        User::create([
+            'name' => 'Arturo',
+            'email' => 'arturo@hotmail.com',
+            'password' => Hash::make('a')
+        ])->assignRole('Admin');
     }
 }
