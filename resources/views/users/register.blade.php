@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-12 mt-4 mb-4 text-center">
-            {{--<a class="btn btn-danger mx-3" href="{{route('register.index')}}">Cancelar</a>--}}
+            --<a class="btn btn-danger mx-3" href="{{route('users.index')}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div> 
     </div>

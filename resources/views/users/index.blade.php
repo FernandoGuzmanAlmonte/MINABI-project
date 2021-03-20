@@ -6,33 +6,36 @@
 
 @section('namePage', 'Usuarios')
 
-@section('route', route('ribbon.create'))
+@section('route', route('register'))
 
 @section('table')
 <table class="table table-striped my-4" >
     <thead class="bg-info">
 <tr>
     <th scope="col">#</th>
-    <th scope="col">Nomenclatura</th>
-    <th scope="col">Fecha Adquisición</th>
-    <th scope="col">Tipo</th>
-    <th scope="col">Status</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Usuario</th>
     <th scope="col"></th>
   </tr>
 </thead>
 <tbody>
-    @foreach ($ribbons as $item)
+    @foreach ($users as $item)
     <tr>
         <th scope="row" class="align-middle">{{$item->id}}</th>
-        <td class="align-middle">{{$item->nomenclatura}}</td>
-        <td class="align-middle">{{$item->fechaInicioTrabajo}}</td>
-        <td class="align-middle">{{$item->white_ribbon_id}}</td>
-        <td class="align-middle"><label class="btn btn-outline-success m-0">{{$item->status}}</label></td>
-        <td><a href="{{route('ribbon.show', $item->id)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
+        <td class="align-middle">{{$item->name}}</td>
+        <td class="align-middle">{{$item->email}}</td>
+        <td><form action="{{ route('user.delete', $item->id) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-danger btn-sm">
+                <img src="{{ asset('images/icono-eliminar.svg') }}" class="iconosPequeños">
+            </button>
+        </form>
+    </td>
     </tr>
     @endforeach
 </tbody>
 </table>
-<div class="d-flex  justify-content-center">{{$ribbons->links()}}</div>
+<div class="d-flex  justify-content-center">{{$users->links()}}</div>
 
 @endsection

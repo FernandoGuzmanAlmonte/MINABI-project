@@ -73,14 +73,19 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        /*$user = new User();
+        return view('users.index');
+    }
 
-        $user->name = $request->name;
-        $user->email =  $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();*/
+    public function index(){
+        $users = User::all();
+        $users = USer::paginate(10);
 
+        return view('users.index', compact('users'));
+    }
 
-        return view('users.register');
+    public function destroy($id){
+        $user = User::find($id);
+        User::destroy($user->id);
+        return redirect()->route('users.index');
     }
 }

@@ -48,6 +48,8 @@ Route::post('logout', [LoginController::class, 'logout']);
 
 Route::view('register', 'users/register')->name('register')->middleware('auth');
 Route::post('register', [RegisterController::class, 'create']);
+Route::get('users', [RegisterController::class, 'index'])->name('users.index')->middleware('auth');
+Route::delete('users/delete/{id}', [RegisterController::class,'destroy'])->name('user.delete')->middleware('auth');
 
 Route::get('base', function () {
         Artisan::call('migrate:fresh');

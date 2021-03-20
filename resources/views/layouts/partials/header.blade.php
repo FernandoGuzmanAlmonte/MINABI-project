@@ -23,6 +23,9 @@
                         <a class="dropdown-item {{ request()->routeIs('coilType.*') ? 'active' : ''}}" href="{{ route('coilType.index') }}">
                             Medidas de Bobina
                         </a>
+                        <a class="dropdown-item {{ request()->routeIs('users.*') ? 'active' : ''}}" href="{{ route('users.index') }}">
+                            Usuarios
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item dropdown {{ request()->routeIs('whiteCoil.*', 'whiteRibbon.*', 'whiteCoilProduct.*') ? 'active' : ''}}">
