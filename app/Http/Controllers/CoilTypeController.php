@@ -9,11 +9,27 @@ use App\Http\Requests\StoreCoilType;
 
 class CoilTypeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $coilTypes = CoilType::paginate(10);
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'id';
+        $order = $request->order ?? 'ASC';
+
+        //No es necesario der un valor por defecto para estos campo ya que se valida si es null
+        //en sus scope()
+        $alias = $request->alias;
+        $tipo = $request->tipo;
         
-        return view('coilTypes.index', compact('coilTypes'));
+        $coilTypes = CoilType::alias($alias)
+            ->tipo($tipo)
+            ->orderBy($orderBy, $order)
+            ->paginate(10);
+
+        $allTypes = CoilType::select('tipo')
+            ->distinct()
+            ->get();
+
+        return view('coilTypes.index', compact('coilTypes', 'allTypes', 'orderBy', 'alias', 'order', 'tipo'));
     }
 
     public function create()

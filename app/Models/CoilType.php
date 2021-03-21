@@ -23,4 +23,16 @@ class CoilType extends Model
     {
         return $this->hasMany('App\Models\BagMeasure');
     }
+
+    public function scopeAlias($query, $alias)
+    {
+        if($alias)
+            $query->where('alias', 'LIKE', "%$alias%");
+    }
+
+    public function scopeTipo($query, $tipo)
+    {
+        if($tipo)
+            $query->where('tipo', '=', $tipo);
+    }
 }

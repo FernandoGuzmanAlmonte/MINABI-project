@@ -65,6 +65,4 @@ class Coil extends Model
             $query->whereBetween('fArribo', [$fechaStart, $fechaEnd]);
         }
     }
-
-   
 }

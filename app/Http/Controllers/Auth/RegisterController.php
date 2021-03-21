@@ -86,10 +86,20 @@ class RegisterController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function index(){
-        $users = User::all();
-        $users = USer::paginate(10);
-        return view('users.index', compact('users'));
+    public function index(Request $request){
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'id';
+        $order = $request->order ?? 'ASC';
+
+        //No es necesario der un valor por defecto para este campo ya que se valida si es null
+        //en su scope() dentro de Provider:Model
+        $name = $request->name;
+
+        $users = User::name($name)
+            ->orderBy($orderBy, $order)
+            ->paginate(10);
+
+        return view('users.index', compact('users', 'orderBy', 'name', 'order'));
     }
 
     public function destroy($id){
