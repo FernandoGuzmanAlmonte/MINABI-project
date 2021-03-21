@@ -180,7 +180,7 @@
         var seleccion = tipo.options[tipo.selectedIndex].text;
         var folio =  document.getElementById("nomenclaturas");
         fecha = fecha.value.replace(/-/g, "");
-        folio.value = "MNB"+seleccion+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(1,4);
+        folio.value = "MNB"+seleccion+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(0,4);
     }
 </script>
 @endsection
