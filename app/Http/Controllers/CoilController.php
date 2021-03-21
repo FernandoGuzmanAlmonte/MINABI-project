@@ -12,6 +12,7 @@ use App\Models\WhiteRibbonProduct;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class CoilController extends Controller
 {
@@ -253,5 +254,32 @@ class CoilController extends Controller
     $coil->save();
     //echo 'El total de metros de todos los rollos es  = ' . $totalMetrosRollos;
     return redirect()->route('coil.show', $coil);
+    }
+
+    public function reporteria(){
+        $providers = Provider::all();
+        $medidas = CoilType::select('id')->where('tipo' , '=', 'CELOFAN')->get();
+        $bobinas = DB::select('SELECT COUNT(coil_type_id) as cantidad, coil_type_id as medida, provider_id as proveedor, sum(pesoBruto) as peso from coils GROUP BY coil_type_id, provider_id ORDER BY coil_type_id');
+       /* $i = 0;
+        foreach($bobinas as $bobina){
+            
+            foreach($medidas as $medida){
+                $i = $i +1;
+                echo $i. " " .$medida->id . "<br>";
+
+                if($bobina->medida == $medida->id){
+                        
+                    foreach($providers as $provider){
+                        //echo "hola";
+                    }
+                }
+                else{
+                    echo "Falta medida";
+                }
+
+            }
+
+        }*/
+        return view('coils.reporteria', compact('providers', 'bobinas'));
     }
 }

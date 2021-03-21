@@ -50,7 +50,25 @@
                 <a class="nav-item nav-link {{ request()->routeIs('bag.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
                     Bolsas
                 </a>
-               
+                <li class="nav-item dropdown {{ request()->routeIs('coil.reporteria', 'ribbon.reporteria', 'bag.reporteria') ? 'active' : ''}}">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Reportes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item {{ request()->routeIs('coil.reporteria') ? 'active' : ''}}" href="{{ route('coil.reporteria') }}">
+                            Almacen de Bobinas
+                        </a>
+                        <a class="dropdown-item {{ request()->routeIs('employee.*') ? 'active' : ''}}" href="{{ route('employee.index') }}">
+                            Empleados
+                        </a>
+                        <a class="dropdown-item {{ request()->routeIs('coilType.*') ? 'active' : ''}}" href="{{ route('coilType.index') }}">
+                            Medidas de Bobina
+                        </a>
+                        <a class="dropdown-item {{ request()->routeIs('user.*') ? 'active' : ''}}" href="{{ route('user.index') }}">
+                            Usuarios
+                        </a>
+                    </div>
+                </li>
             </div>
             <form action="logout" method="POST" class="ml-lg-auto text-md-left navbar-nav">
                 @csrf
