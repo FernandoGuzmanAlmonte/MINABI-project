@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -36,11 +39,12 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    /*public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
+        echo 'hola';
     }
-
+*/
     /**
      * Get a validator for an incoming registration request.
      *
@@ -62,12 +66,35 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+
+     public function create(){
+        
+        $roles = Role::all();
+        return view('users.register', compact('roles'));
+     }
+
+    protected function store(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
         ]);
+
+        $user->roles()->sync($request->role_id);
+
+        return redirect()->route('user.index');
+    }
+
+    public function index(){
+        $users = User::all();
+        $users = USer::paginate(10);
+        return view('users.index', compact('users'));
+    }
+
+    public function destroy($id){
+        $user = User::find($id);
+        User::destroy($user->id);
+        return redirect()->route('user.index');
     }
 }

@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -36,5 +40,34 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request){
+
+        $credentials =  $request->validate([
+            'email' => ['required', 'email', 'string'], 
+            'password' => ['required', 'string']
+            ]);
+        
+        $remember =  $request->filled('remember');
+
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+    
+            return redirect('home');
+        }
+        throw  ValidationException::withMessages(
+            ['email' => __('auth.failed')]
+        );
+        
+    }
+
+    public function logout(Request $request){
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('login');
     }
 }

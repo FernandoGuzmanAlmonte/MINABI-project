@@ -23,6 +23,9 @@
                         <a class="dropdown-item {{ request()->routeIs('coilType.*') ? 'active' : ''}}" href="{{ route('coilType.index') }}">
                             Medidas de Bobina
                         </a>
+                        <a class="dropdown-item {{ request()->routeIs('user.*') ? 'active' : ''}}" href="{{ route('user.index') }}">
+                            Usuarios
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item dropdown {{ request()->routeIs('whiteCoil.*', 'whiteRibbon.*', 'whiteCoilProduct.*') ? 'active' : ''}}">
@@ -47,8 +50,12 @@
                 <a class="nav-item nav-link {{ request()->routeIs('bag.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
                     Bolsas
                 </a>
-                
+               
             </div>
+            <form action="logout" method="POST" class="ml-lg-auto text-md-left navbar-nav">
+                @csrf
+                <a href="#" class="nav-item nav-link" onclick="this.closest('form').submit()">Cerrar sesion</a>
+            </form>      
         </div>
     </nav>
 </header>    

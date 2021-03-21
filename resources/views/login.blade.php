@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-lg-8">
                         <h6 class="text-info font-weight-bold">Usuario</h6>
-                        <input class="form-control" type="text" placeholder="Usuario" name="email" >
+                        <input class="form-control" type="text" placeholder="Usuario" name="email" value="{{old('email')}}" >
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -52,6 +52,15 @@
                 <div class="float-right">
                 <button class="btn btn-info mr-5">Iniciar sesion</button>
                 </div>
+                @foreach ($errors->all() as $error)
+                <div class="mt-3 text-center">
+                    <br>
+                        <div class="alert alert-danger">
+                            {{$error}}
+                        </div>
+                        <br>
+                </div>
+                @endforeach
             </form>
             </div>
             
