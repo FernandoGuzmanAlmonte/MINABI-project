@@ -8,11 +8,27 @@ use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $employees = Employee::paginate(10);
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'id';
+        $order = $request->order ?? 'ASC';
+
+        //No es necesario der un valor por defecto para estos campo ya que se valida si es null
+        //en sus scope()
+        $nombre = $request->nombre;
+        $status = $request->status;
+
+        $employees = Employee::nombre($nombre)
+            ->status($status)
+            ->orderBy($orderBy, $order)
+            ->paginate(10);
+
+        $allStatus = Employee::select('status')
+            ->distinct()
+            ->get();
         
-        return view('employees.index', compact('employees'));
+        return view('employees.index', compact('employees', 'allStatus', 'orderBy', 'nombre', 'order', 'status'));
     }
 
     public function create()

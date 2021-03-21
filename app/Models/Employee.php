@@ -32,4 +32,16 @@ class Employee extends Model
         //Relación muchos a muchos Employee-Waste_Ribbons
         return $this->belongsToMany('App\Models\WasteRibbon'); 
     }
+
+    public function scopeNombre($query, $nombre)
+    {
+        if($nombre)
+            $query->where('nombre', 'LIKE', "%$nombre%");
+    }
+
+    public function scopeStatus($query, $status)
+    {
+        if($status)
+            $query->where('status', '=', $status);
+    }
 }

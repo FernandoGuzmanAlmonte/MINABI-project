@@ -23,4 +23,10 @@ class Provider extends Model
     {
         return $this->hasMany('App\Models\WhiteCoil');
     }
+
+    public function scopeNombreEmpresa($query, $nombreEmpresa)
+    {
+        if($nombreEmpresa)
+            $query->where('nombreEmpresa', 'LIKE', "%$nombreEmpresa%");
+    }
 }

@@ -9,11 +9,23 @@ use App\Http\Requests\StoreProvider;
 
 class ProviderController extends Controller
 {
-    public function index()
-    {
-        $providers = Provider::paginate(10);
-        
-        return view('providers.index', compact('providers'));
+    public function index(Request $request)
+    {        
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'id';
+        $order = $request->order ?? 'ASC';
+
+        //No es necesario der un valor por defecto para este campo ya que se valida si es null
+        //en su scope() dentro de Provider:Model
+        $nombreEmpresa = $request->nombreEmpresa;
+
+        $providers = Provider::leftjoin('contacts', 'providers.id', '=', 'contacts.provider_id')
+            ->select('providers.id', 'providers.nombreEmpresa','providers.direccion', 'contacts.telefono')
+            ->nombreEmpresa($nombreEmpresa)
+            ->orderBy($orderBy, $order)
+            ->paginate(10);
+
+        return view('providers.index', compact('providers', 'orderBy', 'nombreEmpresa', 'order'));
     }
 
     public function create()

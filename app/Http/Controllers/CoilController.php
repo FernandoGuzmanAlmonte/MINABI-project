@@ -15,11 +15,37 @@ use DateTime;
 
 class CoilController extends Controller
 {
-    public function index(){
-        $coils = Coil::select('nomenclatura', 'fArribo',  'status' , 'coil_type_id')->get();
-        $coils = Coil::paginate(10);
+    public function index(Request $request){
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'id';
+        $order = $request->order ?? 'ASC';
 
-        return view('coils.index', compact('coils'));
+        //No es necesario der un valor por defecto para estos campo ya que se valida si es null
+        //en sus scope()
+        $nomenclatura = $request->nomenclatura;
+        $status = $request->status;
+        $tipo = $request->tipo;
+        $fecha = $request->fecha;
+
+        $coils = Coil::join('coil_types', 'coils.coil_type_id', '=', 'coil_types.id')
+            ->select('coils.id', 'coils.nomenclatura','coils.fArribo', 'coils.status', 'coils.coil_type_id', 'coil_types.alias')
+            ->nomenclatura($nomenclatura)
+            ->status($status)
+            ->tipo($tipo)
+            ->fecha($fecha)
+            ->orderBy($orderBy, $order)
+            ->paginate(10);
+
+        $allStatus = Coil::select('status')
+            ->distinct()
+            ->get();
+
+        $allTypes = Coil::join('coil_types', 'coils.coil_type_id', '=', 'coil_types.id')
+            ->select('alias')
+            ->distinct()
+            ->get();
+
+        return view('coils.index', compact('coils', 'allStatus', 'allTypes', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'));
     }
 
     public function create(){
