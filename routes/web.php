@@ -39,8 +39,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.plantilla');
-});
+    return view('home');
+})->middleware('auth');
 
 Route::view('login', 'login')->name('login')->middleware('guest');
 Route::post('login', [LoginController::class, 'login']);

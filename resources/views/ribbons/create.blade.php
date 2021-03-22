@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label><span class="required">*</span>Peso (KG)</label>
-                <input type="text" class="form-control" name="peso" value="{{old('peso')}}">
+                <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
                 <br>
                 <div class="alert alert-danger">
