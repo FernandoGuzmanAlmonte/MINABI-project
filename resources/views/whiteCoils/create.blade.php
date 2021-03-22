@@ -38,7 +38,7 @@
                 var fecha = document.getElementById("fArribo");
                 var folio =  document.getElementById("nomenclaturas");
                 fecha = fecha.value.replace(/-/g, "");
-                folio.value = "MNB"+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(1,4);
+                folio.value = "MNB"+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(0,4);
             }
         </script>
         <div class="col-lg-4 px-2">
@@ -46,12 +46,18 @@
             <select class="form-control" name="coil_type_id">
                 <option selected value="" class="text-muted" disabled>--seleccione tipo de bobina--</option>
                 @foreach($coilTypes as $coilType)
-                    <option value={{ $coilType->id }}>
+                    <option value={{ $coilType->id }} {{ ($coilType->id == old('coil_type_id')) ? 'selected' : '' }}>
                         {{ $coilType->alias }}
                     </option>
                 @endforeach
-                <option value="">Ninguno</option>
             </select>
+            @error('coil_type_id')
+                <br>
+                <div class="alert alert-danger">
+                <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
         </div>
     </div>
 
@@ -61,7 +67,7 @@
             <select class="form-control" name="provider_id">
                 <option selected value="" class="text-muted" disabled>--seleccione proveedor--</option>
                 @foreach($providers as $provider)
-                    <option value={{ $provider->id }}>
+                    <option value={{ $provider->id }} {{ ($provider->id == old('provider_id')) ? 'selected' : '' }}>
                         {{ $provider->nombreEmpresa }}
                     </option>
                 @endforeach

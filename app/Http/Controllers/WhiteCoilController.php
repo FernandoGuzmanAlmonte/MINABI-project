@@ -9,6 +9,7 @@ use App\Models\CoilType;
 use App\Models\WhiteRibbonProduct;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WhiteCoilController extends Controller
 {
@@ -94,6 +95,7 @@ class WhiteCoilController extends Controller
     }
 
     public function store(StoreWhiteCoil $request){
+        $maxId = WhiteCoil::find(DB::table('coils')->max('id'));
         $whiteCoil =  new WhiteCoil();
 
         if($request->provider_id != null) 

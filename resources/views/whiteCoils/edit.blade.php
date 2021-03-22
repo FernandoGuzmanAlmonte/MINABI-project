@@ -25,7 +25,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label><span class="required">*</span> Fecha llegada</label>
-            <input type="datetime" class="form-control" name="fArribo" value="{{$whiteCoil->fArribo}}">
+            <input type="datetime" class="form-control" name="fArribo" value="{{$whiteCoil->fArribo}}" readonly>
             @error('fArribo')
                 <br>
                 <div class="alert alert-danger">
@@ -39,7 +39,7 @@
             <select class="form-control" name="coil_type_id">
                 @if($whiteCoil->coilType != null)
                     @foreach($coilTypes as $coilType)
-                        <option {{ ($coilType->id == $whiteCoil->coilType->id) ? 'selected' : '' }} value={{ $coilType->id }}>
+                        <option {{ ($coilType->id == $whiteCoil->coilType->id) ? 'selected' : '' }} value="{{ $coilType->id }}" readonly>
                             {{ $coilType->alias }}
                         </option>
                     @endforeach
