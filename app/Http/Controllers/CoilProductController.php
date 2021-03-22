@@ -18,7 +18,7 @@ class CoilProductController extends Controller
         $status = $request->status;
         $fecha = $request->fecha;
 
-        $coilProducts = CoilProduct::select('id', 'nomenclatura', 'peso','fArribo', 'status', 'white_coil_product_id', 'white_coil_product_type')
+        $coilProducts = CoilProduct::select('id', 'nomenclatura', 'peso','fAdquisicion', 'status', 'coil_product_type', 'coil_product_id')
             ->nomenclatura($nomenclatura)
             ->status($status)
             ->fecha($fecha)

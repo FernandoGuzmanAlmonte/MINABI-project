@@ -7,7 +7,7 @@
 @section('namePage', 'Rollos')
 
 @section('filtrado')
-    <form action="{{ route('whiteCoilProduct.index') }}" method="GET" class="row g-3 mt-5" id="formOrder">
+    <form action="{{ route('coilProduct.index') }}" method="GET" class="row g-3 mt-5" id="formOrder">
         <div class="col-lg-5">
                 <h6 class="textoConLinea"><span>Ordenar</span></h6>
                 <div class="row">
@@ -216,7 +216,7 @@
         var formData = form.serialize(); //variable con el valor de todos los input del formulario
         
         $.ajax({
-            url: "{{ route('whiteCoilProduct.index') }}",
+            url: "{{ route('coilProduct.index') }}",
             type: 'GET',
             data: formData,
             success: function(response)
