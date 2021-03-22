@@ -250,19 +250,7 @@ class DatabaseSeeder extends Seeder
                                      'peso' => $coilReel->peso]);
 
         $ribbonReel =  new RibbonReel();
-        $ribbonReel->nomenclatura =  "HUE-MNB70090301-1-1";
-        $ribbonReel->peso =  0.7000;
-        $ribbonReel->observaciones =  NULL;
-        $ribbonReel->fechaAlta =  "2021-03-09";
-        $ribbonReel->status = "N/A";
-        $ribbonReel->save();
-        $ribbonReel->ribbons()->attach(3, ['nomenclatura'=>$ribbonReel->nomenclatura,
-                                     'status'=>'N/A', 
-                                     'fAdquisicion'=>$ribbonReel->fechaAlta,
-                                     'peso' =>$ribbonReel->peso]);
-
-        $ribbonReel =  new RibbonReel();
-        $ribbonReel->nomenclatura =  "HUE-MNB70090301-2-1";
+        $ribbonReel->nomenclatura =  "HUE-MNB700903021-1-1";
         $ribbonReel->peso =  0.7000;
         $ribbonReel->observaciones =  NULL;
         $ribbonReel->fechaAlta =  "2021-03-09";
@@ -274,7 +262,7 @@ class DatabaseSeeder extends Seeder
                                      'peso' =>$ribbonReel->peso]);
 
         $ribbonReel =  new RibbonReel();
-        $ribbonReel->nomenclatura =  "HUE-MNB70090301-3-1";
+        $ribbonReel->nomenclatura =  "HUE-MNB700903021-2-1";
         $ribbonReel->peso =  0.7000;
         $ribbonReel->observaciones =  NULL;
         $ribbonReel->fechaAlta =  "2021-03-09";
