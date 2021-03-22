@@ -16,6 +16,13 @@
 <!-- HTML -->
     <link rel="stylesheet" href="{{ asset('css/general.css') }}"/>
 
+<!--JS-->    
+    <script src="{{ asset('js/app.js') }}" defer></script>
+<!--Daterangepicker-->     
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 </head>
 <body>
 <!-- Navbar -->
@@ -23,13 +30,6 @@
 <!-- Contenido -->
     @yield('content')
 <!-- Scripts -->       
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <!--Daterangepicker-->     
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-    
     @yield('scripts')
 </body>
 </html>

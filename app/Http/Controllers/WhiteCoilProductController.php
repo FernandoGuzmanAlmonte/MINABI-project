@@ -7,10 +7,29 @@ use Illuminate\Http\Request;
 
 class WhiteCoilProductController extends Controller
 {
-    public function index(){
-        $whiteCoilProducts = WhiteCoilProduct::select('nomenclatura',  'status', 'white_coil_id')->get();
-        $whiteCoilProducts = WhiteCoilProduct::paginate(10);
+    public function index(Request $request){
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'id';
+        $order = $request->order ?? 'ASC';
 
-        return view('whiteCoilProducts.index', compact('whiteCoilProducts'));
+        //No es necesario der un valor por defecto para estos campo ya que se valida si es null
+        //en sus scope()
+        $nomenclatura = $request->nomenclatura;
+        $status = $request->status;
+        $tipo = $request->tipo;
+        $fecha = $request->fecha;
+
+        $whiteCoilProducts = WhiteCoilProduct::select('id', 'nomenclatura','fAdquisicion', 'status', 'white_coil_product_id', 'white_coil_product_type')
+            ->nomenclatura($nomenclatura)
+            ->status($status)
+            ->fecha($fecha)
+            ->orderBy($orderBy, $order)
+            ->paginate(10);
+
+        $allStatus = WhiteCoilProduct::select('status')
+            ->distinct()
+            ->get();
+
+        return view('whiteCoilProducts.index', compact('whiteCoilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'));        
     }
 }
