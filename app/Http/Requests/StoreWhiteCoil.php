@@ -30,7 +30,8 @@ class StoreWhiteCoil extends FormRequest
             'observaciones' => 'max:255',
             'pesoUtilizado' => 'required',
             'costo' => 'required',
-            'fArribo' => 'required'
+            'fArribo' => 'required',
+            'coil_type_id' => 'required'
         ];
     }
 

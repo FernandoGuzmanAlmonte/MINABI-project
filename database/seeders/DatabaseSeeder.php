@@ -358,9 +358,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
 
         User::create([
-            'name' => 'Arturo',
-            'email' => 'arturo@hotmail.com',
-            'password' => Hash::make('a')
+            'name' => 'MINABI',
+            'email' => 'bodega@minabiplast.com',
+            'password' => Hash::make('minabi123')
         ])->assignRole('Admin');
     }
 }
