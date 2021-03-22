@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCoilReel;
 use App\Models\CoilReel;
 use App\Models\Coil;
+use App\Models\CoilProduct;
 use Illuminate\Http\Request;
 
 class CoilReelController extends Controller
@@ -40,6 +41,13 @@ class CoilReelController extends Controller
        
 
         $coilReel->save();
+
+        $coilProduct = CoilProduct::where('coil_product_id', '=', $coilReel->id)->where('coil_product_type', '=', 'App\Models\CoilReel')->get()->first();
+        $coilProduct->nomenclatura = $coilReel->nomenclatura;
+        $coilProduct->status = $coilReel->status;
+        $coilProduct->fAdquisicion = $coilReel->fechaAlta; 
+        $coilProduct->peso = $coilReel->peso;
+        $coilProduct->save();
 
         return redirect()->route('coilReel.show', compact('coilReel'));
     }

@@ -6,6 +6,7 @@ use App\Models\WhiteRibbonReel;
 use App\Models\WhiteRibbon;
 use App\Http\Requests\StoreWhiteRibbonReel;
 use App\Models\WhiteCoilProduct;
+use App\Models\WhiteRibbonProduct;
 use Illuminate\Http\Request;
 
 class WhiteRibbonReelController extends Controller
@@ -41,6 +42,13 @@ class WhiteRibbonReelController extends Controller
        
 
         $whiteRibbonReel->save();
+
+        $whiteProduct = WhiteRibbonProduct::where('white_ribbon_product_id', '=', $whiteRibbonReel->id)->where('white_ribbon_product_type', '=', 'App\Models\WhiteRibbonReel')->get()->first();
+        $whiteProduct->nomenclatura = $whiteRibbonReel->nomenclatura;
+        $whiteProduct->status = $whiteRibbonReel->status;
+        $whiteProduct->fAdquisicion = $whiteRibbonReel->fechaAlta; 
+        $whiteProduct->peso = $whiteRibbonReel->peso;
+        $whiteProduct->save();
 
         return redirect()->route('whiteRibbonReel.show', compact('whiteRibbonReel'));
     }

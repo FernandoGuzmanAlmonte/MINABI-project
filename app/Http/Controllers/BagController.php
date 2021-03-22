@@ -7,6 +7,7 @@ use App\Models\Bag;
 use App\Models\CoilProduct;
 use App\Models\Ribbon;
 use App\Models\Employee;
+use App\Models\RibbonProduct;
 use Illuminate\Http\Request;
 use DateTime;
 
@@ -176,13 +177,21 @@ class BagController extends Controller
         $bag->temperatura        = $request->temperatura;
         $bag->velocidad          = $request->velocidad;
         $bag->observaciones      = $request->observaciones;
+        $bag->peso               = $request->peso;
               
         $bag->save();
-
         //request->input('empleados') tiene los id's de los empleados
         $bag->employees()->sync($request->input('empleados')); 
+        
 
-        return redirect()->route('bag.show', $bag);
+        $ribbonProduct = RibbonProduct::where('ribbon_product_id', '=', $bag->id)->where('ribbon_product_type', '=', 'App\Models\Bag')->get()->first();
+        $ribbonProduct->nomenclatura = $bag->nomenclatura;
+        $ribbonProduct->status = $bag->status;
+        $ribbonProduct->fAdquisicion = $bag->fechaInicioTrabajo; 
+        $ribbonProduct->peso = $bag->peso;
+        $ribbonProduct->save();
+
+       return redirect()->route('bag.show', $bag);
     }
 
     public function delete()

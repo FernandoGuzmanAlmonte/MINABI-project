@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CoilProduct;
 use App\Models\WhiteCoilProduct;
 use App\Models\WhiteRibbon;
+use App\Models\WhiteRibbonProduct;
 use App\Models\WhiteWasteRibbon;
 use Illuminate\Http\Request;
 
@@ -99,6 +100,13 @@ class WhiteWasteRibbonController extends Controller
         $whiteWasteRibbon->nomenclatura   = $request->nomenclatura;
 
         $whiteWasteRibbon->save();
+
+        $whiteProduct = WhiteRibbonProduct::where('white_ribbon_product_id', '=', $whiteWasteRibbon->id)->where('white_ribbon_product_type', '=', 'App\Models\WhiteWasteRibbon')->get()->first();
+        $whiteProduct->nomenclatura = $whiteWasteRibbon->nomenclatura;
+        $whiteProduct->status = $whiteWasteRibbon->status;
+        $whiteProduct->fAdquisicion = $whiteWasteRibbon->fArribo; 
+        $whiteProduct->peso = $whiteWasteRibbon->peso;
+        $whiteProduct->save();
 
         return redirect()->route('whiteWasteRibbon.show', $whiteWasteRibbon);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWhiteWaste;
 use App\Models\WhiteCoil;
+use App\Models\WhiteCoilProduct;
 use App\Models\WhiteWaste;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,13 @@ class WhiteWasteController extends Controller
         $whiteWaste->fAlta =  $request->fAlta;
     
         $whiteWaste->save();
+
+        $whiteProduct = WhiteCoilProduct::where('white_coil_product_id', '=', $whiteWaste->id)->where('white_coil_product_type', '=', 'App\Models\WhiteWaste')->get()->first();
+        $whiteProduct->nomenclatura = $whiteWaste->nomenclatura;
+        $whiteProduct->status = $whiteWaste->status;
+        $whiteProduct->fAdquisicion = $whiteWaste->fArribo; 
+        $whiteProduct->peso = $whiteWaste->peso;
+        $whiteProduct->save();
 
         return redirect()->route('whiteWaste.show', compact('whiteWaste'));
     }
