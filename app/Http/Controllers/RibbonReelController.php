@@ -6,6 +6,7 @@ use App\Http\Requests\StoreRibbonReel;
 use App\Models\CoilProduct;
 use App\Models\RibbonReel;
 use App\Models\Ribbon;
+use App\Models\RibbonProduct;
 use Illuminate\Http\Request;
 
 class RibbonReelController extends Controller
@@ -38,9 +39,15 @@ class RibbonReelController extends Controller
         $ribbonReel->observaciones =  $request->observaciones;
         $ribbonReel->fechaAlta =  $request->fechaAlta;
         $ribbonReel->status = $request->status;
-       
 
         $ribbonReel->save();
+
+        $ribbonProduct = RibbonProduct::where('ribbon_product_id', '=', $ribbonReel->id)->where('ribbon_product_type', '=', 'App\Models\RibbonReel')->get()->first();
+        $ribbonProduct->nomenclatura = $ribbonReel->nomenclatura;
+        $ribbonProduct->status = $ribbonReel->status;
+        $ribbonProduct->fAdquisicion = $ribbonReel->fechaAlta; 
+        $ribbonProduct->peso = $ribbonReel->peso;
+        $ribbonProduct->save();
 
         return redirect()->route('ribbonReel.show', compact('RibbonReel'));
     }

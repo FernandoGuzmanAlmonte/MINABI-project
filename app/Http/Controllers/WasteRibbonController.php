@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreWasteRibbon;
 use App\Models\WasteRibbon;
 use App\Models\Coil;
+use App\Models\CoilProduct;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -49,6 +50,13 @@ class WasteRibbonController extends Controller
         $wasteRibbon->velocidad =  $request->velocidad;
 
         $wasteRibbon->save();
+
+        $coilProduct = CoilProduct::where('coil_product_id', '=', $wasteRibbon->id)->where('coil_product_type', '=', 'App\Models\WasteRibbon')->get()->first();
+        $coilProduct->nomenclatura = $wasteRibbon->nomenclatura;
+        $coilProduct->status = $wasteRibbon->status;
+        $coilProduct->fAdquisicion = $wasteRibbon->fechaAlta; 
+        $coilProduct->peso = $wasteRibbon->peso;
+        $coilProduct->save();
 
         //request->input('empleados') tiene los id's de los empleados
         $wasteRibbon->employees()->sync($request->input('empleados')); 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRibbon;
 use App\Models\Coil;
+use App\Models\CoilProduct;
 use App\Models\Ribbon;
 use App\Models\Employee;
 use App\Models\WhiteRibbon;
@@ -73,6 +74,13 @@ class RibbonController extends Controller
             'largo' => $request->input('largos.'. $i)]);
         }                                 
         
+        $coilProduct = CoilProduct::where('coil_product_id', '=', $ribbon->id)->where('coil_product_type', '=', 'App\Models\Ribbon')->get()->first();
+        $coilProduct->nomenclatura = $ribbon->nomenclatura;
+        $coilProduct->status = $ribbon->status;
+        $coilProduct->fAdquisicion = $ribbon->fechaInicioTrabajo; 
+        $coilProduct->peso = $ribbon->peso;
+        $coilProduct->save();
+
 
         return redirect()->route('ribbon.show', compact('ribbon'));
     }

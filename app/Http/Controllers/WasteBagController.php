@@ -8,6 +8,7 @@ use App\Models\Ribbon;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreWasteBag;
+use App\Models\RibbonProduct;
 
 class WasteBagController extends Controller
 {
@@ -113,6 +114,14 @@ class WasteBagController extends Controller
         $wasteBag->nomenclatura  = $request->nomenclatura;
 
         $wasteBag->save();
+
+        $ribbonProduct = RibbonProduct::where('ribbon_product_id', '=', $wasteBag->id)->where('ribbon_product_type', '=', 'App\Models\WasteBag')->get()->first();
+        $ribbonProduct->nomenclatura = $wasteBag->nomenclatura;
+        $ribbonProduct->status = $wasteBag->status;
+        $ribbonProduct->fAdquisicion = $wasteBag->fechaInicioTrabajo; 
+        $ribbonProduct->peso = $wasteBag->peso;
+        $ribbonProduct->save();
+
 
         //request->input('empleados') tiene los id's de los empleados
         $wasteBag->employees()->sync($request->input('empleados')); 

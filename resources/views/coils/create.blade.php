@@ -190,7 +190,7 @@ fecha = fecha.value.replace(/-/g, "");
 if(seleccion == "--seleccione tipo de bobina--")
 folio.value = "MNB"+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(0,4);
 else
-folio.value = "MNB"+seleccion+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(1,4);
+folio.value = "MNB"+seleccion+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(0,4);
 }
 </script>
 @endsection

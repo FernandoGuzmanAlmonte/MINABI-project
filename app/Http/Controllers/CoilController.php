@@ -62,14 +62,14 @@ class CoilController extends Controller
     
     public function edit(Coil $coil){
         $providers = Provider::all();
-        $coilTypes = CoilType::select('id','alias')->where('tipo','=','CELOFAN')->get();
+        $coilType = CoilType::select('id','alias')->where('id','=', $coil->coil_type_id)->get()->first();
 
-        return view('coils.edit', compact('coil', 'providers', 'coilTypes'));
+        return view('coils.edit', compact('coil', 'providers', 'coilType'));
     }
 
     public function update(StoreCoil $request, Coil $coil){
         $coil->provider_id = $request->provider_id;
-        $coil->coil_type_id = $request->coil_type_id;
+        //$coil->coil_type_id = $request->coil_type_id;
 
         $coil->nomenclatura =  $request->nomenclatura;
         $coil->status =  $request->status;
@@ -105,10 +105,10 @@ class CoilController extends Controller
 
     public function store(StoreCoil $request){
         $coil =  new Coil();
-
+        $maxId = Coil::find(DB::table('coils')->max('id'));
         $coil->provider_id = $request->provider_id;
         $coil->coil_type_id = $request->coil_type_id;
-        $coil->nomenclatura =  $request->nomenclatura;
+        $coil->nomenclatura =  $request->nomenclatura . $maxId->id;
         $coil->status =  $request->status;
         $coil->fArribo =  $request->fArribo;
         $coil->pesoBruto =  $request->pesoBruto;
