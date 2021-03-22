@@ -38,7 +38,7 @@
             <select class="form-control" name="coil_type_id" id="tipo" onblur="llenaNomen()">
                 <option selected value="" class="text-muted" disabled>--seleccione tipo de bobina--</option>
                 @foreach($coilTypes as $coilType)
-                    <option value={{ $coilType->id }}>
+                    <option value={{ $coilType->id }} {{ ($coilType->id == old('coil_type_id')) ? 'selected' : '' }}>
                         {{ $coilType->alias }}
                     </option>
                 @endforeach
@@ -62,7 +62,7 @@
                 <select class="form-control" name="provider_id">
                     <option selected value="" class="text-muted" disabled>--seleccione proveedor--</option>
                     @foreach($providers as $provider)
-                        <option value={{ $provider->id }}>
+                        <option value={{ $provider->id }} {{ ($provider->id == old('provider_id')) ? 'selected' : '' }}>
                             {{ $provider->nombreEmpresa }}
                         </option>
                     @endforeach
@@ -90,7 +90,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label><span class="required">*</span>Largo (metros)</label>
-            <input type="number" step="0.0001" class="form-control" name="largoM">
+            <input type="number" step="0.0001" class="form-control" name="largoM" value="{{old('largoM')}}">
             @error('largoM')
                 <br>
                 <div class="alert alert-danger">
