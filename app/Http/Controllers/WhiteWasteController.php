@@ -44,7 +44,7 @@ class WhiteWasteController extends Controller
         $whiteProduct = WhiteCoilProduct::where('white_coil_product_id', '=', $whiteWaste->id)->where('white_coil_product_type', '=', 'App\Models\WhiteWaste')->get()->first();
         $whiteProduct->nomenclatura = $whiteWaste->nomenclatura;
         $whiteProduct->status = $whiteWaste->status;
-        $whiteProduct->fAdquisicion = $whiteWaste->fArribo; 
+        $whiteProduct->fAdquisicion = $whiteWaste->fAlta; 
         $whiteProduct->peso = $whiteWaste->peso;
         $whiteProduct->save();
 

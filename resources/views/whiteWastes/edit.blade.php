@@ -61,7 +61,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Largo (metros)</label>
-                <input type="number" class="form-control" name="largo" value={{$whiteWaste->largo}}>
+                <input type="number" step="0.0001" class="form-control" name="largo" value={{$whiteWaste->largo}}>
                 @error('largo')
                 <br>
                 <div class="alert alert-danger">

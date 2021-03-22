@@ -36,7 +36,7 @@
             </div>
             <div class="col-lg-4 px-2">
                 <label>Peso (KG)</label>
-                <input type="number" step="0.0001" class="form-control" name="peso" value="{{$whiteRibbon->peso}}" readonly>
+                <input type="number" step="0.0001" class="form-control" name="peso" value="{{$whiteRibbon->peso}}">
                 @error('peso')
                 <br>
                 <div class="alert alert-danger">

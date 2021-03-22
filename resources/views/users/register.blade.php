@@ -2,7 +2,7 @@
 
 @section('title', 'Registrar Usuarios')
 
-@section('imgUrl',  asset('images/bolsa-de-papel.svg'))
+@section('imgUrl',  asset('images/usuario.svg'))
 
 @section('namePage', 'Registrar Usuarios')
 
