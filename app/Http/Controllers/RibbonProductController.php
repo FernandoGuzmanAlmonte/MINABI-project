@@ -7,11 +7,35 @@ use Illuminate\Http\Request;
 
 class RibbonProductController extends Controller
 {
-    public function index(){
-        $ribbonProduct = RibbonProduct::select('nomenclatura',  'status', 'ribbon_id')->get();
-        $ribbonProduct = RibbonProduct::paginate(10);
+    public function index(Request $request){
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'id';
+        $order = $request->order ?? 'ASC';
 
-        return view('ribbonProducts.index', compact('ribbonProduct'));
+        //No es necesario der un valor por defecto para estos campo ya que se valida si es null
+        //en sus scope()
+        $nomenclatura = $request->nomenclatura;
+        $status = $request->status;
+        $fecha = $request->fecha;
+        $medida = $request->medida;
+
+        $ribbonProduct = RibbonProduct::select('id', 'nomenclatura', 'medidaBolsa', 'peso', 'fAdquisicion', 'status', 'ribbon_product_id', 'ribbon_product_type')
+            ->nomenclatura($nomenclatura)
+            ->status($status)
+            ->medida($medida)
+            ->fecha($fecha)
+            ->orderBy($orderBy, $order)
+            ->paginate(10);
+
+        $allStatus = RibbonProduct::select('status')
+            ->distinct()
+            ->get();
+
+        $allMedidas = RibbonProduct::select('medidaBolsa')
+            ->distinct()
+            ->get();
+        
+        return view('ribbonProducts.index', compact('ribbonProduct', 'allStatus', 'allMedidas', 'orderBy', 'nomenclatura', 'order', 'status', 'medida'));
     }
 
     public function create(){

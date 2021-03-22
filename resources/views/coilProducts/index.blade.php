@@ -17,6 +17,7 @@
                                 <option value="id" {{ ($orderBy == 'id') ? 'selected' : '' }}>Ordenar por Identificador</option>
                                 <option value="nomenclatura" {{ ($orderBy == 'nomenclatura') ? 'selected' : '' }}>Ordenar por Nomenclatura</option>
                                 <option value="fAdquisicion" {{ ($orderBy == 'fAdquisicion') ? 'selected' : '' }}>Ordenar por Fecha Adquisición</option>
+                                <option value="peso" {{ ($orderBy == 'peso') ? 'selected' : '' }}>Ordenar por Peso</option>
                                 <option value="status" {{ ($orderBy == 'status') ? 'selected' : '' }}>Ordenar por Status</option>
                             </select>
                         </div>
