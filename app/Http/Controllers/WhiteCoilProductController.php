@@ -16,7 +16,6 @@ class WhiteCoilProductController extends Controller
         //en sus scope()
         $nomenclatura = $request->nomenclatura;
         $status = $request->status;
-        $tipo = $request->tipo;
         $fecha = $request->fecha;
 
         $whiteCoilProducts = WhiteCoilProduct::select('id', 'nomenclatura','fAdquisicion', 'status', 'white_coil_product_id', 'white_coil_product_type')
@@ -30,6 +29,6 @@ class WhiteCoilProductController extends Controller
             ->distinct()
             ->get();
 
-        return view('whiteCoilProducts.index', compact('whiteCoilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'));        
+        return view('whiteCoilProducts.index', compact('whiteCoilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status'));        
     }
 }

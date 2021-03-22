@@ -13,6 +13,7 @@ class WhiteCoilProduct extends Model
     {
         return $this->morphTo();
     }
+    
     public function scopeNomenclatura($query, $nomenclatura)
     {
         if($nomenclatura)

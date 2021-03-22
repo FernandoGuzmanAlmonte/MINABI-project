@@ -70,9 +70,9 @@ Route::get('coil/terminar/{coil}', [CoilController::class, 'terminar'])->name('c
 
 Route::resource('whiteCoil', WhiteCoilController::class)->middleware('auth');
 
-Route::resource('coilProduct', CoilProductController::class)->middleware('auth');
+Route::resource('coilProduct', CoilProductController::class)->middleware('auth')->except(['create', 'edit', 'destroy', 'show', 'update', 'store']);
 
-Route::resource('whiteCoilProduct', WhiteCoilProductController::class)->middleware('auth');
+Route::resource('whiteCoilProduct', WhiteCoilProductController::class)->middleware('auth')->except(['create', 'edit', 'destroy', 'show', 'update', 'store']);;
 
 Route::resource('ribbon', RibbonController::class)->middleware('auth');
 Route::get('ribbon/create/{coil}', [RibbonController::class, 'createProduct'])->name('ribbon.createProduct')->middleware('auth');
@@ -91,9 +91,9 @@ Route::get('bag/create/{ribbon}', [BagController::class, 'createProduct'])->name
 Route::resource('wasteBag', WasteBagController::class)->middleware('auth');
 Route::get('wasteBag/create/{ribbon}', [WasteBagController::class, 'createProduct'])->name('wasteBag.createProduct')->middleware('auth');
 
-Route::resource('ribbonProduct', RibbonProductController::class)->middleware('auth');
+Route::resource('ribbonProduct', RibbonProductController::class)->middleware('auth')->except(['create', 'edit', 'destroy', 'show', 'update', 'store']);;
 
-Route::resource('whiteRibbonProduct', WhiteRibbonController::class)->middleware('auth');
+Route::resource('whiteRibbonProduct', WhiteRibbonController::class)->middleware('auth')->except(['create', 'edit', 'destroy', 'show', 'update', 'store']);;
 
 Route::resource('employee', EmployeeController::class)->middleware('auth');
 

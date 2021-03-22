@@ -7,11 +7,29 @@ use Illuminate\Http\Request;
 
 class CoilProductController extends Controller
 {
-    public function index(){
-        $coilProducts = CoilProduct::select('nomenclatura',  'status', 'coil_id')->get();
-        $coilProducts = coilProduct::paginate(10);
+    public function index(Request $request){
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'id';
+        $order = $request->order ?? 'ASC';
 
-        return view('coilProducts.index', compact('coilProducts'));
+        //No es necesario der un valor por defecto para estos campo ya que se valida si es null
+        //en sus scope()
+        $nomenclatura = $request->nomenclatura;
+        $status = $request->status;
+        $fecha = $request->fecha;
+
+        $coilProducts = CoilProduct::select('id', 'nomenclatura', 'peso','fArribo', 'status', 'white_coil_product_id', 'white_coil_product_type')
+            ->nomenclatura($nomenclatura)
+            ->status($status)
+            ->fecha($fecha)
+            ->orderBy($orderBy, $order)
+            ->paginate(10);
+
+        $allStatus = CoilProduct::select('status')
+            ->distinct()
+            ->get();
+
+        return view('coilProducts.index', compact('coilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status'));
     }
 
     public function create(){
