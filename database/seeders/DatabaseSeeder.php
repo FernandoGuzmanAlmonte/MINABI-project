@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
         $whiteCoil =  new WhiteCoil(); 
         $whiteCoil->provider_id = 1; 
         $whiteCoil->coil_type_id = 2;
-        $whiteCoil->nomenclatura =  "MNB0903021";
+        $whiteCoil->nomenclatura =  "MNB090302211";
         $whiteCoil->status =  "DISPONIBLE";
         $whiteCoil->fArribo =  "2021-03-09";
         $whiteCoil->peso =  5.1498;
@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
         $whiteCoil->save();
 
         $whiteRibbon =  new WhiteRibbon();
-        $whiteRibbon->nomenclatura =  "MNB0903021-1";
+        $whiteRibbon->nomenclatura =  "MNB09030221-1";
         $whiteRibbon->status = "DISPONIBLE";
         $whiteRibbon->fArribo =  "2021-03-09";
         $whiteRibbon->largo =  1774.9000;
@@ -121,7 +121,7 @@ class DatabaseSeeder extends Seeder
                                      'peso' => $whiteRibbon->peso]);
 
         $whiteRibbon =  new WhiteRibbon();
-        $whiteRibbon->nomenclatura =  "MNB0903021-2";
+        $whiteRibbon->nomenclatura =  "MNB090320211-2";
         $whiteRibbon->status = "DISPONIBLE";
         $whiteRibbon->fArribo =  "2021-03-09";
         $whiteRibbon->largo =  1931;
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
                                      'peso' => $whiteRibbon->peso]);
 
         $whiteRibbonReel =  new WhiteRibbonReel();
-        $whiteRibbonReel->nomenclatura =  "HUE-MNB0903021-1-1";
+        $whiteRibbonReel->nomenclatura =  "HUE-MNB090320211-1-1";
         $whiteRibbonReel->peso =  0.08;
         $whiteRibbonReel->observaciones =  NULL;
         $whiteRibbonReel->fechaAlta =  "2021-03-09";
@@ -149,7 +149,7 @@ class DatabaseSeeder extends Seeder
                                      'largo' => '0']);
         
         $whiteRibbonReel =  new WhiteRibbonReel();
-        $whiteRibbonReel->nomenclatura =  "HUE-MNB0903021-2-1";
+        $whiteRibbonReel->nomenclatura =  "HUE-MNB090320211-2-1";
         $whiteRibbonReel->peso =  0.08;
         $whiteRibbonReel->observaciones =  NULL;
         $whiteRibbonReel->fechaAlta =  "2021-03-09";
@@ -162,7 +162,7 @@ class DatabaseSeeder extends Seeder
         'largo' => '0']);
 
         $ribbon =  new Ribbon();
-        $ribbon->nomenclatura =  "MNB700903021-1";
+        $ribbon->nomenclatura =  "MNB70090320211-1";
         $ribbon->status =  "TERMINADA";
         $ribbon->fechaInicioTrabajo =  "2021-03-07";
         $ribbon->horaInicioTrabajo =  "07:26:00";
@@ -187,7 +187,7 @@ class DatabaseSeeder extends Seeder
                                      'largo' => 1202.3000]);
 
         $ribbon =  new Ribbon();
-        $ribbon->nomenclatura =  "MNB700903021-2";
+        $ribbon->nomenclatura =  "MNB70090320211-2";
         $ribbon->status =  "TERMINADA";
         $ribbon->fechaInicioTrabajo =  "2021-03-07";
         $ribbon->horaInicioTrabajo =  "07:26:00";
@@ -217,7 +217,7 @@ class DatabaseSeeder extends Seeder
                                      'largo' => 729.3000]);
 
         $ribbon =  new Ribbon();
-        $ribbon->nomenclatura =  "MNB700903021-3";
+        $ribbon->nomenclatura =  "MNB70090320211-3";
         $ribbon->status =  "TERMINADA";
         $ribbon->fechaInicioTrabajo =  "2021-03-07";
         $ribbon->horaInicioTrabajo =  "07:26:00";
@@ -238,7 +238,7 @@ class DatabaseSeeder extends Seeder
                                      'largo' => 1201.7000]);
 
         $coilReel =  new CoilReel();
-        $coilReel->nomenclatura =  "HUE-MNB700903021-1";
+        $coilReel->nomenclatura =  "HUE-MNB70090320211-1";
         $coilReel->peso =  0.7300;
         $coilReel->observaciones =  NULL;
         $coilReel->fechaAlta =  "2021-03-09";
@@ -250,7 +250,7 @@ class DatabaseSeeder extends Seeder
                                      'peso' => $coilReel->peso]);
 
         $ribbonReel =  new RibbonReel();
-        $ribbonReel->nomenclatura =  "HUE-MNB700903021-1-1";
+        $ribbonReel->nomenclatura =  "HUE-MNB70090320211-1-1";
         $ribbonReel->peso =  0.7000;
         $ribbonReel->observaciones =  NULL;
         $ribbonReel->fechaAlta =  "2021-03-09";
@@ -262,7 +262,7 @@ class DatabaseSeeder extends Seeder
                                      'peso' =>$ribbonReel->peso]);
 
         $ribbonReel =  new RibbonReel();
-        $ribbonReel->nomenclatura =  "HUE-MNB700903021-2-1";
+        $ribbonReel->nomenclatura =  "HUE-MNB70090320211-2-1";
         $ribbonReel->peso =  0.7000;
         $ribbonReel->observaciones =  NULL;
         $ribbonReel->fechaAlta =  "2021-03-09";
@@ -325,7 +325,7 @@ class DatabaseSeeder extends Seeder
         $bag->fechaFinTrabajo    = "2021-03-09";
         $bag->horaInicioTrabajo  = "08:32:00";
         $bag->horaFinTrabajo     = "09:17:00";
-        $bag->nomenclatura       = "MNB700903021-3-1";  
+        $bag->nomenclatura       = "MNB70090320211-3-1";  
         $bag->clienteStock       = "CLIENTE";
         $bag->peso               = 16.6100;
         $bag->tipoUnidad         = "MILLAR";

@@ -24,7 +24,12 @@ class StoreWhiteRibbonReel extends FormRequest
     public function rules()
     {
         return [
-            //
+                'nomenclatura' => 'required',
+                'peso' => 'required',
+                'status' => 'required',
+                'observaciones' => 'max:255',
+                'fechaAlta' => 'required',
+                'whiteRibbonId' => 'required'
         ];
     }
 }

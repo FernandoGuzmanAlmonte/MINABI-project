@@ -49,7 +49,7 @@ class RibbonReelController extends Controller
         $ribbonProduct->peso = $ribbonReel->peso;
         $ribbonProduct->save();
 
-        return redirect()->route('ribbonReel.show', compact('RibbonReel'));
+        return redirect()->route('ribbonReel.show', compact('ribbonReel'));
     }
 
     public function show(RibbonReel $ribbonReel){

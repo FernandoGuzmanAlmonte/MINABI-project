@@ -24,7 +24,15 @@ class StoreWhiteRibbon extends FormRequest
     public function rules()
     {
         return [
-            //
+            
+                'nomenclatura' => 'required',
+                'peso' => 'required',
+                'status' => 'required',
+                'observaciones' => 'max:255',
+                'pesoUtilizado' => 'required',
+                'largo' => 'required',
+                'fArribo' => 'required'
+            
         ];
     }
 }

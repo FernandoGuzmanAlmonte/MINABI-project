@@ -19,10 +19,24 @@
             <div class="col-lg-4 px-2">
                 <label>Peso</label>
                 <input type="number" step="0.0001" class="form-control" name="peso" value="{{$ribbonReel->peso}}" >
+                @error('peso')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
             </div>
             <div class="col-lg-4 px-2">
                 <label>Fecha Alta</label>
                 <input type="date" class="form-control" name="fechaAlta" value="{{$ribbonReel->fechaAlta}}">
+                @error('fechaAlta')
+                <br>
+                <div class="alert alert-danger">
+                    <small>{{$message}}</small>
+                </div>
+                <br>
+            @enderror
             </div>
         </div>
         <div class="col-lg-12 d-flex mt-2">
