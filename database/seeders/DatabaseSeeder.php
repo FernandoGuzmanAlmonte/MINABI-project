@@ -294,7 +294,7 @@ class DatabaseSeeder extends Seeder
                                         'status'=>$bag->status, 
                                         'fAdquisicion'=>$bag->fechaInicioTrabajo,
                                         'peso'=>$bag->peso,
-                                        'medidaBolsa'=>$bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho . ($ribbon->whiteRibbons()->get()->isEmpty()? '' : ' C/P')]);
+                                        'medidaBolsa'=> round($bag->bagMeasure->largo) .' x '. round($bag->bagMeasure->ancho) . ($ribbon->whiteRibbons()->get()->isEmpty()? '' : ' C/P')]);
 
         $bag = new Bag();
         $bag->bag_measure_id     = 1;
