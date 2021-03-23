@@ -70,7 +70,7 @@
                     </div>
                 </li>--}}
             </div>
-            <form action="logout" method="POST" class="ml-lg-auto text-md-left navbar-nav">
+            <form action="{{asset('logout')}}" method="POST" class="ml-lg-auto text-md-left navbar-nav">
                 @csrf
                 <a href="#" class="nav-item nav-link" onclick="this.closest('form').submit()">Cerrar sesion</a>
             </form>      

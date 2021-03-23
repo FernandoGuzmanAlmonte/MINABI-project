@@ -44,7 +44,7 @@ Route::get('/', function () {
 
 Route::view('login', 'login')->name('login')->middleware('guest');
 Route::post('login', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('user/create', [RegisterController::class, 'create'])->name('user.create')->middleware('auth');
 Route::post('user/store', [RegisterController::class, 'store'])->name('user.store')->middleware('auth');
