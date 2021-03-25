@@ -34,13 +34,13 @@
                 <script type="text/javascript">
                     function redirect(id){
                         if(document.getElementById('flexRadioDefault1').checked == true){
-                           location.replace ("http://localhost/MINABI-project/public/bag/create/"+id)
+                           location.replace ("http://bolsasdecelofanminabi.com.mx/bag/create/"+id)
                         }
                         if(document.getElementById('flexRadioDefault2').checked == true){
-                            location.replace ("http://localhost/MINABI-project/public/wasteBag/create/"+id)
+                            location.replace ("http://bolsasdecelofanminabi.com.mx/wasteBag/create/"+id)
                         }
                         if(document.getElementById('flexRadioDefault3').checked == true){
-                            location.replace ("http://localhost/MINABI-project/public/ribbonReel/create/"+id)
+                            location.replace ("http://bolsasdecelofanminabi.com.mx/ribbonReel/create/"+id)
                         }
                     }
                 </script>
