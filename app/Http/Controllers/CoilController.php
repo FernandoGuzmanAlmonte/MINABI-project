@@ -260,6 +260,7 @@ class CoilController extends Controller
         $providers = Provider::all();
         $medidas = CoilType::select('id')->where('tipo' , '=', 'CELOFAN')->get();
         $bobinas = DB::select('SELECT COUNT(coil_type_id) as cantidad, coil_type_id as medida, provider_id as proveedor, sum(pesoBruto) as peso from coils GROUP BY coil_type_id, provider_id ORDER BY coil_type_id');
+    
        /* $i = 0;
         foreach($bobinas as $bobina){
             
@@ -280,6 +281,6 @@ class CoilController extends Controller
             }
 
         }*/
-        return view('coils.reporteria', compact('providers', 'bobinas'));
+        return view('coils.reporteria', compact('providers', 'bobinas', 'medidas'));
     }
 }
