@@ -92,6 +92,8 @@ class BagController extends Controller
                                         'status'=>$bag->status, 
                                         'fAdquisicion'=>$bag->fechaInicioTrabajo,
                                         'peso'=>$bag->peso,
+                                        'unidad'=>$bag->tipoUnidad,
+                                        'cantidad'=>$bag->cantidad,
                                         'medidaBolsa'=>$bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho . ($ribbon->whiteRibbons()->get()->isEmpty()? '' : ' C/P')]);
 
             //actualiza la bobina

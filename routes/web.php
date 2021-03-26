@@ -62,10 +62,11 @@ Route::get('seeder', function () {
 Route::resource('coilReel', CoilReelController::class)->middleware('auth');
 Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'])->name('coilReel.createProduct')->middleware('auth');
 
-Route::get('coil/reporteria', [CoilController::class, 'reporteria'])->name('coil.reporteria')->middleware('auth');
-Route::resource('coil', CoilController::class)->middleware('auth');//->except(['create']);
 Route::get('coil/create/{provider}', [CoilController::class, 'createFromProvider'])->name('coil.createFromProvider')->middleware('auth');
 Route::get('coil/terminar/{coil}', [CoilController::class, 'terminar'])->name('coil.terminar')->middleware('auth');
+Route::get('coil/reporteria', [CoilController::class, 'reporteria'])->name('coil.reporteria')->middleware('auth');
+Route::get('coil/produccion', [CoilController::class, 'produccion'])->name('coil.produccion')->middleware('auth');
+Route::resource('coil', CoilController::class)->middleware('auth');//->except(['create']);
 
 
 Route::resource('whiteCoil', WhiteCoilController::class)->middleware('auth');

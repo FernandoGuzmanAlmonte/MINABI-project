@@ -28,10 +28,10 @@
                 <script type="text/javascript">
                     function redirect(id){
                         if(document.getElementById('flexRadioDefault1').checked == true){
-                           location.replace ("http://localhost/MINABI-project/public/whiteRibbon/create/"+id)
+                           location.replace ("http://bolsasdecelofanminabi.com.mx/whiteRibbon/create/"+id)
                         }
                         if(document.getElementById('flexRadioDefault2').checked == true){
-                            location.replace ("http://localhost/MINABI-project/public/whiteWaste/create/"+id)
+                            location.replace ("http://bolsasdecelofanminabi.com.mx/whiteWaste/create/"+id)
                         }
                     }
                 </script>

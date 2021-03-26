@@ -36,4 +36,6 @@ class CoilProduct extends Model
             $query->whereBetween('fAdquisicion', [$fechaStart, $fechaEnd]);
         }
     }
+
+    
 }

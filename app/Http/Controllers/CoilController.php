@@ -6,12 +6,14 @@ use App\Http\Requests\StoreCoil;
 use App\Models\Coil;
 use App\Models\Provider;
 use App\Models\CoilType;
+use App\Models\Ribbon;
 use App\Models\RibbonProduct;
 use App\Models\WhiteCoilProduct;
 use App\Models\WhiteRibbonProduct;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 
 class CoilController extends Controller
@@ -282,5 +284,13 @@ class CoilController extends Controller
 
         }*/
         return view('coils.reporteria', compact('providers', 'bobinas', 'medidas'));
+    }
+
+    public function produccion(){
+        $produccion = Coil::with(['ribbons' => function($query){
+            $query->with('related');
+        }
+        , 'related'])->get();
+        return view('coils.produccion', compact('produccion'));
     }
 }

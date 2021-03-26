@@ -22,6 +22,8 @@ class CreateRibbonProductsTable extends Migration
             $table->string('nomenclatura', 28);
             $table->float('peso',14,4);
             $table->string('medidaBolsa', 25)->nullable();
+            $table->float('cantidad', 14,4)->nullable();
+            $table->string('unidad', 15)->nullable();
             
             $table->string('status', 10);
             $table->date('fAdquisicion');

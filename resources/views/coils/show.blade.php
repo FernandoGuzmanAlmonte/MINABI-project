@@ -87,7 +87,7 @@
     </div>
     <div class="col-12 mt-5 text-center">
         <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
-        <button class="btn btn-danger mx-3 mb-5"  onclick="terminar({{$coil->id}})" href="{{route(asset('coil.terminar'), $coil->id)}}">Terminar</button>
+        <button class="btn btn-danger mx-3 mb-5"  onclick="terminar({{$coil->id}})">Terminar</button>
         @if($errors->any())
         <div class="col-12 mt-3 text-center">
             <br>

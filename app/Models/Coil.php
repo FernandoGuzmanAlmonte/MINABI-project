@@ -19,7 +19,7 @@ class Coil extends Model
     }
 
     public function wasteRibbons(){
-        return $this->morphedByMany(wasteRibbon::class, 'coil_product');
+        return $this->morphedByMany(WasteRibbon::class, 'coil_product');
     }
 
     public function related()
