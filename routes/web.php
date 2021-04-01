@@ -75,8 +75,10 @@ Route::resource('coilProduct', CoilProductController::class)->middleware('auth')
 
 Route::resource('whiteCoilProduct', WhiteCoilProductController::class)->middleware('auth')->except(['create', 'edit', 'destroy', 'show', 'update', 'store']);;
 
+Route::get('ribbon/reporteria', [RibbonController::class, 'reporteria'])->name('ribbon.reporteria')->middleware('auth');
 Route::resource('ribbon', RibbonController::class)->middleware('auth');
 Route::get('ribbon/create/{coil}', [RibbonController::class, 'createProduct'])->name('ribbon.createProduct')->middleware('auth');
+
 
 Route::resource('whiteRibbon', WhiteRibbonController::class)->middleware('auth');
 Route::get('whiteRibbon/create/{whiteCoil}', [WhiteRibbonController::class, 'createProduct'])->name('whiteRibbon.createProduct')->middleware('auth');

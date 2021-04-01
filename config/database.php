@@ -57,6 +57,15 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
+            'modes' => [
+                //'ONLY_FULL_GROUP_BY', // Lo desabilito para no tener que agregar en el group by todo lo de que puse el select FUENTE: https://stackoverflow.com/questions/40917189/laravel-syntax-error-or-access-violation-1055-error
+                'STRICT_TRANS_TABLES',
+                'NO_ZERO_IN_DATE',
+                'NO_ZERO_DATE',
+                'ERROR_FOR_DIVISION_BY_ZERO',
+                'NO_AUTO_CREATE_USER',
+                'NO_ENGINE_SUBSTITUTION'
+            ],
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),

@@ -260,30 +260,36 @@ class CoilController extends Controller
 
     public function reporteria(){
         $providers = Provider::all();
-        $medidas = CoilType::select('id')->where('tipo' , '=', 'CELOFAN')->get();
-        $bobinas = DB::select('SELECT COUNT(coil_type_id) as cantidad, coil_type_id as medida, provider_id as proveedor, sum(pesoBruto) as peso from coils GROUP BY coil_type_id, provider_id ORDER BY coil_type_id');
-    
-       /* $i = 0;
-        foreach($bobinas as $bobina){
-            
-            foreach($medidas as $medida){
-                $i = $i +1;
-                echo $i. " " .$medida->id . "<br>";
-
-                if($bobina->medida == $medida->id){
-                        
-                    foreach($providers as $provider){
-                        //echo "hola";
-                    }
-                }
-                else{
-                    echo "Falta medida";
-                }
-
-            }
-
-        }*/
-        return view('coils.reporteria', compact('providers', 'bobinas', 'medidas'));
+        
+        $bobinas = DB::select(
+            'SELECT COUNT(coil_type_id) as cantidad, coil_type_id as medida, provider_id as proveedor, sum(pesoBruto) as peso ' .
+            'FROM coils ' .
+            'GROUP BY coil_type_id, provider_id ' .
+            'ORDER BY coil_type_id'
+        );
+        $medidas = DB::select(
+            'SELECT COUNT(coils.coil_type_id) as total_de_piezas, SUM(coils.pesoBruto) as total_kg, coil_types.id, coil_types.alias ' . 
+            'FROM coil_types ' . 
+            'JOIN coils ' . //LEFT
+            'ON coils.coil_type_id = coil_types.id ' .
+            'WHERE coil_types.tipo = "CELOFAN"' .
+            'GROUP BY coil_types.id, coil_types.alias ' .
+            'ORDER BY coil_types.id'
+        );
+        $sumaDeTotales = DB::select(
+            'SELECT COUNT(coils.coil_type_id) as suma_total_piezas, SUM(coils.pesoBruto) as suma_total_peso ' .
+            'FROM coils ' .
+            'JOIN coil_types '.
+            'ON coil_types.id = coils.coil_type_id ' .
+            'WHERE coil_types.tipo = "CELOFAN"'
+        );
+        $totalesDeProveedores = DB::select(
+            'SELECT COUNT(coil_type_id) as cantidad, sum(pesoBruto) as peso ' .
+            'FROM coils ' .
+            'GROUP BY provider_id ' .
+            'ORDER BY provider_id'
+        );        
+        return view('coils.reporteria', compact('providers', 'bobinas', 'medidas', 'sumaDeTotales', 'totalesDeProveedores'));
     }
 
     public function produccion(){

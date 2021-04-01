@@ -41,7 +41,7 @@
                         </a>
                     </div>
                 </li>
-                <a class="nav-item nav-link {{ request()->routeIs('coil.*') ? 'active' : ''}}" href="{{ route('coil.index') }}">
+                <a class="nav-item nav-link {{ request()->routeIs('coil.index', 'coil.create', 'coil.show', 'coil.edit') ? 'active' : ''}}" href="{{ route('coil.index') }}">
                     Bobinas
                 </a>
                 <a class="nav-item nav-link {{ request()->routeIs('coilProduct.*') ? 'active' : ''}}" href="{{ route('coilProduct.index') }}">
@@ -58,8 +58,8 @@
                         <a class="dropdown-item {{ request()->routeIs('coil.reporteria') ? 'active' : ''}}" href="{{ route('coil.reporteria') }}">
                             Almacen de Bobinas
                         </a>
-                        <a class="dropdown-item {{ request()->routeIs('employee.*') ? 'active' : ''}}" href="{{ route('employee.index') }}">
-                            Empleados
+                        <a class="dropdown-item {{ request()->routeIs('ribbon.reporteria') ? 'active' : ''}}" href="{{ route('ribbon.reporteria') }}">
+                            Almacen de Rollos
                         </a>
                         <a class="dropdown-item {{ request()->routeIs('coilType.*') ? 'active' : ''}}" href="{{ route('coilType.index') }}">
                             Medidas de Bobina

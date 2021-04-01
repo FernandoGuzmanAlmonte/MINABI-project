@@ -15,7 +15,7 @@
             {
                 var medidaId = bobinas[i].medida;
                 var providerId = bobinas[i].proveedor;
-                $('#medida' + medidaId + providerId).text(bobinas[i].medida);
+                $('#medida' + medidaId + providerId).text(bobinas[i].cantidad);
                 $('#peso'   + medidaId + providerId).text(bobinas[i].peso);
             }
             console.log(bobinas);
@@ -25,20 +25,21 @@
     <table class="table table-striped my-4" id="tabla">
         <thead class="bg-info">
             <tr>
-                {{--
-                <th>Total de piezas</th>
-                <th>Total (KG)</th>--}}
                 <th scope="col">Tamaño</th>            
+                <th>Total de piezas</th>
+                <th>Total (KG)</th>
                 @foreach ($providers as $provider)
                     <th>{{$provider->nombreEmpresa}}</th>
                     <th>Peso (KG)</th>
                 @endforeach
             </tr>
         </thead>
-        <tbody id="table">
+        <tbody>
             @foreach($medidas as $medida)
                 <tr>
-                    <td>{{$medida->id}}</td>
+                    <th>{{$medida->alias}}</th>       
+                    <td>{{$medida->total_de_piezas}}</th>
+                    <td>{{round($medida->total_kg, 4)}}</th>
                     @foreach ($providers as $provider)
                         <td id="medida{{$medida->id . $provider->id}}"></th>
                         <td id="peso{{$medida->id . $provider->id}}"></th>
@@ -46,6 +47,17 @@
                 </tr>
             @endforeach
         </tbody>
+        <tfoot class="bg-info">
+            <tr>
+                <td></td>
+                <th>{{$sumaDeTotales[0]->suma_total_piezas}}</th>
+                <th>{{$sumaDeTotales[0]->suma_total_peso}}</th>
+                @foreach($totalesDeProveedores as $total)
+                    <th>{{$total->cantidad}}</th>
+                    <th>{{$total->peso}}</th>
+                @endforeach
+            </tr>
+        </tfoot>
         <script type="text/javascript">   
             insertar();
         </script>
