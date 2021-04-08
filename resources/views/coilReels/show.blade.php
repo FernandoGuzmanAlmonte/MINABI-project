@@ -65,10 +65,11 @@
         </div>
 
     
-
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('coilReel.edit', $coilReel->id)}}">Editar</a>
-    </div>
+        @can('coilReel.update')  
+            <div class="col-12 mt-3 text-center">
+                <a class="btn btn-warning mx-3" href="{{route('coilReel.edit', $coilReel->id)}}">Editar</a>
+            </div>
+        @endcan
 </div>
 
 @endsection

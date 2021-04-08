@@ -32,9 +32,11 @@
             <input type="text" class="form-control" name="estado" value="{{ $provider->estado }}" disabled>
         </div>
     </div>
+    @can('provider.edit')
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>
     </div>
+    @endcan
     
     <div class="col-lg-12 d-flex mt-5">
         <div class="col-lg-6 px-2 float-left">

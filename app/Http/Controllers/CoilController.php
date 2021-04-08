@@ -107,10 +107,10 @@ class CoilController extends Controller
 
     public function store(StoreCoil $request){
         $coil =  new Coil();
-        $maxId = Coil::find(DB::table('coils')->max('id'));
+        //$maxId = Coil::find(DB::table('coils')->max('id'));
         $coil->provider_id = $request->provider_id;
         $coil->coil_type_id = $request->coil_type_id;
-        $coil->nomenclatura =  $request->nomenclatura . $maxId->id;
+        $coil->nomenclatura =  $request->nomenclatura /*. $maxId->id*/;
         $coil->status =  $request->status;
         $coil->fArribo =  $request->fArribo;
         $coil->pesoBruto =  $request->pesoBruto;

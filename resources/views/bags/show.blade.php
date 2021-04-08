@@ -129,9 +129,12 @@
         </div>
     </div>
     @endif 
+
+    @can('bag.edit')
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{ route('bag.edit', $bag) }}">Editar</a>
-    </div>
+    </div>  
+    @endcan 
     <div class="col-lg-12 d-flex mt-5">
         <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
     </div>

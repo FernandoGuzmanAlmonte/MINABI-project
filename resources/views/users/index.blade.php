@@ -6,7 +6,15 @@
 
 @section('namePage', 'Usuarios')
 
-@section('route', route('user.create'))
+@section('nuevo')
+@can('user.create')
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-success float-right my-3" href="{{route('user.create')}}"> Nuevo </a>
+    </div>
+</div> 
+@endcan
+@endsection
 
 @section('filtrado')
     <form action="{{ route('user.index') }}" method="GET" class="row g-3" id="formOrder">

@@ -47,8 +47,10 @@
         </div>
     </div>
 
+    @can('employee.edit')
     <div class="col-12 mt-4 mb-4 text-center">
         <a class="btn btn-warning mx-3" href="{{route('employee.edit', $employee)}}">Editar</a>
     </div>   
+    @endcan
 </div>
 @endsection

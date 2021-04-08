@@ -86,8 +86,12 @@
         </div>
     </div>
     <div class="col-12 mt-5 text-center">
+        @can('coil.edit', Model::class)
         <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
+        @endcan
+        @can('coil.terminar')
         <button class="btn btn-danger mx-3 mb-5"  onclick="terminar({{$coil->id}})">Terminar</button>
+        @endcan
         @if($errors->any())
         <div class="col-12 mt-3 text-center">
             <br>

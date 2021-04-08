@@ -13,7 +13,7 @@
     <div class="col-lg-12 d-flex mt-2">
         <div class="col-lg-4 px-2">
             <label>Nomenclatura</label>
-            <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}" id="nomenclaturas" readonly>
+            <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}" id="nomenclaturas" >
             @error('nomenclatura')
                 <br>
                 <div class="alert alert-danger">
@@ -24,7 +24,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label><span class="required">*</span>Fecha llegada</label>
-            <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}" onblur="llenaNomen()" id="fArribo">
+            <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}"  id="fArribo">
             @error('fArribo')
                 <br>
                 <div class="alert alert-danger">
@@ -35,7 +35,7 @@
         </div>
         <div class="col-lg-4 px-2">
             <label><span class="required">*</span>Tipo bobina</label>
-            <select class="form-control" name="coil_type_id" id="tipo" onblur="llenaNomen()">
+            <select class="form-control" name="coil_type_id" id="tipo" >
                 <option selected value="" class="text-muted" disabled>--seleccione tipo de bobina--</option>
                 @foreach($coilTypes as $coilType)
                     <option value={{ $coilType->id }} {{ ($coilType->id == old('coil_type_id')) ? 'selected' : '' }}>

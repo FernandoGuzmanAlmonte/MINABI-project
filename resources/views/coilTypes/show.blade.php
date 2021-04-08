@@ -52,10 +52,12 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{ $coilType->observaciones }}</textarea>
         </div>
     </div>
+    @can('coilType.edit')
     <div class="col-12 mt-4 mb-4 text-center">
         <a class="btn btn-warning mx-3" href="{{route('coilType.edit', $coilType)}}">Editar</a>
     </div>
-    
+    @endcan
+
     <div class="col-lg-12 d-flex mt-5">
         <div class="col-lg-6 px-2 float-left">
             <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Medidas de Bolsas </h3>

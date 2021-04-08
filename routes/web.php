@@ -20,6 +20,7 @@ use App\Http\Controllers\WhiteRibbonReelController;
 use App\Http\Controllers\WhiteWasteController;
 use App\Http\Controllers\WhiteWasteRibbonController;
 use App\Http\Controllers\CoilTypeController;
+use App\Http\Controllers\RoleController;
 use App\Models\WhiteCoil;
 use App\Models\WhiteRibbon;
 use App\Models\WhiteRibbonReel;
@@ -58,6 +59,8 @@ Route::get('base', function () {
 Route::get('seeder', function () {
         Artisan::call('db:seed');
         });
+        
+Route::resource('rol', RoleController::class)->middleware('auth');
 
 Route::resource('coilReel', CoilReelController::class)->middleware('auth');
 Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'])->name('coilReel.createProduct')->middleware('auth');

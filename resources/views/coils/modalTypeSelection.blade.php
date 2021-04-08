@@ -8,24 +8,31 @@
                 </button>
             </div>
                 <div class="modal-body">
+                  @can('ribbon.create')
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Rollo
+                    </label>
+                  </div>
+                  @endcan
+                    @can('wasteRibbon.create')
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Rollo
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          Merma
-                        </label>
-                      </div>
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Merma
+                      </label>
+                    </div>
+                    @endcan
+                      @can('coilReel.create')
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="3">
                         <label class="form-check-label" for="flexRadioDefault3">
                           Hueso
                         </label>
                       </div>    
+                      @endcan
+                      
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
