@@ -7,11 +7,7 @@
             <h1 class="mt-5"><img src="@yield('imgUrl')" class="iconoTitle"> @yield('namePage') </h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success float-right my-3" href="@yield('route')"> Nuevo </a>
-        </div>
-    </div> 
+    @yield('nuevo')
     
 <!-- Filtrado -->
     @yield('filtrado')

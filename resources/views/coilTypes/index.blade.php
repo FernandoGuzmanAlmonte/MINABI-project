@@ -6,7 +6,15 @@
 
 @section('namePage', 'Medidas de Bobina')
 
-@section('route', route('coilType.create'))
+@section('nuevo')
+@can('coilType.create')
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-success float-right my-3" href="{{route('coilType.create')}}"> Nuevo </a>
+    </div>
+</div> 
+@endcan
+@endsection
 
 @section('filtrado')
     <form action="{{ route('coilType.index') }}" method="GET" class="row g-3" id="formOrder">

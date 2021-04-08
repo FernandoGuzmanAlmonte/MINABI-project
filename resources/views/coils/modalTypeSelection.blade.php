@@ -8,24 +8,31 @@
                 </button>
             </div>
                 <div class="modal-body">
+                  @can('ribbon.create')
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Rollo
+                    </label>
+                  </div>
+                  @endcan
+                    @can('wasteRibbon.create')
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Rollo
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          Merma
-                        </label>
-                      </div>
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Merma
+                      </label>
+                    </div>
+                    @endcan
+                      @can('coilReel.create')
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="3">
                         <label class="form-check-label" for="flexRadioDefault3">
                           Hueso
                         </label>
                       </div>    
+                      @endcan
+                      
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -34,13 +41,13 @@
                 <script type="text/javascript">
                     function redirect(id){
                         if(document.getElementById('flexRadioDefault1').checked == true){
-                           location.replace ("http://localhost/MINABI-project/public/ribbon/create/"+id)
+                           location.replace ("http://bolsasdecelofanminabi.com.mx/ribbon/create/"+id)
                         }
                         if(document.getElementById('flexRadioDefault2').checked == true){
-                            location.replace ("http://localhost/MINABI-project/public/wasteRibbon/create/"+id)
+                            location.replace ("http://bolsasdecelofanminabi.com.mx/wasteRibbon/create/"+id)
                         }
                         if(document.getElementById('flexRadioDefault3').checked == true){
-                            location.replace ("http://localhost/MINABI-project/public/coilReel/create/"+id)
+                            location.replace ("http://bolsasdecelofanminabi.com.mx/coilReel/create/"+id)
                         }
                     }
                 </script>

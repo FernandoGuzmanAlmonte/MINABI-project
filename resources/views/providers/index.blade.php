@@ -6,7 +6,15 @@
 
 @section('namePage', 'Proveedores')
 
-@section('route', route('provider.create'))
+@section('nuevo')
+@can('provider.create')
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-success float-right my-3" href="{{route('provider.create')}}"> Nuevo </a>
+    </div>
+</div> 
+@endcan
+@endsection
 
 @section('filtrado')
     <form action="{{ route('provider.index') }}" method="GET" class="row g-3" id="formOrder">

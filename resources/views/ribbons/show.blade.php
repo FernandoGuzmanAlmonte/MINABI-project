@@ -122,10 +122,12 @@
     </div>
     @endif 
 
+    @can('ribbon.edit')
     <div class="col-12 mt-2 mb-2 text-center">
         <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>
     </div>
-
+    @endcan
+    
     <div class="col-lg-12 d-flex mt-5">
     <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
     </div>
