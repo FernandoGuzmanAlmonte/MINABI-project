@@ -88,6 +88,7 @@ Route::get('wasteRibbon/create/{coil}', [WasteRibbonController::class, 'createPr
 
 Route::resource('provider', ProviderController::class)->middleware('auth');
 
+Route::get('bag/reporteria', [BagController::class, 'reporteria'])->name('bag.reporteria')->middleware('auth');
 Route::resource('bag', BagController::class)->middleware('auth');
 Route::get('bag/create/{ribbon}', [BagController::class, 'createProduct'])->name('bag.createProduct')->middleware('auth');
 

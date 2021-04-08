@@ -16,14 +16,14 @@
             {
                 var medidaId = rollos[i].medida;
                 var providerId = rollos[i].proveedor;
-                var cintilla = "";
+                var cintilla = '';
+
                 $('#medida' + medidaId + providerId).text(rollos[i].cantidad);
-                if(rollos[i].cintilla == null){
-                    cintilla = 'S/P'
-                }else{
-                    cintilla = 'C/P'
-                }
-                $('#peso'   + medidaId + providerId).text(cintilla);
+                
+                (rollos[i].cintilla == null) ? cintilla = 'S/P'
+                    : cintilla = 'C/P';
+
+                $('#pestania'   + medidaId + providerId).text(cintilla);
             }
         }
     </script>
@@ -47,8 +47,8 @@
                     <td>{{$medida->total_de_piezas}}</th>
                     <td>{{round($medida->total_kg, 4)}}</th>
                     @foreach ($providers as $provider)
-                        <td id="medida{{$medida->id . $provider->id}}"></th>
-                        <td id="peso{{$medida->id . $provider->id}}"></th>
+                        <td id="medida{{$medida->id . $provider->id}}"></td>
+                        <td id="pestania{{$medida->id . $provider->id}}"></td>
                     @endforeach
                 </tr>
             @endforeach

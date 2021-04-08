@@ -47,10 +47,10 @@
                 <a class="nav-item nav-link {{ request()->routeIs('coilProduct.*') ? 'active' : ''}}" href="{{ route('coilProduct.index') }}">
                     Rollos
                 </a>
-                <a class="nav-item nav-link {{ request()->routeIs('bag.*', 'ribbonProduct.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
+                <a class="nav-item nav-link {{ request()->routeIs('bag.index', 'bag.create', 'bag.show', 'bag.edit', 'ribbonProduct.*', 'ribbonReel.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
                     Bolsas
                 </a>
-                <li class="nav-item dropdown {{ request()->routeIs('coil.reporteria', 'ribbon.reporteria', 'bag.reporteria') ? 'active' : ''}}">
+                <li class="nav-item dropdown {{ request()->routeIs('coil.reporteria', 'ribbon.reporteria', 'bag.reporteria', 'coil.produccion') ? 'active' : ''}}">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Reportes
                     </a>
@@ -61,8 +61,8 @@
                         <a class="dropdown-item {{ request()->routeIs('ribbon.reporteria') ? 'active' : ''}}" href="{{ route('ribbon.reporteria') }}">
                             Almacen de Rollos
                         </a>
-                        <a class="dropdown-item {{ request()->routeIs('coilType.*') ? 'active' : ''}}" href="{{ route('coilType.index') }}">
-                            Medidas de Bobina
+                        <a class="dropdown-item {{ request()->routeIs('bag.reporteria') ? 'active' : ''}}" href="{{ route('bag.reporteria') }}">
+                            Almacen de Bolsas
                         </a>
                         <a class="dropdown-item {{ request()->routeIs('coil.produccion') ? 'active' : ''}}" href="{{ route('coil.produccion') }}">
                             Produccion

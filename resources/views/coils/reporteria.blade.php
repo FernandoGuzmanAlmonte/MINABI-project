@@ -38,8 +38,8 @@
             @foreach($medidas as $medida)
                 <tr>
                     <th>{{$medida->alias}}</th>       
-                    <td>{{$medida->total_de_piezas}}</th>
-                    <td>{{round($medida->total_kg, 4)}}</th>
+                    <td>{{$medida->total_de_piezas}}</td>
+                    <td>{{round($medida->total_kg, 4)}}</td>
                     @foreach ($providers as $provider)
                         <td id="medida{{$medida->id . $provider->id}}"></th>
                         <td id="peso{{$medida->id . $provider->id}}"></th>
