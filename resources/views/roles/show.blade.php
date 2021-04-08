@@ -37,7 +37,7 @@
     </div>
     @can('rol.edit')
     <div class="col-12 mt-4 mb-4 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('rol.update', $rol)}}">Editar</a>
+        <a class="btn btn-warning mx-3" href="{{route('rol.edit', $rol)}}">Editar</a>
     </div>   
     @endcan
 </div>
