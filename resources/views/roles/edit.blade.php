@@ -11,6 +11,10 @@
 @endsection
     
 @section('form')
+<form action="{{ route('rol.update', $rol->id) }}" method="POST">
+    @csrf
+    @method('PUT')
+    <input type="hidden"  name="id" value="{{$rol->id}}">
 <div class="row">
     <div class="col-lg-12 d-flex mt-2">
         <div class="col-lg-8 px-2">

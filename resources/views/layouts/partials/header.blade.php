@@ -35,6 +35,11 @@
                             Usuarios
                         </a> 
                         @endcan
+                        @can('rol.index')
+                        <a class="dropdown-item {{ request()->routeIs('rol.*') ? 'active' : ''}}" href="{{ route('rol.index') }}">
+                            Roles
+                        </a> 
+                        @endcan
                     </div>
                 </li>              
                 {{--@endcan--}}

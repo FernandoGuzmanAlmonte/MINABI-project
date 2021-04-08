@@ -40,14 +40,6 @@ class RoleController extends Controller
         
     }
 
-    public function update(Request $request){
-        echo $request;
-        /*$role = Role::findById($request->id);
-        $role->permissions()->sync($request->input('permisos'));
-        
-        return redirect()->route('rol.show');*/
-    }
-
     public function show(Role $rol)
     {
         $permisos = $rol->permissions()->get();
@@ -55,4 +47,13 @@ class RoleController extends Controller
         return view('roles.show', compact('permisos', 'rol'));
         
     }
+
+    public function update(Request $request){
+        $rol = Role::findById($request->id);
+        $rol->permissions()->sync($request->input('permisos'));
+        
+        return redirect()->route('rol.show', compact('rol'));
+    }
+
+   
 }
