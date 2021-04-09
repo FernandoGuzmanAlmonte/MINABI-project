@@ -46,10 +46,13 @@ class RoleSeeder extends Seeder
         /*YA*/Permission::create(['name'=>'coil.index'])->assignRole($role1);
         Permission::create(['name'=>'coil.destroy'])->assignRole($role1);
         /*YA*/Permission::create(['name'=>'coil.terminar'])->assignRole($role1);
+        Permission::create(['name' => 'coil.reporteria'])->assignRole($role1);
+        Permission::create(['name' => 'coil.produccion'])->assignRole($role1);
 
         /*YA*/Permission::create(['name'=>'ribbon.create'])->assignRole($role1);
         Permission::create(['name'=>'ribbon.edit'])->assignRole($role1);
         Permission::create(['name'=>'ribbon.destroy'])->assignRole($role1);
+        Permission::create(['name' => 'ribbon.reporteria'])->assignRole($role1);
         //Permission::create(['name'=>'ribbon.createProduct'])->assignRole($role1);
         //Permission::create(['name'=>'ribbon.show'])->assignRole($role1);
 
@@ -88,6 +91,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'bag.create'])->assignRole($role1);
         Permission::create(['name'=>'bag.edit'])->assignRole($role1);
         Permission::create(['name'=>'bag.destroy'])->assignRole($role1);
+        Permission::create(['name' => 'bag.reporteria'])->assignRole($role1);
         //Permission::create(['name'=>'bag.createProduct'])->assignRole($role1);
         //Permission::create(['name'=>'bag.show'])->assignRole($role1);
 

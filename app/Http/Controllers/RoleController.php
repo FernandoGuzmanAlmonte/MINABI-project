@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -22,7 +23,7 @@ class RoleController extends Controller
     public function store(Request $request){
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permisos'));
-        
+        Artisan::call('cache:clear');
         return redirect()->route('rol.index');
     }
 
@@ -51,7 +52,7 @@ class RoleController extends Controller
     public function update(Request $request){
         $rol = Role::findById($request->id);
         $rol->permissions()->sync($request->input('permisos'));
-        
+        Artisan::call('cache:clear');
         return redirect()->route('rol.show', compact('rol'));
     }
 

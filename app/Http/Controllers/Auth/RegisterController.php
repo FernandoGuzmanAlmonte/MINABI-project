@@ -102,6 +102,26 @@ class RegisterController extends Controller
         return view('users.index', compact('users', 'orderBy', 'name', 'order'));
     }
 
+    public function edit(User $user){       
+        $roles = Role::all();
+        $key = $user->roles()->get()->first()->id;
+        return view('users.edit', compact('roles', 'user', 'key'));
+    }
+
+    protected function update(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        echo $user;
+
+
+        $user->roles()->sync($request->role_id);
+
+        return redirect()->route('user.index');
+    }
+
     public function destroy($id){
         $user = User::find($id);
         User::destroy($user->id);

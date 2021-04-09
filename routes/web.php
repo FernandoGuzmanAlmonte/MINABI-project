@@ -49,6 +49,8 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('user/create', [RegisterController::class, 'create'])->name('user.create')->middleware('auth');
 Route::post('user/store', [RegisterController::class, 'store'])->name('user.store')->middleware('auth');
+Route::get('user/edit/{user}', [RegisterController::class, 'edit'])->name('user.edit')->middleware('auth');
+Route::put('user/update/{user}', [RegisterController::class, 'update'])->name('user.update')->middleware('auth');
 Route::get('user', [RegisterController::class, 'index'])->name('user.index')->middleware('auth');
 Route::delete('user/delete/{id}', [RegisterController::class,'destroy'])->name('user.destroy')->middleware('auth');
 

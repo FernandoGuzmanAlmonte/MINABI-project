@@ -86,6 +86,7 @@
     <th scope="col">Nombre</th>
     <th scope="col">Usuario</th>
     <th scope="col"></th>
+    <th scope="col"></th>
   </tr>
 </thead>
 <tbody id="tableBody">
@@ -100,8 +101,8 @@
             <button type="submit" class="btn btn-danger btn-sm">
                 <img src="{{ asset('images/icono-eliminar.svg') }}" class="iconosPequeños">
             </button>
-        </form>
-    </td>
+        </form></td>
+        <td><a href="{{route('user.edit', $item)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
     </tr>
     @endforeach
 </tbody>

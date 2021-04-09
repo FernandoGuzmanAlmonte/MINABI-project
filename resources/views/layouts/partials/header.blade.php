@@ -54,7 +54,7 @@
                             Bobina
                         </a>
                         @endcan
-                        @can('whiteCoilProduct', Model::class)
+                        @can('whiteCoilProduct.index')
                         <a class="dropdown-item {{ request()->routeIs('whiteCoilProduct.*') ? 'active' : ''}}" href="{{ route('whiteCoilProduct.index') }}">
                             Rollos
                         </a>
@@ -77,27 +77,33 @@
                     Bolsas
                 </a>
                 @endcan
-                @can('reportes')
                 <li class="nav-item dropdown {{ request()->routeIs('coil.reporteria', 'ribbon.reporteria', 'bag.reporteria') ? 'active' : ''}}">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Reportes
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @can('coil.reporteria')
                         <a class="dropdown-item {{ request()->routeIs('coil.reporteria') ? 'active' : ''}}" href="{{ route('coil.reporteria') }}">
                             Almacen de Bobinas
-                        </a>
+                        </a>  
+                        @endcan
+                        @can('ribbon.reporteria')
                         <a class="dropdown-item {{ request()->routeIs('ribbon.reporteria') ? 'active' : ''}}" href="{{ route('ribbon.reporteria') }}">
                             Almacen de Rollos
                         </a>
+                        @endcan
+                        @can('bag.reporteria')
                         <a class="dropdown-item {{ request()->routeIs('bag.reporteria') ? 'active' : ''}}" href="{{ route('bag.reporteria') }}">
                             Almacen de Bolsas
-                        </a>
+                        </a>    
+                        @endcan
+                        @can('coil.produccion')
                         <a class="dropdown-item {{ request()->routeIs('coil.produccion') ? 'active' : ''}}" href="{{ route('coil.produccion') }}">
                             Produccion
-                        </a>
+                        </a>  
+                        @endcan
                     </div>
                 </li>
-                @endcan
             </div>
             <form action="{{asset('logout')}}" method="POST" class="ml-lg-auto text-md-left navbar-nav">
                 @csrf
