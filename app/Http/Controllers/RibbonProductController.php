@@ -10,7 +10,7 @@ class RibbonProductController extends Controller
 
     public function __construct()
     {
-    $this->middleware('can:ribbon.index')->only('index');
+    $this->middleware('can:ribbonProduct.index')->only('index');
     }
 
     public function index(Request $request){
