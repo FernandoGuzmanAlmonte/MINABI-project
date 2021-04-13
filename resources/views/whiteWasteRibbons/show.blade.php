@@ -47,10 +47,12 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{ $whiteWasteRibbon->observaciones }}</textarea>
         </div>  
     </div>
-
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('whiteWasteRibbon.edit', $whiteWasteRibbon)}}">Editar</a>
-    </div>   
+@can('whiteWasteRibbon.edit')
+<div class="col-12 mt-3 text-center">
+    <a class="btn btn-warning mx-3" href="{{route('whiteWasteRibbon.edit', $whiteWasteRibbon)}}">Editar</a>
+</div>  
+@endcan
+     
 
     <div class="col-lg-12 d-flex mt-5">
         <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Rollo <a href="{{route('whiteRibbon.show', $whiteRibbon->id)}}"><small>Ver Rollo</small></a> </h3>

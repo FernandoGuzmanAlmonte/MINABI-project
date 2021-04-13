@@ -8,18 +8,26 @@
                 </button>
             </div>
                 <div class="modal-body">
+                    @can('whiteWasteRibbon.create')
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
                         <label class="form-check-label" for="flexRadioDefault1">
                           Merma
                         </label>
                       </div>
-                      <div class="form-check">
+                      @else
+                    <input type="hidden" name="flexRadioDefault" id="flexRadioDefault1">
+                    @endcan
+                    @can('whiteRibbonReel.create')
+                    <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
                         <label class="form-check-label" for="flexRadioDefault2">
                           Hueso
                         </label>
                       </div>
+                      @else
+                    <input type="hidden" name="flexRadioDefault" id="flexRadioDefault2">
+                    @endcan
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

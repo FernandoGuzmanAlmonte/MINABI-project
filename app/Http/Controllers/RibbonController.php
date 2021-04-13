@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\DB;
 
 class RibbonController extends Controller
 {
+    public function __construct()
+    {
+    $this->middleware('can:ribbon.create')->only('store', 'createProduct');
+    $this->middleware('can:ribbon.edit')->only('edit', 'update');
+    $this->middleware('can:ribbon.reporteria')->only('reporteria');
+    $this->middleware('can:ribbon.destroy')->only('destroy');
+    }
 
     public function index(){
         $ribbons = Ribbon::select('nomenclatura', 'fechaInicioTrabajo',  'status' )->get();

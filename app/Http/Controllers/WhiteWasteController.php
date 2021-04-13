@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class WhiteWasteController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:whiteWaste.create')->only('createProduct', 'store');
+    $this->middleware('can:whiteWaste.edit')->only('edit', 'update');
+    $this->middleware('can:whiteWaste.destroy')->only('destroy');
+    }
+
     public function index(){
         $whiteWastes = WhiteWaste::select('nomenclatura', 'fAlta' )->get();
         $whiteWastes = WhiteWaste::paginate(10);

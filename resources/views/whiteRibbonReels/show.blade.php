@@ -84,10 +84,11 @@
         </div>
 
     
-
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('whiteRibbonReel.edit', $whiteRibbonReel->id)}}">Editar</a>
-    </div>
+@can('whiteRibbonReel.edit')
+<div class="col-12 mt-3 text-center">
+    <a class="btn btn-warning mx-3" href="{{route('whiteRibbonReel.edit', $whiteRibbonReel->id)}}">Editar</a>
+</div>
+@endcan
 </div>
 
 @endsection

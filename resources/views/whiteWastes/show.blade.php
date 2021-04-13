@@ -67,9 +67,12 @@
                 </div>
             </div>
 
+    @can('whiteWaste.edit')
     <div class="col-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{route('whiteWaste.edit', $whiteWaste->id)}}">Editar</a>
-    </div>
+    </div> 
+    @endcan
+    
 </div>
 
 @endsection

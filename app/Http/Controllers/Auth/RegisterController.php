@@ -51,6 +51,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+    public function __construct()
+    {
+    $this->middleware('can:user.create')->only('store', 'create');
+    $this->middleware('can:user.edit')->only('edit', 'update');
+    $this->middleware('can:user.destroy')->only('destroy');
+    $this->middleware('can:user.index')->only('index');
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [

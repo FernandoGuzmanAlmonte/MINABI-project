@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\DB;
 
 class WhiteCoilController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:whiteCoil.create')->only('createProduct', 'store');
+    $this->middleware('can:whiteCoil.edit')->only('edit', 'update');
+    $this->middleware('can:whiteCoil.destroy')->only('destroy');
+    }
+    
     public function index(Request $request){
         //Valido que los campos existan sino les doy un valor por defecto
         $orderBy = $request->orderBy ?? 'id';

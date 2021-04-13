@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 
 class WhiteRibbonReelController extends Controller
 {
+    public function __construct()
+    {
+    $this->middleware('can:whiteRibbonReel.create')->only('createProduct', 'store');
+    $this->middleware('can:whiteRibbonReel.edit')->only('edit', 'update');
+    $this->middleware('can:whiteRibbonReel.destroy')->only('destroy');
+    }
+     
     public function index(){
         $whiteRibbonReel = WhiteRibbonReel::select('nomenclatura')->get();
         $whiteRibbonReel = WhiteRibbonReel::paginate(10);

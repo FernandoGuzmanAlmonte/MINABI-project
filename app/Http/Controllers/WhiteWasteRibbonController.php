@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 
 class WhiteWasteRibbonController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:whiteWasteRibbon.create')->only('createProduct', 'store');
+    $this->middleware('can:whiteWasteRibbon.edit')->only('edit', 'update');
+    $this->middleware('can:whiteWasteRibbon.destroy')->only('destroy');
+    }
+
     public function index()
     {
         $whiteWasteRibbons = WhiteWasteRibbon::paginate(10);

@@ -18,6 +18,18 @@ use Illuminate\Support\Facades\DB;
 
 class CoilController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:coil.create')->only('create', 'store');
+    $this->middleware('can:coil.edit')->only('edit', 'update');
+    $this->middleware('can:coil.index')->only('index');
+    $this->middleware('can:coil.destroy')->only('destroy');
+    $this->middleware('can:coil.reporteria')->only('reporteria');
+    $this->middleware('can:coil.terminar')->only('terminar');
+    $this->middleware('can:coil.produccion')->only('produccion');
+    }
+
     public function index(Request $request){
         //Valido que los campos existan sino les doy un valor por defecto
         $orderBy = $request->orderBy ?? 'id';

@@ -11,6 +11,15 @@ use Illuminate\Http\Request;
 
 class WhiteRibbonController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:whiteRibbon.create')->only('createProduct', 'store');
+    $this->middleware('can:whiteRibbon.edit')->only('edit', 'update');
+    $this->middleware('can:whiteRibbon.destroy')->only('destroy');
+    $this->middleware('can:whiteRibbon.index')->only('index');
+    }
+
     public function index(){
         $whiteRibbons = WhiteRibbon::select('nomenclatura', 'fechaInicioTrabajo',  'status' )->get();
         $whiteRibbons = WhiteRibbon::paginate(10);

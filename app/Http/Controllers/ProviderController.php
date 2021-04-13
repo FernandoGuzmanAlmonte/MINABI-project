@@ -9,6 +9,15 @@ use App\Http\Requests\StoreProvider;
 
 class ProviderController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:provider.create')->only('create', 'store');
+    $this->middleware('can:provider.edit')->only('edit', 'update');
+    $this->middleware('can:provider.index')->only('index');
+    $this->middleware('can:provider.destroy')->only('destroy');
+    }
+
     public function index(Request $request)
     {        
         //Valido que los campos existan sino les doy un valor por defecto
