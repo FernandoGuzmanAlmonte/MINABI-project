@@ -10,8 +10,7 @@
 <form action="{{ route('whiteCoil.store') }}" method="POST">
     @csrf
     <div class="row">
-    <div class="col-lg-12 d-flex mt-2">
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label><span class="required">*</span> Nomenclatura</label>
             <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}" id="nomenclaturas" readonly>
             @error('nomenclatura')
@@ -22,7 +21,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label><span class="required">*</span> Fecha llegada</label>
             <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}" onblur="llenaNomen()" id="fArribo">
             @error('fArribo')
@@ -41,7 +40,7 @@
                 folio.value = "MNB"+fecha.substring(6,8)+fecha.substring(4,6)+fecha.substring(0,4);
             }
         </script>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Tipo bobina</label>
             <select class="form-control" name="coil_type_id">
                 <option selected value="" class="text-muted" disabled>--seleccione tipo de bobina--</option>
@@ -59,10 +58,8 @@
                 <br>
             @enderror
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Proveedor</label>
             <select class="form-control" name="provider_id">
                 <option selected value="" class="text-muted" disabled>--seleccione proveedor--</option>
@@ -82,7 +79,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span> Status</label>
             <input type="datetime" class="form-control" name="status" value="DISPONIBLE" readonly>
             @error('status')
@@ -93,7 +90,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span> Costo</label>
             <input type="number" step="0.0001" class="form-control" name="costo" value="{{old('costo')}}">
             @error('costo')
@@ -104,10 +101,8 @@
                 <br>
             @enderror
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span> Peso( Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="peso" value="{{old('peso')}}">
             @error('peso')
@@ -118,13 +113,12 @@
             <br>
         @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span> Peso Utilizado (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="0" readonly>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-4">
+    <div class="col-lg-12 col-md-12 col-sm-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
