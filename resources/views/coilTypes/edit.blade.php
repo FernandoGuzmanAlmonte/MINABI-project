@@ -11,8 +11,7 @@
     @csrf
     @method('PUT')
     <div class="row">
-        <div class="col-lg-12 d-flex mt-2">
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label><span class="required">*</span> Alias</label>
                 <input type="text" class="form-control" name="alias" value="{{ old('alias', $coilType->alias) }}">
                 @error('alias')
@@ -21,7 +20,7 @@
                     </div>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label><span class="required">*</span> Ancho (cm)</label>
                 <input type="number" step="0.0001" class="form-control" name="anchoCm" value="{{ old('anchoCm', $coilType->anchoCm) }}">
                 @error('anchoCm')
@@ -30,7 +29,7 @@
                     </div>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label><span class="required">*</span> Largo (m)</label>
                 <input type="number" step="0.0001" class="form-control" name="largoM" value="{{ old('largoM', $coilType->largoM) }}">
                 @error('largoM')
@@ -39,9 +38,7 @@
                     </div>
                 @enderror
             </div>
-        </div>
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label><span class="required">*</span> Densidad</label>
                 <input type="number" step="0.0001" class="form-control" name="densidad" value="{{ old('densidad', $coilType->densidad) }}">
                 @error('densidad')
@@ -50,7 +47,7 @@
                     </div>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label><span class="required">*</span> Material</label>
                 <input type="text" class="form-control" name="material" value="{{ old('material', $coilType->material) }}">
                 @error('material')
@@ -59,7 +56,7 @@
                     </div>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label><span class="required">*</span> Calibre</label>
                 <input type="number" step="0.0001" class="form-control" name="calibre" value="{{ old('calibre', $coilType->calibre) }}">
                 @error('calibre')
@@ -68,9 +65,7 @@
                     </div>
                 @enderror
             </div>
-        </div>
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label><span class="required">*</span> Tipo</label>
                 <select class="form-control" name="tipo">
                     <option {{ (old('tipo', $coilType->tipo) == 'CELOFAN') ? 'selected' : '' }} value="CELOFAN">CELOFÁN</option>
@@ -98,7 +93,6 @@
             <a class="btn btn-danger mx-3" href="{{ route('coilType.show', $coilType) }}">Cancelar</a>
             <button type="submit" name="coilTypeForm" class="btn btn-success mx-3">Guardar</button>
         </div>
-    </div>
 </form>
 @endsection
 

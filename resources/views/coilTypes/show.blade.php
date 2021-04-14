@@ -12,62 +12,52 @@
 
 @section('form')
 <div class="row">
-    <div class="col-lg-12 d-flex mt-2">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Alias</label>
             <input type="text" class="form-control" name="alias" value="{{ $coilType->alias }}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Ancho (cm)</label>
             <input type="number" step="0.0001" class="form-control" name="anchoCm" value="{{ $coilType->anchoCm }}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Largo (m)</label>
             <input type="number" step="0.0001" class="form-control" name="largoM" value="{{ $coilType->largoM }}" disabled>
         </div>
-    </div>
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Densidad</label>
             <input type="number" step="0.0001" class="form-control" name="densidad" value="{{ $coilType->densidad }}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Material</label>
             <input type="text" class="form-control" name="material" value="{{ $coilType->material }}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Calibre</label>
             <input type="text" class="form-control" name="calibre" value="{{ $coilType->calibre }}" disabled>
         </div>
-    </div>
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Tipo</label>
             <input type="text" class="form-control" name="tipo" value="{{ ($coilType->tipo == 'CELOFAN') ? 'CELOFÁN' : 'CENEFA'}}" disabled>
         </div>
-    </div>
-    <div class="col-lg-12 d-flex mt-4">
-        <div class="col-lg-12 px-2">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-2 mt-3">
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{ $coilType->observaciones }}</textarea>
         </div>
-    </div>
     @can('coilType.edit')
-    <div class="col-12 mt-4 mb-4 text-center">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{route('coilType.edit', $coilType)}}">Editar</a>
     </div>
     @endcan
 
-    <div class="col-lg-12 d-flex mt-5">
-        <div class="col-lg-6 px-2 float-left">
+        <div class="col-lg-6 col-md-6 col-sm-6 px-2 float-left">
             <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Medidas de Bolsas </h3>
         </div>
-        <div class="col-lg-6 px-2 mt-2 float-left">
+        <div class="col-lg-6 col-md-6 col-sm-6 px-2 mt-2 float-left">
             <button type="button" class="btn btn-success float-right mb-3" data-toggle="modal" data-target="#create" onclick="cleanModal()">
                 Añadir Medida de Bolsa
             </button>
         </div>
-    </div>
     <div class="col-lg-12">   
         {{-- Modal de contactos --}}
             @include('bagMeasures.create')
