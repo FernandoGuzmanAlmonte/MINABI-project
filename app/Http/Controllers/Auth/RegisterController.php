@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
@@ -122,10 +123,9 @@ class RegisterController extends Controller
         $user = User::find($request->id);
         $user->name = $request->name;
         $user->email = $request->email;
+        if($request->password != null)
         $user->password = $request->password;
-        echo $user;
-
-
+        $user->save();
         $user->roles()->sync($request->role_id);
 
         return redirect()->route('user.index');

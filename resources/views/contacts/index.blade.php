@@ -1,3 +1,4 @@
+<div class="table-responsive-md table-responsive-sm">
 <table class="table table-striped mt-1 mb-5" >
     <thead class="bg-info">
         <tr>
@@ -36,3 +37,4 @@
         @endforeach
     </tbody>
 </table>
+</div>
