@@ -18,10 +18,10 @@
 
 @section('filtrado')
     <form action="{{ route('employee.index') }}" method="GET" class="row g-3" id="formOrder">
-        <div class="col-lg-5">
+        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
             <h6 class="textoConLinea"><span>Ordenar</span></h6>
             <div class="row">
-                <div class="col-lg-7 d-flex align-items-center">
+                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 d-flex align-items-center">
                     <div class="select">
                         <select class="form-control" name="orderBy" onchange="actualizarTabla()">
                             <option value="id" {{ ($orderBy == 'id') ? 'selected' : '' }}>Ordenar por Identificador</option>
@@ -31,44 +31,44 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 ">
                     <div class="row">
-                        <div class="col-lg-2 d-flex align-items-center">
+                        <div class="col-lg-2 col-md-1 col-sm-1 d-flex align-items-center">
                             <div class="mt-1 mb-0 form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="order" id="radioAsc" value="ASC" onclick="cambioOrdenAscendente()">
                             </div>
                         </div>
-                        <div class="col-lg-10 d-flex align-items-center">
-                            <h5 class="mt-1 mb-0">
+                        <div class="col-lg-10 col-md-11 col-sm-11 d-flex align-items-center">
+                            <label class="mt-1 mb-0">
                                 <span class="badge badge-pill badge-light pr-4" id="badgeAsc" style="color:#343A40; font-weight:normal; width: 95%;">
                                     <img src={{ asset('images/ascendente-black.svg') }}  class="iconosFiltrado" id="imgAsc">
                                     Ascendente
                                 </span>
-                            </h5>
+                            </label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-2 d-flex align-items-center">
-                            <div class="mt-4 mb-0 form-check form-check-inline">
+                        <div class="col-lg-2 col-md-1 col-sm-1 d-flex align-items-center">
+                            <div class="col-lg-2 col-md-2 col-sm-1 d-flex align-items-center mt-4">
                                 <input class="form-check-input" type="radio" name="order" id="radioDesc" value="DESC" onclick="cambioOrdenDescendente()">
                             </div>
                         </div>
-                        <div class="col-lg-10 d-flex align-items-center">
-                            <h5 class="mt-4 mb-0">
+                        <div class="col-lg-10 col-md-10 col-sm-11 d-flex align-items-center">
+                            <label class="h5 mt-4 mb-0">
                                 <span class="badge badge-pill badge-light pr-4" id="badgeDesc" style="color:#343A40; font-weight:normal; width: 95%;">
                                     <img src={{ asset('images/descendente-black.svg') }}  class="iconosFiltrado" id="imgDesc">
                                     Descendente
                                 </span>
-                            </h5>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
             <h6 class="textoConLinea mt-3"><span>Filtrar</span></h6>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-12">
                     <div class="row ">
-                        <div class="col-lg-12 mb-1 mt-1">
+                        <div class="col-lg-12 mt-md-12 mb-1 mt-1">
                             <div class="form-check float-right">
                                 <input class="form-check-input" type="checkbox" onchange="cambiarStatus(this)" {{ ($status) ? 'checked' : '' }}>
                                 <label class="form-check-label float-right text-muted mr-3" for="flexCheckDefault" id="labelStatus">
@@ -90,11 +90,11 @@
                 </div>
             </div>
         </div>        
-        <div class="col-lg-7 d-flex align-items-center">
-            <div class="col-lg-10 pr-0 pl-5">
+        <div class="col-lg-7 col-md-12 col-sm-12 d-lg-flex d-md-flex align-items-center">
+            <div class="col-lg-10 col-md-10 col-sm-12 pr-0 pl-lg-5">
                 <input class="form-control" style="width: 100%" type="search" placeholder="Nombre..." name="nombre" value="{{ ($nombre != '') ? $nombre : '' }}">
             </div>
-            <div class="col-lg-2 pl-0 pr-0">
+            <div class="col-lg-2 col-md-2 col-sm-12  pl-0 pr-0">
                 <button class="form-control btn btn-secondary pl-2" style="width: 100%" type="submit">
                     <img src={{ asset('images/buscar.svg') }}  class="iconosPequeños float-left">
                     Buscar
