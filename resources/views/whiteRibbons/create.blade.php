@@ -10,8 +10,7 @@
 <form action="{{route('whiteRibbon.store')}}" method="POST">
     @csrf
     <div class="row">
-        <div class="col-lg-12 d-flex mt-2"> 
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Nomenclatura</label>
                 <input type="text" class="form-control" name="nomenclatura" value="{{$nomenclatura}}" readonly>
                 @error('nomenclatura')
@@ -22,7 +21,7 @@
                 <br>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Status</label>
                 <input type="text" class="form-control" name="status" value="DISPONIBLE" readonly>
                 @error('status')
@@ -33,7 +32,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label><span class="required">*</span>Peso (KG)</label>
                 <input type="text" class="form-control" name="peso" value="{{old('peso')}}">
                 @error('peso')
@@ -44,10 +43,8 @@
                 <br>
             @enderror
             </div>
-        </div>
     
-        <div class="col-lg-12 d-flex mt-3"> 
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label><span class="required">*</span>Fecha Arribo</label>
                 <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}">
                 @error('fArribo')
@@ -58,7 +55,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label><span class="required">*</span>Largo (metros)</label>
                 <input type="number" step="0.0001" class="form-control" name="largo" value="{{old('largo')}}">
                 @error('largo')
@@ -69,7 +66,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Peso Utilizado (KG)</label>
                 <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="0" readonly>
                 @error('pesoUtilizado')
@@ -80,7 +77,6 @@
                 <br>
                  @enderror
             </div>
-        </div>
     
         <div class="col-lg-12 d-flex mt-3">
             
@@ -88,8 +84,7 @@
                 <input type="hidden" class="form-control" name="whiteCoilId" value="{{$whiteCoilId}}">
         </div>
     
-        <div class="col-lg-12 d-flex mt-4">
-            <div class="col-lg-12 px-2">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-2 mt-3">
                 <label>Observaciones</label>
                 <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{old('observaciones')}}</textarea>
                 @error('Observaciones')
@@ -100,7 +95,6 @@
                 <br>
                  @enderror
             </div>
-        </div>
         @if($errors->any())
         <div class="col-12 mt-3 text-center">
             <br>

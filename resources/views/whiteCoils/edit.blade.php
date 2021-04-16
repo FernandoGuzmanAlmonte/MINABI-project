@@ -11,8 +11,7 @@
     @csrf
     @method('PUT')
     <div class="row">
-    <div class="col-lg-12 d-flex mt-2"> 
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label><span class="required">*</span> Nomenclatura</label>
             <input type="text" class="form-control" name="nomenclatura" value="{{$whiteCoil->nomenclatura}}" readonly>
             @error('nomenclatura')
@@ -23,7 +22,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label><span class="required">*</span> Fecha llegada</label>
             <input type="datetime" class="form-control" name="fArribo" value="{{$whiteCoil->fArribo}}" readonly>
             @error('fArribo')
@@ -34,7 +33,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Tipo bobina</label>
             <select class="form-control" name="coil_type_id">
                 @if($whiteCoil->coilType != null)
@@ -54,10 +53,8 @@
                 <option value="">Ninguno</option>
             </select>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Proveedor</label>
             <select class="form-control" name="provider_id">
                 @if($whiteCoil->provider != null)
@@ -84,7 +81,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span> Status</label>
             <input type="datetime" class="form-control" name="status" value="{{$whiteCoil->status}}" readonly>
             @error('status')
@@ -95,7 +92,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span> Costo</label>
             <input type="number" step="0.0001" class="form-control" name="costo" value="{{$whiteCoil->costo}}">
             @error('costo')
@@ -106,10 +103,8 @@
                 <br>
             @enderror
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span> Peso (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="peso" value="{{$whiteCoil->peso}}">
             @error('peso')
@@ -120,13 +115,12 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span> Peso Utilizado (Kg)</label>
             <input type="number" step="0.0001"class="form-control" name="pesoUtilizado" value="{{$whiteCoil->pesoUtilizado}}" readonly>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-4">
+    <div class="col-lg-12 col-md-12 col-sm-12 d-flex mt-4">
         <div class="col-lg-12 px-2">
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{$whiteCoil->observaciones}}</textarea>

@@ -12,23 +12,20 @@
     
 @section('form')
     <div class="row">
-    <div class="col-lg-12 d-flex mt-2"> 
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Nomenclatura</label>
             <input type="text" class="form-control" name="nomenclatura" value="{{$whiteCoil->nomenclatura}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Fecha llegada</label>
             <input type="datetime" class="form-control" name="fArribo" value="{{$whiteCoil->fArribo}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Tipo bobina</label>
             <input type="text" class="form-control" name="coil_type_id" value="{{(($coilType = $whiteCoil->coilType) != null) ? $coilType->alias : ''}}" disabled>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Proveedor</label>
             <input type="text" class="form-control" name="provider_id" value="{{(($provider = $whiteCoil->provider) != null) ? $provider->nombreEmpresa : ''}}" disabled>
         </div>
@@ -36,29 +33,24 @@
             <label>Status</label>
             <input type="datetime" class="form-control" name="status" value="{{$whiteCoil->status}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Costo</label>
             <input type="number" step="0.0001" class="form-control" name="costo" value="{{$whiteCoil->costo}}" disabled>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Peso (Kg)</label>
             <input type="text" class="form-control" name="peso" value="{{$whiteCoil->peso}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Peso Utilizado (Kg)</label>
             <input type="text" class="form-control" name="pesoUtilizado" value="{{$whiteCoil->pesoUtilizado}}" disabled>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-4">
-        <div class="col-lg-12 px-2">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-2">
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$whiteCoil->observaciones}}</textarea>
         </div>
-    </div>
     <div class="col-12 mt-5 text-center">
         <a class="btn btn-warning mx-3 mb-5" href="{{route('whiteCoil.edit', $whiteCoil->id)}}">Editar</a>
     </div>
@@ -66,6 +58,7 @@
     <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Rollos de Cinta </h3>
     <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Cinta</a>
     <!--Tabla para rollos de cinta relacionados-->
+    <div class="table-responsive">
     <table class="table table-striped my-4" >
         <thead class="bg-info">
     <tr>
@@ -99,9 +92,11 @@
       @endforeach
     </tbody>
     </table>
+    </div>
 
 <!--Tabla para bolsas relacionadas-->
 <h3 class="mt-5"> <img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Hueso, Merma o Rollo de Celofán </h3>
+<div class="table-responsive">
 <table class="table table-striped my-4" >
     <thead class="bg-info">
 <tr>
@@ -131,7 +126,8 @@
     </tr>
   @endforeach
 </tbody>
-</table>    
+</table>
+</div>    
 </div>
 </div>
 @include('whiteCoils.modalTypeSelection')

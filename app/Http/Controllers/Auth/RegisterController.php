@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
@@ -51,6 +52,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+    public function __construct()
+    {
+    $this->middleware('can:user.create')->only('store', 'create');
+    $this->middleware('can:user.edit')->only('edit', 'update');
+    $this->middleware('can:user.destroy')->only('destroy');
+    $this->middleware('can:user.index')->only('index');
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -113,10 +123,9 @@ class RegisterController extends Controller
         $user = User::find($request->id);
         $user->name = $request->name;
         $user->email = $request->email;
+        if($request->password != null)
         $user->password = $request->password;
-        echo $user;
-
-
+        $user->save();
         $user->roles()->sync($request->role_id);
 
         return redirect()->route('user.index');

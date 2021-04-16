@@ -12,28 +12,24 @@
 
 @section('form')
 <div class="row">
-    <div class="col-lg-12 d-flex mt-2">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
             <label>Nombre Empresa</label>
             <input type="text" class="form-control" name="nombreEmpresa" value="{{ $provider->nombreEmpresa }}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
             <label>Dirección</label>
             <input type="text" class="form-control" name="direccion" value="{{ $provider->direccion }}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
             <label>Pagina web</label>
             <input type="text" class="form-control" name="paginaWeb" value="{{ $provider->paginaWeb }}" disabled>
         </div>
-    </div>
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
             <label>Estado</label>
             <input type="text" class="form-control" name="estado" value="{{ $provider->estado }}" disabled>
         </div>
-    </div>
     @can('provider.edit')
-    <div class="col-12 mt-3 text-center">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3 text-center">
         <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>
     </div>
     @endcan
@@ -67,8 +63,8 @@
             </a>
         </div>--}}
     </div>
-    <div class="col-lg-12 d-flex">
-        <table class="table table-striped mt-1 mb-5" >
+    <div class="col-lg-12 table-responsive-md table-responsive-sm">
+        <table class="table table-striped mt-1 mb-5 " >
             <thead class="bg-info">
                 <tr>
                     <th scope="col">#</th>

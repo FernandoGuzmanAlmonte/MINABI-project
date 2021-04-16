@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 
 class RibbonReelController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:ribbonReel.create')->only('store', 'createProduct');
+    $this->middleware('can:ribbonReel.edit')->only('edit', 'update');
+    $this->middleware('can:ribbonReel.destroy')->only('destroy');
+    }
+
     public function index(){
         $RibbonReels = RibbonReel::select('nomenclatura')->get();
         $RibbonReels = RibbonReel::paginate(10);

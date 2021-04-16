@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\DB;
 
 class BagController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:bag.create')->only('createProduct', 'store');
+    $this->middleware('can:bag.edit')->only('edit', 'update');
+    $this->middleware('can:bag.destroy')->only('destroy');
+    $this->middleware('can:bag.reporteria')->only('reporteria');
+    }
+
     public function index()
     {
         $bags = Bag::paginate(10);
@@ -192,6 +201,8 @@ class BagController extends Controller
         $ribbonProduct->status = $bag->status;
         $ribbonProduct->fAdquisicion = $bag->fechaInicioTrabajo; 
         $ribbonProduct->peso = $bag->peso;
+        $ribbonProduct->cantidad = $bag->cantidad;
+        $ribbonProduct->tipoUnidad = $bag->tipoUnidad;
         $ribbonProduct->save();
 
        return redirect()->route('bag.show', $bag);

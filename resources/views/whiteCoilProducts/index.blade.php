@@ -55,11 +55,11 @@
                     </div>
                 </div>
         </div>        
-        <div class="col-lg-7 d-flex align-items-center">
-            <div class="col-lg-10 pr-0 pl-5">
+        <div class="col-lg-7 col-md-12 col-sm-12 d-lg-flex d-md-flex align-items-center">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 pr-0 pl-lg-5">
                 <input class="form-control" style="width: 100%" type="search" placeholder="Nomenclatura..." name="nomenclatura" value="{{ ($nomenclatura != '') ? $nomenclatura : '' }}">
             </div>
-            <div class="col-lg-2 pl-0 pr-0">
+            <div class="col-lg-2 col-md-2 col-sm-12 pl-0 pr-0">
                 <button class="form-control btn btn-secondary pl-2" style="width: 100%" type="submit">
                     <img src={{ asset('images/buscar.svg') }}  class="iconosPequeños float-left">
                     Buscar
@@ -69,8 +69,8 @@
         <div class="col-lg-6 d-flex">
             <h6 class="textoConLinea mt-3"><span>Filtrar</span></h6>                 
         </div>
-        <div class="col-lg-12 d-flex">
-            <div class="col-lg-3 pl-0 pr-0">
+        <div class="col-lg-12 d-lg-flex">
+            <div class="col-lg-3 col-md-6 col-sm-12 pl-0 pr-0">
                 <div class="row">
                     <div class="col-lg-9 mb-1 mt-1">
                         <div class="form-check float-right">
@@ -117,7 +117,7 @@
 @endsection
 
 @section('table')
-<table class="table table-striped my-4" >
+
     <thead class="bg-info">
 <tr>
     <th scope="col">#</th>
@@ -142,7 +142,7 @@
     </tr>
     @endforeach
 </tbody>
-</table>
+
 <div class="d-flex  justify-content-center">{{$whiteCoilProducts->links()}}</div>
 
 @endsection

@@ -15,6 +15,8 @@
                       Rollo
                     </label>
                   </div>
+                  @else
+                  <input type="hidden" name="flexRadioDefault" id="flexRadioDefault1">
                   @endcan
                     @can('wasteRibbon.create')
                     <div class="form-check">
@@ -23,6 +25,8 @@
                         Merma
                       </label>
                     </div>
+                    @else
+                  <input type="hidden" name="flexRadioDefault" id="flexRadioDefault2">
                     @endcan
                       @can('coilReel.create')
                       <div class="form-check">
@@ -30,7 +34,9 @@
                         <label class="form-check-label" for="flexRadioDefault3">
                           Hueso
                         </label>
-                      </div>    
+                      </div>  
+                      @else
+                  <input type="hidden" name="flexRadioDefault" id="flexRadioDefault3">  
                       @endcan
                       
                 </div>

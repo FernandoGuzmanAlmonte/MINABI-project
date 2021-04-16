@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class CoilReelController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:coilReel.create')->only('createProduct', 'store');
+    $this->middleware('can:coilReel.edit')->only('edit', 'update');
+    $this->middleware('can:coilReel.destroy')->only('destroy');
+    }
+
     public function index(){
         $coilReels = CoilReel::select('nomenclatura')->get();
         $coilReels = coilReel::paginate(10);

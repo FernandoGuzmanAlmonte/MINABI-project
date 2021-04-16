@@ -9,6 +9,15 @@ use App\Http\Requests\StoreCoilType;
 
 class CoilTypeController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:coilType.create')->only('create', 'store');
+    $this->middleware('can:coilType.edit')->only('edit', 'update');
+    $this->middleware('can:coilType.index')->only('index');
+    $this->middleware('can:coilType.destroy')->only('destroy');
+    }
+
     public function index(Request $request)
     {
         //Valido que los campos existan sino les doy un valor por defecto

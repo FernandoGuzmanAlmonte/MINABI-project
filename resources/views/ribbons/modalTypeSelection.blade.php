@@ -15,6 +15,8 @@
                       Bolsas
                     </label>
                   </div>
+                    @else
+                    <input type="hidden" name="flexRadioDefault" id="flexRadioDefault1">
                   @endcan
                     @can('wasteBag.create')
                     <div class="form-check">
@@ -23,6 +25,8 @@
                         Merma
                       </label>
                     </div>
+                    @else
+                    <input type="hidden" name="flexRadioDefault" id="flexRadioDefault2">
                     @endcan
                       @can('ribbonReel.create')
                       <div class="form-check">
@@ -31,6 +35,8 @@
                           Hueso
                         </label>
                       </div>
+                      @else
+                    <input type="hidden" name="flexRadioDefault" id="flexRadioDefault3">
                       @endcan
                 </div>
                 <div class="modal-footer">

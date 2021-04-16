@@ -12,6 +12,14 @@ use App\Models\RibbonProduct;
 
 class WasteBagController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:wasteBag.create')->only('createProduct', 'store');
+    $this->middleware('can:wasteBag.edit')->only('edit', 'update');
+    $this->middleware('can:wasteBag.destroy')->only('destroy');
+    }
+
     public function index()
     {
         $wasteBags = WasteBag::paginate(10);

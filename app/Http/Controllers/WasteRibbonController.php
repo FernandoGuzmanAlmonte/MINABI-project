@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 
 class WasteRibbonController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:wasteRibbon.create')->only('createProduct', 'store');
+    $this->middleware('can:wasteRibbon.edit')->only('edit', 'update');
+    $this->middleware('can:wasteRibbon.destroy')->only('destroy');
+    }
+
     public function index(){
         $wasteRibbons = WasteRibbon::select('nomenclatura', 'fechaInicioTrabajo' )->get();
         $wasteRibbons = WasteRibbon::paginate(10);

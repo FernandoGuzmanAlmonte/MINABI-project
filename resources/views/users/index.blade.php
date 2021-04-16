@@ -64,11 +64,11 @@
                 </div>
             </div>
         </div>        
-        <div class="col-lg-7 d-flex align-items-center">
-            <div class="col-lg-10 pr-0 pl-5">
+        <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 d-lg-flex d-md-flex align-items-center">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 pr-0 pl-lg-5">
                 <input class="form-control" style="width: 100%" type="search" placeholder="Nombre..." name="name" value="{{ ($name != '') ? $name : '' }}">
             </div>
-            <div class="col-lg-2 pl-0 pr-0">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 pl-0 pr-0">
                 <button class="form-control btn btn-secondary pl-2" style="width: 100%" type="submit">
                     <img src={{ asset('images/buscar.svg') }}  class="iconosPequeños float-left">
                     Buscar

@@ -14,7 +14,7 @@
     
 <!-- tabla -->
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 table-responsive-md table-responsive-sm">
             <table class="table table-striped my-4" >
                 <thead class="bg-info">
                 <!--info de cada tabla-->

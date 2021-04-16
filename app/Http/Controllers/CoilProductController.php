@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CoilProductController extends Controller
 {
+    public function __construct()
+    {
+    $this->middleware('can:coilProduct.index')->only('index');
+    }
+
     public function index(Request $request){
         //Valido que los campos existan sino les doy un valor por defecto
         $orderBy = $request->orderBy ?? 'id';

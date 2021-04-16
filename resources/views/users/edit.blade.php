@@ -12,23 +12,20 @@
     @method('PUT')
     <div class="row">
         <input type="hidden"  name="id" value="{{$user->id}}">
-        <div class="col-lg-12 d-flex mt-2">
-            <div class="col-lg-4 px-2">
+           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label><span class="required">*</span> Nombre</label>
                 <input type="text" class="form-control" name="name" value="{{$user->name}}" required>
             </div>
-            <div class="col-lg-4 px-2">
+           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label><span class="required">*</span> Correo</label>
                 <input type="email" class="form-control" name="email" value="{{$user->email}}" required>
             </div>
-            <div class="col-lg-4 px-2">
+           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label><span class="required">*</span> Contraseña</label>
                 <input type="password" class="form-control" name="password"  >
             </div>
-        </div>
 
-        <div class="col-lg-12 d-flex mt-2">
-            <div class="col-lg-4 px-2">
+           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label><span class="required">*</span> Rol</label>
             <select class="form-control" name="role_id">
                 <option selected value="" class="text-muted" disabled>--seleccione un rol--</option>
@@ -39,9 +36,8 @@
                 @endforeach
             </select>
             </div>
-        </div>
 
-        <div class="col-12 mt-4 mb-4 text-center">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3 text-center">
             <a class="btn btn-danger mx-3" href="{{route('user.index')}}">Cancelar</a>
             <button type="submit" class="btn btn-success mx-3">Guardar</button>
         </div> 

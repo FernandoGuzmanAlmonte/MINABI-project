@@ -43,7 +43,6 @@
                     </div>
                 </li>              
                 {{--@endcan--}}
-                @can('cintaBlanca')
                 <li class="nav-item dropdown {{ request()->routeIs('whiteCoil.*', 'whiteRibbon.*', 'whiteCoilProduct.*') ? 'active' : ''}}">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Cinta Blanca
@@ -61,7 +60,6 @@
                         @endcan 
                     </div>
                 </li>  
-                @endcan 
                 @can('coil.index')
                 <a class="nav-item nav-link {{ request()->routeIs('coil.index', 'coil.create', 'coil.show', 'coil.edit') ? 'active' : ''}}" href="{{ route('coil.index') }}">
                     Bobinas

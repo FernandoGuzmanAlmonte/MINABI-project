@@ -8,6 +8,15 @@ use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
 {
+
+    public function __construct()
+    {
+    $this->middleware('can:employee.create')->only('create', 'store');
+    $this->middleware('can:employee.edit')->only('edit', 'update');
+    $this->middleware('can:employee.index')->only('index');
+    $this->middleware('can:employee.destroy')->only('destroy');
+    }
+
     public function index(Request $request)
     {
         //Valido que los campos existan sino les doy un valor por defecto
