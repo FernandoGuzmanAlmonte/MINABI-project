@@ -12,66 +12,59 @@
     
 @section('form')
     <div class="row">
-    <div class="col-lg-12 d-flex mt-2"> 
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Nomenclatura</label>
             <input type="text" class="form-control" name="nomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Status</label>
             <input type="text" class="form-control" name="status" value="{{$ribbon->status}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Largo (metros)</label>
             <input type="text" class="form-control" name="largo" value="{{$ribbon->largo}}" disabled>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Peso (KG)</label>
             <input type="text" class="form-control" name="peso" value="{{$ribbon->peso}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Fecha Inicio</label>
             <input type="text" class="form-control" name="fechaInicioTrabajo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Hora Inicio</label>
             <input type="time" class="form-control" name="horaInicioTrabajo" value="{{$ribbon->horaInicioTrabajo}}" disabled>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Peso Utilizado (KG)</label>
             <input type="datetime" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Fecha Termino</label>
             <input type="text" class="form-control" name="fechaFinTrabajo" value="{{$ribbon->fechaFinTrabajo}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Hora Termino</label>
             <input type="time" class="form-control" name="horaFinTrabajo" value="{{$ribbon->horaFinTrabajo}}" disabled>
         </div>
-    </div>
-    <div class="col-lg-12 d-flex mt-3">
-    <div class="col-lg-4 px-2">
+ 
+
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
         <label>Temperatura (C°)</label>
         <input type="text" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}" disabled>
     </div>
-    <div class="col-lg-4 px-2">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
         <label>Velocidad</label>
         <input type="text" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}" disabled>
     </div>
-</div>    
-    <div class="col-lg-12 d-flex mt-4">
-        <div class="col-lg-12 px-2">
+ 
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-2 mt-3">
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$ribbon->observaciones}}</textarea>
         </div>
-    </div>
 
     <div class="col-lg-12 mt-4 mb-2">
         <h3><img src="{{ asset('images/empleado.svg') }}" class="iconoTitle"> Empleados</h3>
@@ -132,25 +125,23 @@
     <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
     </div>
     
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Nomenclatura</label>
             <input type="text" class="form-control" name="coilNomenclatura" value="{{$coil->nomenclatura}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Fecha Adquisición</label>
             <input type="datetime" class="form-control" name="coilfArribo" value="{{$coil->fArribo}}" disabled>
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Status</label>
             <input type="text" class="form-control" name="coilStatus" value="{{$coil->status}}" disabled>
         </div>
-    </div>
 
     @if (!$cinta->isEmpty())
         <div class="col-lg-12 my-5">
             <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Cinta blanca</h3>
-            
+            <div class="table-responsive">
             <table class="table table-striped my-4" >
                 <thead class="bg-info">
             <tr>
@@ -178,13 +169,14 @@
               @endforeach
             </tbody>
             </table>
+            </div>
         </div>
         @endif
 
     <div class="col-lg-12 my-5">
         <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Bolsas y Mermas de Bolsa</h3>
         <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nueva Bolsa</a>
-        
+        <div class="table-responsive">
         <table class="table table-striped my-4" >
             <thead class="bg-info">
         <tr>
@@ -218,6 +210,7 @@
           @endforeach
         </tbody>
         </table>
+        </div>
     </div>
     @include('ribbons.modalTypeSelection')
 </div>

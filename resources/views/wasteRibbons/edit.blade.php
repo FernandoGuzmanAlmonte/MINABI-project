@@ -11,8 +11,8 @@
     @csrf
     @method('PUT')
     <div class="row">
-        <div class="col-lg-12 d-flex mt-2"> 
-            <div class="col-lg-4 px-2">
+        
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Nomenclatura</label>
                 <input type="text" class="form-control" name="nomenclatura" value={{$wasteRibbon->nomenclatura}} readonly>
                 @error('nomenclatura')
@@ -23,7 +23,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Status</label>
                 <input type="text" class="form-control" name="status" value={{$wasteRibbon->status}} readonly>
                 @error('largo')
@@ -34,7 +34,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Peso (KG)</label>
                 <input type="number" class="form-control" name="peso" value={{$wasteRibbon->peso}}>
                 @error('peso')
@@ -45,10 +45,8 @@
                 <br>
             @enderror
             </div>
-        </div>
     
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Largo (metros)</label>
                 <input type="number" class="form-control" name="largo" value={{$wasteRibbon->largo}}>
                 @error('largo')
@@ -59,7 +57,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Fecha Incio Trabajo</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value={{$wasteRibbon->fechaInicioTrabajo}}>
                 @error('fechaInicioTrabajo')
@@ -70,7 +68,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Hora Inicio Trabajo</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value={{$wasteRibbon->horaInicioTrabajo}}>
                 @error('horaInicioTrabajo')
@@ -81,10 +79,8 @@
                 <br>
             @enderror
             </div>
-        </div>
     
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Temperatura</label>
                 <input type="text" class="form-control" name="temperatura" value={{$wasteRibbon->temperatura}}>
                 @error('temperatura')
@@ -95,7 +91,7 @@
                 <br>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Fecha Fin Trabajo</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo" value={{$wasteRibbon->fechaFinTrabajo}}>
                 @error('fechaFinTrabajo')
@@ -106,7 +102,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Hora Fin Trabajo</label>
                 <input type="time" class="form-control" name="horaFinTrabajo" value={{$wasteRibbon->horaFinTrabajo}}>
                 @error('horaFinTrabajo')
@@ -117,11 +113,8 @@
                 <br>
             @enderror
             </div>
-        </div>
-    
-        <div class="col-lg-12 d-flex mt-3">
             
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Velocidad</label>
                 <input type="number" class="form-control" name="velocidad" value={{$wasteRibbon->velocidad}}>
                 @error('velocidad')
@@ -132,7 +125,6 @@
                 <br>
             @enderror
             </div>
-        </div>
         
         <div class="col-lg-12 d-flex mt-5 mb-2">
             <div class="col-lg-2 px-2"></div>
@@ -147,6 +139,7 @@
                         </button>    
                     </div>
                 </div>
+                <div class="table-responsive">
                 <table class="table table-striped my-2" id="tablaEmpleadosLaboraron">
                     {{-- Modal crear empleado --}}
                     @include('wasteRibbons.modalCreateEmployee')
@@ -180,6 +173,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
             <div class="col-lg-2 px-2"></div>
         </div>
