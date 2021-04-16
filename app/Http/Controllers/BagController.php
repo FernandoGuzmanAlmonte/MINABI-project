@@ -201,6 +201,8 @@ class BagController extends Controller
         $ribbonProduct->status = $bag->status;
         $ribbonProduct->fAdquisicion = $bag->fechaInicioTrabajo; 
         $ribbonProduct->peso = $bag->peso;
+        $ribbonProduct->cantidad = $bag->cantidad;
+        $ribbonProduct->tipoUnidad = $bag->tipoUnidad;
         $ribbonProduct->save();
 
        return redirect()->route('bag.show', $bag);
