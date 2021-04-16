@@ -39,6 +39,17 @@ class RibbonProduct extends Model
             $fechaStart = substr($fecha, 0, 10);
             $fechaEnd = substr($fecha, -10, 10);
 
+            $query->whereBetween('fecha', [$fechaStart, $fechaEnd]);
+        }
+    }
+
+    public function scopeFAdquisicion($query, $fAdquisicion)
+    {
+        if($fAdquisicion)
+        {
+            $fechaStart = substr($fAdquisicion, 0, 10);
+            $fechaEnd = substr($fAdquisicion, -10, 10);
+
             $query->whereBetween('fAdquisicion', [$fechaStart, $fechaEnd]);
         }
     }

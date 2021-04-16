@@ -304,11 +304,36 @@ class CoilController extends Controller
         return view('coils.reporteria', compact('providers', 'bobinas', 'medidas', 'sumaDeTotales', 'totalesDeProveedores'));
     }
 
-    public function produccion(){
-        $produccion = Coil::with(['ribbons' => function($query){
-            $query->with('related');
+    public function produccion(Request $request){
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'nomenclatura';
+        $order = $request->order ?? 'ASC';
+        
+        //No es necesario der un valor por defecto para estos campos ya que se valida si es null
+        //en sus scope()
+        $fecha = $request->fecha;
+        $fAdquisicionRollo = $request->fAdquisicionRollo;
+        $fAdquisicionBolsa = $request->fAdquisicionBolsa;
+
+        //coils
+        $produccion = Coil::with(['ribbons' => function($query) use ($fAdquisicionRollo, $fAdquisicionBolsa){
+            //ribbons
+            $query->with(['related' => function($query) use ($fAdquisicionBolsa){
+                //ribbon_products
+                $query->fAdquisicion($fAdquisicionBolsa)
+                    ->get();
+            }]);         
         }
-        , 'related'])->get();
-        return view('coils.produccion', compact('produccion'));
+        , 'related' => function($query) use ($fAdquisicionRollo){
+            //coil_products
+            $query->fAdquisicion($fAdquisicionRollo)
+                ->get();
+        }])
+        ->orderBy($orderBy, $order)
+        ->fecha($fecha)
+        ->get();
+        
+        //return $produccion;
+        return view('coils.produccion', compact('produccion', 'orderBy', 'order'));
     }
 }

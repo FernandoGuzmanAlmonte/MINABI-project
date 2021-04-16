@@ -37,5 +37,14 @@ class CoilProduct extends Model
         }
     }
 
-    
+    public function scopeFAdquisicion($query, $fAdquisicion)
+    {
+        if($fAdquisicion)
+        {
+            $fechaStart = substr($fAdquisicion, 0, 10);
+            $fechaEnd = substr($fAdquisicion, -10, 10);
+
+            $query->whereBetween('fAdquisicion', [$fechaStart, $fechaEnd]);
+        }
+    }
 }
