@@ -20,7 +20,10 @@
                 var medida = cantidadesBolsas[i].medida.replace(/ /g, "");
                 var medida = medida.replace('/', "");
                 
-                $('#' + tipoUnidad + medida).text(cantidadesBolsas[i].suma_cantidad);
+                //Redondeamos la suma_cantidad a un máximo de 4 decimales
+                var suma_cantidad = Math.round(cantidadesBolsas[i].suma_cantidad * 10000) / 10000;                
+
+                $('#' + tipoUnidad + medida).text(suma_cantidad);
             }
         }
     </script>
