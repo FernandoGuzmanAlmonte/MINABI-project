@@ -28,7 +28,7 @@
         <div class="form-check">
             <input class="form-check-input" type="checkbox" name="permisos[]" value="{{$permiso->id}}" id="{{$permiso->id}}}">
             <label class="form-check-label" for="flexCheckDefault">
-            {{$permiso->name}}
+            {{$permiso->description}}
             </label>
           </div>
         @endforeach

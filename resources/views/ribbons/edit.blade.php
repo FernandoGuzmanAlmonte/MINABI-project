@@ -11,8 +11,8 @@
     @csrf
     @method('PUT')
     <div class="row">
-        <div class="col-lg-12 d-flex mt-2"> 
-            <div class="col-lg-4 px-2">
+        
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Nomenclatura</label>
                 <input type="text" class="form-control" name="nomenclatura" value="{{$ribbon->nomenclatura}}">
                 @error('nomenclatura')
@@ -23,7 +23,7 @@
                 <br>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Status</label>
                 <input type="text" class="form-control" name="status" value="{{$ribbon->status}}" readonly>
                 @error('status')
@@ -34,7 +34,7 @@
                 <br>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Peso (KG)</label>
                 <input type="number" step="0.0001" class="form-control" name="peso" value="{{$ribbon->peso}}">
                 @error('peso')
@@ -45,10 +45,8 @@
                 <br>
                 @enderror
             </div>
-        </div>
     
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Largo (metros)</label>
                 <input type="number" step="0.0001" class="form-control" name="largo" value="{{$ribbon->largo}}">
                 @error('largo')
@@ -59,7 +57,7 @@
                     <br>
                     @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Fecha Inicio</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value="{{$ribbon->fechaInicioTrabajo}}">
                 @error('fechaIncioTrabajo')
@@ -70,7 +68,7 @@
                 <br>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Hora Inicio</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value="{{$ribbon->horaInicioTrabajo}}">
                 @error('horaInicioTrabajo')
@@ -81,10 +79,8 @@
                 <br>
                 @enderror
             </div>
-        </div>
     
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Peso Utilizado (KG)</label>
                 <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="{{$ribbon->pesoUtilizado}}" readonly>
                 @error('pesoUtilizado')
@@ -95,7 +91,7 @@
                 <br>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Fecha Termino</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo" value="{{$ribbon->fechaFinTrabajo}}">
                 @error('fechaFinTermino')
@@ -106,7 +102,7 @@
                 <br>
                 @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Hora Termino</label>
                 <input type="time" class="form-control" name="horaFinTrabajo" value="{{$ribbon->horaFinTrabajo}}">
                 @error('horaFinTrabajo')
@@ -117,17 +113,15 @@
                 <br>
                 @enderror
             </div>
-        </div>
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+      
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Temperatura (C°)</label>
                 <input type="number" step="0.0001" class="form-control" name="temperatura" value="{{$ribbon->temperatura}}">
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Velocidad</label>
                 <input type="number" step="0.0001" class="form-control" name="velocidad" value="{{$ribbon->velocidad}}">
             </div>
-        </div>
 
         <div class="col-lg-12 d-flex mt-5 mb-2">
             <div class="col-lg-2 px-2"></div>
@@ -142,6 +136,7 @@
                         </button>    
                     </div>
                 </div>
+                <div class="table-responsive">
                 <table class="table table-striped my-2" id="tablaEmpleadosLaboraron">
                     {{-- Modal crear empleado --}}
                     @include('ribbons/modalCreateEmployee')
@@ -175,6 +170,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
             <div class="col-lg-2 px-2"></div>
         </div>
@@ -192,6 +188,7 @@
                         </button>    
                     </div>
                 </div>
+                <div class="table-responsive">
                 <table class="table table-striped my-2" id="tablaCintas">
                     {{-- Modal crear empleado --}}
                     @include('ribbons/modalCreateCinta')
@@ -228,13 +225,13 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
             <div class="col-lg-2 px-2"></div>
         </div>
         @endif
         
-        <div class="col-lg-12 d-flex mt-4">
-            <div class="col-lg-12 px-2">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-2 mt-2">
                 <label>Observaciones</label>
                 <textarea rows="3" class="form-control" name="observaciones" placeholder="Máximo 255 caracteres">{{$ribbon->observaciones}}</textarea>
                 @error('observaciones')
@@ -245,7 +242,6 @@
                 <br>
                 @enderror
             </div>
-        </div>
 
     <div class="col-12 mt-4 mb-4 text-center">
         <a class="btn btn-danger mx-3" href="{{route('ribbon.show', $ribbon->id)}}">Cancelar</a>

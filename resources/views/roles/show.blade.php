@@ -30,7 +30,7 @@
         <div class="form-check">
             <input class="form-check-input" type="checkbox" readonly checked>
             <label class="form-check-label" for="flexCheckDefault">
-            {{$permiso->name}}
+            {{$permiso->description}}
             </label>
           </div>
         @endforeach

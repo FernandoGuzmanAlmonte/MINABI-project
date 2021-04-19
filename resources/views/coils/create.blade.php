@@ -10,8 +10,7 @@
 <form action="{{ route('coil.store') }}" method="POST">
     @csrf
     <div class="row">
-    <div class="col-lg-12 d-flex mt-2">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label>Nomenclatura</label>
             <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}" id="nomenclaturas" >
             @error('nomenclatura')
@@ -22,7 +21,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label><span class="required">*</span>Fecha llegada</label>
             <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}"  id="fArribo">
             @error('fArribo')
@@ -33,7 +32,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label><span class="required">*</span>Tipo bobina</label>
             <select class="form-control" name="coil_type_id" id="tipo" >
                 <option selected value="" class="text-muted" disabled>--seleccione tipo de bobina--</option>
@@ -51,10 +50,9 @@
                 <br>
             @enderror
         </div>
-    </div>
+    
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span>Proveedor</label>
             @if( Route::is('coil.createFromProvider') )
                 <input type="text" class="form-control" value={{ $provider->nombreEmpresa }} readonly>    
@@ -77,7 +75,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Status</label>
             <input type="datetime" class="form-control" name="status" value="DISPONIBLE" readonly>
             @error('status')
@@ -88,7 +86,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span>Largo (metros)</label>
             <input type="number" step="0.0001" class="form-control" name="largoM" value="{{old('largoM')}}">
             @error('largoM')
@@ -99,10 +97,8 @@
                 <br>
             @enderror
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span>Peso Bruto (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoBruto" value="{{old('pesoBruto')}}">
             @error('pesoBruto')
@@ -113,7 +109,7 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Peso Neto (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoNeto" value="0" readonly>
             @error('pesoNeto')
@@ -124,29 +120,27 @@
                 <br>
             @enderror
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Peso Utilizado (Kg)</label>
             <input type="number" step="0.0001" class="form-control" name="pesoUtilizado" value="0" readonly>
         </div>
-    </div>
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Diametro Exterior</label>
             <input type="number" step="0.0001" class="form-control" name="diametroExterno" value="{{old('diametroExterno')}}">
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Diametro Bobina</label>
             <input type="number" step="0.0001" class="form-control" name="diametroBobina" value="{{old('diametroBobina')}}">
         </div>
-        <div class="col-lg-4 px-2">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label>Diametro Interior</label>
             <input type="number" step="0.0001" class="form-control" name="diametroInterno" value="{{old('diametroInterno')}}">
         </div>
-    </div>
+    
 
-    <div class="col-lg-12 d-flex mt-3">
-        <div class="col-lg-4 px-2">
+   
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
             <label><span class="required">*</span>Costo</label>
             <input type="number" step="0.0001" class="form-control" name="costo" value="{{old('costo')}}">
             @error('costo')
@@ -157,13 +151,11 @@
                 <br>
             @enderror
         </div>
-    </div>
-    <div class="col-lg-12 d-flex mt-4">
-        <div class="col-lg-12 px-2">
+  
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-2 mt-2">
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones">{{old('observaciones')}}</textarea>
         </div>
-    </div>
     
     @if( Route::is('coil.createFromProvider') )
         <input type="hidden" name="provider_id" value="{{ $provider->id }}">

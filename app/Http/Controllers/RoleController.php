@@ -38,7 +38,7 @@ class RoleController extends Controller
 
     public function edit(Role $rol)
     {
-        $permisos = $rol->permissions()->select('id')->get()->makeHidden('pivot');
+        $permisos = $rol->permissions()->select('description')->get()->makeHidden('pivot');
         $arreglo = [];
         //$permisos =  Permission::all();
         foreach($permisos as $permiso)

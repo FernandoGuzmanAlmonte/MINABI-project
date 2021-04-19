@@ -11,8 +11,8 @@
     @csrf
     @method('PUT')
     <div class="row">
-        <div class="col-lg-12 d-flex mt-2">
-            <div class="col-lg-4 px-2">
+     
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Nomenclatura</label>
                 <input type="text" class="form-control" name="nomenclatura" value={{ $bag->nomenclatura }} readonly>
                 @error('nomenclatura')
@@ -23,11 +23,11 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Status</label>
                 <input type="text" class="form-control" name="status" value={{$bag->status}} readonly>
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
                 <label>Cantidad</label>
                 <input type="number" step="0.0001" class="form-control" name="cantidad" value={{ $bag->cantidad }}>
                 @error('cantidad')
@@ -38,13 +38,13 @@
                 <br>
             @enderror
             </div>
-        </div>
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+       
+     
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Temperatura</label>
                 <input type="number" step="0.0001" class="form-control" name="temperatura" value={{ $bag->temperatura }}>
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Fecha Inicio</label>
                 <input type="date" class="form-control" name="fechaInicioTrabajo" value={{ $bag->fechaInicioTrabajo }}>
                 @error('fechaInicioTrabajo')
@@ -55,7 +55,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Hora Inicio</label>
                 <input type="time" class="form-control" name="horaInicioTrabajo" value={{ $bag->horaInicioTrabajo }}>
                 @error('horaInicioTrabajo')
@@ -66,9 +66,9 @@
                 <br>
             @enderror
             </div>
-        </div>
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+    
+      
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Medida (largo x ancho)</label>
                 <select class="form-control" name="bag_measure_id">
                     @foreach($combinedBagMeasures as $key => $bagMeasure)                    
@@ -78,7 +78,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Fecha Termino</label>
                 <input type="date" class="form-control" name="fechaFinTrabajo" value={{ $bag->fechaFinTrabajo }}>
                 @error('fechaFinTrabajo')
@@ -89,7 +89,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Hora Termino</label>
                 <input type="time" class="form-control" name="horaFinTrabajo" value={{ $bag->horaFinTrabajo }}>
                 @error('horaFinTrabajo')
@@ -100,9 +100,9 @@
                 <br>
             @enderror
             </div>
-        </div>
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+   
+   
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Tipo de unidad</label>
                 <select class="form-control" name="tipoUnidad">
                     <option value="MILLAR" {{ ($bag->tipoUnidad === 'MILLAR') ? 'Selected' : '' }}>
@@ -120,7 +120,7 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Peso (Kg)</label>
                 <input type="number" step="0.0001" class="form-control" name="peso" value={{ $bag->peso }}>
                 @error('peso')
@@ -131,13 +131,13 @@
                 <br>
             @enderror
             </div>
-            <div class="col-lg-4 px-2">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Velocidad</label>
                 <input type="number" step="0.0001" class="form-control" name="velocidad" value={{ $bag->velocidad }}>
             </div>
-        </div>
-        <div class="col-lg-12 d-flex mt-3">
-            <div class="col-lg-4 px-2">
+    
+        
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
                 <label>Cliente Stock</label>
                 <select class="form-control" name="clienteStock">
                     <option value="CLIENTE" {{ ($bag->clienteStock === 'CLIENTE') ? 'Selected' : '' }}>
@@ -155,7 +155,6 @@
                 <br>
             @enderror
             </div>
-        </div>
         
         <div class="col-lg-12 d-flex mt-5 mb-2">
             <div class="col-lg-2 px-2"></div>
@@ -170,6 +169,7 @@
                         </button>    
                     </div>
                 </div>
+                <div class="table-responsive">
                 <table class="table table-striped my-2" id="tablaEmpleadosLaboraron">
                     {{-- Modal crear empleado --}}
                     @include('bags.modalCreateEmployee')
@@ -203,6 +203,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
             <div class="col-lg-2 px-2"></div>
         </div>

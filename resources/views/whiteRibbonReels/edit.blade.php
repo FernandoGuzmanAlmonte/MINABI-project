@@ -36,7 +36,7 @@
             @enderror
             </div> 
        
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-2 mt-3">
                 <label>Observaciones</label>
                 <textarea rows="3" class="form-control" name="observaciones">{{$ribbonReel->observaciones}}</textarea>
             </div>
