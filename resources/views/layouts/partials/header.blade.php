@@ -71,11 +71,11 @@
                 </a>
                 @endcan
                 @can('ribbonProduct.index', Model::class)
-                <a class="nav-item nav-link {{ request()->routeIs('bag.*', 'ribbonProduct.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
+                <a class="nav-item nav-link {{ request()->routeIs('bag.index', 'bag.create', 'bag.show', 'bag.edit', 'ribbonProduct.*') ? 'active' : ''}}" href="{{ route('ribbonProduct.index') }}">
                     Bolsas
                 </a>
                 @endcan
-                <li class="nav-item dropdown {{ request()->routeIs('coil.reporteria', 'ribbon.reporteria', 'bag.reporteria') ? 'active' : ''}}">
+                <li class="nav-item dropdown {{ request()->routeIs('coil.reporteria', 'ribbon.reporteria', 'bag.reporteria', 'coil.produccion') ? 'active' : ''}}">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Reportes
                     </a>

@@ -33,7 +33,7 @@ class WhiteCoilController extends Controller
         $tipo = $request->tipo;
         $fecha = $request->fecha;
 
-        $whiteCoils = WhiteCoil::join('coil_types', 'white_coils.coil_type_id', '=', 'coil_types.id')
+        $whiteCoils = WhiteCoil::leftjoin('coil_types', 'white_coils.coil_type_id', '=', 'coil_types.id')
             ->select('white_coils.id', 'white_coils.nomenclatura','white_coils.fArribo', 'white_coils.status', 'white_coils.coil_type_id', 'coil_types.alias')
             ->nomenclatura($nomenclatura)
             ->status($status)
@@ -122,5 +122,12 @@ class WhiteCoilController extends Controller
         $whiteCoil->save();
 
         return redirect()->route('whiteCoil.show', $whiteCoil);
-    }  
+    }
+
+    public function destroy(Request $request, WhiteCoil $whiteCoil)
+    {
+        $whiteCoil->delete();
+
+        return redirect()->route('whiteCoil.index');
+    }
 }

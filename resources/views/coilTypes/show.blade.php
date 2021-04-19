@@ -44,12 +44,18 @@
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{ $coilType->observaciones }}</textarea>
         </div>
-    @can('coilType.edit')
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('coilType.edit', $coilType)}}">Editar</a>
-    </div>
-    @endcan
-
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3 text-center">
+            <form action="{{ route('coilType.destroy', $coilType->id) }}" method="POST">
+                @csrf
+                @method('delete')
+                @can('coilType.edit')
+                    <a class="btn btn-warning mx-3" href="{{route('coilType.edit', $coilType)}}">Editar</a>
+                @endcan
+                @can('coilType.destroy')
+                    <button class="btn btn-danger mx-3" type="submit" name="coilTypeForm">Eliminar</button>
+                @endcan
+            </form>
+        </div>
         <div class="col-lg-6 col-md-6 col-sm-6 px-2 float-left">
             <h3><img src="{{ asset('images/bolsa-de-papel.svg') }}" class="iconoTitle"> Medidas de Bolsas </h3>
         </div>

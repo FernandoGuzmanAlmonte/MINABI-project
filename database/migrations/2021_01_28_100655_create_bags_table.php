@@ -16,7 +16,7 @@ class CreateBagsTable extends Migration
         Schema::create('bags', function (Blueprint $table) {
             $table->id();
             //$table->unsignedBigInteger('ribbon_id');
-            $table->unsignedBigInteger('bag_measure_id');
+            $table->unsignedBigInteger('bag_measure_id')->nullable();
             
             $table->string('nomenclatura', 28);
             $table->date('fechaInicioTrabajo');
@@ -42,8 +42,8 @@ class CreateBagsTable extends Migration
                 ->on('ribbons');*/
                 
             $table->foreign('bag_measure_id')
-                ->references('id')
-                ->on('bag_measures');
+                ->references('id')->on('bag_measures')
+                ->onDelete('set null');
             
 
             $table->timestamps();

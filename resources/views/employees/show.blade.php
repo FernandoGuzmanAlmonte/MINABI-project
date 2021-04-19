@@ -43,7 +43,12 @@
 
     @can('employee.edit')
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('employee.edit', $employee)}}">Editar</a>
+        <form action="{{ route('employee.destroy', $employee->id) }}" method="POST">
+            @csrf
+            @method('delete')
+            <a class="btn btn-warning mx-3" href="{{route('employee.edit', $employee)}}">Editar</a>
+            <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+        </form>
     </div>   
     @endcan
 </div>

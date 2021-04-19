@@ -66,8 +66,13 @@
         </table>
     </div>--}}
 
-    <div class="col-12 mt-2 mb-2 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('whiteRibbon.edit', $whiteRibbon->id)}}">Editar</a>
+    <div class="col-12 mt-5 text-center">
+        <form action="{{ route('whiteRibbon.destroy', $whiteRibbon) }}" method="POST">
+            @csrf
+            @method('delete')
+            <a class="btn btn-warning mx-3" href="{{route('whiteRibbon.edit', $whiteRibbon->id)}}">Editar</a>
+            <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+        </form>
     </div>
 
     <div class="col-lg-12 d-flex mt-5">

@@ -30,7 +30,12 @@
         </div>
     @can('provider.edit')
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>
+        <form action="{{ route('provider.destroy', $provider->id) }}" method="POST">
+            @csrf
+            @method('delete')
+            <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>
+            <button class="btn btn-danger mx-3" type="submit" name="providerForm">Eliminar</button>
+        </form>
     </div>
     @endcan
     

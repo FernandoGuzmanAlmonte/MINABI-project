@@ -117,14 +117,25 @@ class ProviderController extends Controller
         return redirect()->route('provider.show', $provider);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $contact = Contact::find($id);
+        if($request->has('providerForm'))
+        {
+            $provider = Provider::find($id);
 
-        $provider = $contact->provider;
+            $provider->delete();
 
-        $contact->delete();
+            return redirect()->route('provider.index');
+        }
+        else
+        {
+            $contact = Contact::find($id);
 
-        return redirect()->route('provider.show', $provider);
+            $provider = $contact->provider;
+
+            $contact->delete();
+
+            return redirect()->route('provider.show', $provider);
+        }
     }
 }

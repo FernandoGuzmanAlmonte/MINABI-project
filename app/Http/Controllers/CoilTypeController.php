@@ -124,14 +124,25 @@ class CoilTypeController extends Controller
         return redirect()->route('coilType.show', $coilType);
     }
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        $bagMeasure = BagMeasure::find($id);
+        if($request->has('coilTypeForm'))
+        {
+            $coilType = CoilType::find($id);
 
-        $coilType = $bagMeasure->coilType;
+            $coilType->delete();
 
-        $bagMeasure->delete();
+            return redirect()->route('coilType.index');
+        }
+        else
+        {
+            $bagMeasure = BagMeasure::find($id);
 
-        return redirect()->route('coilType.show', $coilType);
+            $coilType = $bagMeasure->coilType;
+    
+            $bagMeasure->delete();
+    
+            return redirect()->route('coilType.show', $coilType);
+        }
     }
 }

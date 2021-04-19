@@ -71,7 +71,17 @@ select option {
     color: #343A40;
 }
 
-.iconosFiltrado{
+.iconosFiltrado {
     width: 17px; height: 17px;
+}
+
+.btn-orange {
+    background-color: #FE5204;
+    color: white;
+}
+
+.btn-orange:hover {
+    background-color: #E64D08;
+    color: white;
 }
 

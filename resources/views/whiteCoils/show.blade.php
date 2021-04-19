@@ -52,7 +52,12 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$whiteCoil->observaciones}}</textarea>
         </div>
     <div class="col-12 mt-5 text-center">
-        <a class="btn btn-warning mx-3 mb-5" href="{{route('whiteCoil.edit', $whiteCoil->id)}}">Editar</a>
+        <form action="{{ route('whiteCoil.destroy', $whiteCoil) }}" method="POST">
+            @csrf
+            @method('delete')
+            <a class="btn btn-warning mx-3 mb-5" href="{{route('whiteCoil.edit', $whiteCoil->id)}}">Editar</a>
+            <button class="btn btn-danger mx-3 mb-5" type="submit">Eliminar</button>
+        </form>
     </div>
     <div class="col-lg-12 my-3">
     <h3><img src="{{ asset('images/cinta.svg') }}" class="iconoTitle"> Rollos de Cinta </h3>

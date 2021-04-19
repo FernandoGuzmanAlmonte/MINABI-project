@@ -30,7 +30,7 @@
     <div class="col-lg-12 d-flex mt-3">
         <div class="col-lg-4 px-2">
             <label>Proveedor</label>
-            <input type="text" class="form-control" name="provider_id" value="{{$coil->provider->nombreEmpresa}}" disabled>
+            <input type="text" class="form-control" name="provider_id" value="{{$coil->provider->nombreEmpresa ?? ''}}" disabled>
         </div>
         <div class="col-lg-4 px-2 disponible">
             <label>Status</label>
@@ -86,22 +86,34 @@
         </div>
     </div>
     <div class="col-12 mt-5 text-center">
-        @can('coil.edit', Model::class)
-        <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
-        @endcan
-        @can('coil.terminar')
-        <button class="btn btn-danger mx-3 mb-5"  onclick="terminar({{$coil->id}})">Terminar</button>
-        @endcan
-        @if($errors->any())
-        <div class="col-12 mt-3 text-center">
-            <br>
-                <div class="alert alert-danger">
-                    {{$errors->first()}}
-                </div>
+        <form action="{{ route('coil.destroy', $coil) }}" method="POST">
+            @csrf
+            @method('delete')
+            
+            @can('coil.edit', Model::class)
+                <a class="btn btn-warning mx-3 mb-5" href="{{route('coil.edit', $coil->id)}}">Editar</a>
+            @endcan
+
+            @can('coil.terminar')
+                <button class="btn btn-outline-danger mx-3 mb-5"  onclick="terminar({{$coil->id}})">Terminar</button>
+            @endcan
+
+            @can('coil.destroy')
+                <button class="btn btn-danger mx-3 mb-5" type="submit">Eliminar</button>
+            @endcan
+
+            @if($errors->any())
+            <div class="col-12 mt-3 text-center">
                 <br>
-        </div>
-        @endif
-    </div>
+                    <div class="alert alert-danger">
+                        {{$errors->first()}}
+                    </div>
+                    <br>
+            </div>
+            @endif
+        </form>
+    </div>    
+
     <div class="col-lg-12 my-3">
     <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollos </h3>
     <a class="btn btn-success float-right mb-3"  data-toggle="modal" data-target="#createProduct">Nuevo Rollo</a>

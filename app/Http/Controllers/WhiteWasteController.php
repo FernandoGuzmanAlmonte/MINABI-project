@@ -124,4 +124,16 @@ class WhiteWasteController extends Controller
             return redirect()->back()->withInput($request->all())->withErrors('El peso de la merma sobrepasa el limite de peso de la bobina');
         }*/
     }
+
+    public function destroy(WhiteWaste $whiteWaste, Request $request)
+    {
+        foreach($whiteWaste->whiteCoils as $whiteCoil)
+        {
+            $whiteCoil->whiteWaste()->detach($whiteWaste);
+        }
+
+        $whiteWaste->delete();
+
+        return redirect()->route('whiteCoilProduct.index');
+    }
 }

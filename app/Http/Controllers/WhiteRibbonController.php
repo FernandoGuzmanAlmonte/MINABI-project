@@ -140,4 +140,18 @@ class WhiteRibbonController extends Controller
         }*/
 
     }
+
+    public function destroy(WhiteRibbon $whiteRibbon, Request $request)
+    {
+        //Eliminamos las relaciones del whiteRibbon con whiteCoil  
+        foreach($whiteRibbon->whiteCoils as $whiteCoil)
+        {
+            $whiteCoil->whiteRibbons()->detach($whiteRibbon);
+        }
+
+        //Eliminamos el registro de whiteRibbon desde su tabla 'whiteRibbons'
+        $whiteRibbon->delete();
+
+        return redirect()->route('whiteCoilProduct.index');
+    }
 }

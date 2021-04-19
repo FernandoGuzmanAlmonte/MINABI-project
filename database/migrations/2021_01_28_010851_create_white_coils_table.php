@@ -28,12 +28,12 @@ class CreateWhiteCoilsTable extends Migration
             $table->timestamps();
 
             $table->foreign('provider_id')
-                ->references('id')
-                ->on('providers');
+                ->references('id')->on('providers')
+                ->onDelete('set null');
             
             $table->foreign('coil_type_id')
-                ->references('id')
-                ->on('coil_types');               
+                ->references('id')->on('coil_types')
+                ->onDelete('set null');
         });
     }
 
