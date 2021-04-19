@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $employee = new Employee();
+        /*$employee = new Employee();
         $employee->nombre       =   "ARTURO";
         $employee->fNacimiento  =   "1999-02-02";
         $employee->fIngreso     =   "2021-02-03";
@@ -347,7 +347,7 @@ class DatabaseSeeder extends Seeder
                                         'cantidad'=>$bag->cantidad,
                                         'unidad'=>$bag->tipoUnidad,
                                         'medidaBolsa'=>$bag->bagMeasure->largo .' x '. $bag->bagMeasure->ancho . ($ribbon->whiteRibbons()->get()->isEmpty()? '' : ' C/P')]);
-        
+        */
 
         $this->call(RoleSeeder::class);
 
