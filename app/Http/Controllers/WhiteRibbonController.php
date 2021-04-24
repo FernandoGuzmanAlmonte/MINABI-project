@@ -141,7 +141,7 @@ class WhiteRibbonController extends Controller
 
     }
 
-    public function destroy(WhiteRibbon $whiteRibbon, Request $request)
+    public function destroy(WhiteRibbon $whiteRibbon)
     {
         //Eliminamos las relaciones del whiteRibbon con whiteCoil  
         foreach($whiteRibbon->whiteCoils as $whiteCoil)

@@ -124,8 +124,21 @@ class WhiteCoilController extends Controller
         return redirect()->route('whiteCoil.show', $whiteCoil);
     }
 
-    public function destroy(Request $request, WhiteCoil $whiteCoil)
+    public function destroy(WhiteCoil $whiteCoil)
     {
+        foreach($whiteCoil->whiteRibbons as $whiteRibbon)
+        {
+            foreach($whiteRibbon->whiteWasteRibbons as $whiteWasteRibbon){
+                $whiteWasteRibbon->delete();
+            }
+
+            foreach($whiteRibbon->whiteReels as $whiteReel){
+                $whiteReel->delete();
+            }
+
+            $whiteRibbon->delete();
+        }
+
         $whiteCoil->delete();
 
         return redirect()->route('whiteCoil.index');

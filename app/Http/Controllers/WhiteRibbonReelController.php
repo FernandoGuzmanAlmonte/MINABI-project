@@ -110,4 +110,18 @@ class WhiteRibbonReelController extends Controller
             return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso del rollo');
         }*/
     }
+    
+    public function destroy(WhiteRibbonReel $whiteRibbonReel)
+    {
+        //Eliminamos las relaciones del whiteRibbonReel con whiteRibbons  
+        foreach($whiteRibbonReel->whiteRibbons as $whiteRibbon)
+        {
+            $whiteRibbon->whiteReels()->detach($whiteRibbonReel);           
+        }
+        
+        //Eliminamos el registro de whiteRibbonReel desde su tabla 'whiteRibbonReel'
+        $whiteRibbonReel->delete();
+
+        return redirect()->route('whiteRibbon.show', $whiteRibbon);
+    }
 }

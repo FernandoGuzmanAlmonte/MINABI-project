@@ -90,11 +90,20 @@
         </div>
     </div>
 
-    @can('wasteBag.edit')
+    
     <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('wasteBag.edit', $wasteBag)}}">Editar</a>
+        <form action="{{ route('wasteBag.destroy', $wasteBag) }}" method="POST">
+            @csrf
+            @method('delete')
+            @can('wasteBag.edit')
+                <a class="btn btn-warning mx-3" href="{{route('wasteBag.edit', $wasteBag)}}">Editar</a>
+            @endcan
+            @can('wasteBag.destroy')
+                <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+            @endcan
+        </form>
     </div>   
-    @endcan
+    
       
     <div class="col-lg-12 d-flex mt-5">
         <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle"> Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>

@@ -115,11 +115,21 @@
     </div>
     @endif 
 
-    @can('ribbon.edit')
+    
     <div class="col-12 mt-2 mb-2 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>
+        <form action="{{ route('ribbon.destroy', $ribbon) }}" method="POST">
+            @csrf
+            @method('delete')
+
+            @can('ribbon.edit')
+                <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>
+            @endcan
+            @can('ribbon.destroy')
+                <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+            @endcan
+        </form>
     </div>
-    @endcan
+    
     
     <div class="col-lg-12 d-flex mt-5">
     <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>

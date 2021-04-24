@@ -12,33 +12,35 @@
 
 @section('form')
 <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
-            <label>Nombre Empresa</label>
-            <input type="text" class="form-control" name="nombreEmpresa" value="{{ $provider->nombreEmpresa }}" disabled>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
-            <label>Dirección</label>
-            <input type="text" class="form-control" name="direccion" value="{{ $provider->direccion }}" disabled>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
-            <label>Pagina web</label>
-            <input type="text" class="form-control" name="paginaWeb" value="{{ $provider->paginaWeb }}" disabled>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
-            <label>Estado</label>
-            <input type="text" class="form-control" name="estado" value="{{ $provider->estado }}" disabled>
-        </div>
-    @can('provider.edit')
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
+        <label>Nombre Empresa</label>
+        <input type="text" class="form-control" name="nombreEmpresa" value="{{ $provider->nombreEmpresa }}" disabled>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
+        <label>Dirección</label>
+        <input type="text" class="form-control" name="direccion" value="{{ $provider->direccion }}" disabled>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
+        <label>Pagina web</label>
+        <input type="text" class="form-control" name="paginaWeb" value="{{ $provider->paginaWeb }}" disabled>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 px-2 mt-2">
+        <label>Estado</label>
+        <input type="text" class="form-control" name="estado" value="{{ $provider->estado }}" disabled>
+    </div>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3 text-center">
         <form action="{{ route('provider.destroy', $provider->id) }}" method="POST">
             @csrf
             @method('delete')
-            <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>
-            <button class="btn btn-danger mx-3" type="submit" name="providerForm">Eliminar</button>
+            @can('provider.edit')
+                <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>
+            @endcan
+            @can('provider.destroy')
+                <button class="btn btn-danger mx-3" type="submit" name="providerForm">Eliminar</button>
+            @endcan
         </form>
     </div>
-    @endcan
-    
+
     <div class="col-lg-12 d-flex mt-5">
         <div class="col-lg-6 px-2 float-left">
             <h3><img src="{{ asset('images/contactos.svg') }}" class="iconoTitle"> Contactos </h3>

@@ -65,5 +65,11 @@ class RoleController extends Controller
         return redirect()->route('rol.show', compact('rol'));
     }
 
+    public function destroy(Role $rol)
+    {
+        $rol->delete();
+
+        return redirect()->route('rol.index');
+    }
    
 }

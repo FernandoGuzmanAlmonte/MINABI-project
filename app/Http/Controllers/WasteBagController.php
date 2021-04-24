@@ -137,8 +137,17 @@ class WasteBagController extends Controller
         return redirect()->route('wasteBag.show', $wasteBag);
     }
 
-    public function delete()
-    {
+    public function destroy(WasteBag $wasteBag)
+    {        
+        //Eliminamos las relaciones del wasteBag con ribbons  
+        foreach($wasteBag->ribbons as $ribbon)
+        {
+            $ribbon->wasteBags()->detach($wasteBag);           
+        }
+        
+        //Eliminamos el registro de wasteBag desde su tabla 'wasteBag'
+        $wasteBag->delete();
 
+        return redirect()->route('ribbon.show', $ribbon);
     }
 }

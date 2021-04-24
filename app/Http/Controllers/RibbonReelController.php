@@ -107,4 +107,18 @@ class RibbonReelController extends Controller
             return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso del rollo');
         }*/
     }
+
+    public function destroy(RibbonReel $ribbonReel)
+    {        
+        //Eliminamos las relaciones del wasteBag con ribbons  
+        foreach($ribbonReel->ribbons as $ribbon)
+        {
+            $ribbon->reels()->detach($ribbonReel);           
+        }
+        
+        //Eliminamos el registro de wasteBag desde su tabla 'wasteBag'
+        $ribbonReel->delete();
+
+        return redirect()->route('ribbon.show', $ribbon);
+    }
 }

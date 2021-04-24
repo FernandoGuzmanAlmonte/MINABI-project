@@ -229,4 +229,30 @@ class RibbonController extends Controller
         );
         return view('ribbons.reporteria', compact('providers', 'medidas', 'rollos', 'totalesDeProveedores', 'sumaDeTotales'));
     }
+
+    public function destroy(Ribbon $ribbon)
+    {
+        foreach($ribbon->wasteBags as $wasteBag){
+            $wasteBag->delete();
+        }
+
+        foreach($ribbon->bags as $bag){
+            $bag->delete();
+        }
+
+        foreach($ribbon->reels as $reel){
+            $reel->delete();
+        }
+
+        //Eliminamos las relaciones del whiteRibbon con whiteCoil  
+        foreach($ribbon->coils as $coil)
+        {
+            $coil->ribbons()->detach($ribbon);
+        }
+
+        //Eliminamos el registro de whiteRibbon desde su tabla 'whiteRibbons'
+        $ribbon->delete();
+
+        return redirect()->route('coilProduct.index');
+    }
 }

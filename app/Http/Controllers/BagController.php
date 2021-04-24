@@ -234,4 +234,18 @@ class BagController extends Controller
         
         return view('bags.reporteria', compact('medidasBolsas', 'cantidadesBolsas'));
     }
+
+    public function destroy(Bag $bag)
+    {        
+        //Eliminamos las relaciones del wasteBag con ribbons  
+        foreach($bag->ribbons as $ribbon)
+        {
+            $ribbon->bags()->detach($bag);           
+        }
+        
+        //Eliminamos el registro de wasteBag desde su tabla 'wasteBag'
+        $bag->delete();
+
+        return redirect()->route('ribbon.show', $ribbon);
+    }
 }

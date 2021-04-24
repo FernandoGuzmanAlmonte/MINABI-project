@@ -336,4 +336,28 @@ class CoilController extends Controller
         //return $produccion;
         return view('coils.produccion', compact('produccion', 'orderBy', 'order'));
     }
+
+    public function destroy(Coil $coil)
+    {
+        foreach($coil->ribbons as $ribbon)
+        {
+            foreach($ribbon->wasteBags as $wasteBag){
+                $wasteBag->delete();
+            }
+
+            foreach($ribbon->bags as $bag){
+                $bag->delete();
+            }
+
+            foreach($ribbon->reels as $reel){
+                $reel->delete();
+            }
+
+            $ribbon->delete();
+        }
+
+        $coil->delete();
+
+        return redirect()->route('coil.index');
+    }    
 }

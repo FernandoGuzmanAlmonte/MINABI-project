@@ -44,11 +44,20 @@
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{ $whiteWasteRibbon->observaciones }}</textarea>
         </div>  
-@can('whiteWasteRibbon.edit')
-<div class="col-12 mt-3 text-center">
-    <a class="btn btn-warning mx-3" href="{{route('whiteWasteRibbon.edit', $whiteWasteRibbon)}}">Editar</a>
-</div>  
-@endcan
+        
+        <div class="col-12 mt-3 text-center">
+            <form action="{{ route('whiteWasteRibbon.destroy', $whiteWasteRibbon) }}" method="POST">
+                @csrf
+                @method('delete')
+                @can('whiteWasteRibbon.edit')
+                    <a class="btn btn-warning mx-3" href="{{route('whiteWasteRibbon.edit', $whiteWasteRibbon)}}">Editar</a>
+                @endcan
+                @can('whiteWasteRibbon.destroy')
+                    <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+                @endcan
+            </form>
+        </div>  
+        
      
 
     <div class="col-lg-12 d-flex mt-5">

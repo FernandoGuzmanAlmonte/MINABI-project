@@ -44,7 +44,21 @@
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$ribbonReel->observaciones}}</textarea>
         </div>
+        
+        <div class="col-12 mt-4 text-center">
+            <form action="{{ route('ribbonReel.destroy', $ribbonReel) }}" method="POST">
+                @csrf
+                @method('delete')
     
+                @can('ribbonReel.edit')
+                    <a class="btn btn-warning mx-3" href="{{route('ribbonReel.edit', $ribbonReel->id)}}">Editar</a>
+                @endcan
+                @can('ribbonReel.destroy')
+                    <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+                @endcan
+            </form>
+        </div>  
+
     <div class="col-lg-12 d-flex mt-5">
         <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
         </div>
@@ -84,11 +98,8 @@
 
 
     
-    @can('ribbonReel.edit')
-    <div class="col-12 mt-3 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('ribbonReel.edit', $ribbonReel->id)}}">Editar</a>
-    </div>  
-    @endcan
+    
+    
 </div>
 
 @endsection

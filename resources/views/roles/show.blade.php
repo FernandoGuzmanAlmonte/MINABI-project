@@ -35,10 +35,17 @@
           </div>
         @endforeach
     </div>
-    @can('rol.edit')
     <div class="col-12 mt-4 mb-4 text-center">
-        <a class="btn btn-warning mx-3" href="{{route('rol.edit', $rol)}}">Editar</a>
-    </div>   
-    @endcan
+        <form action="{{ route('rol.destroy', $rol) }}" method="POST">
+            @csrf
+            @method('delete')
+            @can('rol.edit')
+                <a class="btn btn-warning mx-3" href="{{route('rol.edit', $rol)}}">Editar</a>
+            @endcan
+            @can('rol.destroy')
+                <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+            @endcan
+        </form>
+    </div>       
 </div>
 @endsection
