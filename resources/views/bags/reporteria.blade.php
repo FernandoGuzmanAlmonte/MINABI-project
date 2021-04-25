@@ -1,10 +1,10 @@
 @extends('layouts.tablaIndexSinAgregar')
 
-@section('title', 'Reporte rollos')
+@section('title', 'Reporte bolsas')
 
 @section('imgUrl',  asset('images/rollo-de-papel.svg'))
 
-@section('namePage', 'Reporte de almacen de rollos')
+@section('namePage', 'Reporte de almacen de bolsas')
 
 @section('table')
     <script type="text/javascript">   
@@ -21,7 +21,7 @@
                 var medida = medida.replace('/', "");
                 
                 //Redondeamos la suma_cantidad a un máximo de 4 decimales
-                var suma_cantidad = Math.round(cantidadesBolsas[i].suma_cantidad * 10000) / 10000;                
+                var suma_cantidad = Math.round(cantidadesBolsas[i].suma_cantidad * 10000) / 10000;
 
                 $('#' + tipoUnidad + medida).text(suma_cantidad);
             }

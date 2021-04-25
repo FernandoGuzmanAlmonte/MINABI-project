@@ -188,7 +188,9 @@ class RibbonController extends Controller
                 'FROM coils ' .
                 'JOIN coil_products ' .
                 'ON coils.id = coil_products.coil_id ' .
-                "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' " .
+                'JOIN ribbons ' .
+                'ON coil_products.coil_product_id = ribbons.id ' .
+                "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' AND ribbons.status = 'DISPONIBLE'" .
                 'GROUP BY coils.coil_type_id, coils.provider_id ' .
                 'ORDER BY coil_type_id) as T1 ' .
             'LEFT JOIN ' .
@@ -197,6 +199,7 @@ class RibbonController extends Controller
                 "WHERE white_ribbon_products.white_ribbon_product_type = 'App\\\Models\\\Ribbon') as T2 " .
             'ON T1.coil_product_id = T2.white_ribbon_product_id'
         );
+        //dd($rollos);
         $medidas = DB::select(
             'SELECT COUNT(ribbons.id) as total_de_piezas, SUM(ribbons.peso) as total_kg, coil_types.id, coil_types.alias ' . 
             'FROM coil_products ' . 
@@ -206,7 +209,7 @@ class RibbonController extends Controller
             'ON coils.coil_type_id = coil_types.id ' .
             'JOIN ribbons ' .
             'ON coil_products.coil_product_id = ribbons.id ' .
-            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' " .
+            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' AND ribbons.status = 'DISPONIBLE' " .
             'GROUP BY coil_types.id, coil_types.alias ' .
             'ORDER BY coil_types.id'
         );
@@ -216,14 +219,16 @@ class RibbonController extends Controller
             'FROM coil_products ' .
             'JOIN ribbons '.
             'ON ribbons.id = coil_product_id ' .
-            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon'"                    
+            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' AND ribbons.status = 'DISPONIBLE'"
         );
         $totalesDeProveedores = DB::select(
             'SELECT COUNT(coil_products.id) as cantidad ' .
             'FROM coils ' .
             'JOIN coil_products ' .
             'ON coils.id = coil_products.coil_id ' .
-            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' " .
+            'JOIN ribbons ' .
+            'ON coil_products.coil_product_id = ribbons.id ' .
+            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' AND ribbons.status = 'DISPONIBLE' " .
             'GROUP BY coils.provider_id ' .
             'ORDER BY coils.provider_id'
         );
