@@ -13,8 +13,11 @@ use App\Models\WhiteRibbonProduct;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use DateTime;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class CoilController extends Controller
 {
@@ -363,4 +366,75 @@ class CoilController extends Controller
 
         return redirect()->route('coil.index');
     }    
+
+    public function produccionPDF(Request $request){
+        //Valido que los campos existan sino les doy un valor por defecto
+        $orderBy = $request->orderBy ?? 'nomenclatura';
+        $order = $request->order ?? 'ASC';
+        
+        //No es necesario der un valor por defecto para estos campos ya que se valida si es null
+        //en sus scope()
+        $fecha = $request->fecha;
+        $fAdquisicionRollo = $request->fAdquisicionRollo;
+        $fAdquisicionBolsa = $request->fAdquisicionBolsa;
+
+        //coils
+        $produccion = Coil::with(['ribbons' => function($query) use ($fAdquisicionRollo, $fAdquisicionBolsa){
+            //ribbons
+            $query->with(['related' => function($query) use ($fAdquisicionBolsa){
+                //ribbon_products
+                $query->fAdquisicion($fAdquisicionBolsa)
+                    ->get();
+            }]);         
+        }
+        , 'related' => function($query) use ($fAdquisicionRollo){
+            //coil_products
+            $query->fAdquisicion($fAdquisicionRollo)
+                ->get();
+        }])
+        ->orderBy($orderBy, $order)
+        ->fecha($fecha)
+        ->get();
+        
+        $pdf = PDF::loadView('coils.produccionPDF', compact('produccion'))->setPaper('letter', 'landscape');
+        return $pdf->download('produccion.pdf');
+        //return view('coils.test', compact('produccion'));
+    }
+
+    public function reporteriaPDF(){
+        $providers = Provider::all();
+        
+        $bobinas = DB::select(
+            'SELECT COUNT(coil_type_id) as cantidad, coil_type_id as medida, provider_id as proveedor, sum(pesoBruto) as peso ' .
+            'FROM coils ' .
+            "WHERE coils.status = 'DISPONIBLE' " .
+            'GROUP BY coil_type_id, provider_id ' .
+            'ORDER BY coil_type_id'
+        );
+        $medidas = DB::select(
+            'SELECT COUNT(coils.coil_type_id) as total_de_piezas, SUM(coils.pesoBruto) as total_kg, coil_types.id, coil_types.alias ' . 
+            'FROM coil_types ' . 
+            'JOIN coils ' . //LEFT
+            'ON coils.coil_type_id = coil_types.id ' .
+            'WHERE coil_types.tipo = "CELOFAN" AND coils.status = "DISPONIBLE" ' .
+            'GROUP BY coil_types.id, coil_types.alias ' .
+            'ORDER BY coil_types.id'
+        );
+        $sumaDeTotales = DB::select(
+            'SELECT COUNT(coils.coil_type_id) as suma_total_piezas, SUM(coils.pesoBruto) as suma_total_peso ' .
+            'FROM coils ' .
+            'JOIN coil_types '.
+            'ON coil_types.id = coils.coil_type_id ' .
+            'WHERE coil_types.tipo = "CELOFAN" AND coils.status = "DISPONIBLE" '
+        );
+        $totalesDeProveedores = DB::select(
+            'SELECT COUNT(coil_type_id) as cantidad, sum(pesoBruto) as peso ' .
+            'FROM coils ' .
+            'WHERE coils.status = "DISPONIBLE" ' .
+            'GROUP BY provider_id ' .
+            'ORDER BY provider_id'
+        ); 
+
+        return view('coils.reporteriaPDF', compact('providers', 'bobinas', 'medidas', 'sumaDeTotales', 'totalesDeProveedores'));
+    }
 }

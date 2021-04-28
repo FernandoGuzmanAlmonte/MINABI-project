@@ -1,12 +1,42 @@
-@extends('layouts.tablaIndexSinAgregar')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <style>
+    body { -webkit-print-color-adjust: exact; }
 
-@section('title', 'Reporte rollos')
+    table{
+        width: 100%;
+        border-spacing: 0px;
+    }
+    .bigWidth{
+        width: 120px;
+    }
 
-@section('imgUrl',  asset('images/rollo-de-papel.svg'))
+    .smallWidth{
+        width: 80px;
+        padding-left: 6px;
+    } 
 
-@section('namePage', 'Reporte de almacen de rollos')
+    th{
+        background-color: #3490dc;
+        height: 25px;
+        text-align: left;
+    } 
 
-@section('table')
+    tr:nth-child(even){
+        background-color: rgba(0, 0, 0, 0.05);
+    }  
+    </style>
+</head>
+<body>
     <script type="text/javascript">   
         function insertar()
         {
@@ -25,12 +55,9 @@
 
                 $('#pestania'   + medidaId + providerId).text(cintilla);
             }
+            window.print();
         }
     </script>
-    <div class="mt-3">
-        <a href="{{ route('ribbon.reporteriaPDF') }}" class="mx-2"><img src="{{asset('images/pdf.svg')}}" class="iconoTitle"></a>
-        <a href="" class="mx-2"><img src="{{asset('images/excel.svg')}}" class="iconoTitle"></a>
-    </div>
     <table class="table table-striped my-4" id="tabla">
         <thead class="bg-info">
             <tr>
@@ -71,4 +98,5 @@
             insertar();
         </script>
     </table>
-@endsection
+</body>
+</html>
