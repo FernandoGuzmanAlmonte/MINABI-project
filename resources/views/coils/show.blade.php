@@ -83,11 +83,11 @@
             @endcan
 
             @can('coil.terminar')
-                <button class="btn btn-outline-danger mx-3 mb-5"  onclick="terminar({{$coil->id}})">Terminar</button>
+                <button class="btn btn-outline-danger mx-3 mb-5" >Terminar</button>
             @endcan
 
             @can('coil.destroy')
-                <button class="btn btn-danger mx-3 mb-5" type="submit">Eliminar</button>
+               {{-- <button class="btn btn-danger mx-3 mb-5" type="submit" >Eliminar</button>--}}
             @endcan
 
             @if($errors->any())
@@ -191,6 +191,6 @@
         location.replace ("http://bolsasdecelofanminabi.com.mx/coil/terminar/"+id)
 	    } 
     }
-</script>
 
+</script>
 @endsection

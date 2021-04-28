@@ -47,7 +47,7 @@
                     <a class="btn btn-warning mx-3" href="{{route('whiteWaste.edit', $whiteWaste->id)}}">Editar</a>
                 @endcan
                 @can('whiteWaste.destroy')
-                    <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+                    {{--<button class="btn btn-danger mx-3" type="submit">Eliminar</button>--}}
                 @endcan
             </form>
         </div> 

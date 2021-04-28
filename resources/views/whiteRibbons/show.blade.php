@@ -71,7 +71,7 @@
             @csrf
             @method('delete')
             <a class="btn btn-warning mx-3" href="{{route('whiteRibbon.edit', $whiteRibbon->id)}}">Editar</a>
-            <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+            {{--<button class="btn btn-danger mx-3" type="submit">Eliminar</button>--}}
         </form>
     </div>
 

@@ -56,7 +56,7 @@
             @csrf
             @method('delete')
             <a class="btn btn-warning mx-3 mb-5" href="{{route('whiteCoil.edit', $whiteCoil->id)}}">Editar</a>
-            <button class="btn btn-danger mx-3 mb-5" type="submit">Eliminar</button>
+            {{--<button class="btn btn-danger mx-3 mb-5" type="submit">Eliminar</button>--}}
         </form>
     </div>
     <div class="col-lg-12 my-3">

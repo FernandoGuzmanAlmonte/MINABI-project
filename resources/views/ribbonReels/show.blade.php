@@ -54,7 +54,7 @@
                     <a class="btn btn-warning mx-3" href="{{route('ribbonReel.edit', $ribbonReel->id)}}">Editar</a>
                 @endcan
                 @can('ribbonReel.destroy')
-                    <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+                   {{-- <button class="btn btn-danger mx-3" type="submit">Eliminar</button>--}}
                 @endcan
             </form>
         </div>  
