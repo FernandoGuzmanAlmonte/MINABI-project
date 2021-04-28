@@ -34,7 +34,8 @@ class ProviderController extends Controller
             ->orderBy($orderBy, $order)
             ->paginate(10);
 
-        return view('providers.index', compact('providers', 'orderBy', 'nombreEmpresa', 'order'));
+        return $request->ajax() ? response()->json(view('providers.index', compact('providers', 'orderBy', 'nombreEmpresa', 'order'))->render())
+                    : view('providers.index', compact('providers', 'orderBy', 'nombreEmpresa', 'order'));
     }
 
     public function create()

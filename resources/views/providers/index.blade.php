@@ -105,7 +105,7 @@
 @endsection
 
 @section('paginacion')
-    {{$providers->render()}}
+    {{ $providers->links() }}
 @endsection
 
 @section('scripts')
@@ -136,10 +136,15 @@
                         var table = document.getElementById('tableBody');
                         var newTable = $(response).find('tbody');
                         $(table).html(newTable.html());
+
+                        var pagination = document.getElementById('paginacion');
+                        var newPagination = $(response).find('div#paginacion');
+                        $(pagination).html(newPagination.html());
                      },
             error: function(response)
                    {
-                        alert(response);
+                        console.log(response)
+                        alert('Error. Por favor recargue la página.');
                    }
         });
     }
@@ -176,7 +181,36 @@
         else
             descendente();
     }
-    
     window.onload = inicializador;
+
+    $(document).on('click', '.pagination a', function(e){
+        e.preventDefault();
+        var page = $(this).attr('href');
+
+        var form = $("#formOrder");
+        var formData = form.serialize(); //variable con el valor de todos los input del formulario
+        
+        $.ajax({
+            url: page,
+            type: 'GET',
+            data: formData,
+            success: function(response)
+                     {
+                        //console.log(response);
+                        var table = document.getElementById('tableBody');
+                        var newTable = $(response).find('tbody');
+                        $(table).html(newTable.html());
+                        
+                        var pagination = document.getElementById('paginacion');
+                        var newPagination = $(response).find('div#paginacion');
+                        $(pagination).html(newPagination.html());
+                     },
+            error: function(response)
+                   {
+                        console.log(response)
+                        alert('Error. Por favor recargue la página.');
+                   }
+        });
+    })
 </script>
 @endsection

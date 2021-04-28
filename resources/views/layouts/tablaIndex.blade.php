@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
+        <div class="col-lg-12 d-flex justify-content-center" id="paginacion">
             @yield('paginacion')
         </div>
     </div>
