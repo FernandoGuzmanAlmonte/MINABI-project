@@ -81,7 +81,7 @@
                 </tr>
             @endforeach
         </tbody>
-        <tfoot class="bg-info">
+        {{--<tfoot class="bg-info">
             <tr>
                 <td class="smallWidth">_</td>
                 <th class="bigWidth">{{$sumaDeTotales[0]->suma_total_piezas}}</th>
@@ -91,7 +91,7 @@
                     <th class="smallWidth">{{$total->peso}}</th>
                 @endforeach
             </tr>
-        </tfoot>
+        </tfoot>--}}
         <script type="text/javascript">   
             insertar();
         </script>

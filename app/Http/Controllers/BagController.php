@@ -251,7 +251,9 @@ class BagController extends Controller
         $medidasBolsas = DB::select(
             'SELECT DISTINCT ribbon_products.medidaBolsa as medida ' .
             'FROM ribbon_products ' .
-            "WHERE ribbon_products.ribbon_product_type = 'App\\\Models\\\Bag' " .
+            'JOIN bags ' .
+            'ON bags.id = ribbon_products.ribbon_product_id ' .
+            "WHERE ribbon_products.ribbon_product_type = 'App\\\Models\\\Bag' AND bags.status = 'DISPONIBLE' " .
             'ORDER BY ribbon_products.medidaBolsa'
         );
         
@@ -260,7 +262,7 @@ class BagController extends Controller
             'FROM ribbon_products ' .
             'JOIN bags ' .
             'ON bags.id = ribbon_products.ribbon_product_id ' .
-            "AND ribbon_products.ribbon_product_type = 'App\\\Models\\\Bag' " .
+            "AND ribbon_products.ribbon_product_type = 'App\\\Models\\\Bag' AND bags.status = 'DISPONIBLE' " .
             'GROUP BY ribbon_products.medidaBolsa, bags.tipoUnidad ' .
             'ORDER BY ribbon_products.medidaBolsa, bags.tipoUnidad DESC'
         );

@@ -406,6 +406,7 @@ class CoilController extends Controller
         $bobinas = DB::select(
             'SELECT COUNT(coil_type_id) as cantidad, coil_type_id as medida, provider_id as proveedor, sum(pesoBruto) as peso ' .
             'FROM coils ' .
+            "WHERE coils.status = 'DISPONIBLE' " .
             'GROUP BY coil_type_id, provider_id ' .
             'ORDER BY coil_type_id'
         );
@@ -414,7 +415,7 @@ class CoilController extends Controller
             'FROM coil_types ' . 
             'JOIN coils ' . //LEFT
             'ON coils.coil_type_id = coil_types.id ' .
-            'WHERE coil_types.tipo = "CELOFAN"' .
+            'WHERE coil_types.tipo = "CELOFAN" AND coils.status = "DISPONIBLE" ' .
             'GROUP BY coil_types.id, coil_types.alias ' .
             'ORDER BY coil_types.id'
         );
@@ -423,15 +424,16 @@ class CoilController extends Controller
             'FROM coils ' .
             'JOIN coil_types '.
             'ON coil_types.id = coils.coil_type_id ' .
-            'WHERE coil_types.tipo = "CELOFAN"'
+            'WHERE coil_types.tipo = "CELOFAN" AND coils.status = "DISPONIBLE" '
         );
         $totalesDeProveedores = DB::select(
             'SELECT COUNT(coil_type_id) as cantidad, sum(pesoBruto) as peso ' .
             'FROM coils ' .
+            'WHERE coils.status = "DISPONIBLE" ' .
             'GROUP BY provider_id ' .
             'ORDER BY provider_id'
-        );
-        
+        ); 
+
         return view('coils.reporteriaPDF', compact('providers', 'bobinas', 'medidas', 'sumaDeTotales', 'totalesDeProveedores'));
     }
 }

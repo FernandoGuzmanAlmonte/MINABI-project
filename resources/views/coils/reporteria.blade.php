@@ -52,7 +52,7 @@
                 </tr>
             @endforeach
         </tbody>
-        <tfoot class="bg-info">
+        {{--<tfoot class="bg-info">
             <tr>
                 <td></td>
                 <th>{{$sumaDeTotales[0]->suma_total_piezas}}</th>
@@ -62,7 +62,7 @@
                     <th>{{round($total->peso),2}}</th>
                 @endforeach
             </tr>
-        </tfoot>
+        </tfoot>--}}
         <script type="text/javascript">   
             insertar();
         </script>
