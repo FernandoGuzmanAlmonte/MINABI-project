@@ -16,12 +16,17 @@
                 var medidaId = bobinas[i].medida;
                 var providerId = bobinas[i].proveedor;
                 $('#medida' + medidaId + providerId).text(bobinas[i].cantidad);
-                $('#peso'   + medidaId + providerId).text(bobinas[i].peso);
+                $('#peso'   + medidaId + providerId).text( bobinas[i].peso);
             }
             console.log(bobinas);
+
         }
     </script>
-    
+
+    <div class="mt-3">
+        <a href="{{ route('coil.reporteriaPDF') }}" class="mx-2"><img src="{{asset('images/pdf.svg')}}" class="iconoTitle"></a>
+        <a href="" class="mx-2"><img src="{{asset('images/excel.svg')}}" class="iconoTitle"></a>
+    </div>
     <table class="table table-striped my-4" id="tabla">
         <thead class="bg-info">
             <tr>
@@ -39,7 +44,7 @@
                 <tr>
                     <th>{{$medida->alias}}</th>       
                     <td>{{$medida->total_de_piezas}}</td>
-                    <td>{{round($medida->total_kg, 4)}}</td>
+                    <td>{{round($medida->total_kg, 2)}}</td>
                     @foreach ($providers as $provider)
                         <td id="medida{{$medida->id . $provider->id}}"></th>
                         <td id="peso{{$medida->id . $provider->id}}"></th>
@@ -54,7 +59,7 @@
                 <th>{{$sumaDeTotales[0]->suma_total_peso}}</th>
                 @foreach($totalesDeProveedores as $total)
                     <th>{{$total->cantidad}}</th>
-                    <th>{{$total->peso}}</th>
+                    <th>{{round($total->peso),2}}</th>
                 @endforeach
             </tr>
         </tfoot>

@@ -260,4 +260,55 @@ class RibbonController extends Controller
 
         return redirect()->route('coilProduct.index');
     }
+    
+    public function reporteriaPDF(){
+        $providers = Provider::all();
+        $rollos = DB::select(
+            'SELECT T1.provider_id as proveedor, T1.coil_type_id as medida, T1.cantidad, T2.white_ribbon_product_id as cintilla ' .
+            'FROM ' .
+                '(SELECT coils.provider_id, coils.coil_type_id, COUNT(coil_products.id) as cantidad, coil_products.coil_product_id ' .
+                'FROM coils ' .
+                'JOIN coil_products ' .
+                'ON coils.id = coil_products.coil_id ' .
+                "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' " .
+                'GROUP BY coils.coil_type_id, coils.provider_id ' .
+                'ORDER BY coil_type_id) as T1 ' .
+            'LEFT JOIN ' .
+                '(SELECT white_ribbon_product_id ' .
+                'FROM white_ribbon_products ' .
+                "WHERE white_ribbon_products.white_ribbon_product_type = 'App\\\Models\\\Ribbon') as T2 " .
+            'ON T1.coil_product_id = T2.white_ribbon_product_id'
+        );
+        $medidas = DB::select(
+            'SELECT COUNT(ribbons.id) as total_de_piezas, SUM(ribbons.peso) as total_kg, coil_types.id, coil_types.alias ' . 
+            'FROM coil_products ' . 
+            'JOIN coils ' . 
+            'ON coil_products.coil_id = coils.id ' .
+            'JOIN coil_types ' .
+            'ON coils.coil_type_id = coil_types.id ' .
+            'JOIN ribbons ' .
+            'ON coil_products.coil_product_id = ribbons.id ' .
+            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' " .
+            'GROUP BY coil_types.id, coil_types.alias ' .
+            'ORDER BY coil_types.id'
+        );
+        
+        $sumaDeTotales = DB::select(
+            'SELECT COUNT(coil_products.id) as suma_total_piezas, SUM(ribbons.peso) as suma_total_peso ' .
+            'FROM coil_products ' .
+            'JOIN ribbons '.
+            'ON ribbons.id = coil_product_id ' .
+            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon'"                    
+        );
+        $totalesDeProveedores = DB::select(
+            'SELECT COUNT(coil_products.id) as cantidad ' .
+            'FROM coils ' .
+            'JOIN coil_products ' .
+            'ON coils.id = coil_products.coil_id ' .
+            "WHERE coil_products.coil_product_type = 'App\\\Models\\\Ribbon' " .
+            'GROUP BY coils.provider_id ' .
+            'ORDER BY coils.provider_id'
+        );
+        return view('ribbons.reporteriaPDF', compact('providers', 'medidas', 'rollos', 'totalesDeProveedores', 'sumaDeTotales'));
+    }
 }

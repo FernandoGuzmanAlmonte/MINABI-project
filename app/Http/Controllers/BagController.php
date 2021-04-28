@@ -245,4 +245,26 @@ class BagController extends Controller
 
         return redirect()->route('ribbon.show', $ribbon);
     }
+    
+    public function reporteriaPDF()
+    {
+        $medidasBolsas = DB::select(
+            'SELECT DISTINCT ribbon_products.medidaBolsa as medida ' .
+            'FROM ribbon_products ' .
+            "WHERE ribbon_products.ribbon_product_type = 'App\\\Models\\\Bag' " .
+            'ORDER BY ribbon_products.medidaBolsa'
+        );
+        
+        $cantidadesBolsas = DB::select(
+            'SELECT SUM(bags.cantidad) as suma_cantidad, bags.tipoUnidad, ribbon_products.medidaBolsa as medida ' .
+            'FROM ribbon_products ' .
+            'JOIN bags ' .
+            'ON bags.id = ribbon_products.ribbon_product_id ' .
+            "AND ribbon_products.ribbon_product_type = 'App\\\Models\\\Bag' " .
+            'GROUP BY ribbon_products.medidaBolsa, bags.tipoUnidad ' .
+            'ORDER BY ribbon_products.medidaBolsa, bags.tipoUnidad DESC'
+        );
+        
+        return view('bags.reporteriaPDF', compact('medidasBolsas', 'cantidadesBolsas'));
+    }
 }

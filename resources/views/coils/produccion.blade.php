@@ -120,7 +120,11 @@
             </div>
         </div>
     </form>
-@endsection
+    <div class="mt-3">
+        <a href="{{ route('coil.produccionPDF') }}" class="mx-2"><img src="{{asset('images/pdf.svg')}}" class="iconoTitle"></a>
+        <a href="" class="mx-2"><img src="{{asset('images/excel.svg')}}" class="iconoTitle"></a>
+    </div>
+    @endsection
 
 @section('table')
     <table class="table table-striped my-4" id="tabla">
@@ -148,19 +152,19 @@
                 <td>{{$bobina->coilType->alias}}</td>
                 {{-- Escribe rollos --}}
                @if ($bobina->ribbons->isEmpty() && $bobina->related->isEmpty())
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>_</td>
+                    <td>_</td>
+                    <td>_</td>
+                    <td>_</td>
+                    <td>_</td>
+                    <td>_</td>
+                    <td>_</td>
                @endif
                 @foreach ($bobina->ribbons as $ribbon)
                     @if ($BanderaBobina == false )
                     {{--Si ya se imprimio la bobina perteneciente a este rollo deja los espacios en blanco de bobina--}}
-                        <td></td>
-                        <td></td>
+                        <td>_</td>
+                        <td>_</td>
                     @endif
                     {{--imprime el rollo--}}
                     <td>{{$ribbon->nomenclatura}}</td>
@@ -173,10 +177,10 @@
                         @foreach ($ribbon->related as $bolsas)
                         {{--si ya se imprimio la información del rollo--}}
                                 @if ($rollo == false )
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>_</td>
+                                    <td>_</td>
+                                    <td>_</td>
+                                    <td>_</td>
                                 @endif
                                 {{--Si no imprime la info de las bolsas--}}
                                 <td>{{$bolsas->nomenclatura}}</td>
@@ -191,11 +195,11 @@
                         @endforeach                 
                     @else
                     {{--Deja los espacios vacios en caso de que no tenga bolsas relacionadas al rollo--}}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_</td>
                         </tr>
                     @endif
                     @php
@@ -207,17 +211,17 @@
                     @if ($coilProduct->coil_product_type != "App\Models\Ribbon")
                         @if ($BanderaBobina == false )
                             {{--Si ya se imprimio la bobina perteneciente a este rollo deja los espacios en blanco de bobina--}}
-                            <td></td>
-                            <td></td>
+                            <td>_</td>
+                            <td>_</td>
                         @endif
                         {{--Sino imprime la el producto de bobina y pone vacios los campos de bolsas--}}
                         <td>{{$coilProduct->nomenclatura}}</td>
                         <td>{{$coilProduct->peso}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_</td>
+                        <td>_</td>
                     @endif
                     {{--Termina la linea y da salto--}}
                     </tr>

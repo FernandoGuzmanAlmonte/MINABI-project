@@ -67,6 +67,8 @@ Route::resource('rol', RoleController::class)->middleware('auth');
 Route::resource('coilReel', CoilReelController::class)->middleware('auth');
 Route::get('coilReel/create/{coil}', [CoilReelController::class, 'createProduct'])->name('coilReel.createProduct')->middleware('auth');
 
+Route::get('coil/produccion/pdf',[CoilController::class, 'produccionPDF'])->name('coil.produccionPDF')->middleware('auth');
+Route::get('coil/reporteria/pdf',[CoilController::class, 'reporteriaPDF'])->name('coil.reporteriaPDF')->middleware('auth');
 Route::get('coil/create/{provider}', [CoilController::class, 'createFromProvider'])->name('coil.createFromProvider')->middleware('auth');
 Route::get('coil/terminar/{coil}', [CoilController::class, 'terminar'])->name('coil.terminar')->middleware('auth');
 Route::get('coil/reporteria', [CoilController::class, 'reporteria'])->name('coil.reporteria')->middleware('auth');
@@ -81,6 +83,7 @@ Route::resource('coilProduct', CoilProductController::class)->middleware('auth')
 Route::resource('whiteCoilProduct', WhiteCoilProductController::class)->middleware('auth')->except(['create', 'edit', 'destroy', 'show', 'update', 'store']);;
 
 Route::get('ribbon/reporteria', [RibbonController::class, 'reporteria'])->name('ribbon.reporteria')->middleware('auth');
+Route::get('ribbon/reporteria/pdf',[RibbonController::class, 'reporteriaPDF'])->name('ribbon.reporteriaPDF')->middleware('auth');
 Route::resource('ribbon', RibbonController::class)->middleware('auth');
 Route::get('ribbon/create/{coil}', [RibbonController::class, 'createProduct'])->name('ribbon.createProduct')->middleware('auth');
 
@@ -94,6 +97,7 @@ Route::get('wasteRibbon/create/{coil}', [WasteRibbonController::class, 'createPr
 Route::resource('provider', ProviderController::class)->middleware('auth');
 
 Route::get('bag/reporteria', [BagController::class, 'reporteria'])->name('bag.reporteria')->middleware('auth');
+Route::get('bag/reporteria/pdf',[BagController::class, 'reporteriaPDF'])->name('bag.reporteriaPDF')->middleware('auth');
 Route::resource('bag', BagController::class)->middleware('auth');
 Route::get('bag/create/{ribbon}', [BagController::class, 'createProduct'])->name('bag.createProduct')->middleware('auth');
 
