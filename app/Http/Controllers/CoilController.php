@@ -60,7 +60,8 @@ class CoilController extends Controller
             ->distinct()
             ->get();
 
-        return view('coils.index', compact('coils', 'allStatus', 'allTypes', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'));
+        return $request->ajax() ? response()->json(view('coils.index', compact('coils', 'allStatus', 'allTypes', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'))->render())
+                    : view('coils.index', compact('coils', 'allStatus', 'allTypes', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'));
     }
 
     public function create(){
