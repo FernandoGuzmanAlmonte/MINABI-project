@@ -52,7 +52,7 @@
                     <a class="btn btn-warning mx-3" href="{{route('coilType.edit', $coilType)}}">Editar</a>
                 @endcan
                 @can('coilType.destroy')
-                    <button class="btn btn-danger mx-3" type="submit" name="coilTypeForm">Eliminar</button>
+                    <!--<button class="btn btn-danger mx-3" type="submit" name="coilTypeForm">Eliminar</button>-->
                 @endcan
             </form>
         </div>
