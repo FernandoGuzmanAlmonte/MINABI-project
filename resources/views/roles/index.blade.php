@@ -123,6 +123,21 @@
 @endsection
 
 <div class="d-flex  justify-content-center">{{$roles->links()}}</div>
+
+@section('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    @if(session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                '¡Eliminado!',
+                'El rol se ha eliminado con éxito.',
+                'success'
+                )
+        </script>
+    @endif
+@endsection
+
 {{--
 @section('scripts')
 <script type="text/javascript">

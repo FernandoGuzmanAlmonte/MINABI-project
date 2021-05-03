@@ -141,6 +141,6 @@ class WhiteCoilController extends Controller
 
         $whiteCoil->delete();
 
-        return redirect()->route('whiteCoil.index');
+        return redirect()->route('whiteCoil.index')->with('eliminar', 'ok');
     }
 }

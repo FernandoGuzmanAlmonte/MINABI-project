@@ -364,7 +364,7 @@ class CoilController extends Controller
 
         $coil->delete();
 
-        return redirect()->route('coil.index');
+        return redirect()->route('coil.index')->with('eliminar', 'ok');
     }    
 
     public function produccionPDF(Request $request){

@@ -131,4 +131,18 @@ class WasteRibbonController extends Controller
             return redirect()->back()->withInput($request->all())->withErrors('El peso de la merma sobrepasa el limite de peso de la bobina');
         }*/
     }
+
+    public function destroy(WasteRibbon $wasteRibbon)
+    {
+        //Eliminamos las relaciones del wasteRibbon con coil  
+        foreach($wasteRibbon->coils as $coil)
+        {
+            $coil->wasteRibbons()->detach($wasteRibbon);
+        }
+
+        //Eliminamos el registro de wasteRibbon desde su tabla 'wasteRibbons'
+        $wasteRibbon->delete();
+
+        return redirect()->route('coilProduct.index')->with('eliminar', 'wasteRibbon');
+    }
 }

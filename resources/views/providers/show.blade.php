@@ -29,14 +29,14 @@
         <input type="text" class="form-control" name="estado" value="{{ $provider->estado }}" disabled>
     </div>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3 text-center">
-        <form action="{{ route('provider.destroy', $provider->id) }}" method="POST">
+        <form action="{{ route('provider.destroy', $provider->id) }}" method="POST" id="formularioDestroy">
             @csrf
             @method('delete')
             @can('provider.edit')
                 <a class="btn btn-warning mx-3" href="{{ route('provider.edit', $provider) }}">Editar</a>
             @endcan
             @can('provider.destroy')
-                <!--<button class="btn btn-danger mx-3" type="submit" name="providerForm">Eliminar</button>-->
+                <button class="btn btn-danger mx-3" type="submit" name="providerForm">Eliminar</button>
             @endcan
         </form>
     </div>
@@ -104,6 +104,32 @@
 @endsection
 
 @section('scripts')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "El proveedor se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                var input = $("<input>").attr("type", "hidden")
+                                        .attr("name", "providerForm").val("providerForm");
+                $('#formularioDestroy').append(input);
+                this.submit();
+            }
+            })
+        });        
+    </script>
+
 <script type="text/javascript">
     function formValidation()
     {

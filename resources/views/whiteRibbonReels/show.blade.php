@@ -42,14 +42,14 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$whiteRibbonReel->observaciones}}</textarea>
         </div>
         <div class="col-12 mt-4 mb-3 text-center">
-            <form action="{{ route('whiteRibbonReel.destroy', $whiteRibbonReel) }}" method="POST">
+            <form action="{{ route('whiteRibbonReel.destroy', $whiteRibbonReel) }}" method="POST" id="formularioDestroy">
                 @csrf
                 @method('delete')
                 @can('whiteRibbonReel.edit')
                     <a class="btn btn-warning mx-3" href="{{route('whiteRibbonReel.edit', $whiteRibbonReel->id)}}">Editar</a>
                 @endcan
                 @can('whiteRibbonReel.destroy')
-                    {{--<button class="btn btn-danger mx-3" type="submit">Eliminar</button>--}}
+                    <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
                 @endcan
             </form>
         </div>
@@ -86,4 +86,28 @@
             <input type="text" class="form-control" name="coilStatus" value="{{$whiteCoil->status}}" disabled>
         </div>                
     </div>
+@endsection
+
+@section('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "El hueso de cinta blanca se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            })
+        });        
+    </script>
 @endsection

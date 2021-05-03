@@ -132,7 +132,7 @@ class CoilTypeController extends Controller
 
             $coilType->delete();
 
-            return redirect()->route('coilType.index');
+            return redirect()->route('coilType.index')->with('eliminar', 'ok');
         }
         else
         {

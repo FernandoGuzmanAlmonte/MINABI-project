@@ -243,7 +243,7 @@ class BagController extends Controller
         //Eliminamos el registro de wasteBag desde su tabla 'wasteBag'
         $bag->delete();
 
-        return redirect()->route('ribbon.show', $ribbon);
+        return redirect()->route('ribbonProduct.index')->with('eliminar', 'ok');
     }
     
     public function reporteriaPDF()

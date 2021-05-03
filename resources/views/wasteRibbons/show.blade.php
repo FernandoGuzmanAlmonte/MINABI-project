@@ -94,11 +94,21 @@
             </table>
             </div>
         </div>
-        @can('wasteRibbon.edit')
+        
         <div class="col-12 mt-3 text-center">
-            <a class="btn btn-warning mx-3" href="{{route('wasteRibbon.edit', $wasteRibbon->id)}}">Editar</a>
+            <form action="{{ route('wasteRibbon.destroy', $wasteRibbon) }}" method="POST" id="formularioDestroy">
+                @csrf
+                @method('delete')
+
+                @can('wasteRibbon.edit')
+                    <a class="btn btn-warning mx-3" href="{{route('wasteRibbon.edit', $wasteRibbon->id)}}">Editar</a>
+                @endcan
+                @can('wasteRibbon.destroy')
+                    <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+                @endcan
+            </form>
         </div>
-        @endcan
+        
         <div class="col-lg-12 d-flex mt-5">
             <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle"> Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
         </div>
@@ -117,4 +127,28 @@
             </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "La merma de rollo se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            })
+        });        
+    </script>
 @endsection

@@ -133,7 +133,7 @@
     @endif 
 
     <div class="col-12 mt-3 text-center">
-        <form action="{{ route('bag.destroy', $bag) }}" method="POST">
+        <form action="{{ route('bag.destroy', $bag) }}" method="POST" id="formularioDestroy">
             @csrf
             @method('delete')
 
@@ -141,7 +141,7 @@
                 <a class="btn btn-warning mx-3" href="{{ route('bag.edit', $bag) }}">Editar</a>
             @endcan
             @can('bag.destroy')
-              {{--  <button class="btn btn-danger mx-3" type="submit">Eliminar</button>--}}
+                <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
             @endcan
         </form>
     </div>  
@@ -149,20 +149,19 @@
     <div class="col-lg-12 d-flex mt-5">
         <h3><img src="{{ asset('images/rollo-de-papel.svg') }}" class="iconoTitle">Rollo <a href="{{route('ribbon.show', $ribbon->id)}}"><small>Ver Rollo</small></a> </h3>
     </div>
-    
 
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
-            <label>Nomenclatura</label>
-            <input type="text" class="form-control" name="coilNomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
-            <label>Fecha Adquisición</label>
-            <input type="datetime" class="form-control" name="coilfArribo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
-            <label>Status</label>
-            <input type="text" class="form-control" name="coilStatus" value="{{$ribbon->status}}" disabled>
-        </div>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
+        <label>Nomenclatura</label>
+        <input type="text" class="form-control" name="coilNomenclatura" value="{{$ribbon->nomenclatura}}" disabled>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
+        <label>Fecha Adquisición</label>
+        <input type="datetime" class="form-control" name="coilfArribo" value="{{$ribbon->fechaInicioTrabajo}}" disabled>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
+        <label>Status</label>
+        <input type="text" class="form-control" name="coilStatus" value="{{$ribbon->status}}" disabled>
+    </div>
 
 
     <div class="col-lg-12 d-flex mt-5">
@@ -215,4 +214,28 @@
     </div>
     @endif
 </div>
+@endsection
+
+@section('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "La bolsa se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            })
+        });        
+    </script>
 @endsection

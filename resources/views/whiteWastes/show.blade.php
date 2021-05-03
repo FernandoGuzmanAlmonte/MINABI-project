@@ -40,14 +40,14 @@
         </div>
         
         <div class="col-12 mt-4 text-center">
-            <form action="{{ route('whiteWaste.destroy', $whiteWaste) }}" method="POST">
+            <form action="{{ route('whiteWaste.destroy', $whiteWaste) }}" method="POST" id="formularioDestroy">
                 @csrf
                 @method('delete')
                 @can('whiteWaste.edit')
                     <a class="btn btn-warning mx-3" href="{{route('whiteWaste.edit', $whiteWaste->id)}}">Editar</a>
                 @endcan
                 @can('whiteWaste.destroy')
-                    {{--<button class="btn btn-danger mx-3" type="submit">Eliminar</button>--}}
+                    <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
                 @endcan
             </form>
         </div> 
@@ -68,4 +68,28 @@
             <input type="text" class="form-control" name="coilStatus" value="{{$whiteCoil->status}}" disabled>
         </div>    
     </div>
+@endsection
+
+@section('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "La merma de rollo de cinta blanca se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            })
+        });        
+    </script>
 @endsection

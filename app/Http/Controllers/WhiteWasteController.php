@@ -134,6 +134,6 @@ class WhiteWasteController extends Controller
 
         $whiteWaste->delete();
 
-        return redirect()->route('whiteCoilProduct.index');
+        return redirect()->route('whiteCoilProduct.index')->with('eliminar', 'whiteWaste');
     }
 }

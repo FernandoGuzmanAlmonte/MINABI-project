@@ -117,7 +117,7 @@
 
     
     <div class="col-12 mt-2 mb-2 text-center">
-        <form action="{{ route('ribbon.destroy', $ribbon) }}" method="POST">
+        <form action="{{ route('ribbon.destroy', $ribbon) }}" method="POST" id="formularioDestroy">
             @csrf
             @method('delete')
 
@@ -125,7 +125,7 @@
                 <a class="btn btn-warning mx-3" href="{{route('ribbon.edit', $ribbon->id)}}">Editar</a>
             @endcan
             @can('ribbon.destroy')
-            {{--<button class="btn btn-danger mx-3" type="submit">Eliminar</button>--}}
+                <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
             @endcan
         </form>
     </div>
@@ -225,4 +225,32 @@
     @include('ribbons.modalTypeSelection')
 </div>
 
+@endsection
+
+@section('scripts')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "El rollo se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                var input = $("<input>").attr("type", "hidden")
+                                        .attr("name", "providerForm").val("providerForm");
+                $('#formularioDestroy').append(input);
+                this.submit();
+            }
+            })
+        });        
+    </script>
 @endsection

@@ -134,96 +134,108 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-    function cambioOrdenAscendente()
-    {
-        ascendente();
-        actualizarTabla();
-    }
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    function cambioOrdenDescendente()
-    {
-        descendente();
-        actualizarTabla();
-    }
+    @if(session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                '¡Eliminado!',
+                'El empleado se ha eliminado con éxito.',
+                'success'
+                )
+        </script>
+    @endif
 
-    function actualizarTabla()
-    {
-        var form = $("#formOrder");
-        var formData = form.serialize(); //variable con el valor de todos los input del formulario
-
-        $.ajax({
-            url: "{{ route('employee.index') }}",
-            type: 'GET',
-            data: formData,
-            success: function(response)
-                     {
-                        var table = document.getElementById('tableBody');
-                        var newTable = $(response).find('tbody');
-                        $(table).html(newTable.html());
-                     },
-            error: function(response)
-                   {
-                        alert(response);
-                   }
-        });
-    }
-    
-    function ascendente()
-    {
-        $('#badgeAsc').attr('class', 'badge badge-pill badge-info pr-4');
-        $('#badgeAsc').attr('style', 'color:white; font-weight:normal; width: 95%;');
-        $('#imgAsc').attr('src', "{{ asset('images/ascendente-white.svg') }}");
-        $('#radioAsc').prop('checked', true);
-        
-        $('#badgeDesc').attr('class', 'badge badge-pill badge-light pr-4');
-        $('#badgeDesc').attr('style', 'color:black; font-weight:normal; width: 95%;');
-        $('#imgDesc').attr('src', "{{ asset('images/descendente-black.svg') }}");
-        $('#radioDesc').prop('checked', false);
-    }
-
-    function descendente()
-    {
-        $('#badgeAsc').attr('class', 'badge badge-pill badge-light pr-4');
-        $('#badgeAsc').attr('style', 'color:black; font-weight:normal; width: 95%;');
-        $('#imgAsc').attr('src', "{{ asset('images/ascendente-black.svg') }}");
-        $('#radioAsc').prop('checked', false);
-
-        $('#badgeDesc').attr('class', 'badge badge-pill badge-info pr-4');
-        $('#badgeDesc').attr('style', 'color:white; font-weight:normal; width: 95%;');
-        $('#imgDesc').attr('src', "{{ asset('images/descendente-white.svg') }}");
-        $('#radioDesc').prop('checked', true);
-    }
-
-    function cambiarStatus(checkbox)
-    {
-        if(checkbox.checked)
+    <script type="text/javascript">
+        function cambioOrdenAscendente()
         {
-            $('#labelStatus').attr('class', 'form-check-label float-right mr-3');
-
-            $('#checkStatus').attr('class', 'form-control');
-            $('#checkStatus').prop('disabled', false);
-        }
-        else
-        {
-            $('#labelStatus').attr('class', 'form-check-label float-right text-muted mr-3');
-
-            var selectStatus = $('#checkStatus');
-            selectStatus.attr('class', 'form-control text-muted');
-            selectStatus.prop('disabled', true);
-            selectStatus[0].selectedIndex = 0;
-        }
-
-        actualizarTabla();
-    }
-
-    function inicializador(){
-        if('{{$order}}' == 'ASC')
             ascendente();
-        else
+            actualizarTabla();
+        }
+
+        function cambioOrdenDescendente()
+        {
             descendente();
-    }
-    
-    window.onload = inicializador;
-</script>
+            actualizarTabla();
+        }
+
+        function actualizarTabla()
+        {
+            var form = $("#formOrder");
+            var formData = form.serialize(); //variable con el valor de todos los input del formulario
+
+            $.ajax({
+                url: "{{ route('employee.index') }}",
+                type: 'GET',
+                data: formData,
+                success: function(response)
+                        {
+                            var table = document.getElementById('tableBody');
+                            var newTable = $(response).find('tbody');
+                            $(table).html(newTable.html());
+                        },
+                error: function(response)
+                    {
+                            alert(response);
+                    }
+            });
+        }
+        
+        function ascendente()
+        {
+            $('#badgeAsc').attr('class', 'badge badge-pill badge-info pr-4');
+            $('#badgeAsc').attr('style', 'color:white; font-weight:normal; width: 95%;');
+            $('#imgAsc').attr('src', "{{ asset('images/ascendente-white.svg') }}");
+            $('#radioAsc').prop('checked', true);
+            
+            $('#badgeDesc').attr('class', 'badge badge-pill badge-light pr-4');
+            $('#badgeDesc').attr('style', 'color:black; font-weight:normal; width: 95%;');
+            $('#imgDesc').attr('src', "{{ asset('images/descendente-black.svg') }}");
+            $('#radioDesc').prop('checked', false);
+        }
+
+        function descendente()
+        {
+            $('#badgeAsc').attr('class', 'badge badge-pill badge-light pr-4');
+            $('#badgeAsc').attr('style', 'color:black; font-weight:normal; width: 95%;');
+            $('#imgAsc').attr('src', "{{ asset('images/ascendente-black.svg') }}");
+            $('#radioAsc').prop('checked', false);
+
+            $('#badgeDesc').attr('class', 'badge badge-pill badge-info pr-4');
+            $('#badgeDesc').attr('style', 'color:white; font-weight:normal; width: 95%;');
+            $('#imgDesc').attr('src', "{{ asset('images/descendente-white.svg') }}");
+            $('#radioDesc').prop('checked', true);
+        }
+
+        function cambiarStatus(checkbox)
+        {
+            if(checkbox.checked)
+            {
+                $('#labelStatus').attr('class', 'form-check-label float-right mr-3');
+
+                $('#checkStatus').attr('class', 'form-control');
+                $('#checkStatus').prop('disabled', false);
+            }
+            else
+            {
+                $('#labelStatus').attr('class', 'form-check-label float-right text-muted mr-3');
+
+                var selectStatus = $('#checkStatus');
+                selectStatus.attr('class', 'form-control text-muted');
+                selectStatus.prop('disabled', true);
+                selectStatus[0].selectedIndex = 0;
+            }
+
+            actualizarTabla();
+        }
+
+        function inicializador(){
+            if('{{$order}}' == 'ASC')
+                ascendente();
+            else
+                descendente();
+        }
+        
+        window.onload = inicializador;
+    </script>
 @endsection

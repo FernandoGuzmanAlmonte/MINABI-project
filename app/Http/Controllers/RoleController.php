@@ -69,7 +69,7 @@ class RoleController extends Controller
     {
         $rol->delete();
 
-        return redirect()->route('rol.index');
+        return redirect()->route('rol.index')->with('eliminar', 'ok');
     }
    
 }

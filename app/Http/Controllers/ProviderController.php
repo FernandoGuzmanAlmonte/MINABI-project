@@ -126,7 +126,7 @@ class ProviderController extends Controller
 
             $provider->delete();
 
-            return redirect()->route('provider.index');
+            return redirect()->route('provider.index')->with('eliminar', 'ok');
         }
         else
         {

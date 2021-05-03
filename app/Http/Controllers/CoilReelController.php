@@ -106,4 +106,18 @@ class CoilReelController extends Controller
             return redirect()->back()->withInput($request->all())->withErrors('El peso del hueso sobrepasa el limite de peso de la bobina');
         }*/
     }
+
+    public function destroy(CoilReel $coilReel)
+    {
+        //Eliminamos las relaciones del whiteRibbon con whiteCoil  
+        foreach($coilReel->coils as $coil)
+        {
+            $coil->coilReels()->detach($coilReel);
+        }
+
+        //Eliminamos el registro de whiteRibbon desde su tabla 'whiteRibbons'
+        $coilReel->delete();
+
+        return redirect()->route('coilProduct.index')->with('eliminar', 'huesoBobina');
+    }
 }

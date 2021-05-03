@@ -36,3 +36,17 @@
 <div class="d-flex  justify-content-center">{{$ribbons->links()}}</div>
 
 @endsection
+
+@section('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    @if(session('eliminar') == 'ok')
+    <script>
+        Swal.fire(
+            '¡Eliminado!',
+            'El rollo se ha eliminado con éxito.',
+            'success'
+            )
+    </script>
+    @endif
+@endsection

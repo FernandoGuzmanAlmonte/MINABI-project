@@ -74,7 +74,7 @@
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$coil->observaciones}}</textarea>
         </div>
     <div class="col-12 mt-5 text-center">
-        <form action="{{ route('coil.destroy', $coil) }}" method="POST">
+        <form action="{{ route('coil.destroy', $coil) }}" method="POST" id="formularioDestroy">
             @csrf
             @method('delete')
             
@@ -87,7 +87,7 @@
             @endcan
 
             @can('coil.destroy')
-               {{-- <button class="btn btn-danger mx-3 mb-5" type="submit" >Eliminar</button>--}}
+               <button class="btn btn-danger mx-3 mb-5" type="submit" >Eliminar</button>
             @endcan
 
             @if($errors->any())
@@ -184,6 +184,29 @@
 </div>
 </div>
 @include('coils.modalTypeSelection')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    $('#formularioDestroy').submit(function(e){
+        e.preventDefault();
+        Swal.fire({
+        title: '¿Está seguro?',
+        text: "La bobina se eliminará definitivamente.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
+    });        
+</script>
+
 <script type="text/javascript">
     function terminar(id){
         var opcion = confirm("¿Esta seguro que desea terminar la bobina?");

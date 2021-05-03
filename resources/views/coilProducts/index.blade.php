@@ -153,6 +153,35 @@
 @endsection
 
 @section('scripts')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+@if(session('eliminar') == 'huesoBobina')
+    <script>
+        Swal.fire(
+            '¡Eliminado!',
+            'El hueso de la bobina se ha eliminado con éxito.',
+            'success'
+            )
+    </script>
+@elseif(session('eliminar') == 'ribbon')
+    <script>
+        Swal.fire(
+            '¡Eliminado!',
+            'El rollo se ha eliminado con éxito.',
+            'success'
+            )
+    </script>
+@elseif(session('eliminar') == 'wasteRibbon')
+    <script>
+        Swal.fire(
+            '¡Eliminado!',
+            'La merma de rollo se ha eliminado con éxito.',
+            'success'
+            )
+    </script>
+@endif
+
 <script type="text/javascript">
 
     $('#daterange').on('apply.daterangepicker', function(ev, picker) {

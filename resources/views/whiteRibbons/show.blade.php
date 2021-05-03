@@ -67,11 +67,16 @@
     </div>--}}
 
     <div class="col-12 mt-5 text-center">
-        <form action="{{ route('whiteRibbon.destroy', $whiteRibbon) }}" method="POST">
+        <form action="{{ route('whiteRibbon.destroy', $whiteRibbon) }}" method="POST" id="formularioDestroy">
             @csrf
             @method('delete')
-            <a class="btn btn-warning mx-3" href="{{route('whiteRibbon.edit', $whiteRibbon->id)}}">Editar</a>
-            {{--<button class="btn btn-danger mx-3" type="submit">Eliminar</button>--}}
+
+            @can('whiteRibbon.edit')
+                <a class="btn btn-warning mx-3" href="{{route('whiteRibbon.edit', $whiteRibbon->id)}}">Editar</a>
+            @endcan
+            @can('whiteRibbon.destroy')
+                <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
+            @endcan
         </form>
     </div>
 
@@ -135,4 +140,46 @@
     @include('whiteRibbons.modalTypeSelection')
 </div>
 
+@endsection
+
+@section('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    @if(session('eliminar') == 'whiteRibbonReel')
+        <script>
+            Swal.fire(
+                '¡Eliminado!',
+                'El hueso de cinta blanca se ha eliminado con éxito.',
+                'success'
+                )
+        </script>
+    @elseif(session('eliminar') == 'whiteWasteRibbon')
+        <script>
+            Swal.fire(
+                '¡Eliminado!',
+                'La merma se ha eliminado con éxito.',
+                'success'
+                )
+        </script>
+    @endif
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "El rollo de cinta blanca se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            })
+        });        
+    </script>
 @endsection

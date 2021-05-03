@@ -43,32 +43,62 @@
             <label>Observaciones</label>
             <textarea rows="3" class="form-control" name="observaciones" disabled>{{$coilReel->observaciones}}</textarea>
         </div>
-   
-    <div class="col-lg-12 d-flex mt-5">
+         
+        <div class="col-12 mt-4 text-center">
+            <form action="{{ route('coilReel.destroy', $coilReel) }}" method="POST" id="formularioDestroy">
+                @csrf
+                @method('delete')
+
+                @can('coilReel.edit') 
+                    <a class="btn btn-warning mx-3" href="{{route('coilReel.edit', $coilReel->id)}}">Editar</a>
+                @endcan
+                @can('coilReel.destroy')
+                    <button class="btn btn-danger mx-3" type="submit" >Eliminar</button>
+                @endcan
+            </form>
+        </div>        
+
+    <div class="col-lg-12 d-flex mt-4">
         <h3><img src="{{ asset('images/bobina.svg') }}" class="iconoTitle">Bobina <a href="{{route('coil.show', $coil->id)}}"><small>Ver Bobina</small></a> </h3>
         </div>
         
  
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3 mb-4">
                 <label>Nomenclatura</label>
                 <input type="text" class="form-control" name="coilNomenclatura" value="{{$coil->nomenclatura}}" disabled>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3 mb-4">
                 <label>Fecha Adquisición</label>
                 <input type="datetime" class="form-control" name="coilfArribo" value="{{$coil->fArribo}}" disabled>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-3 mb-4">
                 <label>Status</label>
                 <input type="text" class="form-control" name="coilStatus" value="{{$coil->status}}" disabled>
             </div>
-    
-
-    
-        @can('coilReel.update')  
-            <div class="col-12 mt-3 text-center">
-                <a class="btn btn-warning mx-3" href="{{route('coilReel.edit', $coilReel->id)}}">Editar</a>
-            </div>
-        @endcan
 </div>
 
+@endsection
+
+@section('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "El hueso de la bobina se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            })
+        });        
+    </script>
 @endsection

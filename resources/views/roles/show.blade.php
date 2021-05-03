@@ -36,16 +36,42 @@
         @endforeach
     </div>
     <div class="col-12 mt-4 mb-4 text-center">
-        <form action="{{ route('rol.destroy', $rol) }}" method="POST">
+        <form action="{{ route('rol.destroy', $rol) }}" method="POST" id="formularioDestroy">
             @csrf
             @method('delete')
+
             @can('rol.edit')
                 <a class="btn btn-warning mx-3" href="{{route('rol.edit', $rol)}}">Editar</a>
             @endcan
             @can('rol.destroy')
-                <!--<button class="btn btn-danger mx-3" type="submit">Eliminar</button>-->
+                <button class="btn btn-danger mx-3" type="submit">Eliminar</button>
             @endcan
         </form>
     </div>       
 </div>
+@endsection
+
+@section('scripts')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $('#formularioDestroy').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "El rol se eliminará definitivamente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            })
+        });        
+    </script>
 @endsection

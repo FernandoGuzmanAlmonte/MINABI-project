@@ -148,6 +148,26 @@
 @endsection
 
 @section('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+@if(session('eliminar') == 'whiteRibbon')
+    <script>
+        Swal.fire(
+            '¡Eliminado!',
+            'La bobina de cinta blanca se ha eliminado con éxito.',
+            'success'
+            )
+    </script>
+@elseif(session('eliminar') == 'whiteWaste')
+    <script>
+        Swal.fire(
+            '¡Eliminado!',
+            'La merma de rollo de cinta blanca se ha eliminado con éxito.',
+            'success'
+            )
+    </script>
+@endif
+
 <script type="text/javascript">
 
     $('#daterange').on('apply.daterangepicker', function(ev, picker) {
