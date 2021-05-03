@@ -119,10 +119,11 @@
                 </div>
             </div>
         </div>
+        
     </form>
     <div class="mt-3">
-        <a href="{{ route('coil.produccionPDF') }}" class="mx-2"><img src="{{asset('images/pdf.svg')}}" class="iconoTitle"></a>
-        <button class="btn mx-2" onclick="exportTableToExcel('tabla')"><img src="{{asset('images/excel.svg')}}" class="iconoTitle"></button>
+        <button class="btn mx-2" onclick="descargarPdf()"><img src="{{asset('images/pdf.svg')}}" class="iconoTitle"></button>
+        <button class="btn mx-2" onclick="exportTableToExcel('tabla')"><img src="{{asset('images/excel.svg')}}" class="iconoTitle"></button>        
     </div>
     @endsection
 
@@ -393,6 +394,60 @@
                         var table = document.getElementById('tableBody');
                         var newTable = $(response).find('tbody');
                         $(table).html(newTable.html());
+                     },
+            error: function(response)
+                   {
+                        console.log(response);
+                        alert(response);
+                   }
+        });
+    }
+
+    function actualizarTabla()
+    {
+        var form = $("#formOrder");
+        var formData = form.serialize(); //variable con el valor de todos los input del formulario
+        
+        $.ajax({
+            url: "{{ route('coil.produccion') }}",
+            type: 'GET',
+            data: formData,
+            success: function(response)
+                     {
+                        console.log(response);
+                        var table = document.getElementById('tableBody');
+                        var newTable = $(response).find('tbody');
+                        $(table).html(newTable.html());
+                     },
+            error: function(response)
+                   {
+                        console.log(response);
+                        alert(response);
+                   }
+        });
+    }
+
+    function descargarPdf()
+    {
+        var form = $("#formOrder");
+        var formData = form.serialize(); //variable con el valor de todos los input del formulario
+        $.ajax({
+            url: "{{ route('coil.produccionPDF') }}",
+            type: 'GET',
+            data: formData,
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function(response)
+                     {
+                        console.log(response);
+                        var a = document.createElement('a');
+                        var url = window.URL.createObjectURL(response);
+                        a.href = url;
+                        a.download = 'produccion.pdf';
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        
                      },
             error: function(response)
                    {

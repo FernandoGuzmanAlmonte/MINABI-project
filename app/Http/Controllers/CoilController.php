@@ -396,6 +396,7 @@ class CoilController extends Controller
         ->fecha($fecha)
         ->get();
         
+
         $pdf = PDF::loadView('coils.produccionPDF', compact('produccion'))->setPaper('letter', 'landscape');
         return $pdf->download('produccion.pdf');
         //return view('coils.test', compact('produccion'));

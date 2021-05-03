@@ -26,6 +26,7 @@
                 $('#' + tipoUnidad + medida).text(suma_cantidad);
             }
         }
+        
         function exportTableToExcel(tableID, filename = ''){
         var downloadLink;
         var dataType = 'application/vnd.ms-excel';
