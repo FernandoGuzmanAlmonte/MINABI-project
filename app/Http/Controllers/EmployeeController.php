@@ -37,7 +37,8 @@ class EmployeeController extends Controller
             ->distinct()
             ->get();
         
-        return view('employees.index', compact('employees', 'allStatus', 'orderBy', 'nombre', 'order', 'status'));
+        return $request->ajax() ? response()->json(view('employees.index', compact('employees', 'allStatus', 'orderBy', 'nombre', 'order', 'status'))->render())
+                    : view('employees.index', compact('employees', 'allStatus', 'orderBy', 'nombre', 'order', 'status'));
     }
 
     public function create()

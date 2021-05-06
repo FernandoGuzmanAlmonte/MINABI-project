@@ -35,6 +35,7 @@ class WhiteCoilProductController extends Controller
             ->distinct()
             ->get();
 
-        return view('whiteCoilProducts.index', compact('whiteCoilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status'));        
+        return $request->ajax() ? response()->json(view('whiteCoilProducts.index', compact('whiteCoilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status'))->render())
+                    : view('whiteCoilProducts.index', compact('whiteCoilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status'));        
     }
 }

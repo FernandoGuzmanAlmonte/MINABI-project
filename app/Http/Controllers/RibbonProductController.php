@@ -41,7 +41,8 @@ class RibbonProductController extends Controller
             ->distinct()
             ->get();
         
-        return view('ribbonProducts.index', compact('ribbonProduct', 'allStatus', 'allMedidas', 'orderBy', 'nomenclatura', 'order', 'status', 'medida'));
+        return $request->ajax() ? response()->json(view('ribbonProducts.index', compact('ribbonProduct', 'allStatus', 'allMedidas', 'orderBy', 'nomenclatura', 'order', 'status', 'medida'))->render())
+                    : view('ribbonProducts.index', compact('ribbonProduct', 'allStatus', 'allMedidas', 'orderBy', 'nomenclatura', 'order', 'status', 'medida'));
     }
 
     public function create(){

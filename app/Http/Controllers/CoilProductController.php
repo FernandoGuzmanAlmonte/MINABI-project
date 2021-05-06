@@ -34,7 +34,8 @@ class CoilProductController extends Controller
             ->distinct()
             ->get();
 
-        return view('coilProducts.index', compact('coilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status'));
+        return $request->ajax() ? response()->json(view('coilProducts.index', compact('coilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status'))->render())
+                    : view('coilProducts.index', compact('coilProducts', 'allStatus', 'orderBy', 'nomenclatura', 'order', 'status'));
     }
 
     public function create(){

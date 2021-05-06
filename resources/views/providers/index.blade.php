@@ -155,7 +155,7 @@
                      },
             error: function(response)
                    {
-                        console.log(response)
+                        console.log(response);
                         alert('Error. Por favor recargue la página.');
                    }
         });

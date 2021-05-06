@@ -51,7 +51,8 @@ class WhiteCoilController extends Controller
             ->distinct()
             ->get();
 
-        return view('whiteCoils.index', compact('whiteCoils', 'allStatus', 'allTypes', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'));
+        return $request->ajax() ? response()->json(view('whiteCoils.index', compact('whiteCoils', 'allStatus', 'allTypes', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'))->render())
+                    : view('whiteCoils.index', compact('whiteCoils', 'allStatus', 'allTypes', 'orderBy', 'nomenclatura', 'order', 'status', 'tipo'));
     }
 
     public function create(){

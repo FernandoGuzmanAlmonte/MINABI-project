@@ -109,7 +109,8 @@ class RegisterController extends Controller
             ->orderBy($orderBy, $order)
             ->paginate(10);
 
-        return view('users.index', compact('users', 'orderBy', 'name', 'order'));
+        return $request->ajax() ? response()->json(view('users.index', compact('users', 'orderBy', 'name', 'order'))->render())
+                    : view('users.index', compact('users', 'orderBy', 'name', 'order'));
     }
 
     public function edit(User $user){       
@@ -134,6 +135,6 @@ class RegisterController extends Controller
     public function destroy($id){
         $user = User::find($id);
         User::destroy($user->id);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('eliminar', 'ok');
     }
 }

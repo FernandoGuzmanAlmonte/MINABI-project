@@ -95,23 +95,57 @@
         <th scope="row" class="align-middle">{{$item->id}}</th>
         <td class="align-middle">{{$item->name}}</td>
         <td class="align-middle">{{$item->email}}</td>
-        <td><form action="{{ route('user.destroy', $item->id) }}" method="POST">
+        <td><form action="{{ route('user.destroy', $item->id) }}" method="POST" id="formularioDestroy">
             @csrf
             @method('delete')
-            {{--<button type="submit" class="btn btn-danger btn-sm">
+            <button type="submit" class="btn btn-danger btn-sm">
                 <img src="{{ asset('images/icono-eliminar.svg') }}" class="iconosPequeños">
-            </button>--}}
+            </button>
         </form></td>
         <td><a href="{{route('user.edit', $item)}}"><img src="{{ asset('images/flecha-derecha.svg') }}" class="iconosFlechas"></a></td>
     </tr>
     @endforeach
 </tbody>
 </table>
-<div class="d-flex  justify-content-center">{{$users->links()}}</div>
+<div class="d-flex  justify-content-center" id="paginacion">
+    {{$users->links()}}
+</div>
 
 @endsection
 
 @section('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    $('#formularioDestroy').submit(function(e){
+        e.preventDefault();
+        Swal.fire({
+        title: '¿Está seguro?',
+        text: "El usuario se eliminará definitivamente.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
+    });        
+</script>
+
+@if(session('eliminar') == 'ok')
+    <script>
+        Swal.fire(
+            '¡Eliminado!',
+            'El rol se ha eliminado con éxito.',
+            'success'
+            )
+    </script>
+@endif
+
 <script type="text/javascript">
     function cambioOrdenAscendente()
     {
@@ -136,13 +170,18 @@
             data: formData,
             success: function(response)
                      {
-                        var table = document.getElementById('tableBody');                        
+                        var table = document.getElementById('tableBody');
                         var newTable = $(response).find('tbody');
                         $(table).html(newTable.html());
+
+                        var pagination = document.getElementById('paginacion');
+                        var newPagination = $(response).find('div#paginacion');
+                        $(pagination).html(newPagination.html());
                      },
             error: function(response)
                    {
-                        alert(response);
+                        console.log(response);
+                        alert('Error. Por favor recargue la página.');
                    }
         });
     }
@@ -179,7 +218,35 @@
         else
             descendente();
     }
-    
     window.onload = inicializador;
+
+    $(document).on('click', '.pagination a', function(e){
+        e.preventDefault();
+        var page = $(this).attr('href');
+        var form = $("#formOrder");
+        var formData = form.serialize(); //variable con el valor de todos los input del formulario
+        
+        $.ajax({
+            url: page,
+            type: 'GET',
+            data: formData,
+            success: function(response)
+                    {
+                        //console.log(response);
+                        var table = document.getElementById('tableBody');
+                        var newTable = $(response).find('tbody');
+                        $(table).html(newTable.html());
+                        
+                        var pagination = document.getElementById('paginacion');
+                        var newPagination = $(response).find('div#paginacion');
+                        $(pagination).html(newPagination.html());
+                    },
+            error: function(response)
+                {
+                        console.log(response)
+                        alert('Error. Por favor recargue la página.');
+                }
+        });
+    });
 </script>
 @endsection

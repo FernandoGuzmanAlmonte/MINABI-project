@@ -32,7 +32,7 @@ class ProviderController extends Controller
             ->select('providers.id', 'providers.nombreEmpresa','providers.direccion', 'contacts.telefono')
             ->nombreEmpresa($nombreEmpresa)
             ->orderBy($orderBy, $order)
-            ->paginate(10);
+            ->paginate(1);
 
         return $request->ajax() ? response()->json(view('providers.index', compact('providers', 'orderBy', 'nombreEmpresa', 'order'))->render())
                     : view('providers.index', compact('providers', 'orderBy', 'nombreEmpresa', 'order'));
