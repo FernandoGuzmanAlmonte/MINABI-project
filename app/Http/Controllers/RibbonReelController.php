@@ -119,6 +119,13 @@ class RibbonReelController extends Controller
         //Eliminamos el registro de wasteBag desde su tabla 'wasteBag'
         $ribbonReel->delete();
 
-        return redirect()->route('ribbonProduct.index')->with('eliminar', 'ribbonReel');
+        $nomenclatura = $ribbonReel->nomenclatura;
+        $fArribo = $ribbonReel->fechaAlta;
+        $peso = $ribbonReel->peso;
+        $type = 'App\Models\RibbonReel';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+       // return redirect()->route('ribbonProduct.index')->with('eliminar', 'ribbonReel');
     }
 }

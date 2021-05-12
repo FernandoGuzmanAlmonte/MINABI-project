@@ -143,6 +143,13 @@ class WasteRibbonController extends Controller
         //Eliminamos el registro de wasteRibbon desde su tabla 'wasteRibbons'
         $wasteRibbon->delete();
 
-        return redirect()->route('coilProduct.index')->with('eliminar', 'wasteRibbon');
+        $nomenclatura = $wasteRibbon->nomenclatura;
+        $fArribo = $wasteRibbon->fechaInicioTrabajo;
+        $peso = $wasteRibbon->peso;
+        $type = 'App\Models\WasteRibbon';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+        //return redirect()->route('coilProduct.index')->with('eliminar', 'wasteRibbon');
     }
 }

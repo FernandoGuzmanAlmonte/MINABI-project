@@ -142,6 +142,13 @@ class WhiteCoilController extends Controller
 
         $whiteCoil->delete();
 
-        return redirect()->route('whiteCoil.index')->with('eliminar', 'ok');
+        $nomenclatura = $whiteCoil->nomenclatura;
+        $fArribo = $whiteCoil->fArribo;
+        $peso = $whiteCoil->peso;
+        $type = 'App\Models\WhiteCoil';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+        //return redirect()->route('whiteCoil.index')->with('eliminar', 'ok');
     }
 }

@@ -258,7 +258,14 @@ class RibbonController extends Controller
         //Eliminamos el registro de whiteRibbon desde su tabla 'whiteRibbons'
         $ribbon->delete();
 
-        return redirect()->route('coilProduct.index')->with('eliminar', 'ribbon');
+        $nomenclatura = $ribbon->nomenclatura;
+        $fArribo = $ribbon->fechaInicioTrabajo;
+        $peso = $ribbon->peso;
+        $type = 'App\Models\Ribbon';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+        //return redirect()->route('coilProduct.index')->with('eliminar', 'ribbon');
     }
     
     public function reporteriaPDF(){

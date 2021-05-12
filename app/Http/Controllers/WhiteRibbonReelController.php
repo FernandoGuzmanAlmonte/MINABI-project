@@ -122,6 +122,13 @@ class WhiteRibbonReelController extends Controller
         //Eliminamos el registro de whiteRibbonReel desde su tabla 'whiteRibbonReel'
         $whiteRibbonReel->delete();
 
+        $nomenclatura = $whiteRibbonReel->nomenclatura;
+        $fArribo = $whiteRibbonReel->fArribo;
+        $peso = $whiteRibbonReel->peso;
+        $type = 'App\Models\WhiteRibbonReel';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
         return redirect()->route('whiteRibbon.show', $whiteRibbon)->with('eliminar', 'whiteRibbonReel');
     }
 }

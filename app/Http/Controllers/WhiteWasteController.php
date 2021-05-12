@@ -134,6 +134,13 @@ class WhiteWasteController extends Controller
 
         $whiteWaste->delete();
 
-        return redirect()->route('whiteCoilProduct.index')->with('eliminar', 'whiteWaste');
+        $nomenclatura = $whiteWaste->nomenclatura;
+        $fArribo = $whiteWaste->fArribo;
+        $peso = $whiteWaste->peso;
+        $type = 'App\Models\whiteWaste';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+        //return redirect()->route('whiteCoilProduct.index')->with('eliminar', 'whiteWaste');
     }
 }

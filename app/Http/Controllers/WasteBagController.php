@@ -148,6 +148,13 @@ class WasteBagController extends Controller
         //Eliminamos el registro de wasteBag desde su tabla 'wasteBag'
         $wasteBag->delete();
 
-        return redirect()->route('ribbonProduct.index')->with('eliminar', 'wasteBag');
+        $nomenclatura = $wasteBag->nomenclatura;
+        $fArribo = $wasteBag->fechaInicioTrabajo;
+        $peso = $wasteBag->peso;
+        $type = 'App\Models\WasteBag';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+        //return redirect()->route('ribbonProduct.index')->with('eliminar', 'wasteBag');
     }
 }

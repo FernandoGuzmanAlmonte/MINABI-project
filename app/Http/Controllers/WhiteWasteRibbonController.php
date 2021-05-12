@@ -130,6 +130,13 @@ class WhiteWasteRibbonController extends Controller
         //Eliminamos el registro de whiteRibbons desde su tabla 'whiteRibbons'
         $whiteWasteRibbon->delete();
 
-        return redirect()->route('whiteRibbon.show', $whiteRibbon)->with('eliminar', 'whiteWasteRibbon');
+        $nomenclatura = $whiteWasteRibbon->nomenclatura;
+        $fArribo = $whiteWasteRibbon->fArribo;
+        $peso = $whiteWasteRibbon->peso;
+        $type = 'App\Models\WhiteWasteRibbon';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+       // return redirect()->route('whiteRibbon.show', $whiteRibbon)->with('eliminar', 'whiteWasteRibbon');
     }
 }

@@ -118,6 +118,13 @@ class CoilReelController extends Controller
         //Eliminamos el registro de whiteRibbon desde su tabla 'whiteRibbons'
         $coilReel->delete();
 
-        return redirect()->route('coilProduct.index')->with('eliminar', 'huesoBobina');
+        $nomenclatura = $coilReel->nomenclatura;
+        $fArribo = $coilReel->fechaAlta;
+        $peso = $coilReel->peso;
+        $type = 'App\Models\CoilReel';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+        //return redirect()->route('coilProduct.index')->with('eliminar', 'huesoBobina');
     }
 }

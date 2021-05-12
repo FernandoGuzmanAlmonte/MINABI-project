@@ -20,13 +20,16 @@ use App\Http\Controllers\WhiteRibbonReelController;
 use App\Http\Controllers\WhiteWasteController;
 use App\Http\Controllers\WhiteWasteRibbonController;
 use App\Http\Controllers\CoilTypeController;
+use App\Http\Controllers\DestroyController;
 use App\Http\Controllers\RoleController;
+use App\Models\Destroy;
 use App\Models\WhiteCoil;
 use App\Models\WhiteRibbon;
 use App\Models\WhiteRibbonReel;
 use App\Models\WhiteWaste;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +56,9 @@ Route::get('user/edit/{user}', [RegisterController::class, 'edit'])->name('user.
 Route::put('user/update/{user}', [RegisterController::class, 'update'])->name('user.update')->middleware('auth');
 Route::get('user', [RegisterController::class, 'index'])->name('user.index')->middleware('auth');
 Route::delete('user/delete/{id}', [RegisterController::class,'destroy'])->name('user.destroy')->middleware('auth');
+
+Route::get('eliminar/reporte/', [DestroyController::class, 'reporte'])->name('destroy.reporte')->middleware('auth');
+Route::get('destroy/store', [DestroyController::class, 'store'])->name('destroy.store')->middleware('auth');
 
 Route::get('base', function () {
         Artisan::call('migrate:fresh');

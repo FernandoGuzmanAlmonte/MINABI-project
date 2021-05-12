@@ -364,7 +364,14 @@ class CoilController extends Controller
 
         $coil->delete();
 
-        return redirect()->route('coil.index')->with('eliminar', 'ok');
+        $nomenclatura = $coil->nomenclatura;
+        $fArribo = $coil->fArribo;
+        $peso = $coil->pesoBruto;
+        $type = 'App\Models\Coil';
+
+        return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
+
+        //return redirect()->route('coil.index')->with('eliminar', 'ok');
     }    
 
     public function produccionPDF(Request $request){
