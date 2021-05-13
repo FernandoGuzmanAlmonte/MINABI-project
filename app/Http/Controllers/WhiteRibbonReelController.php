@@ -129,6 +129,6 @@ class WhiteRibbonReelController extends Controller
 
         return redirect()->route('destroy.store', compact('nomenclatura', 'fArribo', 'peso', 'type'));
 
-        return redirect()->route('whiteRibbon.show', $whiteRibbon)->with('eliminar', 'whiteRibbonReel');
+        //return redirect()->route('whiteRibbon.show', $whiteRibbon)->with('eliminar', 'whiteRibbonReel');
     }
 }

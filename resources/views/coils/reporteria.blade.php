@@ -27,9 +27,8 @@
         var dataType = 'application/vnd.ms-excel';
         var tableSelect = document.getElementById(tableID);
         var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-        
         // Specify file name
-        filename = filename?filename+'.xls':'excel_data.xls';
+        filename = 'excel_data.xls';
         
         // Create download link element
         downloadLink = document.createElement("a");
@@ -42,6 +41,7 @@
             });
             navigator.msSaveOrOpenBlob( blob, filename);
         }else{
+            console.log(tableHTML);
             // Create a link to the file
             downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
         

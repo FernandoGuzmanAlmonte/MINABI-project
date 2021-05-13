@@ -168,6 +168,15 @@
             'success'
             )
     </script>
+@elseif(session('eliminar') == 'ok')
+<script>
+    Swal.fire(
+        '¡Eliminado!',
+        'El registro se ha eliminado con éxito.',
+        'success'
+        )
+</script>
+
 @endif
 
 <script type="text/javascript">

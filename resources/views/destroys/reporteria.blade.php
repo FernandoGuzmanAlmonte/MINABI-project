@@ -101,20 +101,51 @@
             </div>
         </div>
     </form>
-    {{--
-    <div class="mt-3">
-        <button class="btn mx-2" onclick="descargarPdf()"><img src="{{asset('images/pdf.svg')}}" class="iconoTitle"></button>
-        <button class="btn mx-2" onclick="exportTableToExcel('tabla')"><img src="{{asset('images/excel.svg')}}" class="iconoTitle"></button>        
-    </div>
-    --}}
+    
     @endsection
 
 @section('table')
-    <table class="table table-striped my-4" id="tabla">
-        <thead class="bg-info">
-            <tr>
+<script type="text/javascript">
+function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20' );
+    
+    // Specify file name
+    filename = 'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        console.log(tableHTML);
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}
+</script>
+<div class="mt-3">
+    <button class="btn mx-2" onclick="descargarPdf()"><img src="{{asset('images/pdf.svg')}}" class="iconoTitle"></button>
+    <button class="btn mx-2" onclick="exportTableToExcel('tabla')"><img src="{{asset('images/excel.svg')}}" class="iconoTitle"></button>        
+</div>
+<table class="table table-striped my-4" id="tabla">
+    <thead class="bg-info">
+        <tr>
                 <th scope="col">#</th>
-                <th>Tipo</th>
                 <th>Nomenclatura</th>
                 <th>Fecha Alta</th>
                 <th>Peso</th>
@@ -124,45 +155,7 @@
         <tbody id="tableBody">
             @foreach($destroys as $destroy)
             <tr>
-                <td>{{$destroy->id}}</td>
-                <td>@switch($destroy->type)
-                    @case('App\Models\Coil')
-                        Bobina                        
-                        @break
-                    @case('App\Models\Ribbon')
-                        Rollo
-                        @break    
-                    @case('App\Models\Bag')
-                        Bolsa
-                        @break
-                    @case('App\Models\CoilReel')
-                        Hueso de bobina
-                        @break
-                    @case('App\Models\RibbonReel')
-                        Hueso de rollo
-                        @break
-                    @case('App\Models\WasteBag')
-                        Merma de rollo
-                        @break
-                    @case('App\Models\WasteRibbon')
-                        Merma de bobina
-                        @break
-                    @case('App\Models\WhiteCoil')
-                        Bobina de cenefa
-                        @break
-                    @case('App\Models\WhiteRibbon')
-                        Rollo de cenefa
-                        @break
-                    @case('App\Models\WhiteRibbonReel')
-                        Hueso de rollo de cenefa
-                        @break
-                     @case('App\Models\WhiteWaste')
-                        Merma de bobina de cenefa
-                        @break
-                    @case('App\Models\WhiteWasteRibbon')
-                        Merma de rollo de cenefa
-                        @break
-                @endswitch</td>
+                <th>{{$destroy->id}}</th>
                 <td>{{$destroy->nomenclatura}}</td>
                 <td>{{$destroy->fArribo}}</td>
                 <td>{{$destroy->peso}}</td>
@@ -298,35 +291,10 @@
         });
     }
 
-    /*function descargarPdf()
+    function descargarPdf()
     {
-        var form = $("#formOrder");
-        var formData = form.serialize(); //variable con el valor de todos los input del formulario
-        $.ajax({
-            url: "{{ route('coil.produccionPDF') }}",
-            type: 'GET',
-            data: formData,
-            xhrFields: {
-                responseType: 'blob'
-            },
-            success: function(response)
-                     {
-                        console.log(response);
-                        var a = document.createElement('a');
-                        var url = window.URL.createObjectURL(response);
-                        a.href = url;
-                        a.download = 'produccion.pdf';
-                        a.click();
-                        window.URL.revokeObjectURL(url);
-                        
-                     },
-            error: function(response)
-                   {
-                        console.log(response);
-                        alert(response);
-                   }
-        });
-    }*/
+        window.print();
+    }
     
     function ascendente()
     {
@@ -406,35 +374,5 @@
     }
     window.onload = inicializador;
 
-    /*function exportTableToExcel(tableID, filename = ''){
-        var downloadLink;
-        var dataType = 'application/vnd.ms-excel';
-        var tableSelect = document.getElementById(tableID);
-        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-        
-        // Specify file name
-        filename = filename?filename+'.xls':'excel_data.xls';
-        
-        // Create download link element
-        downloadLink = document.createElement("a");
-        
-        document.body.appendChild(downloadLink);
-        
-        if(navigator.msSaveOrOpenBlob){
-            var blob = new Blob(['ufeff', tableHTML], {
-                type: dataType
-            });
-            navigator.msSaveOrOpenBlob( blob, filename);
-        }else{
-            // Create a link to the file
-            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-        
-            // Setting the file name
-            downloadLink.download = filename;
-            
-            //triggering the function
-            downloadLink.click();
-        }
-    }*/
 </script>
 @endsection
