@@ -75,7 +75,7 @@
                     Bolsas
                 </a>
                 @endcan
-                <li class="nav-item dropdown {{ request()->routeIs('coil.reporteria', 'ribbon.reporteria', 'bag.reporteria', 'coil.produccion') ? 'active' : ''}}">
+                <li class="nav-item dropdown {{ request()->routeIs('coil.reporteria', 'ribbon.reporteria', 'bag.reporteria', 'coil.produccion', 'destroy.reporte') ? 'active' : ''}}">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Reportes
                     </a>
@@ -99,7 +99,10 @@
                         <a class="dropdown-item {{ request()->routeIs('coil.produccion') ? 'active' : ''}}" href="{{ route('coil.produccion') }}">
                             Produccion
                         </a>  
-                        @endcan
+                        @endcan                        
+                        <a class="dropdown-item {{ request()->routeIs('destroy.reporte') ? 'active' : ''}}" href="{{ route('destroy.reporte') }}">
+                            Registros Eliminados
+                        </a>  
                     </div>
                 </li>
             </div>
