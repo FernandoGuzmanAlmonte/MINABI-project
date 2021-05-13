@@ -145,7 +145,8 @@ function exportTableToExcel(tableID, filename = ''){
 <table class="table table-striped my-4" id="tabla">
     <thead class="bg-info">
         <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th>Tipo</th>
                 <th>Nomenclatura</th>
                 <th>Fecha Alta</th>
                 <th>Peso</th>
@@ -156,6 +157,45 @@ function exportTableToExcel(tableID, filename = ''){
             @foreach($destroys as $destroy)
             <tr>
                 <th>{{$destroy->id}}</th>
+                <td>@switch($destroy->type)
+                    @case('App\Models\Coil')
+                        Bobina                        
+                        @break
+                    @case('App\Models\Ribbon')
+                        Rollo
+                        @break    
+                    @case('App\Models\Bag')
+                        Bolsa
+                        @break
+                    @case('App\Models\CoilReel')
+                        Hueso de bobina
+                        @break
+                    @case('App\Models\RibbonReel')
+                        Hueso de rollo
+                        @break
+                    @case('App\Models\WasteBag')
+                        Merma de rollo
+                        @break
+                    @case('App\Models\WasteRibbon')
+                        Merma de bobina
+                        @break
+                    @case('App\Models\WhiteCoil')
+                        Bobina de cenefa
+                        @break
+                    @case('App\Models\WhiteRibbon')
+                        Rollo de cenefa
+                        @break
+                    @case('App\Models\WhiteRibbonReel')
+                        Hueso de rollo de cenefa
+                        @break
+                     @case('App\Models\WhiteWaste')
+                        Merma de bobina de cenefa
+                        @break
+                    @case('App\Models\WhiteWasteRibbon')
+                        Merma de rollo de cenefa
+                        @break
+                @endswitch
+                </td>
                 <td>{{$destroy->nomenclatura}}</td>
                 <td>{{$destroy->fArribo}}</td>
                 <td>{{$destroy->peso}}</td>
