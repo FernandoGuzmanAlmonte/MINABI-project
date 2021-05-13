@@ -1,21 +1,23 @@
 @extends('layouts.tablaIndexSinAgregar')
 
-@section('title', 'Reporte Producción')
+@section('title', 'Reporte de registros eliminados')
 
 @section('imgUrl',  asset('images/bobina.svg'))
 
-@section('namePage', 'Reporte Producción')
+@section('namePage', 'Reporte de registros eliminados')
 
 @section('filtrado')
-    {{--<form action="{{ route('coil.produccion') }}" method="GET" class="row g-3" id="formOrder">
+    <form action="{{ route('destroy.reporte') }}" method="GET" class="row g-3" id="formOrder">
         <div class="col-lg-5 mt-4">
                 <h6 class="textoConLinea"><span>Ordenar</span></h6>
                 <div class="row">
                     <div class="col-lg-7 d-flex align-items-center">
                         <div class="select">
                             <select class="form-control" name="orderBy" onchange="actualizarTabla()">
-                                <option value="nomenclatura"{{ ($orderBy == 'nomenclatura') ? 'selected' : '' }}>Ordenar por Bobina</option>
-                                <option value="fArribo" {{ ($orderBy == 'fArribo') ? 'selected' : '' }}>Ordenar por Fecha Adquisicion Bobina</option>
+                                <option value="id"{{ ($orderBy == 'id') ? 'selected' : '' }}>Ordenar por Identificador</option>
+                                <option value="type" {{ ($orderBy == 'type') ? 'selected' : '' }}>Ordenar por Tipo</option>
+                                <option value="fArribo" {{ ($orderBy == 'fArribo') ? 'selected' : '' }}>Ordenar por Fecha Alta</option>
+                                <option value="created_at" {{ ($orderBy == 'created_at') ? 'selected' : '' }}>Ordenar por Fecha Eliminación</option>
                             </select>
                         </div>
                     </div>
@@ -53,7 +55,6 @@
                     </div>
                 </div>
         </div>        
-        
         <div class="col-lg-9 d-flex">
             <h6 class="textoConLinea mt-3"><span>Filtrar</span></h6>                 
         </div>
@@ -62,19 +63,19 @@
                 <div class="row">
                     <div class="col-lg-9 mb-1 mt-1">
                         <div class="form-check float-right">
-                            <input class="form-check-input" type="checkbox" onchange="cambiarFecha(this)">
-                            <label class="form-check-label float-right text-muted" for="flexCheckDefault" id="labelFecha">
-                                Fecha Adquisición Bobina
+                            <input class="form-check-input" type="checkbox" onchange="cambiarFechaAlta(this)">
+                            <label class="form-check-label float-right text-muted" for="flexCheckDefault" id="labelFechaAlta">
+                                Fecha Alta
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-1 d-flex align-items-center">
-                        <img src="{{ asset('images/fecha-disabled.svg') }}" class="iconosPequeños" id="icoFecha">
+                        <img src="{{ asset('images/fecha-disabled.svg') }}" class="iconosPequeños" id="icoFechaAlta">
                     </div> 
                     <div class="col-lg-9">
-                        <input class="form-control" type="text" name="fecha" id="daterange" value="" disabled> 
+                        <input class="form-control" type="text" name="fechaAlta" id="daterange" value="" disabled> 
                     </div> 
                 </div>
             </div>
@@ -82,50 +83,31 @@
                 <div class="row">
                     <div class="col-lg-9 mb-1 mt-1">
                         <div class="form-check float-right">
-                            <input class="form-check-input" type="checkbox" onchange="cambiarFechaRollo(this)"> 
-                            <label class="form-check-label float-right text-muted" for="flexCheckDefault" id="labelFecha2">
-                                Fecha Adquisición Rollos
+                            <input class="form-check-input" type="checkbox" onchange="cambiarFechaEliminacion(this)"> 
+                            <label class="form-check-label float-right text-muted" for="flexCheckDefault" id="labelFechaEliminacion">
+                                Fecha Eliminación
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-1 d-flex align-items-center">
-                        <img src="{{ asset('images/fecha-disabled.svg') }}" class="iconosPequeños" id="icoFecha2">
+                        <img src="{{ asset('images/fecha-disabled.svg') }}" class="iconosPequeños" id="icoFechaEliminacion">
                     </div> 
                     <div class="col-lg-9">
-                        <input class="form-control" type="text" name="fAdquisicionRollo" id="daterange2" value="" disabled> 
-                    </div> 
-                </div>
-            </div>
-            <div class="col-lg-3 pl-0 pr-0">
-                <div class="row">
-                    <div class="col-lg-9 mb-1 mt-1">
-                        <div class="form-check float-right">
-                            <input class="form-check-input" type="checkbox" onchange="cambiarFechaProductosRollo(this)"> 
-                            <label class="form-check-label float-right text-muted" for="flexCheckDefault" id="labelFecha3">
-                                Fecha Adquisición Bolsas
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-1 d-flex align-items-center">
-                        <img src="{{ asset('images/fecha-disabled.svg') }}" class="iconosPequeños" id="icoFecha3">
-                    </div> 
-                    <div class="col-lg-9">
-                        <input class="form-control" type="text" name="fAdquisicionBolsa" id="daterange3" value="" disabled> 
+                        <input class="form-control" type="text" name="fechaEliminacion" id="daterange2" value="" disabled> 
                     </div> 
                 </div>
             </div>
         </div>
-        
     </form>
+    {{--
     <div class="mt-3">
         <button class="btn mx-2" onclick="descargarPdf()"><img src="{{asset('images/pdf.svg')}}" class="iconoTitle"></button>
         <button class="btn mx-2" onclick="exportTableToExcel('tabla')"><img src="{{asset('images/excel.svg')}}" class="iconoTitle"></button>        
     </div>
-    @endsection--}}
+    --}}
+    @endsection
 
 @section('table')
     <table class="table table-striped my-4" id="tabla">
@@ -190,7 +172,7 @@
             </tbody>
     </table>
 @endsection
-{{--
+
 @section('scripts')
 <script type="text/javascript">
 
@@ -279,49 +261,6 @@
             "opens": "center"
         }
     ); // cargamos el datarange
-
-    $('#daterange3').on('apply.daterangepicker', function(ev, picker) {
-        actualizarTabla();
-    });
-    $('#daterange3').daterangepicker(
-        {
-            "locale": 
-            {
-                "format": "YYYY-MM-DD",
-                "separator": " - ",
-                "applyLabel": "Filtrar",
-                "cancelLabel": "Cancelar",
-                "fromLabel": "Desde",
-                "toLabel": "Hasta",
-                "customRangeLabel": "Personalizar",
-                "daysOfWeek": [
-                    "Do",
-                    "Lu",
-                    "Ma",
-                    "Mi",
-                    "Ju",
-                    "Vi",
-                    "Sa"
-                ],
-                "monthNames": [
-                    "Enero",
-                    "Febrero",
-                    "Marzo",
-                    "Abril",
-                    "Mayo",
-                    "Junio",
-                    "Julio",
-                    "Agosto",
-                    "Setiembre",
-                    "Octubre",
-                    "Noviembre",
-                    "Diciembre"
-                ],
-                "firstDay": 1
-            },
-            "opens": "center"
-        }
-    ); // cargamos el datarange
     
     function cambioOrdenAscendente()
     {
@@ -341,7 +280,7 @@
         var formData = form.serialize(); //variable con el valor de todos los input del formulario
         
         $.ajax({
-            url: "{{ route('coil.produccion') }}",
+            url: "{{ route('destroy.reporte') }}",
             type: 'GET',
             data: formData,
             success: function(response)
@@ -359,31 +298,7 @@
         });
     }
 
-    function actualizarTabla()
-    {
-        var form = $("#formOrder");
-        var formData = form.serialize(); //variable con el valor de todos los input del formulario
-        
-        $.ajax({
-            url: "{{ route('coil.produccion') }}",
-            type: 'GET',
-            data: formData,
-            success: function(response)
-                     {
-                        console.log(response);
-                        var table = document.getElementById('tableBody');
-                        var newTable = $(response).find('tbody');
-                        $(table).html(newTable.html());
-                     },
-            error: function(response)
-                   {
-                        console.log(response);
-                        alert(response);
-                   }
-        });
-    }
-
-    function descargarPdf()
+    /*function descargarPdf()
     {
         var form = $("#formOrder");
         var formData = form.serialize(); //variable con el valor de todos los input del formulario
@@ -411,7 +326,7 @@
                         alert(response);
                    }
         });
-    }
+    }*/
     
     function ascendente()
     {
@@ -439,20 +354,20 @@
         $('#radioDesc').prop('checked', true);
     }
 
-    function cambiarFecha(checkbox)
+    function cambiarFechaAlta(checkbox)
     {
         if(checkbox.checked)
         {
-            $('#labelFecha').attr('class', 'form-check-label float-right');
-            $('#icoFecha').attr('src', "{{ asset('images/fecha-enabled.svg') }}");
+            $('#labelFechaAlta').attr('class', 'form-check-label float-right');
+            $('#icoFechaAlta').attr('src', "{{ asset('images/fecha-enabled.svg') }}");
 
             $('#daterange').attr('class', 'form-control');
             $('#daterange').prop('disabled', false);
         }
         else
         {
-            $('#labelFecha').attr('class', 'form-check-label float-right text-muted');
-            $('#icoFecha').attr('src', "{{ asset('images/fecha-disabled.svg') }}");
+            $('#labelFechaAlta').attr('class', 'form-check-label float-right text-muted');
+            $('#icoFechaAlta').attr('src', "{{ asset('images/fecha-disabled.svg') }}");
 
             $('#daterange').attr('class', 'form-control text-muted');
             $('#daterange').prop('disabled', true);
@@ -460,46 +375,24 @@
             actualizarTabla();
         }
     }
-
-    function cambiarFechaRollo(checkbox)
+    
+    function cambiarFechaEliminacion(checkbox)
     {
         if(checkbox.checked)
         {
-            $('#labelFecha2').attr('class', 'form-check-label float-right');
-            $('#icoFecha2').attr('src', "{{ asset('images/fecha-enabled.svg') }}");
+            $('#labelFechaEliminacion').attr('class', 'form-check-label float-right');
+            $('#icoFechaEliminacion').attr('src', "{{ asset('images/fecha-enabled.svg') }}");
 
             $('#daterange2').attr('class', 'form-control');
             $('#daterange2').prop('disabled', false);
         }
         else
         {
-            $('#labelFecha2').attr('class', 'form-check-label float-right text-muted');
-            $('#icoFecha2').attr('src', "{{ asset('images/fecha-disabled.svg') }}");
+            $('#labelFechaEliminacion').attr('class', 'form-check-label float-right text-muted');
+            $('#icoFechaEliminacion').attr('src', "{{ asset('images/fecha-disabled.svg') }}");
 
             $('#daterange2').attr('class', 'form-control text-muted');
             $('#daterange2').prop('disabled', true);
-
-            actualizarTabla();
-        }
-    }
-
-    function cambiarFechaProductosRollo(checkbox)
-    {
-        if(checkbox.checked)
-        {
-            $('#labelFecha3').attr('class', 'form-check-label float-right');
-            $('#icoFecha3').attr('src', "{{ asset('images/fecha-enabled.svg') }}");
-
-            $('#daterange3').attr('class', 'form-control');
-            $('#daterange3').prop('disabled', false);
-        }
-        else
-        {
-            $('#labelFecha3').attr('class', 'form-check-label float-right text-muted');
-            $('#icoFecha3').attr('src', "{{ asset('images/fecha-disabled.svg') }}");
-
-            $('#daterange3').attr('class', 'form-control text-muted');
-            $('#daterange3').prop('disabled', true);
 
             actualizarTabla();
         }
@@ -513,7 +406,7 @@
     }
     window.onload = inicializador;
 
-    function exportTableToExcel(tableID, filename = ''){
+    /*function exportTableToExcel(tableID, filename = ''){
         var downloadLink;
         var dataType = 'application/vnd.ms-excel';
         var tableSelect = document.getElementById(tableID);
@@ -542,6 +435,6 @@
             //triggering the function
             downloadLink.click();
         }
-    }
+    }*/
 </script>
-@endsection--}}
+@endsection
