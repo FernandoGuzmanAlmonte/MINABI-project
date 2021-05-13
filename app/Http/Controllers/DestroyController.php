@@ -20,6 +20,28 @@ class DestroyController extends Controller
         switch($destroy->type){
             case ('App\Models\Coil'):
                 return redirect()->route('coil.index')->with('eliminar', 'ok');
+            case('App\Models\Ribbon'):
+                return redirect()->route('coilProduct.index')->with('eliminar', 'ribbon');
+            case('App\Models\CoilReel'):
+                return redirect()->route('coilProduct.index')->with('eliminar', 'huesoBobina');
+            case('App\Models\WasteRibbon'):
+                return redirect()->route('coilProduct.index')->with('eliminar', 'wasteRibbon');
+            case('App\Models\Bag'):
+                return redirect()->route('ribbonProduct.index')->with('eliminar', 'ok');
+            case('App\Models\WasteBag'):
+                return redirect()->route('ribbonProduct.index')->with('eliminar', 'wasteBag');
+            case('App\Models\RibbonReel'):
+                return redirect()->route('ribbonProduct.index')->with('eliminar', 'ribbonReel');
+            case('App\Models\WhiteCoil'):
+                return redirect()->route('whiteCoil.index')->with('eliminar', 'ok');
+            case('App\Models\WhiteRibbon'):
+                return redirect()->route('whiteCoilProduct.index')->with('eliminar', 'whiteRibbon');
+            case('App\Models\WhiteWaste'):
+                return redirect()->route('whiteCoilProduct.index')->with('eliminar', 'whiteWaste');
+            case('App\Models\WhiteRibbonReel'):
+                return redirect()->route('whiteCoilProduct.index')->with('eliminar', 'ok');
+            case('App\Models\WhiteWasteRibbon'):
+                return redirect()->route('whiteCoilProduct.index')->with('eliminar', 'ok');
         }
     }
 
