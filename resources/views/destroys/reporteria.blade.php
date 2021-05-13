@@ -55,7 +55,6 @@
                     </div>
                 </div>
         </div>        
-        
         <div class="col-lg-9 d-flex">
             <h6 class="textoConLinea mt-3"><span>Filtrar</span></h6>                 
         </div>
