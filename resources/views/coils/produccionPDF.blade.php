@@ -36,6 +36,7 @@
             <tr>
                 <th scope="col" class="bigWidth" >Bobina</th>
                 <th class="smallWidth">Medida</th>
+                <th class="smallWidth">Peso</th>
                 <th class="bigWidth">Rollos</th>
                 <th class="smallWidth">Peso</th>
                 <th class="bigWidth">Bolsas</th>
@@ -54,6 +55,7 @@
                 {{-- Escribe bobinas --}}
                 <td class="bigWidth">{{$bobina->nomenclatura}}</td>
                 <td class="smallWidth">{{$bobina->coilType->alias}}</td>
+                <td class="smallWidth">{{$bobina->pesoBruto}}</td>
                 {{-- Escribe rollos --}}
                @if ($bobina->ribbons->isEmpty() && $bobina->related->isEmpty())
                     <td class="bigWidth">_</td>
@@ -70,6 +72,7 @@
                         <tr>
                         <td class="bigWidth">_</td>
                         <td class="smallWidth">_</td>
+                        <td class="smallWidth">_</td>
                     @endif
                     {{--imprime el rollo--}}
                     <td class="bigWidth">{{$ribbon->nomenclatura}}</td>
@@ -83,6 +86,7 @@
                         {{--si ya se imprimio la información del rollo--}}
                                 @if ($rollo == false )
                                     <tr>
+                                    <td class="smallWidth">_</td>
                                     <td class="smallWidth">_</td>
                                     <td class="smallWidth">_</td>
                                     <td class="smallWidth">_</td>
@@ -119,6 +123,7 @@
                             {{--Si ya se imprimio la bobina perteneciente a este rollo deja los espacios en blanco de bobina--}}
                             <tr>
                             <td class="bigWidth">_</td>
+                            <td class="smallWidth">_</td>
                             <td class="smallWidth">_</td>
                         @endif
                         {{--Sino imprime la el producto de bobina y pone vacios los campos de bolsas--}}

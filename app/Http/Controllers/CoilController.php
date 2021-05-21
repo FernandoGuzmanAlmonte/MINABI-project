@@ -404,7 +404,7 @@ class CoilController extends Controller
         ->get();
         
 
-        $pdf = PDF::loadView('coils.produccionPDF', compact('produccion'))->setPaper('letter', 'landscape');
+        $pdf = PDF::loadView('coils.produccionPDF', compact('produccion'))->setPaper('a4', 'landscape');
         return $pdf->download('produccion.pdf');
         //return view('coils.test', compact('produccion'));
     }

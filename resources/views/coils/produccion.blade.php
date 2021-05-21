@@ -133,6 +133,7 @@
             <tr>
                 <th scope="col">Bobina</th>
                 <th>Medida</th>
+                <th>Peso</th>
                 <th>Rollos</th>
                 <th>Peso</th>
                 <th>Bolsas</th>
@@ -151,6 +152,7 @@
                 {{-- Escribe bobinas --}}
                 <td>{{$bobina->nomenclatura}}</td>
                 <td>{{$bobina->coilType->alias}}</td>
+                <td>{{$bobina->pesoBruto}}</td>
                 {{-- Escribe rollos --}}
                @if ($bobina->ribbons->isEmpty() && $bobina->related->isEmpty())
                     <td>_</td>
@@ -166,6 +168,7 @@
                     {{--Si ya se imprimio la bobina perteneciente a este rollo deja los espacios en blanco de bobina--}}
                         <td>_</td>
                         <td>_</td>
+                        <td>_</td>
                     @endif
                     {{--imprime el rollo--}}
                     <td>{{$ribbon->nomenclatura}}</td>
@@ -178,6 +181,7 @@
                         @foreach ($ribbon->related as $bolsas)
                         {{--si ya se imprimio la información del rollo--}}
                                 @if ($rollo == false )
+                                    <td>_</td>
                                     <td>_</td>
                                     <td>_</td>
                                     <td>_</td>
@@ -212,6 +216,7 @@
                     @if ($coilProduct->coil_product_type != "App\Models\Ribbon")
                         @if ($BanderaBobina == false )
                             {{--Si ya se imprimio la bobina perteneciente a este rollo deja los espacios en blanco de bobina--}}
+                            <td>_</td>
                             <td>_</td>
                             <td>_</td>
                         @endif
