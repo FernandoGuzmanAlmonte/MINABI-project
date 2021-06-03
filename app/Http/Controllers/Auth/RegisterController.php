@@ -122,11 +122,12 @@ class RegisterController extends Controller
     protected function update(Request $request)
     {
         $user = User::find($request->id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if($request->password != null)
-        $user->password = $request->password;
-        $user->save();
+        User::destroy($user->id);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
         $user->roles()->sync($request->role_id);
 
         return redirect()->route('user.index');
