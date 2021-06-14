@@ -12,7 +12,7 @@
     <div class="row">
        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label><span class="required">*</span> Nomenclatura</label>
-            <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}" id="nomenclaturas" readonly>
+            <input type="text" class="form-control" name="nomenclatura" value="{{old('nomenclatura')}}" id="nomenclaturas">
             @error('nomenclatura')
                 <br>
                 <div class="alert alert-danger">
@@ -23,7 +23,7 @@
         </div>
        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
             <label><span class="required">*</span> Fecha llegada</label>
-            <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}" onblur="llenaNomen()" id="fArribo">
+            <input type="date" class="form-control" name="fArribo" value="{{old('fArribo')}}"  id="fArribo">
             @error('fArribo')
                 <br>
                 <div class="alert alert-danger">
